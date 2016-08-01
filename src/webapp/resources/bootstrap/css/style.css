@@ -1,0 +1,496 @@
+body {
+    font-family: "Arial Black, Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: white;
+    height: 100%;
+    min-height: 100%;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #5A3015;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #00ce1b;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #5A3015;
+}
+
+a:active {
+    text-decoration: none;
+    color: #00ce1b;
+}
+
+section .main {
+    padding-top: 15%;
+    text-align: center;
+    height: 101vh;
+    background: url(/resources/img/main_promo.jpg) fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+section .main-mob {
+    padding-top: 40%;
+    text-align: center;
+    height: 600px;
+    background: url(/resources/img/main_promo_xs.jpg) fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-text-label {
+     font-family: Arial Black;
+     font-size: 48px;
+     font-weight: bold;
+ }
+
+.main-text-label-mob {
+    font-family: Arial Black;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.main-label {
+    width: 120px;
+    height: 120px;
+}
+
+.main-label-mob {
+    width: 90px;
+    height: 90px;
+}
+
+.nav-text-label {
+    font-family: Arial Black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-label {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+}
+
+.footer-text-label {
+    font-family: Arial Black;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+section .categories {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 50px;
+    padding-bottom: 130px;
+    text-align: center;
+}
+
+section .category-description {
+    background: url("/resources/img/texture_1.jpg");
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.category {
+    padding-top: 75px;
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+section .payments {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 50px;
+}
+
+section .delivery {
+    background: url("/resources/img/texture_1.jpg");
+    padding-top: 50px;
+}
+
+.text-delivery {
+    text-align: center;
+    color: grey;
+    font-style: italic;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+section .login {
+    background-color: white;
+    color: grey;
+    padding-top: 95px;
+    padding-bottom: 95px;
+    text-align: center;
+}
+
+section .products {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 20px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.product {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+section .edit-section div {
+    padding-bottom: 10px;
+}
+
+.text-payments {
+    text-align: center;
+    color: grey;
+    font-style: italic;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+section .google-map {
+    background: url("/resources/img/texture_1.jpg");
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+#google-map {
+    max-width: 100%;
+}
+
+.footer {
+    background: url("/resources/img/footer_promo.jpg") fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 25px;
+    padding-bottom: 0;
+}
+
+footer div {
+    color: #5A3015;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+footer div a:hover {
+    text-decoration: underline;
+}
+
+footer div h5 {
+    padding-top: 10px;
+}
+
+section .one-product {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 80px;
+    color: black;
+}
+
+section .cart {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 30px;
+    color: black;
+}
+
+section .orders {
+    background-color: white;
+    padding-top: 20px;
+    color: black;
+}
+
+section .checkout {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 80px;
+    color: black;
+}
+
+.empty-cart {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.input-padding {
+    padding-bottom: 25px;
+}
+
+.input {
+    height: 35px;
+    -moz-border-radius: 10%;
+    width: 170px;
+}
+
+.input-order {
+    display: block;
+    width: 100%;
+    height: 34px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.textarea {
+    height: 100px;
+}
+
+.order-info {
+    display: block;
+    width: 60%;
+    height: 100px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    resize: none;
+}
+
+.featured-products {
+    background: url("/resources/img/texture_1.jpg");
+}
+
+.navbar {
+    background: white;
+    opacity: 0.85;
+    -webkit-opacity: 0.85;
+    -moz-opacity: 0.85;
+}
+
+.authorization {
+    font-family: Arial Black;
+    color: red;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.error {
+    background: url("/resources/img/texture_2.jpg");
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    text-align: center;
+}
+
+.section-name {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 65px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.home-block-name {
+    font-family: Arial Black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.cart-table {
+    background: url("/resources/img/texture_1.jpg");
+    padding: 30px;
+    color: black;
+}
+
+.admin-page {
+    background: white;
+}
+
+.blink {
+    -webkit-transition: all ease-in-out .2s;
+}
+
+.blink:hover {
+    opacity: .7;
+}
+
+.price-top {
+    position: absolute;
+    top: 7%;
+    left: 51%;
+    width: 83px;
+    height: 27px;
+    background: #00ce1b;
+    border-radius: 10% / 50%;
+    color: white;
+    text-align: center;
+    text-indent: .1em;
+}
+
+.price-top-featured {
+    position: absolute;
+    top: 7%;
+    left: 51%;
+    width: 83px;
+    height: 27px;
+    background: #00ce1b;
+    border-radius: 10% / 50%;
+    color: white;
+    text-align: center;
+    text-indent: .1em;
+}
+
+.price-product {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    background-color: red;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em
+}
+
+section div a div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+section div a {
+    text-decoration: none;
+}
+
+.icon-block {
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+.icon-block-payment-delivery {
+    padding-top: 75px;
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+.intro-text {
+    text-align: center;
+}
+
+.icon-text {
+    font-family: Arial Black;
+    color: #5A3015;
+    font-size: 22px;
+}
+
+.btn-logout {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.social {
+    padding-left: 16px;
+}
+
+.color-green {
+    color: #00ce1b;
+}
+
+.color-brown {
+    color: #5A3015;
+}
+
+.color-red {
+    color: red;
+}
+
+.color-black {
+    color: black;
+}
+
+/*  FONTS  */
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(http://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* greek */
+@font-face {
+    font-family: 'Arial Black';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial Black'), local('ArialBlack'), url(http://fonts.gstatic.com/l/font?kit=7ElOOAO7mews2kB7feQNqWo_sUJ8uO4YLWRInS22T3Y&skey=f5c444da86865f17&v=v8) format('woff2');
+    unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Arial Black';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial Black'), local('ArialBlack'), url(http://fonts.gstatic.com/l/font?kit=7ElOOAO7mews2kB7feQNqSYE0-AqJ3nfInTTiDXDjU4&skey=f5c444da86865f17&v=v8) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Arial Black';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Arial Black'), local('ArialBlack'), url(http://fonts.gstatic.com/l/font?kit=7ElOOAO7mews2kB7feQNqY4P5ICox8Kq3LLUNMylGO4&skey=f5c444da86865f17&v=v8) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+.text-shadow {
+    text-shadow: 1px 1px 1px white, 0 0 15px white;
+}
