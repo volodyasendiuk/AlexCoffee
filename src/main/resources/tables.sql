@@ -42,19 +42,22 @@ CREATE TABLE `photos` (
 
 /*----------------------------------------------------------------------------------*/
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id`          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `role_id`     INT UNSIGNED NOT NULL,
-  `name`        VARCHAR(50)  NOT NULL,
-  `username`    VARCHAR(50)           DEFAULT NULL,
-  `password`    VARCHAR(50)           DEFAULT NULL,
-  `email`       VARCHAR(50)  NOT NULL,
-  `phone`       VARCHAR(20)  NOT NULL,
-  `description` TEXT                  DEFAULT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `id`               INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `number`           VARCHAR(10)  NOT NULL,
+  `date`             VARCHAR(30)  NOT NULL,
+  `status_id`        INT UNSIGNED NOT NULL,
+  `client_id`        INT UNSIGNED NOT NULL,
+  `manager_id`       INT UNSIGNED          DEFAULT NULL,
+  `shipping_address` TEXT                  DEFAULT NULL,
+  `shipping_details` TEXT                  DEFAULT NULL,
+  `description`      TEXT                  DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  UNIQUE (`username`)
+  FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`),
+  FOREIGN KEY (`client_id`) REFERENCES `users` (`id`),
+  FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`),
+  UNIQUE (`number`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

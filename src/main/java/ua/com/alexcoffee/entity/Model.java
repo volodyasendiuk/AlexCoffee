@@ -49,12 +49,16 @@ public class Model implements Serializable {
             return false;
         }
         Model other = (Model) obj;
-        return (this.toString().equals(other.toString()));
+        return (this.toEquals().equals(other.toEquals()));
     }
 
     @Override
     public int hashCode() {
         return getId().hashCode();
+    }
+
+    public String toEquals() {
+        return toString();
     }
 
     public static String createRandomString() {

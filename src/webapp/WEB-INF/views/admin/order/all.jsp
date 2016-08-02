@@ -48,7 +48,16 @@
                         <c:forEach items="${orders}" var="order">
                             <tr>
                                 <td>${order.number}</td>
-                                <td>${order.status.description}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${order.status eq status_new}">
+                                            <span class="color-green">${order.status.description}</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${order.status.description}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td class="hidden-xs">${order.date}</td>
                                 <td>
                                     <a href="/admin/view_order_${order.id}" title="Смотреть заказ ${order.number}">

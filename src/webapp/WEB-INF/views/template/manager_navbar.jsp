@@ -27,6 +27,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <li id="auth-user"><a href="/manager/view_user_${auth_user.id}">${auth_user.name}</a></li>
                     <li id="nav-logout">
                         <form class="form-signin" action="/logout" method="post">
                             <input type="hidden" id="username" name="username">

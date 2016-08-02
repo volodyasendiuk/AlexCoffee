@@ -87,8 +87,12 @@ public class UserServiceImpl extends ItemServiceImpl<User> implements UserServic
 
     @Override
     @Transactional(readOnly = true)
-    public String getAuthentificatedUserName() {
-        return userDAO.getAuthentificatedUserName();
+    public User getAuthenticatedUser() {
+        User user = userDAO.getAuthenticatedUser();
+        if (user == null) {
+            throw new BadRequestException("Can't find authenticated user!");
+        }
+        return user;
     }
 
     @Override

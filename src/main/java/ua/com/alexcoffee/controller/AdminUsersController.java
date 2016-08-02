@@ -28,6 +28,7 @@ public class AdminUsersController {
         modelAndView.addObject("users", userService.getPersonnel());
         modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/user/all");
         return modelAndView;
     }
@@ -37,6 +38,7 @@ public class AdminUsersController {
         modelAndView.addObject("user", userService.get(id));
         modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("/admin/user/one");
         return modelAndView;
     }
@@ -44,6 +46,7 @@ public class AdminUsersController {
     @RequestMapping(value = "/add_user", method = RequestMethod.GET)
     public ModelAndView getAddUserPage(ModelAndView modelAndView) {
         modelAndView.addObject("roles", roleService.getPersonnel());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("/admin/user/add");
         return modelAndView;
     }
@@ -78,6 +81,7 @@ public class AdminUsersController {
     public ModelAndView getEditUserPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("user", userService.get(id));
         modelAndView.addObject("roles", roleService.getPersonnel());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("/admin/user/edit");
         return modelAndView;
     }

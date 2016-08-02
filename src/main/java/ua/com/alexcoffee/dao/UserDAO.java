@@ -23,5 +23,5 @@ public interface UserDAO extends Dao<User> {
 
     List<User> getClients();
 
-    String getAuthentificatedUserName();
+    User getAuthenticatedUser();
 }

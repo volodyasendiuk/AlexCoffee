@@ -63,7 +63,7 @@
                         <td><b>Телефон:</b></td>
                         <td>${user.phone}</td>
                     </tr>
-                    <c:if test="${user.vkontakte ne null}">
+                    <c:if test="${(user.vkontakte ne null) and (user.vkontakte ne '')}">
                         <tr>
                             <td><b>ВКонтакте:</b></td>
                             <td>
@@ -71,7 +71,7 @@
                             </td>
                         </tr>
                     </c:if>
-                    <c:if test="${user.facebook ne null}">
+                    <c:if test="${(user.facebook ne null) and (user.facebook ne '')}">
                         <tr>
                             <td><b>Facebook:</b></td>
                             <td>
@@ -79,7 +79,7 @@
                             </td>
                         </tr>
                     </c:if>
-                    <c:if test="${user.skype ne null}">
+                    <c:if test="${(user.skype ne null) and (user.skype ne '')}">
                         <tr>
                             <td><b>Skype:</b></td>
                             <td>
@@ -87,7 +87,7 @@
                             </td>
                         </tr>
                     </c:if>
-                    <c:if test="${user.description ne null}">
+                    <c:if test="${(user.description ne null) and (user.description ne '')}">
                         <tr>
                             <td><b>Описание:</b></td>
                             <td>${user.description}</td>

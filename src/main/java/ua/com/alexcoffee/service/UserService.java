@@ -21,7 +21,7 @@ public interface UserService extends ItemService<User> {
 
     List<User> getPersonnel();
 
-    String getAuthentificatedUserName();
+    User getAuthenticatedUser();
 
     void removeByName(String name);
 

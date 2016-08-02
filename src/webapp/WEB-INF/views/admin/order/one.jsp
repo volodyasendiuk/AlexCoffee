@@ -36,18 +36,51 @@
                     </tr>
                     <tr>
                         <td><b>Статус:</b></td>
-                        <td>${order.status.description}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${order.status eq status_new}">
+                                    <span class="color-green">${order.status.description}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    ${order.status.description}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                     </tr>
                     <tr>
                         <td><b>Дата:</b></td>
                         <td>${order.date}</td>
                     </tr>
                     <tr>
+                        <td><b>Заказ обработал:</b></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${order.manager eq null}">
+                                    -
+                                </c:when>
+                                <c:when test="${order.manager ne null}">
+                                    <c:choose>
+                                        <c:when test="${order.manager.role eq admin_role}">
+                                            <b><span class="color-red">${order.manager.role.description}</span></b>
+                                        </c:when>
+                                        <c:when test="${order.manager.role eq manager_role}">
+                                            <span class="color-green">${order.manager.role.description}</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${order.manager.role.description}
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <a href="/admin/view_user_${order.manager.id}">${order.manager.name}</a>
+                                </c:when>
+                            </c:choose>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><b>Клиент:</b></td>
                         <td>
-                            Имя: ${order.client.name}
-                            <br>Email: ${order.client.email}
-                            <br>Телефон: ${order.client.phone}
+                            Имя: <b>${order.client.name}</b>
+                            <br>Email: <b>${order.client.email}</b>
+                            <br>Телефон: <b>${order.client.phone}</b>
                         </td>
                     </tr>
                     <tr>

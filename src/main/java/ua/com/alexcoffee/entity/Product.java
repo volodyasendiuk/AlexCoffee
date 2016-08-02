@@ -70,6 +70,11 @@ public class Product extends Model {
         return sb.toString();
     }
 
+    @Override
+    public String toEquals() {
+        return getTitle() + getUrl() + getPrice();
+    }
+
     public String getTitle() {
         return title;
     }

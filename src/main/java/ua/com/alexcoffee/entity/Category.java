@@ -64,6 +64,11 @@ public class Category extends Model {
         return sb.toString();
     }
 
+    @Override
+    public String toEquals() {
+        return getTitle() + getUrl();
+    }
+
     public String getTitle() {
         return title;
     }

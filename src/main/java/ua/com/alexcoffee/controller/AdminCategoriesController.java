@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.alexcoffee.service.UserService;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -20,12 +21,17 @@ public class AdminCategoriesController {
 
     @Autowired
     private CategoryService categoryService;
+
     @Autowired
     private PhotoService photoService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public ModelAndView viewAllCategories(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/category/all");
         return modelAndView;
     }
@@ -33,6 +39,7 @@ public class AdminCategoriesController {
     @RequestMapping(value = "/view_category_{id}", method = RequestMethod.GET)
     public ModelAndView viewCategory(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("category", categoryService.get(id));
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/category/one");
         return modelAndView;
     }
@@ -40,6 +47,7 @@ public class AdminCategoriesController {
     @RequestMapping(value = "/add_category", method = RequestMethod.GET)
     public ModelAndView getAddCategoryPage(ModelAndView modelAndView) {
         modelAndView.addObject("photos", photoService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/category/add");
         return modelAndView;
     }
@@ -68,6 +76,7 @@ public class AdminCategoriesController {
     public ModelAndView getEditCategoryPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("category", categoryService.get(id));
         modelAndView.addObject("photos", photoService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/category/edit");
         return modelAndView;
     }

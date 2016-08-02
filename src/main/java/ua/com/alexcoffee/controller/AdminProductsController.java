@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.alexcoffee.service.UserService;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -29,9 +30,13 @@ public class AdminProductsController {
     @Autowired
     private PhotoService photoService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public ModelAndView viewAllProducts(ModelAndView modelAndView) {
         modelAndView.addObject("products", productService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/product/all");
         return modelAndView;
     }
@@ -39,6 +44,7 @@ public class AdminProductsController {
     @RequestMapping(value = "/view_product_{id}", method = RequestMethod.GET)
     public ModelAndView viewProduct(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("product", productService.get(id));
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/product/one");
         return modelAndView;
     }
@@ -47,6 +53,7 @@ public class AdminProductsController {
     public ModelAndView getAddProductPage(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAll());
         modelAndView.addObject("photos", photoService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/product/add");
         return modelAndView;
     }
@@ -85,6 +92,7 @@ public class AdminProductsController {
         modelAndView.addObject("product", productService.get(id));
         modelAndView.addObject("categories", categoryService.getAll());
         modelAndView.addObject("photos", photoService.getAll());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/product/edit");
         return modelAndView;
     }

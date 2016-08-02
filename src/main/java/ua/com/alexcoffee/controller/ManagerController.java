@@ -43,6 +43,8 @@ public class ManagerController {
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public ModelAndView viewAllOrders(ModelAndView modelAndView) {
         modelAndView.addObject("orders", orderService.getAll());
+        modelAndView.addObject("status_new", statusService.getDefault());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("manager/order/all");
         return modelAndView;
     }
@@ -53,6 +55,10 @@ public class ManagerController {
         modelAndView.addObject("order", order);
         modelAndView.addObject("products", order.getProducts());
         modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
+        modelAndView.addObject("status_new", statusService.getDefault());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
+        modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.setViewName("manager/order/one");
         return modelAndView;
     }
@@ -60,16 +66,22 @@ public class ManagerController {
     @RequestMapping(value = "/edit_order_{id}", method = RequestMethod.GET)
     public ModelAndView getEditOrderPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
-        modelAndView.addObject("order", order);
-        modelAndView.addObject("products", order.getProducts());
-        modelAndView.addObject("statuses", statusService.getAll());
-        modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
-        modelAndView.setViewName("manager/order/edit");
+        if (order.getManager() == null || order.getManager().equals(userService.getAuthenticatedUser())) {
+            modelAndView.addObject("order", order);
+            modelAndView.addObject("products", order.getProducts());
+            modelAndView.addObject("statuses", statusService.getAll());
+            modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
+            modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
+            modelAndView.setViewName("manager/order/edit");
+        } else {
+            modelAndView.setViewName("redirect:/manager/orders");
+        }
         return modelAndView;
     }
 
     @RequestMapping(value = "/update_order", method = RequestMethod.POST)
     public ModelAndView updateOrder(@RequestParam long id,
+                                    @RequestParam(value = "auth_user") long managerId,
                                     @RequestParam String number,
                                     @RequestParam(value = "status") long statusId,
                                     @RequestParam String name,
@@ -81,15 +93,22 @@ public class ManagerController {
                                     ModelAndView modelAndView) {
         Order order = orderService.get(id);
 
-        User client = order.getClient();
-        client.setName(name);
-        client.setEmail(email);
-        client.setPhone(phone);
+        if (order.getManager() == null || order.getManager() == userService.getAuthenticatedUser()) {
 
-        Status status = statusService.get(statusId);
-        order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client);
+            User client = order.getClient();
+            client.setName(name);
+            client.setEmail(email);
+            client.setPhone(phone);
 
-        orderService.update(order);
+            Status status = statusService.get(statusId);
+            User manager = null;
+            if (!status.equals(statusService.getDefault())) {
+                manager = userService.get(managerId);
+            }
+
+            order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
+            orderService.update(order);
+        }
 
         modelAndView.setViewName("redirect:/manager/view_order_" + id);
         return modelAndView;
@@ -105,6 +124,7 @@ public class ManagerController {
         modelAndView.addObject("users", userService.getPersonnel());
         modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("manager/user/all");
         return modelAndView;
     }
@@ -114,6 +134,7 @@ public class ManagerController {
         modelAndView.addObject("user", userService.get(id));
         modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("manager/user/one");
         return modelAndView;
     }

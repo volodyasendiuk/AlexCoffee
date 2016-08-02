@@ -34,6 +34,10 @@ public class Order extends Model {
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private User client;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private User manager;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "product_id", nullable = false))
@@ -74,8 +78,12 @@ public class Order extends Model {
         StringBuilder sb = new StringBuilder();
         sb.append(number).append(", ").append(status.getDescription()).append(", ").append(date)
                 .append("\n\nClient: ").append(client.getName())
-        .append("\nemail: ").append(client.getEmail())
+                .append("\nemail: ").append(client.getEmail())
                 .append("\nnphone: ").append(client.getPhone()).append("\n");
+
+        if (manager != null) {
+            sb.append("\n").append(manager.getRole().getDescription()).append(manager.getName()).append("\n");
+        }
 
         if (shippingAddress != null && !shippingAddress.isEmpty()) {
             sb.append("\nShipping address: ").append(shippingAddress);
@@ -97,6 +105,11 @@ public class Order extends Model {
             sb.append("\n\nPRICE = ").append(getPrice()).append(" UAH");
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toEquals() {
+        return getNumber();
     }
 
     public String getNumber() {
@@ -133,6 +146,14 @@ public class Order extends Model {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
     public String getShippingAddress() {
@@ -180,7 +201,7 @@ public class Order extends Model {
     }
 
     public void setAllInfo(String number, Date date, String shippingAddress, String shippingDetails,
-                                  String description, Status status, User client) {
+                           String description, Status status, User client, User manager) {
         setNumber(number);
         setDate(date);
         setShippingAddress(shippingAddress);
@@ -188,5 +209,6 @@ public class Order extends Model {
         setDescription(description);
         setStatus(status);
         setClient(client);
+        setManager(manager);
     }
 }

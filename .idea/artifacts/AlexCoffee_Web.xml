@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="AlexCoffee:Web">
+    <output-path>$PROJECT_DIR$/out/artifacts/AlexCoffee_Web</output-path>
+    <root id="archive" name="AlexCoffee_Web.war">
+      <element id="artifact" artifact-name="AlexCoffee:Web exploded" />
+    </root>
+  </artifact>
+</component>

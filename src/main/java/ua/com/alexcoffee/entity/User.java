@@ -44,6 +44,9 @@ public class User extends Model implements UserDetails {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
+    @OneToOne(mappedBy = "manager", cascade = CascadeType.REMOVE)
+    private Order order;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
     private List<Order> orders = new ArrayList<>();
 
@@ -77,6 +80,11 @@ public class User extends Model implements UserDetails {
                 .append("\nPhone: ").append(phone)
                 .append("\nDescription: ").append(description);
         return sb.toString();
+    }
+
+    @Override
+    public String toEquals() {
+        return getName() + getEmail() + getPhone();
     }
 
     @Override
@@ -184,6 +192,14 @@ public class User extends Model implements UserDetails {
 
     public Role getRole() {
         return role;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public List<Order> getOrders() {

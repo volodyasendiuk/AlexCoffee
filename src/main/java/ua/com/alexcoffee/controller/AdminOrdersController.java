@@ -12,7 +12,9 @@ import ua.com.alexcoffee.entity.Status;
 import ua.com.alexcoffee.entity.User;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.OrderService;
+import ua.com.alexcoffee.service.RoleService;
 import ua.com.alexcoffee.service.StatusService;
+import ua.com.alexcoffee.service.UserService;
 
 import java.util.Date;
 
@@ -26,6 +28,12 @@ public class AdminOrdersController {
     @Autowired
     private StatusService statusService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView admin(ModelAndView modelAndView) {
         modelAndView.setViewName("redirect:/admin/orders");
@@ -35,6 +43,8 @@ public class AdminOrdersController {
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public ModelAndView viewAllOrders(ModelAndView modelAndView) {
         modelAndView.addObject("orders", orderService.getAll());
+        modelAndView.addObject("status_new", statusService.getDefault());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/order/all");
         return modelAndView;
     }
@@ -45,6 +55,10 @@ public class AdminOrdersController {
         modelAndView.addObject("order", order);
         modelAndView.addObject("products", order.getProducts());
         modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
+        modelAndView.addObject("status_new", statusService.getDefault());
+        modelAndView.addObject("admin_role", roleService.getAdministrator());
+        modelAndView.addObject("manager_role", roleService.getManager());
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/order/one");
         return modelAndView;
     }
@@ -56,12 +70,14 @@ public class AdminOrdersController {
         modelAndView.addObject("products", order.getProducts());
         modelAndView.addObject("statuses", statusService.getAll());
         modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
+        modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/order/edit");
         return modelAndView;
     }
 
     @RequestMapping(value = "/update_order", method = RequestMethod.POST)
     public ModelAndView updateOrder(@RequestParam long id,
+                                    @RequestParam(value = "auth_user") long managerId,
                                     @RequestParam String number,
                                     @RequestParam(value = "status") long statusId,
                                     @RequestParam(value = "user_name") String name,
@@ -79,8 +95,9 @@ public class AdminOrdersController {
         client.setPhone(phone);
 
         Status status = statusService.get(statusId);
-        order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client);
+        User manager = userService.get(managerId);
 
+        order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
         orderService.update(order);
 
         modelAndView.setViewName("redirect:/admin/view_order_" + id);

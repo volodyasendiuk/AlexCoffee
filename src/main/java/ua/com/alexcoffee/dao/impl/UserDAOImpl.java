@@ -66,10 +66,10 @@ public class UserDAOImpl extends DaoAbstractImpl<User> implements UserDAO {
     }
 
     @Override
-    public String getAuthentificatedUserName() {
+    public User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-        return user.getUsername();
+        User user = (User) authentication.getPrincipal();
+        return user;
     }
 
     @Override
