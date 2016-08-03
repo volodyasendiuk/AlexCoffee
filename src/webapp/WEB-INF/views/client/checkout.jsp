@@ -10,13 +10,13 @@
     <meta name="title" content="Оформление заказа || Alex Coffee">
     <title>Оформление заказа || Alex Coffee</title>
 </head>
-<body>
+<body class="background">
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
 
 <!-- CHECKOUT -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="checkout">
         <div class="row checkout">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
@@ -40,7 +40,7 @@
                         <td class="hidden-xs"><b>Категория</b></td>
                         <td><b>Стоимость</b></td>
                     </tr>
-                    <c:forEach items="${productsInCart}" var="product">
+                    <c:forEach items="${products}" var="product">
                         <tr>
                             <td>
                                 <a href="/product_${product.url}"
@@ -68,7 +68,7 @@
                         <td style="text-align: right;"><strong>Итого:</strong></td>
                         <td>
                             <strong>
-                                <fmt:formatNumber type="number" value="${priceOfProductsInCart}"/> грн
+                                <fmt:formatNumber type="number" value="${price_of_cart}"/> грн
                             </strong>
                         </td>
                     </tr>

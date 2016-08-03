@@ -16,7 +16,7 @@
 <jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
 
 <!-- ORDER -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="order">
         <div class="row admin-page">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
@@ -39,7 +39,7 @@
                         <td>
                             <c:choose>
                                 <c:when test="${order.status eq status_new}">
-                                    <span class="color-green">${order.status.description}</span>
+                                    <span class="color-green"><b>${order.status.description}</b></span>
                                 </c:when>
                                 <c:otherwise>
                                     ${order.status.description}
@@ -143,7 +143,7 @@
                     </tr>
                     <tr>
                         <td><b>Общая сумма:</b></td>
-                        <td>${priceOfAllProducts} грн</td>
+                        <td><b>${order_price}</b> грн</td>
                     </tr>
                     <tr>
                         <td></td>

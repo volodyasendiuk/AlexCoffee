@@ -3,8 +3,9 @@ package ua.com.alexcoffee.entity;
 import ua.com.alexcoffee.enums.StatusEnum;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "statuses")
@@ -19,8 +20,8 @@ public class Status extends Model {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "status", cascade = CascadeType.REMOVE)
-    private Set<Order> orders = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "status", cascade = CascadeType.REMOVE)
+    private List<Order> orders = new ArrayList<>();
 
     public Status() {
         super();
@@ -72,11 +73,11 @@ public class Status extends Model {
         this.description = description;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }

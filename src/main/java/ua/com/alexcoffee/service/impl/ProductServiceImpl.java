@@ -63,19 +63,27 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
 
     @Override
     @Transactional(readOnly = true)
+    public List<Product> getRandomByCategoryId(int size, Long categoryId) {
+        return getRandomByCategoryId(size, categoryId, (long) -1);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<Product> getRandomByCategoryId(int size, Long categoryId, Long differentProductId) {
-        List<Product> productList = productDAO.getListByCategoryId(categoryId);
-        if (productList.isEmpty()) {
+        List<Product> products = productDAO.getListByCategoryId(categoryId);
+        if (products.isEmpty()) {
             return null;
         }
 
-        productList.remove(productDAO.get(differentProductId));
-        Collections.shuffle(productList);
+        products.remove(productDAO.get(differentProductId));
+        return getShuffleSubList(products, 0, size);
+    }
 
-        if (productList.size() < size) {
-            size = productList.size();
-        }
-        return productList.subList(0, size);
+    @Override
+    @Transactional(readOnly = true)
+    public List<Product> getRandom(int size) {
+        List<Product> products = productDAO.getAll();
+        return getShuffleSubList(products, 0, size);
     }
 
     @Override
@@ -114,5 +122,18 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
     @Override
     public ProductDAO getDao() {
         return productDAO;
+    }
+
+    private static List<Product> getShuffleSubList(List<Product> products, int start, int end) {
+        if (start > products.size() || start > end) {
+            return null;
+        }
+
+        if (end > products.size()) {
+            end = products.size();
+        }
+
+        Collections.shuffle(products);
+        return products.subList(start, end);
     }
 }

@@ -3,8 +3,9 @@ package ua.com.alexcoffee.entity;
 import ua.com.alexcoffee.enums.RoleEnum;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -19,8 +20,8 @@ public class Role extends Model {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
-    private Set<User> users = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
+    private List<User> users = new ArrayList<>();
 
     public Role() {
         super();
@@ -72,11 +73,11 @@ public class Role extends Model {
         this.description = description;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

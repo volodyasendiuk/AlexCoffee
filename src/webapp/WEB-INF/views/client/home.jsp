@@ -10,23 +10,23 @@
     <meta name="robots" content="index,follow">
     <meta name="google-site-verification" content="qiZQeYKdNTO5NVZQisl_gpnbTUCB89tSrwzSo99-fNo"/>
     <meta name="description"
-          content="Вкусный и ароматный кофе для Вас и Вашех друзей. Кофе - любимый напиток цивилизованного мира."/>
+          content="Alex Coffee - магазин вкусного и ароматного кофе для Вас и Вашех друзей. Кофе - любимый напиток цивилизованного мира."/>
     <meta name="keywords"
           content="alexcoffee, alex coffee, интернет, магазин, вкусный, аромтный, кофе, купить, куплю, в Киеве, в Украине, Киев, Украина"/>
     <meta name="title" content="Alex Coffee || Лучший магазин кофе">
     <title>Alex Coffee || Лучший магазин кофе</title>
     <script src="/resources/bootstrap/js/google_maps.js"></script>
 </head>
-<body>
+<body class="background">
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/home_navbar.jsp"/>
 
 <!-- MAIN PHOTO -->
-<section id="main">
-    <div class="container-fluid hidden-xs">
-        <div class="row main">
-            <div class="text-shadow">
+<div class="container-fluid width">
+    <section id="main">
+        <div class="row main text-shadow">
+            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <span class="main-text-label color-green">Alex</span>
                 <span class="main-text-label color-brown">Coffee</span>
                 <h2>
@@ -37,11 +37,9 @@
                 <span class="main-text-label color-brown"> кофе</span>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid hidden-sm hidden-md hidden-lg hidden-xl">
-        <div class="row main-mob">
-            <div class="text-shadow">
+        <div class="hidden-sm hidden-md hidden-lg hidden-xl">
+            <div class="row main-mob text-shadow">
                 <span class="main-text-label-mob color-green">Alex</span>
                 <span class="main-text-label-mob color-brown">Coffee</span>
                 <h3>
@@ -52,14 +50,14 @@
                 <br><span class="main-text-label-mob color-brown"> кофе</span>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- CATEGORIES -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="categories">
         <div class="row categories">
-            <div class="col-xs-12 col-sm-12 col-md-12  col-lg-12 col-xl-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3 class="intro-text label-categories">
                     <img src="/resources/img/section_icon_1.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
@@ -86,18 +84,78 @@
                         </div>
                     </div>
                 </c:forEach>
+
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                    <h4 class="text-all-products text-shadow">
+                        <a href="/all_products" title="Перейти ко всем товарам">Весь ассортимент кофе</a>
+                    </h4>
+                </div>
+            </c:if>
+        </div>
+    </section>
+</div>
+
+<!--SOME PRODUCTS-->
+<div class="container-fluid width">
+    <section id="all-products">
+        <div class="row all-products">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <h3 class="intro-text label-all-products">
+                    <img src="/resources/img/section_icon_2.png" width="90px" height="90px"
+                         alt="Alex Coffee || Лучший магазин кофе">
+                    <div class="text-shadow">
+                        <span class="home-block-name color-green">Наши</span>
+                        <span class="home-block-name color-brown"> товары</span>
+                        <c:if test="${fn:length(products) eq 0}">
+                            <span class="color-red"> - список пуст!</span>
+                        </c:if>
+                    </div>
+                </h3>
+            </div>
+
+            <c:if test="${fn:length(products) gt 0}">
+                <c:forEach items="${products}" var="product">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                        <div class="product">
+                            <a href="/product_${product.url}" title="Перейти к ${product.title}">
+                                <img src="/resources/${product.photo.photoLinkShort}"
+                                     class="img-thumbnail blink" width="185px" height="185px"
+                                     alt="${product.title}">
+                                <div class="text-shadow">${product.title}</div>
+
+                                <p class="price-top">
+                                    <fmt:formatNumber type="number" value="${product.price}"/> грн
+                                </p>
+                            </a>
+                            <form action="/cart_add_quickly" method="post">
+                                <input type="hidden" name="id" value="${product.id}">
+                                <input type="hidden" name="url" value="/">
+                                <p class="text" title="Добавить ${product.title} в корзину">
+                                    <button class="btn btn-success" type="submit">Добавить в корзину</button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </c:forEach>
+
+
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                    <h4 class="text-all-products text-shadow">
+                        <a href="/all_products" title="Перейти ко всем товарам">Весь ассортимент кофе</a>
+                    </h4>
+                </div>
             </c:if>
         </div>
     </section>
 </div>
 
 <!-- DELIVERY -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="delivery">
         <div class="row delivery">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3 class="intro-text label-delivery">
-                    <img src="/resources/img/section_icon_2.png" width="90px" height="90px"
+                    <img src="/resources/img/section_icon_3.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Доставка</span>
@@ -129,12 +187,12 @@
 </div>
 
 <!-- PAYMENTS -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="payments">
         <div class="row payments">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3 class="intro-text label-payments">
-                    <img src="/resources/img/section_icon_3.png" width="90px" height="90px"
+                    <img src="/resources/img/section_icon_4.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Оплата</span>
@@ -166,12 +224,12 @@
 </div>
 
 <!-- GOOGLE EARTH -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="contacts">
-        <div class="row google-map">
+        <div class="row google-map intro-text label-cantacts">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-contacts">
-                    <img src="/resources/img/section_icon_4.png" width="90px" height="90px"
+                <h3>
+                    <img src="/resources/img/section_icon_5.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Контакты</span>

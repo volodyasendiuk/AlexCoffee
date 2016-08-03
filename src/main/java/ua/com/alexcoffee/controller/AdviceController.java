@@ -78,8 +78,8 @@ public class AdviceController {
         logger.error(ex.getMessage(), ex);
         ex.printStackTrace();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("shopingCartSize", shoppingCartService.getSize());
-        modelAndView.addObject("textError", textError);
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
+        modelAndView.addObject("text_error", textError);
         modelAndView.setViewName("error");
         return modelAndView;
     }

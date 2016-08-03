@@ -54,7 +54,7 @@ public class AdminOrdersController {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
         modelAndView.addObject("products", order.getProducts());
-        modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
+        modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("status_new", statusService.getDefault());
         modelAndView.addObject("admin_role", roleService.getAdministrator());
         modelAndView.addObject("manager_role", roleService.getManager());
@@ -68,8 +68,8 @@ public class AdminOrdersController {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
         modelAndView.addObject("products", order.getProducts());
+        modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("statuses", statusService.getAll());
-        modelAndView.addObject("priceOfAllProducts", orderService.getPriceOfProducts(order));
         modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
         modelAndView.setViewName("admin/order/edit");
         return modelAndView;

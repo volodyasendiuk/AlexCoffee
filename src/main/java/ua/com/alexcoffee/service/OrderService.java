@@ -7,8 +7,4 @@ public interface OrderService extends ItemService<Order> {
     Order get(String number);
 
     void remove(String number);
-
-    double getPriceOfProducts(Order order);
-
-
 }

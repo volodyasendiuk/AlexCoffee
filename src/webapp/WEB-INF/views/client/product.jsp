@@ -13,13 +13,13 @@
     <meta name="title" content="${product.title} || Alex Coffee">
     <title>${product.title} || Alex Coffee</title>
 </head>
-<body>
+<body class="background">
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
 
 <!-- PRODUCT -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="one-product">
         <div class="row one-product">
             <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 col-xs-offset-0">
@@ -61,28 +61,28 @@
                 </div>
             </div>
 
-            <c:if test="${fn:length(featuredProducts) gt 0}">
+            <c:if test="${fn:length(featured_products) gt 0}">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 featured-products text-center">
-                    <c:forEach items="${featuredProducts}" var="featuredProduct">
+                    <c:forEach items="${featured_products}" var="featured_product">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <div class="product">
-                                <a href="/product_${featuredProduct.url}"
-                                   title="Перейти к ${featuredProduct.title}">
-                                    <img src="/resources/${featuredProduct.photo.photoLinkShort}"
-                                         alt="${featuredProduct.title}"
+                                <a href="/product_${featured_product.url}"
+                                   title="Перейти к ${featured_product.title}">
+                                    <img src="/resources/${featured_product.photo.photoLinkShort}"
+                                         alt="${featured_product.title}"
                                          class="img-thumbnail blink" width="185px" height="185px">
                                     <div class="text-shadow">
-                                            ${featuredProduct.title}
+                                            ${featured_product.title}
                                     </div>
                                     <p class="price-top-featured">
-                                        <fmt:formatNumber type="number" value="${featuredProduct.price}"/> грн
+                                        <fmt:formatNumber type="number" value="${featured_product.price}"/> грн
                                     </p>
                                 </a>
 
                                 <form action="/cart_add_quickly" method=post>
-                                    <input type="hidden" name="id" value="${featuredProduct.id}">
+                                    <input type="hidden" name="id" value="${featured_product.id}">
                                     <input type="hidden" name="url" value="/product_${product.url}">
-                                    <p class="text" title="Добавить ${featuredProduct.title} в корзину">
+                                    <p class="text" title="Добавить ${featured_product.title} в корзину">
                                         <button class="btn btn-success" type="submit">Добавить в корзину</button>
                                     </p>
                                 </form>

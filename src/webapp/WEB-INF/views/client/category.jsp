@@ -7,29 +7,28 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/views/template/head.jsp"/>
-    <meta name="description" content="Весь ассортимент товаров интернет магазина кофе Alex Coffee"/>
-    <meta name="keywords" content="Ассортимент кофе магазина Alex Coffee"/>
-    <meta name="title" content="Весь ассортимент кофе || Alex Coffee">
-    <title>Весь ассортимент кофе || Alex Coffee</title>
+    <meta name="description" content="${category.description}"/>
+    <meta name="keywords" content="${category.title}"/>
+    <meta name="title" content="${category.title} || Alex Coffee">
+    <title>${category.title} || Alex Coffee</title>
 </head>
 <body class="background">
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
 
-<!-- All PRODUCTS -->
+<!-- COFFEE -->
 <div class="container-fluid width">
-    <section id="products">
+    <section id="products_${category.url}">
         <div class="row products">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-all-products">
-                    <img id="icon7" src="/resources/img/all_products_icon.png" width="150px" height="150px"
-                         alt="Alex Coffee || Лучший магазин кофе">
+                <h3 class="intro-text label-categories">
+                    <img id="icon7" src="/resources/${category.photo.photoLinkShort}" width="150px" height="150px"
+                         alt="${category.title}">
                     <div class="text-shadow">
-                        <span class="home-block-name color-green">Наши</span>
-                        <span class="home-block-name color-brown"> товары</span>
+                        <span class="home-block-name color-green">${category.title}</span>
                         <c:if test="${fn:length(products) eq 0}">
-                            <span class="color-red"> - список пуст!</span>
+                            <span class="home-block-name color-red"> - список пуст!</span>
                         </c:if>
                     </div>
                 </h3>
@@ -49,10 +48,9 @@
                                     <fmt:formatNumber type="number" value="${product.price}"/> грн
                                 </p>
                             </a>
-
                             <form action="/cart_add_quickly" method="post">
                                 <input type="hidden" name="id" value="${product.id}">
-                                <input type="hidden" name="url" value="/all_products">
+                                <input type="hidden" name="url" value="/category_${category.url}">
                                 <p class="text" title="Добавить ${product.title} в корзину">
                                     <button class="btn btn-success" type="submit">Добавить в корзину</button>
                                 </p>
@@ -61,6 +59,24 @@
                     </div>
                 </c:forEach>
             </c:if>
+
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                <h4 class="text-all-products text-shadow">
+                    <a href="/all_products" title="Перейти ко всем товарам">Весь ассортимент кофе</a>
+                </h4>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- CATEGORY DESCRIPTION -->
+<div class="container-fluid width">
+    <section id="category-description">
+        <div class="row category-description color-black">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                <p><b>${category.title}</b></p>
+                <p>${category.description}</p>
+            </div>
         </div>
     </section>
 </div>

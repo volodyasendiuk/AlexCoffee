@@ -17,8 +17,8 @@
 <jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
 
 <!-- PRODUCTS -->
-<div class="container-fluid">
-    <section id="products">
+<div class="container-fluid width">
+    <section id="products admin-page">
         <div class="row admin-page">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                 <div class="row section-name text-shadow">

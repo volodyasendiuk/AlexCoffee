@@ -11,29 +11,29 @@
     <meta name="robots" content="index,follow">
     <title>Корзина || Alex Coffee</title>
 </head>
-<body>
+<body class="background">
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
 
 <!-- CART -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="cart">
         <div class="row cart">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                 <div class="row section-name text-shadow color-brown">
                     <b>
                         <span class="color-brown">Корзина</span>
-                        <!-- Empty cart -->
-                        <c:if test="${fn:length(productsInCart) eq 0}">
+                        <!-- EMPTY CART -->
+                        <c:if test="${fn:length(products) eq 0}">
                             <span class="color-green"> - список пуст!</span>
                         </c:if>
                     </b>
                 </div>
             </div>
 
-            <!-- Full cart -->
-            <c:if test="${fn:length(productsInCart) gt 0}">
+            <!-- FULL CART -->
+            <c:if test="${fn:length(products) gt 0}">
                 <div class="row">
                     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                         <table class="table cart-table">
@@ -43,12 +43,12 @@
                                 <td class="hidden-xs"><b>Категория</b></td>
                                 <td><b>Стоимость</b></td>
                             </tr>
-                            <c:forEach items="${productsInCart}" var="product">
+                            <c:forEach items="${products}" var="product">
                                 <tr>
                                     <td>
                                         <a href="/product_${product.url}"
                                            title="Перейти к ${product.title}">
-                                           ${product.title}</a>
+                                                ${product.title}</a>
                                     </td>
                                     <td>
                                         <img width="50px" height="50px" src="/resources/${product.photo.photoLinkShort}"
@@ -57,7 +57,7 @@
                                     <td class="hidden-xs">
                                         <a href="/category_${product.category.url}"
                                            title="Перейти к категории ${product.category.title}">
-                                           ${product.category.title}</a>
+                                                ${product.category.title}</a>
                                     </td>
                                     <td>
                                         <fmt:formatNumber type="number" value="${product.price}"/> грн
@@ -71,7 +71,7 @@
                                 <td style="text-align: right;"><strong>Итого:</strong></td>
                                 <td>
                                     <strong>
-                                        <fmt:formatNumber type="number" value="${priceOfProductsInCart}"/> грн
+                                        <fmt:formatNumber type="number" value="${price_of_cart}"/> грн
                                     </strong>
                                 </td>
                             </tr>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <!-- Product registration -->
+                <!-- ORDER REGISTRATION -->
                 <div class="row">
                     <form action="/checkout" method="post">
                         <div class="col-xs-12 col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2 col-xl-2 col-xl-offset-2 input-padding text-center">
@@ -102,14 +102,12 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 text-center">
-                        <p><a href="/#categories">
+                        <a href="/#categories">
                             <button class="btn btn-success">Продолжить покупки</button>
-                        </a></p>
-                    </div>
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 text-center">
-                        <p><a href="/cart_clear">
+                        </a>
+                        <a href="/cart_clear">
                             <button class="btn btn-success">Очистить корзину</button>
-                        </a></p>
+                        </a>
                     </div>
                 </div>
             </c:if>

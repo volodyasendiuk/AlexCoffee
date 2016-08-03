@@ -7,6 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -41,8 +42,16 @@ public class ShoppingCart implements Serializable {
         products.add(product);
     }
 
+    public void addProducts(List<Product> products) {
+        this.products.addAll(products);
+    }
+
     public void removeProduct(Product product) {
         products.remove(product);
+    }
+
+    public void removeProducts(List<Product> products) {
+        this.products.removeAll(products);
     }
 
     public void clearProducts() {
@@ -50,7 +59,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
     public void setProducts(List<Product> products) {

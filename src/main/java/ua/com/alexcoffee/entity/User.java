@@ -47,7 +47,7 @@ public class User extends Model implements UserDetails {
     @OneToOne(mappedBy = "manager", cascade = CascadeType.REMOVE)
     private Order order;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.REMOVE)
     private List<Order> orders = new ArrayList<>();
 
     public User() {
@@ -203,7 +203,7 @@ public class User extends Model implements UserDetails {
     }
 
     public List<Order> getOrders() {
-        return orders;
+        return Collections.unmodifiableList(orders);
     }
 
     public void setOrders(List<Order> orders) {

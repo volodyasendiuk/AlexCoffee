@@ -14,6 +14,10 @@ public interface ProductService extends ItemService<Product> {
 
     List<Product> getRandomByCategoryId(int size, Long categoryId, Long differentProductId);
 
+    List<Product> getRandomByCategoryId(int size, Long categoryId);
+
+    List<Product> getRandom(int size);
+
     void remove(String url);
 
     void removeByCategoryUrl(String categoryUrl);

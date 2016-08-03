@@ -1,10 +1,8 @@
 package ua.com.alexcoffee.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -22,10 +20,10 @@ public class Photo extends Model {
     @Column(name = "photo_link_long")
     private String photoLinkLong;
 
-    @OneToMany(mappedBy = "photo")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "photo")
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(mappedBy = "photo")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "photo")
     private List<Category> categories = new ArrayList<>();
 
     public Photo() {
@@ -86,7 +84,7 @@ public class Photo extends Model {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
     public void setProducts(List<Product> products) {
@@ -94,7 +92,7 @@ public class Photo extends Model {
     }
 
     public List<Category> getCategories() {
-        return categories;
+        return Collections.unmodifiableList(categories);
     }
 
     public void setCategories(List<Category> categories) {

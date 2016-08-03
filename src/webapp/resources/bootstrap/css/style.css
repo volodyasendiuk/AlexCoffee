@@ -30,17 +30,26 @@ a:active {
     color: #00ce1b;
 }
 
+.background {
+    background: url("/resources/img/texture_3.jpg");
+}
+
+.width {
+    width: 1348px;
+}
+
 section .main {
-    padding-top: 15%;
+    padding-top: 150px;
     text-align: center;
-    height: 101vh;
+    height: 600px;
     background: url(/resources/img/main_promo.jpg) fixed;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 section .main-mob {
-    padding-top: 40%;
+    align-content: center;
+    padding-top: 240px;
     text-align: center;
     height: 600px;
     background: url(/resources/img/main_promo_xs.jpg) fixed;
@@ -72,7 +81,7 @@ section .main-mob {
 
 .nav-text-label {
     font-family: Arial Black;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -89,10 +98,9 @@ section .main-mob {
 }
 
 section .categories {
-    background: url("/resources/img/texture_2.jpg");
+    background: url("/resources/img/texture_1.jpg");
     padding-top: 50px;
-    padding-bottom: 130px;
-    text-align: center;
+    padding-bottom: 50px;
 }
 
 section .category-description {
@@ -101,10 +109,9 @@ section .category-description {
     padding-bottom: 50px;
 }
 
-.category {
-    padding-top: 75px;
-    padding-bottom: 45px;
-    text-align: center;
+section .all-products {
+    background: url("/resources/img/texture_2.jpg");
+    padding-top: 50px;
 }
 
 section .payments {
@@ -115,6 +122,12 @@ section .payments {
 section .delivery {
     background: url("/resources/img/texture_1.jpg");
     padding-top: 50px;
+}
+
+.category {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 .text-delivery {
@@ -158,6 +171,13 @@ section .edit-section div {
     padding-bottom: 25px;
 }
 
+.text-all-products {
+    text-align: right;
+    font-style: italic;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 section .google-map {
     background: url("/resources/img/texture_1.jpg");
     padding-top: 40px;
@@ -165,7 +185,7 @@ section .google-map {
 }
 
 #google-map {
-    max-width: 100%;
+    width: 100%;
 }
 
 .footer {
@@ -199,6 +219,7 @@ section .one-product {
 section .cart {
     background: url("/resources/img/texture_2.jpg");
     padding-top: 30px;
+    padding-bottom: 50px;
     color: black;
 }
 
@@ -226,7 +247,7 @@ section .checkout {
 .input {
     height: 35px;
     -moz-border-radius: 10%;
-    width: 170px;
+    width: 200px;
 }
 
 .input-order {
@@ -302,7 +323,7 @@ section .checkout {
     color: black;
 }
 
-.admin-page {
+section .admin-page {
     background: white;
 }
 

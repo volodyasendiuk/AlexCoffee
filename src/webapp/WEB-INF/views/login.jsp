@@ -12,22 +12,24 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <div class="navbar-brand text-shadow">
-                <a href="/">
-                    <span class="nav-text-label color-green">Alex</span>
-                    <span class="nav-text-label color-brown">Coffee</span>
-                    <img class="nav-label" src="/resources/img/main_icon.png">
-                </a>
+<div class="nav-bar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand text-shadow">
+                    <a href="/">
+                        <span class="nav-text-label color-green">Alex</span>
+                        <span class="nav-text-label color-brown">Coffee</span>
+                        <img class="nav-label" src="/resources/img/main_icon.png">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
 
 <!-- AUTHORIZATION -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="login">
         <div class="row login">
             <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xl-4 col-xl-offset-4 text-center">

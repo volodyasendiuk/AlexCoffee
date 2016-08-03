@@ -38,15 +38,6 @@ public class OrderServiceImpl extends ItemServiceImpl<Order> implements OrderSer
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public double getPriceOfProducts(Order order) throws BadRequestException {
-        if (order == null) {
-            throw new BadRequestException("Can't find order!");
-        }
-        return order.getPrice();
-    }
-
-    @Override
     public OrderDAO getDao() {
         return dao;
     }

@@ -1,8 +1,9 @@
 package ua.com.alexcoffee.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -23,8 +24,8 @@ public class Category extends Model {
     @JoinColumn(name = "photo_id")
     private Photo photo;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private Set<Product> products = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
 
     public Category() {
         super();
@@ -46,14 +47,6 @@ public class Category extends Model {
         this.photo = photo;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -67,6 +60,34 @@ public class Category extends Model {
     @Override
     public String toEquals() {
         return getTitle() + getUrl();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void addProducts(List<Product> products) {
+        this.products.addAll(products);
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    public void removeProducts(List<Product> products) {
+        this.products.removeAll(products);
+    }
+
+    public void clearProducts() {
+        products.clear();
+    }
+
+    public List<Product> getProducts() {
+        return Collections.unmodifiableList(products);
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getTitle() {
@@ -101,13 +122,7 @@ public class Category extends Model {
         return photo;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 
     public void setAllInfo(String title, String url, String description, Photo photo) {
         setTitle(title);

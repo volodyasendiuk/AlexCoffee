@@ -1,8 +1,5 @@
 package ua.com.alexcoffee.controller;
 
-import ua.com.alexcoffee.exception.ForbiddenException;
-import ua.com.alexcoffee.exception.WrongInformationException;
-import ua.com.alexcoffee.service.SenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.alexcoffee.entity.*;
+import ua.com.alexcoffee.exception.ForbiddenException;
+import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.*;
 
 import java.util.ArrayList;
@@ -49,7 +48,8 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAll());
-        modelAndView.addObject("shopingCartSize", shoppingCartService.getSize());
+        modelAndView.addObject("products", productService.getRandom(12));
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/home");
         return modelAndView;
     }
@@ -58,7 +58,15 @@ public class HomeController {
     public ModelAndView viewProductsInCategory(@PathVariable("url") String url, ModelAndView modelAndView) {
         modelAndView.addObject("category", categoryService.get(url));
         modelAndView.addObject("products", productService.getByCategoryUrl(url));
-        modelAndView.addObject("shopingCartSize", shoppingCartService.getSize());
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
+        modelAndView.setViewName("client/category");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/all_products", method = RequestMethod.GET)
+    public ModelAndView viewAllProducts(ModelAndView modelAndView) {
+        modelAndView.addObject("products", productService.getAll());
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/products");
         return modelAndView;
     }
@@ -68,17 +76,17 @@ public class HomeController {
         Product product = productService.get(url);
         long categoryId = product.getCategory().getId();
         modelAndView.addObject("product", product);
-        modelAndView.addObject("shopingCartSize", shoppingCartService.getSize());
-        modelAndView.addObject("featuredProducts", productService.getRandomByCategoryId(4, categoryId, product.getId()));
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
+        modelAndView.addObject("featured_products", productService.getRandomByCategoryId(4, categoryId, product.getId()));
         modelAndView.setViewName("client/product");
         return modelAndView;
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
-        modelAndView.addObject("productsInCart", shoppingCartService.getProducts());
-        modelAndView.addObject("priceOfProductsInCart", shoppingCartService.getPrice());
-        modelAndView.addObject("shopingCartSize", shoppingCartService.getSize());
+        modelAndView.addObject("products", shoppingCartService.getProducts());
+        modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
+        modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/cart");
         return modelAndView;
     }
@@ -133,9 +141,9 @@ public class HomeController {
         senderService.send(order);
 
         modelAndView.addObject("order", order);
-        modelAndView.addObject("productsInCart", new ArrayList<>(shoppingCartService.getProducts()));
-        modelAndView.addObject("priceOfProductsInCart", shoppingCartService.getPrice());
-        modelAndView.addObject("shopingCartSize", 0);
+        modelAndView.addObject("products", new ArrayList<>(shoppingCartService.getProducts()));
+        modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
+        modelAndView.addObject("cart_size", 0);
         modelAndView.setViewName("client/checkout");
 
         shoppingCartService.clear();

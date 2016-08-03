@@ -17,7 +17,7 @@
 <jsp:include page="/WEB-INF/views/template/manager_navbar.jsp"/>
 
 <!-- PERSONS -->
-<div class="container-fluid">
+<div class="container-fluid width">
     <section id="persons">
         <div class="row admin-page">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">

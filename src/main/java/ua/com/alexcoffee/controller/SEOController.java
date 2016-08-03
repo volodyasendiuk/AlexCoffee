@@ -1,13 +1,15 @@
 package ua.com.alexcoffee.controller;
 
-import ua.com.alexcoffee.entity.Category;
-import ua.com.alexcoffee.entity.Product;
-import ua.com.alexcoffee.service.CategoryService;
-import ua.com.alexcoffee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ua.com.alexcoffee.entity.Category;
+import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.service.CategoryService;
+import ua.com.alexcoffee.service.ProductService;
+
+import java.util.List;
 
 @Controller
 public class SEOController {
@@ -29,6 +31,7 @@ public class SEOController {
             "Crawl-delay: 30\n" +
             "Disallow: /admin\n" +
             "Disallow: /manager\n" +
+            "Disallow: /login\n" +
             "Disallow: /resources\n" +
             "\n" +
             "Sitemap: http://alexcoffee.com.ua/sitemap.xml";
@@ -57,22 +60,30 @@ public class SEOController {
                 .append("            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">\n")
                 .append("<url>\n")
                 .append("  <loc>http://alexcoffee.com.ua/</loc>\n")
-                .append("</url>\n")
-                .append("<url>\n")
-                .append("  <loc>http://alexcoffee.com.ua/cart</loc>\n")
                 .append("</url>\n");
 
-        for (Category category : categoryService.getAll()) {
-            sitemap.append("<url>\n")
-                    .append("  <loc>http://alexcoffee.com.ua/category_").append(category.getUrl()).append("</loc>\n")
-                    .append("</url>\n");
+        List<Category> categories = categoryService.getAll();
+        if (!categories.isEmpty()) {
+            for (Category category : categories) {
+                sitemap.append("<url>\n")
+                        .append("  <loc>http://alexcoffee.com.ua/category_").append(category.getUrl()).append("</loc>\n")
+                        .append("</url>\n");
+            }
         }
 
-        for (Product product : productService.getAll()) {
+        List<Product> products = productService.getAll();
+        if (!products.isEmpty()) {
             sitemap.append("<url>\n")
-                    .append("  <loc>http://alexcoffee.com.ua/product_").append(product.getId()).append("</loc>\n")
+                    .append("  <loc>http://alexcoffee.com.ua/all_products</loc>\n")
                     .append("</url>\n");
+
+            for (Product product : products) {
+                sitemap.append("<url>\n")
+                        .append("  <loc>http://alexcoffee.com.ua/product_").append(product.getUrl()).append("</loc>\n")
+                        .append("</url>\n");
+            }
         }
+
         sitemap.append("</urlset>");
 
         return sitemap.toString();

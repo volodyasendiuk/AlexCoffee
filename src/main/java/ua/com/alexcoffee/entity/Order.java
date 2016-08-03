@@ -2,6 +2,7 @@ package ua.com.alexcoffee.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -65,14 +66,6 @@ public class Order extends Model {
         number = createRandomString();
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -110,6 +103,34 @@ public class Order extends Model {
     @Override
     public String toEquals() {
         return getNumber();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void addProducts(List<Product> products) {
+        this.products.addAll(products);
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    public void removeProducts(List<Product> products) {
+        this.products.removeAll(products);
+    }
+
+    public void clearProducts() {
+        products.clear();
+    }
+
+    public List<Product> getProducts() {
+        return Collections.unmodifiableList(products);
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getNumber() {
@@ -182,14 +203,6 @@ public class Order extends Model {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public double getPrice() {

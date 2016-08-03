@@ -2,6 +2,7 @@ package ua.com.alexcoffee.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -33,7 +34,7 @@ public class Product extends Model {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products", cascade = CascadeType.REMOVE)
     private List<Order> orders = new ArrayList<>();
 
     public Product() {
@@ -132,7 +133,7 @@ public class Product extends Model {
     }
 
     public List<Order> getOrders() {
-        return orders;
+        return Collections.unmodifiableList(orders);
     }
 
     public void setOrders(List<Order> orders) {
