@@ -31,7 +31,7 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                 <table class="table">
                     <tr>
-                        <td><b>Название:</b></td>
+                        <th>Название:</th>
                         <td>
                             <a href="/product_${product.url}"
                                title="Перейти к товару ${product.title}">
@@ -40,7 +40,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Категория:</b></td>
+                        <th>Категория:</th>
                         <td>
                             <a href="/admin/view_category_${product.id}"
                                title="Смотреть категорию ${product.category.title}">
@@ -48,15 +48,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Параметры:</b></td>
+                        <th>Параметры:</th>
                         <td>${product.parameters}</td>
                     </tr>
                     <tr>
-                        <td><b>Описание:</b></td>
+                        <th>Описание:</th>
                         <td>${product.description}</td>
                     </tr>
                     <tr>
-                        <td><b>Изображение:</b></td>
+                        <th>Изображение:</th>
                         <td>
                             ${product.photo.title}
                             </br><img width="75px" height="75px"
@@ -68,7 +68,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Цена:</b></td>
+                        <th>Цена:</th>
                         <td>${product.price}</td>
                     </tr>
                     <tr>

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ua.com.alexcoffee.dao.OrderDAO;
 import ua.com.alexcoffee.dao.repository.OrderRepository;
-import ua.com.alexcoffee.entity.Order;
+import ua.com.alexcoffee.model.Order;
 
 @Repository
-public class OrderDAOImpl extends DaoAbstractImpl<Order> implements OrderDAO {
+public class OrderDAOImpl extends DAOAbstractImpl<Order> implements OrderDAO {
 
     @Autowired
     private OrderRepository repository;

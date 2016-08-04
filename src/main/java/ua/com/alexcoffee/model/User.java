@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -54,14 +54,6 @@ public class User extends Model implements UserDetails {
         super();
     }
 
-    public User(long id, String name, String email, String phone, Role role) {
-        super(id);
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.role = role;
-    }
-
     public User(String name, String email, String phone, Role role) {
         super();
         this.name = name;
@@ -112,6 +104,21 @@ public class User extends Model implements UserDetails {
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority("ROLE_" + role.getTitle().name()));
         return roles;
+    }
+
+    public void initializer(String name, String username, String password, String email,
+                            String phone, String vkontakte, String facebook, String skype,
+                            String description, Role role) {
+        setName(name);
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
+        setPhone(phone);
+        setVkontakte(vkontakte);
+        setFacebook(facebook);
+        setSkype(skype);
+        setDescription(description);
+        setRole(role);
     }
 
     public String getName() {
@@ -208,20 +215,5 @@ public class User extends Model implements UserDetails {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public void setAllInfo(String name, String username, String password, String email,
-                                             String phone, String vkontakte, String facebook, String skype,
-                                             String description, Role role) {
-        setName(name);
-        setUsername(username);
-        setPassword(password);
-        setEmail(email);
-        setPhone(phone);
-        setVkontakte(vkontakte);
-        setFacebook(facebook);
-        setSkype(skype);
-        setDescription(description);
-        setRole(role);
     }
 }

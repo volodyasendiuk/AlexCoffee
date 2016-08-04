@@ -2,13 +2,13 @@ package ua.com.alexcoffee.dao.impl;
 
 import ua.com.alexcoffee.dao.StatusDAO;
 import ua.com.alexcoffee.dao.repository.StatusRepository;
-import ua.com.alexcoffee.entity.Status;
+import ua.com.alexcoffee.model.Status;
 import ua.com.alexcoffee.enums.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StatusDAOImpl extends DaoAbstractImpl<Status> implements StatusDAO {
+public class StatusDAOImpl extends DAOAbstractImpl<Status> implements StatusDAO {
 
     @Autowired
     private StatusRepository repository;

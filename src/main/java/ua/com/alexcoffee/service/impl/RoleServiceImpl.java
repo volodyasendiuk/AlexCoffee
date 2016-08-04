@@ -1,7 +1,7 @@
 package ua.com.alexcoffee.service.impl;
 
 import ua.com.alexcoffee.dao.RoleDAO;
-import ua.com.alexcoffee.entity.Role;
+import ua.com.alexcoffee.model.Role;
 import ua.com.alexcoffee.enums.RoleEnum;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.DuplicateException;

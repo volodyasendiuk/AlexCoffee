@@ -35,15 +35,15 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                     <table class="table">
                         <tr>
-                            <td><b>Номер</b></td>
-                            <td><b>Статус</b></td>
-                            <td class="hidden-xs"><b>Дата</b></td>
-                            <td>
-                                <b>Действие</b>
+                            <th>Номер</th>
+                            <th>Статус</th>
+                            <th class="hidden-xs">Дата</th>
+                            <th>
+                                Действие
                                 <a href="/admin/delete_all_orders" title="Удалить все заказы">
                                     <button class="btn btn-danger" type="submit">Удалить ВСЕ</button>
                                 </a>
-                            </td>
+                            </th>
                         </tr>
                         <c:forEach items="${orders}" var="order">
                             <tr>

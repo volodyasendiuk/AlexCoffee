@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Photo;
+import ua.com.alexcoffee.model.Photo;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface PhotoService extends ItemService<Photo> {

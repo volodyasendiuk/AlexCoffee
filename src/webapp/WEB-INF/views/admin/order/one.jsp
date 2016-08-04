@@ -31,11 +31,11 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                 <table class="table">
                     <tr>
-                        <td><b>Номер:</b></td>
-                        <td>${order.number}</td>
-                    </tr>
+                    <th>Номер:</th>
+                    <td>${order.number}</td>
+                </tr>
                     <tr>
-                        <td><b>Статус:</b></td>
+                        <th>Статус:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${order.status eq status_new}">
@@ -48,11 +48,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Дата:</b></td>
+                        <th>Дата:</th>
                         <td>${order.date}</td>
                     </tr>
                     <tr>
-                        <td><b>Заказ обработал:</b></td>
+                        <th>Заказ обработал:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${order.manager eq null}">
@@ -61,7 +61,7 @@
                                 <c:when test="${order.manager ne null}">
                                     <c:choose>
                                         <c:when test="${order.manager.role eq admin_role}">
-                                            <b><span class="color-red">${order.manager.role.description}</span></b>
+                                            <span class="color-red">${order.manager.role.description}</span>
                                         </c:when>
                                         <c:when test="${order.manager.role eq manager_role}">
                                             <span class="color-green">${order.manager.role.description}</span>
@@ -76,7 +76,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Клиент:</b></td>
+                        <th>Клиент:</th>
                         <td>
                             Имя: <b>${order.client.name}</b>
                             <br>Email: <b>${order.client.email}</b>
@@ -84,7 +84,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Адрес доставки:</b></td>
+                        <th>Адрес доставки:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.shippingAddress eq null) or (order.shippingAddress eq '')}">
@@ -97,7 +97,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Детали доставки:</b></td>
+                        <th>Детали доставки:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.shippingDetails eq null) or (order.shippingDetails eq '')}">
@@ -110,7 +110,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Коментарии:</b></td>
+                        <th>Коментарии:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.description eq null) or (order.description eq '')}">
@@ -123,30 +123,30 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Товары:</b></td>
+                        <th>Товары:</th>
                         <td>
                             <c:choose>
-                                <c:when test="${fn:length(products) eq 0}">
+                                <c:when test="${fn:length(sales) eq 0}">
                                     Cписок товаров пуст!
                                 </c:when>
-                                <c:when test="${fn:length(products) gt 0}">
-                                    <c:forEach items="${products}" var="product">
-                                        <a href="/product_${product.url}"
-                                           title="Перейти к товару ${product.title}">
-                                                ${product.title}</a>
-                                        <br>№ ${product.id}, ${product.price} грн
-                                        <br>
+                                <c:when test="${fn:length(sales) gt 0}">
+                                    <c:forEach items="${sales}" var="sale">
+                                        <a href="/product_${sale.product.url}"
+                                           title="Перейти к товару ${sale.product.title}">
+                                                ${sale.product.title}</a>, № ${sale.product.id},
+                                        <br>${sale.number} x ${sale.product.price} грн
+                                        <br>--------------<br>
                                     </c:forEach>
                                 </c:when>
                             </c:choose>
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Общая сумма:</b></td>
+                        <th>Общая сумма:</th>
                         <td><b>${order_price}</b> грн</td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <th></th>
                         <td>
                             <a href="/admin/edit_order_${order.id}" title="Редактировать заказ ${order.number}">
                                 <button class="btn btn-success" type="submit">Редактировать</button>

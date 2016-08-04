@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import ua.com.alexcoffee.enums.RoleEnum;
 
@@ -27,14 +27,17 @@ public class Role extends Model {
         super();
     }
 
-    public Role(long id, RoleEnum title) {
-        super(id);
-        this.title = title;
-    }
-
     public Role(RoleEnum title) {
         super();
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Title: ").append(title.name())
+                .append("\nDescription: ").append(description);
+        return sb.toString();
     }
 
     public void add(User user) {
@@ -47,14 +50,6 @@ public class Role extends Model {
 
     public void clear() {
         users.clear();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Title: ").append(title.name())
-                .append("\nDescription: ").append(description);
-        return sb.toString();
     }
 
     public RoleEnum getTitle() {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ua.com.alexcoffee.dao.PhotoDAO;
-import ua.com.alexcoffee.entity.Photo;
+import ua.com.alexcoffee.model.Photo;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.PhotoService;

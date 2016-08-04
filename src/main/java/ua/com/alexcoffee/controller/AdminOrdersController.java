@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.alexcoffee.entity.Order;
-import ua.com.alexcoffee.entity.Status;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Order;
+import ua.com.alexcoffee.model.Status;
+import ua.com.alexcoffee.model.User;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.OrderService;
 import ua.com.alexcoffee.service.RoleService;
@@ -53,7 +53,7 @@ public class AdminOrdersController {
     public ModelAndView viewOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("products", order.getProducts());
+        modelAndView.addObject("sales", order.getSales());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("status_new", statusService.getDefault());
         modelAndView.addObject("admin_role", roleService.getAdministrator());
@@ -67,7 +67,7 @@ public class AdminOrdersController {
     public ModelAndView getEditOrderPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("products", order.getProducts());
+        modelAndView.addObject("sales", order.getSales());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("statuses", statusService.getAll());
         modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
@@ -97,7 +97,7 @@ public class AdminOrdersController {
         Status status = statusService.get(statusId);
         User manager = userService.get(managerId);
 
-        order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
+        order.initializer(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
         orderService.update(order);
 
         modelAndView.setViewName("redirect:/admin/view_order_" + id);

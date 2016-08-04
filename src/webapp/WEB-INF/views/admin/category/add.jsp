@@ -32,7 +32,7 @@
                 <form enctype="multipart/form-data" action="/admin/save_category" method="post">
                     <table class="table">
                         <tr>
-                            <td><b>Название:</b></td>
+                            <th>Название:</th>
                             <td>
                                 <input class="input-order" type="text" name="title"
                                        placeholder=" Введите название категории"
@@ -40,7 +40,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>URL:</b></td>
+                            <th>URL:</th>
                             <td>
                                 <input class="input-order" type="text" name="url" pattern="[a-z0-9_]{5,50}"
                                        placeholder=" Введите URL, формат (a-z, 0-9, _)"
@@ -48,14 +48,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder=" Введите описание категории" maxlength="500"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Изображение:</b></td>
+                            <th>Изображение:</th>
                             <td>
                                 <input class="input-order" type="text" name="photo_title"
                                        placeholder="Введите название фото" minlength="5" maxlength="100" required>

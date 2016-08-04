@@ -1,11 +1,11 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Model;
+import ua.com.alexcoffee.model.Model;
 
 import java.util.Collection;
 import java.util.List;
 
-public interface Dao<T extends Model> {
+public interface DAO<T extends Model> {
 
     void add(T model);
 

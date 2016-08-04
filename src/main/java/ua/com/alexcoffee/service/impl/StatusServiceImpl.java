@@ -1,7 +1,7 @@
 package ua.com.alexcoffee.service.impl;
 
 import ua.com.alexcoffee.dao.StatusDAO;
-import ua.com.alexcoffee.entity.Status;
+import ua.com.alexcoffee.model.Status;
 import ua.com.alexcoffee.enums.StatusEnum;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.DuplicateException;

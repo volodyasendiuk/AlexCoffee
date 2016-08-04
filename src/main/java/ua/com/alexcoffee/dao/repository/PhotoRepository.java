@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.dao.repository;
 
-import ua.com.alexcoffee.entity.Photo;
+import ua.com.alexcoffee.model.Photo;
 
 public interface PhotoRepository extends ItemRepository<Photo, Long> {
 

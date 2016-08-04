@@ -33,7 +33,7 @@
                     <input type="hidden" name="id" value="${category.id}">
                     <table class="table">
                         <tr>
-                            <td><b>Название:</b></td>
+                            <th>Название:</th>
                             <td>
                                 <input class="input-order" type="text" name="title"
                                        placeholder=" Введите название категории" value="${category.title}"
@@ -41,7 +41,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>URL:</b></td>
+                            <th>URL:</th>
                             <td>
                                 <input class="input-order" type="text" name="url" pattern="[a-z0-9_]{5,50}"
                                        placeholder=" Введите URL, формат (a-z, 0-9, _)" value="${category.url}"
@@ -49,7 +49,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder=" Введите описание категории"
@@ -57,7 +57,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Изображение:</b></td>
+                            <th>Изображение:</th>
                             <td>
                                 <input type="hidden" name="photo_id" value="${category.photo.id}">
                                 <input class="input-order" type="text" name="photo_title"

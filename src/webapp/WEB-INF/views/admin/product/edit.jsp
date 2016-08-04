@@ -33,7 +33,7 @@
                     <input type="hidden" name="id" value="${product.id}">
                     <table class="table">
                         <tr>
-                            <td><b>Название:</b></td>
+                            <th>Название:</th>
                             <td>
                                 <input class="input-order" type="text" name="title"
                                        placeholder="Введите название товара" value="${product.title}"
@@ -41,7 +41,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>URL:</b></td>
+                            <th>URL:</th>
                             <td>
                                 <input class="input-order" type="text" name="url" pattern="[a-z0-9_]{5,50}"
                                        placeholder=" Введите URL, формат (a-z, 0-9, _)" value="${product.url}"
@@ -49,7 +49,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Категория:</b></td>
+                            <th>Категория:</th>
                             <td>
                                 <select class="input-order" name="category">
                                     <option value="${product.category.id}">${product.category.title}</option>
@@ -62,7 +62,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Параметры:</b></td>
+                            <th>Параметры:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="parameters"
                                           placeholder="Введите параметры товара"
@@ -70,7 +70,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder="Введите описание товара"
@@ -78,7 +78,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Изображение:</b></td>
+                            <th>Изображение:</th>
                             <td>
                                 <input type="hidden" name="photo_id" value="${product.photo.id}">
                                 <input class="input-order" type="text" name="photo_title"
@@ -89,7 +89,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Цена:</b></td>
+                            <th>Цена:</th>
                             <td>
                                 <input class="input-order" type="text" name="price" min="0" max="99999" step="0.01"
                                        placeholder="Введите цену товара" value="${product.price}" required>

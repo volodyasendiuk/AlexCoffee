@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Category;
+import ua.com.alexcoffee.model.Category;
 
 public interface CategoryService extends ItemService<Category> {
 

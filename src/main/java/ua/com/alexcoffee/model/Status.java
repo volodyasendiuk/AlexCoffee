@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import ua.com.alexcoffee.enums.StatusEnum;
 
@@ -27,14 +27,17 @@ public class Status extends Model {
         super();
     }
 
-    public Status(long id, StatusEnum title) {
-        super(id);
-        this.title = title;
-    }
-
     public Status(StatusEnum title) {
         super();
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Title: ").append(title.name())
+                .append("\nDescription: ").append(description);
+        return sb.toString();
     }
 
     public void add(Order order) {
@@ -47,14 +50,6 @@ public class Status extends Model {
 
     public void clear() {
         orders.clear();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Title: ").append(title.name())
-                .append("\nDescription: ").append(description);
-        return sb.toString();
     }
 
     public StatusEnum getTitle() {

@@ -1,11 +1,11 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Role;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Role;
+import ua.com.alexcoffee.model.User;
 
 import java.util.List;
 
-public interface UserDAO extends Dao<User> {
+public interface UserDAO extends DAO<User> {
 
     void remove(String name);
 

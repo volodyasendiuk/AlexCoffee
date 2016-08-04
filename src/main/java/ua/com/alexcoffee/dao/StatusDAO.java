@@ -1,9 +1,9 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Status;
+import ua.com.alexcoffee.model.Status;
 import ua.com.alexcoffee.enums.StatusEnum;
 
-public interface StatusDAO extends Dao<Status> {
+public interface StatusDAO extends DAO<Status> {
 
     void add(StatusEnum title);
 

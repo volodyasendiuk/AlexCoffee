@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.dao.repository;
 
-import ua.com.alexcoffee.entity.Order;
+import ua.com.alexcoffee.model.Order;
 
 public interface OrderRepository extends ItemRepository<Order, Long> {
 

@@ -1,7 +1,7 @@
 package ua.com.alexcoffee.service.impl;
 
-import ua.com.alexcoffee.dao.Dao;
-import ua.com.alexcoffee.entity.Model;
+import ua.com.alexcoffee.dao.DAO;
+import ua.com.alexcoffee.model.Model;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.service.ItemService;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,5 +68,5 @@ public abstract class ItemServiceImpl<T extends Model> implements ItemService<T>
         getDao().removeAll();
     }
 
-    public abstract Dao<T> getDao();
+    public abstract DAO<T> getDao();
 }

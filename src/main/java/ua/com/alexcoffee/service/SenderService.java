@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Order;
+import ua.com.alexcoffee.model.Order;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;

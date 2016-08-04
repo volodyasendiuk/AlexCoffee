@@ -26,7 +26,7 @@
 <div class="container-fluid width">
     <section id="main">
         <div class="row main text-shadow">
-            <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <span class="main-text-label color-green">Alex</span>
                 <span class="main-text-label color-brown">Coffee</span>
                 <h2>
@@ -37,7 +37,7 @@
                 <span class="main-text-label color-brown"> кофе</span>
             </div>
         </div>
-
+<!--
         <div class="hidden-sm hidden-md hidden-lg hidden-xl">
             <div class="row main-mob text-shadow">
                 <span class="main-text-label-mob color-green">Alex</span>
@@ -50,6 +50,7 @@
                 <br><span class="main-text-label-mob color-brown"> кофе</span>
             </div>
         </div>
+-->
     </section>
 </div>
 
@@ -73,7 +74,7 @@
 
             <c:if test="${fn:length(categories) gt 0}">
                 <c:forEach items="${categories}" var="category">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="category">
                             <a href="/category_${category.url}" title="Перейти к категории ${category.title}">
                                 <img src="/resources/${category.photo.photoLinkShort}"
@@ -164,15 +165,15 @@
                 </h3>
             </div>
 
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-car fa-5x color-green" id="icon1"></i>
                 <p class="icon-text">Курьер по адресу <br>Киев</p>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-truck fa-5x color-green" id="icon2"></i>
                 <p class="icon-text">Новая Почта<br>Украина</p>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-shopping-cart fa-5x color-green" id="icon3"></i>
                 <p class="icon-text">Самовывоз <br>Киев</p>
             </div>

@@ -39,17 +39,17 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                     <table class="table">
                         <tr>
-                            <td width="40%"><b>Название</b></td>
-                            <td class="hidden-xs" width="15%"><b>Категория</b></td>
-                            <td width="35%">
-                                <b>Действие </b>
+                            <th width="40%">Название</th>
+                            <th class="hidden-xs" width="15%">Категория</th>
+                            <th width="35%">
+                                Действие
                                 <a href="/admin/add_product" title="Добавить новый товар">
                                     <button class="btn btn-success" type="submit">Добавить</button>
                                 </a>
                                 <a href="/admin/delete_all_products" title="Удалить все товары">
                                     <button class="btn btn-danger" type="submit">Удалить ВСЕ</button>
                                 </a>
-                            </td>
+                            </th>
                         </tr>
 
                         <c:forEach items="${products}" var="product">

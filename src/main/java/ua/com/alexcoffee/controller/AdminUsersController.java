@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.alexcoffee.entity.Role;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Role;
+import ua.com.alexcoffee.model.User;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.RoleService;
 import ua.com.alexcoffee.service.UserService;
@@ -65,7 +65,7 @@ public class AdminUsersController {
                                  ModelAndView modelAndView) {
         User user = new User();
         Role role = roleService.get(roleId);
-        user.setAllInfo(name, username, password, email, phone, vkontakte, facebook, skype, description, role);
+        user.initializer(name, username, password, email, phone, vkontakte, facebook, skype, description, role);
         userService.add(user);
 
         modelAndView.setViewName("redirect:/admin/users");
@@ -101,7 +101,7 @@ public class AdminUsersController {
                                    ModelAndView modelAndView) {
         User user = userService.get(id);
         Role role = roleService.get(roleId);
-        user.setAllInfo(name, username, password, email, phone, vkontakte, facebook, skype, description, role);
+        user.initializer(name, username, password, email, phone, vkontakte, facebook, skype, description, role);
         userService.update(user);
 
         modelAndView.setViewName("redirect:/admin/view_user_" + id);

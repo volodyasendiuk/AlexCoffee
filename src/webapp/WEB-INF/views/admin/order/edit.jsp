@@ -34,7 +34,7 @@
                     <input type="hidden" name="auth_user" value="${auth_user.id}">
                     <table class="table">
                         <tr>
-                            <td><b>Номер:</b></td>
+                            <th>Номер:</th>
                             <td>
                                 <input class="input-order" type="text" name="number" pattern="[A-Za-z0-9]{3,10}"
                                        placeholder=" Введите номер, формат (A-Z, a-z, 0-9)"
@@ -42,7 +42,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Статус:</b></td>
+                            <th>Статус:</th>
                             <td>
                                 <select class="input-order" name="status">
                                     <option value="${order.status.id}">${order.status.description}</option>
@@ -55,11 +55,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Дата:</b></td>
+                            <th>Дата:</th>
                             <td>${order.date}</td>
                         </tr>
                         <tr>
-                            <td><b>Клиент:</b></td>
+                            <th>Клиент:</th>
                             <td>
                                 <input class="input-order" type="text" name="user_name"
                                        placeholder=" Введите имя клиента" value="${order.client.name}"
@@ -74,7 +74,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Адрес доставки:</b></td>
+                            <th>Адрес доставки:</th>
                             <td>
                                 <input class="input-order" type="text" name="shipping-address"
                                        placeholder=" Введите адрес доставки" value="${order.shippingAddress}"
@@ -82,7 +82,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Детали доставки:</b></td>
+                            <th>Детали доставки:</th>
                             <td>
                                 <input class="input-order" type="text" name="shipping-details"
                                        placeholder=" Введите детали даставки" value="${order.shippingDetails}"
@@ -90,25 +90,33 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Коментарии:</b></td>
+                            <th>Коментарии:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder=" Коментарий" maxlength="250">${order.description}</textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Товары:</b></td>
+                            <th>Товары:</th>
                             <td>
-                                <c:forEach items="${products}" var="product">
-                                    <a href="/product_${product.url}"
-                                       title="${product.title}">${product.title}</a>
-                                    <br>${product.id}, ${product.price} грн
-                                    <br>
-                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${fn:length(sales) eq 0}">
+                                        Cписок товаров пуст!
+                                    </c:when>
+                                    <c:when test="${fn:length(sales) gt 0}">
+                                        <c:forEach items="${sales}" var="sale">
+                                            <a href="/product_${sale.product.url}"
+                                               title="Перейти к товару ${sale.product.title}">
+                                                    ${sale.product.title}</a>, № ${sale.product.id},
+                                            <br>${sale.number} x ${sale.product.price} грн
+                                            <br>--------------<br>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Общая сумма:</b></td>
+                            <th>Общая сумма:</th>
                             <td>${order_price} грн</td>
                         </tr>
                         <tr>

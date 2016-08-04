@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.alexcoffee.entity.*;
 import ua.com.alexcoffee.exception.ForbiddenException;
 import ua.com.alexcoffee.exception.WrongInformationException;
+import ua.com.alexcoffee.model.*;
 import ua.com.alexcoffee.service.*;
 
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class HomeController {
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
-        modelAndView.addObject("products", shoppingCartService.getProducts());
+        modelAndView.addObject("sales", shoppingCartService.getSales());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/cart");
@@ -92,35 +92,38 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/cart_add", method = RequestMethod.POST)
-    public ModelAndView addNewProductToCart(@RequestParam long id, ModelAndView modelAndView) {
-        shoppingCartService.add(productService.get(id));
+    public ModelAndView addProductToCart(@RequestParam long id,
+                                         ModelAndView modelAndView) {
+        Sale sale = new Sale(productService.get(id), 1);
+        shoppingCartService.add(sale);
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }
 
     @RequestMapping(value = "/cart_add", method = RequestMethod.GET)
-    public void addNewProductToCart() throws WrongInformationException {
+    public void addProductToCart() throws WrongInformationException {
         throw new WrongInformationException("GET method in \"/cart_add\" is not supported!");
     }
 
     @RequestMapping(value = "/cart_add_quickly", method = RequestMethod.POST)
-    public ModelAndView addQuicklyNewProductToCart(@RequestParam long id,
-                                                   @RequestParam String url,
-                                                   ModelAndView modelAndView) {
-        shoppingCartService.add(productService.get(id));
+    public ModelAndView addProductToCartQuickly(@RequestParam long id,
+                                                @RequestParam String url,
+                                                ModelAndView modelAndView) {
+        Sale sale = new Sale(productService.get(id), 1);
+        shoppingCartService.add(sale);
         modelAndView.setViewName("redirect:" + url);
         return modelAndView;
     }
 
     @RequestMapping(value = "/cart_add_quickly", method = RequestMethod.GET)
-    public void addQuicklyNewProductToCart() throws WrongInformationException {
+    public void addProductToCartQuickly() throws WrongInformationException {
         throw new WrongInformationException("GET method in \"/cart_add_quickly\" is not supported!");
     }
 
     @RequestMapping(value = "/cart_clear", method = RequestMethod.GET)
     public ModelAndView clearCart(ModelAndView modelAndView) {
         shoppingCartService.clear();
-        modelAndView.addObject("products", shoppingCartService.getProducts());
+        //modelAndView.addObject("products", shoppingCartService.getProducts());
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }
@@ -135,13 +138,13 @@ public class HomeController {
 
         Status status = statusService.getDefault();
         Order order = new Order(new Date(), status, client);
-        order.setProducts(new ArrayList<>(shoppingCartService.getProducts()));
+        order.setSales(new ArrayList<>(shoppingCartService.getSales()));
         orderService.add(order);
 
         senderService.send(order);
 
         modelAndView.addObject("order", order);
-        modelAndView.addObject("products", new ArrayList<>(shoppingCartService.getProducts()));
+        modelAndView.addObject("sales", order.getSales());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", 0);
         modelAndView.setViewName("client/checkout");

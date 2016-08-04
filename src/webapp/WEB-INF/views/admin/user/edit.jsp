@@ -30,7 +30,7 @@
                     <input type="hidden" name="id" value="${user.id}">
                     <table class="table">
                         <tr>
-                            <td><b>Имя:</b></td>
+                            <th>Имя:</th>
                             <td>
                                 <input class="input-order" type="text" name="name"
                                        placeholder=" Введите имя" value="${user.name}"
@@ -38,7 +38,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Роль:</b></td>
+                            <th>Роль:</th>
                             <td>
                                 <select class="input-order" name="role">
                                     <option value="${user.role.id}">${user.role.description}</option>
@@ -51,7 +51,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Логин:</b></td>
+                            <th>Логин:</th>
                             <td>
                                 <input class="input-order" type="text" name="username" pattern="[A-Za-z0-9_]{5,50}"
                                        placeholder=" Введите логин, формат (A-Z, a-z, 0-9, _)" value="${user.username}"
@@ -59,7 +59,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Пароль:</b></td>
+                            <th>Пароль:</th>
                             <td>
                                 <input class="input-order" type="text" name="password" pattern="[A-Za-z0-9]{6,50}"
                                        placeholder=" Введите пароль, формат (A-Z, a-z, 0-9)" value="${user.password}"
@@ -67,7 +67,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Email:</b></td>
+                            <th>Email:</th>
                             <td>
                                 <input class="input-order" type="email" name="email" pattern="[A-Za-z0-9_.@]{5,50}"
                                        placeholder=" Введите электронную почту, формат (A-Z, a-z, 0-9, _, ., @)"
@@ -75,14 +75,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Телефон:</b></td>
+                            <th>Телефон:</th>
                             <td>
                                 <input id="phone" class="input-order" type="text" name="phone"
                                        placeholder=" Введите телефон" value="${user.phone}" required>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>ВКонтакте:</b></td>
+                            <th>ВКонтакте:</th>
                             <td>
                                 <input class="input-order" type="text" name="vkontakte" pattern="[a-z0-9_/.]{5,50}"
                                        placeholder=" Введите адрес ВКонтакте, формат (a-z, 0-9, _, /, .)"
@@ -90,7 +90,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Facebook:</b></td>
+                            <th>Facebook:</th>
                             <td>
                                 <input class="input-order" type="text" name="facebook" pattern="[a-z0-9_/.]{5,50}"
                                        placeholder=" Введите адрес Facebook, формат (a-z, 0-9, _, /, .)"
@@ -98,7 +98,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Skype:</b></td>
+                            <th>Skype:</th>
                             <td>
                                 <input class="input-order" type="text" name="skype" pattern="[A-Za-z0-9_.]{5,50}"
                                        placeholder=" Введите логин Skype, формат (A-Z, a-z, 0-9, _, .)"
@@ -106,7 +106,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder=" Введите описание работника"

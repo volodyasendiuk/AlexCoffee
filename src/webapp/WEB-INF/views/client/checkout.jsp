@@ -32,48 +32,7 @@
             </div>
 
             <!-- Products in shopping cart -->
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
-                <table class="table cart-table">
-                    <tr>
-                        <td><b>Название</b></td>
-                        <td><b>Фото</b></td>
-                        <td class="hidden-xs"><b>Категория</b></td>
-                        <td><b>Стоимость</b></td>
-                    </tr>
-                    <c:forEach items="${products}" var="product">
-                        <tr>
-                            <td>
-                                <a href="/product_${product.url}"
-                                   title="Перейти к ${product.title}">
-                                        ${product.title}</a>
-                            </td>
-                            <td>
-                                <img width="50px" height="50px" src="/resources/${product.photo.photoLinkShort}"
-                                     alt="${product.title}">
-                            </td>
-                            <td class="hidden-xs">
-                                <a href="/category_${product.category.url}"
-                                   title="Перейти к категории ${product.category.title}">
-                                        ${product.category.title}</a>
-                            </td>
-                            <td>
-                                <fmt:formatNumber type="number" value="${product.price}"/> грн
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <td class="hidden-xs"></td>
-                        <td></td>
-                        <td class="hidden-xs"></td>
-                        <td style="text-align: right;"><strong>Итого:</strong></td>
-                        <td>
-                            <strong>
-                                <fmt:formatNumber type="number" value="${price_of_cart}"/> грн
-                            </strong>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <jsp:include page="/WEB-INF/views/template/client_products_in_cart.jsp"/>
         </div>
     </section>
 </div>

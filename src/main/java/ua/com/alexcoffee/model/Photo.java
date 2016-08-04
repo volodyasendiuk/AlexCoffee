@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,13 +30,6 @@ public class Photo extends Model {
         super();
     }
 
-    public Photo(long id, String title, String photoLinkShort, String photoLinkLong) {
-        super(id);
-        this.title = title;
-        this.photoLinkShort = photoLinkShort;
-        this.photoLinkLong = photoLinkLong;
-    }
-
     public Photo(String title, String photoLinkShort, String photoLinkLong) {
         super();
         this.title = title;
@@ -57,6 +50,12 @@ public class Photo extends Model {
                 .append("\nphoto short link: ").append(photoLinkShort)
                 .append("\nphoto long link: ").append(photoLinkLong);
         return sb.toString();
+    }
+
+    public void initializer(String title, String photoLinkShort, String photoLinkLong) {
+        setTitle(title);
+        setPhotoLinkShort(photoLinkShort);
+        setPhotoLinkLong(photoLinkLong);
     }
 
     public String getTitle() {
@@ -97,11 +96,5 @@ public class Photo extends Model {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
-
-    public void setAllInfo(String title, String photoLinkShort, String photoLinkLong) {
-        setTitle(title);
-        setPhotoLinkShort(photoLinkShort);
-        setPhotoLinkLong(photoLinkLong);
     }
 }

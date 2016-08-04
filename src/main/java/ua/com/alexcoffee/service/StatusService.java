@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Status;
+import ua.com.alexcoffee.model.Status;
 import ua.com.alexcoffee.enums.StatusEnum;
 
 public interface StatusService extends ItemService<Status> {

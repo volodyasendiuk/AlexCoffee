@@ -1,10 +1,10 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.model.Product;
 
 import java.util.List;
 
-public interface ProductDAO extends Dao<Product> {
+public interface ProductDAO extends DAO<Product> {
 
     Product get(String url);
 

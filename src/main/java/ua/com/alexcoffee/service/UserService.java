@@ -1,7 +1,7 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Role;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Role;
+import ua.com.alexcoffee.model.User;
 
 import java.util.List;
 

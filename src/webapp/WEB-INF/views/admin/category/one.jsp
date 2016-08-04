@@ -30,11 +30,11 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                 <table class="table">
                     <tr>
-                        <td><b>Название:</b></td>
+                        <th>Название:</th>
                         <td>${category.title}</td>
                     </tr>
                     <tr>
-                        <td><b>URl:</b></td>
+                        <th>URl:</th>
                         <td>
                             <a href="/category_${category.url}"
                                title="Перейти к категории ${category.title}">
@@ -42,11 +42,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Описание:</b></td>
+                        <th>Описание:</th>
                         <td>${category.description}</td>
                     </tr>
                     <tr>
-                        <td><b>Изображение:</b></td>
+                        <th>Изображение:</th>
                         <td>${category.photo.title}
                             <br><img width="75px" height="75px"
                                      src="/resources/${category.photo.photoLinkShort}">

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("ua.com.alexcoffee")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    // Views
+    // Views configurations
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();

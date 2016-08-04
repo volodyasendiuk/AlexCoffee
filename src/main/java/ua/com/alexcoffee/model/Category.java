@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,14 +31,6 @@ public class Category extends Model {
         super();
     }
 
-    public Category(long id, String title, String url, String description, Photo photo) {
-        super(id);
-        this.title = title;
-        this.url = url;
-        this.description = description;
-        this.photo = photo;
-    }
-
     public Category(String title, String url, String description, Photo photo) {
         super();
         this.title = title;
@@ -60,6 +52,13 @@ public class Category extends Model {
     @Override
     public String toEquals() {
         return getTitle() + getUrl();
+    }
+
+    public void initializer(String title, String url, String description, Photo photo) {
+        setTitle(title);
+        setUrl(url);
+        setDescription(description);
+        setPhoto(photo);
     }
 
     public void addProduct(Product product) {
@@ -120,14 +119,5 @@ public class Category extends Model {
 
     public Photo getPhoto() {
         return photo;
-    }
-
-
-
-    public void setAllInfo(String title, String url, String description, Photo photo) {
-        setTitle(title);
-        setUrl(url);
-        setDescription(description);
-        setPhoto(photo);
     }
 }

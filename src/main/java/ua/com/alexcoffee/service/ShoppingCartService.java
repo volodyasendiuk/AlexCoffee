@@ -1,7 +1,7 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Product;
-import ua.com.alexcoffee.entity.ShoppingCart;
+import ua.com.alexcoffee.model.Sale;
+import ua.com.alexcoffee.model.ShoppingCart;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ public interface ShoppingCartService {
 
     ShoppingCart getShoppingCart();
 
-    void add(Product product);
+    void add(Sale product);
 
-    List<Product> getProducts();
+    List<Sale> getSales();
 
-    void remove(Product product);
+    void remove(Sale sale);
 
     void clear();
 

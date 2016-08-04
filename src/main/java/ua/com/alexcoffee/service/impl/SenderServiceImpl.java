@@ -2,8 +2,8 @@ package ua.com.alexcoffee.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.com.alexcoffee.entity.Order;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Order;
+import ua.com.alexcoffee.model.User;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.service.SenderService;
 import ua.com.alexcoffee.service.UserService;

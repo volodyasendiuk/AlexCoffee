@@ -2,12 +2,12 @@ package ua.com.alexcoffee.dao.impl;
 
 import ua.com.alexcoffee.dao.PhotoDAO;
 import ua.com.alexcoffee.dao.repository.PhotoRepository;
-import ua.com.alexcoffee.entity.Photo;
+import ua.com.alexcoffee.model.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PhotoDAOImpl extends DaoAbstractImpl<Photo> implements PhotoDAO {
+public class PhotoDAOImpl extends DAOAbstractImpl<Photo> implements PhotoDAO {
 
     @Autowired
     private PhotoRepository repository;

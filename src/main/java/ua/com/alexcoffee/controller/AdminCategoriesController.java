@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.alexcoffee.entity.Category;
-import ua.com.alexcoffee.entity.Photo;
+import ua.com.alexcoffee.model.Category;
+import ua.com.alexcoffee.model.Photo;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.CategoryService;
 import ua.com.alexcoffee.service.PhotoService;
@@ -100,7 +100,7 @@ public class AdminCategoriesController {
         photo.setPhotoLinkShort(photoLinkShort);
 
         Category category = categoryService.get(id);
-        category.setAllInfo(title, url, description, photo);
+        category.initializer(title, url, description, photo);
         categoryService.update(category);
 
         photoService.saveFile(photoFile);

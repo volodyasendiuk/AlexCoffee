@@ -74,7 +74,7 @@
                                     <div class="text-shadow">
                                             ${featured_product.title}
                                     </div>
-                                    <p class="price-top-featured">
+                                    <p class="price-top">
                                         <fmt:formatNumber type="number" value="${featured_product.price}"/> грн
                                     </p>
                                 </a>

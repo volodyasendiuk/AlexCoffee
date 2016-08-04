@@ -118,14 +118,17 @@ CREATE TABLE `products` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-/*----------------------------------------------------------------------------------*/
 
-DROP TABLE IF EXISTS `order_product`;
-CREATE TABLE `order_product` (
-  `order_id`   INT UNSIGNED NOT NULL,
+/*----------------------------------------------------------------------------------*/
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE `sales` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
-  FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+  `number`     INT UNSIGNED NOT NULL,
+  `order_id`   INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

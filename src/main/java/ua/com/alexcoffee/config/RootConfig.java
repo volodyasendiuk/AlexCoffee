@@ -20,10 +20,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"ua.com.alexcoffee.dao.repository"})
-@ComponentScan(basePackages = {"ua.com.alexcoffee.entity"})
+@ComponentScan(basePackages = {"ua.com.alexcoffee.model"})
 public class RootConfig {
 
-    // DataSource
+    // DataSource configurations
     @Bean
     public DataSource dataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
@@ -52,7 +52,7 @@ public class RootConfig {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        localContainerEntityManagerFactoryBean.setPackagesToScan("ua.com.alexcoffee.entity");
+        localContainerEntityManagerFactoryBean.setPackagesToScan("ua.com.alexcoffee.model");
         return localContainerEntityManagerFactoryBean;
     }
 

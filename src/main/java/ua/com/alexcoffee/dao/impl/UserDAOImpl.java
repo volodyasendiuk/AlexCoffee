@@ -3,8 +3,8 @@ package ua.com.alexcoffee.dao.impl;
 import ua.com.alexcoffee.dao.UserDAO;
 import ua.com.alexcoffee.dao.repository.RoleRepository;
 import ua.com.alexcoffee.dao.repository.UserRepository;
-import ua.com.alexcoffee.entity.User;
-import ua.com.alexcoffee.entity.Role;
+import ua.com.alexcoffee.model.User;
+import ua.com.alexcoffee.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl extends DaoAbstractImpl<User> implements UserDAO {
+public class UserDAOImpl extends DAOAbstractImpl<User> implements UserDAO {
 
     @Autowired
     private UserRepository userRepository;
@@ -67,8 +67,14 @@ public class UserDAOImpl extends DaoAbstractImpl<User> implements UserDAO {
 
     @Override
     public User getAuthenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+        User user;
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            user = (User) authentication.getPrincipal();
+        } catch (ClassCastException ex) {
+            ex.printStackTrace();
+            user = new User();
+        }
         return user;
     }
 

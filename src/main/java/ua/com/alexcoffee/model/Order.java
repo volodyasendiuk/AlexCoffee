@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class Order extends Model {
     @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private User client;
 
@@ -39,23 +39,13 @@ public class Order extends Model {
     @JoinColumn(name = "manager_id", referencedColumnName = "id")
     private User manager;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "product_id", nullable = false))
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Sale> sales = new ArrayList<>();
 
     public Order() {
         super();
         number = createRandomString();
         date = dateToStringWithFormat(new Date());
-    }
-
-    public Order(long id, Date date, Status status, User client) {
-        super(id);
-        this.date = dateToStringWithFormat(date);
-        this.status = status;
-        this.client = client;
-        number = createRandomString();
     }
 
     public Order(Date date, Status status, User client) {
@@ -88,12 +78,15 @@ public class Order extends Model {
             sb.append("\nDescription: ").append(description);
         }
 
-        if (!products.isEmpty()) {
-            sb.append("\nProducts: ");
-            for (Product product : products) {
-                sb.append("\n").append(product.getTitle())
-                        .append("\n№ ").append(product.getId())
-                        .append(", ").append(product.getPrice()).append(" UAH");
+        if (!sales.isEmpty()) {
+            sb.append("\nSale: ");
+            int count = 0;
+            for (Sale sale : sales) {
+                sb.append("\n").append(count++).append(") ").append(sale.getProduct().getTitle())
+                        .append("\n№ ").append(sale.getProduct().getId())
+                        .append(", ").append(sale.getProduct().getPrice()).append(" UAH")
+                        .append("\nnumber = ").append(sale.getNumber()).append(", price = ")
+                        .append(sale.getPrice()).append(" UAH");
             }
             sb.append("\n\nPRICE = ").append(getPrice()).append(" UAH");
         }
@@ -105,32 +98,57 @@ public class Order extends Model {
         return getNumber();
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void initializer(String number, Date date, String shippingAddress, String shippingDetails,
+                            String description, Status status, User client, User manager) {
+        setNumber(number);
+        setDate(date);
+        setShippingAddress(shippingAddress);
+        setShippingDetails(shippingDetails);
+        setDescription(description);
+        setStatus(status);
+        setClient(client);
+        setManager(manager);
     }
 
-    public void addProducts(List<Product> products) {
-        this.products.addAll(products);
+    public void addSale(Sale sale) {
+        sales.add(sale);
+        if (sale.getOrder() != this) {
+            sale.setOrder(this);
+        }
     }
 
-    public void removeProduct(Product product) {
-        products.remove(product);
+    public void addSales(List<Sale> sales) {
+        this.sales.addAll(sales);
+        for (Sale sale : sales) {
+            if (sale.getOrder() != this) {
+                sale.setOrder(this);
+            }
+        }
     }
 
-    public void removeProducts(List<Product> products) {
-        this.products.removeAll(products);
+    public void removeSale(Sale sale) {
+        sales.remove(sale);
     }
 
-    public void clearProducts() {
-        products.clear();
+    public void removeSales(List<Sale> sales) {
+        this.sales.removeAll(sales);
     }
 
-    public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
+    public void clearSales() {
+        sales.clear();
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public List<Sale> getSales() {
+        return Collections.unmodifiableList(sales);
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
+        for (Sale sale : this.sales) {
+            if (sale.getOrder() != this) {
+                sale.setOrder(this);
+            }
+        }
     }
 
     public String getNumber() {
@@ -207,21 +225,9 @@ public class Order extends Model {
 
     public double getPrice() {
         double price = 0;
-        for (Product product : products) {
-            price += product.getPrice();
+        for (Sale sale : sales) {
+            price += sale.getPrice();
         }
         return price;
-    }
-
-    public void setAllInfo(String number, Date date, String shippingAddress, String shippingDetails,
-                           String description, Status status, User client, User manager) {
-        setNumber(number);
-        setDate(date);
-        setShippingAddress(shippingAddress);
-        setShippingDetails(shippingDetails);
-        setDescription(description);
-        setStatus(status);
-        setClient(client);
-        setManager(manager);
     }
 }

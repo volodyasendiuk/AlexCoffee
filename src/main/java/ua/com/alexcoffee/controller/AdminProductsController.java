@@ -1,8 +1,8 @@
 package ua.com.alexcoffee.controller;
 
-import ua.com.alexcoffee.entity.Category;
-import ua.com.alexcoffee.entity.Photo;
-import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.model.Category;
+import ua.com.alexcoffee.model.Photo;
+import ua.com.alexcoffee.model.Product;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.CategoryService;
 import ua.com.alexcoffee.service.PhotoService;
@@ -72,7 +72,7 @@ public class AdminProductsController {
         Category category = categoryService.get(categoryId);
         Photo photo = new Photo(photoTitle, "img/" + smallPhotoFile.getOriginalFilename(), "img/" + bigPhotoFile.getOriginalFilename());
         Product product = new Product();
-        product.setAllInfo(title, url, parameters, description, category, photo, price);
+        product.initializer(title, url, parameters, description, category, photo, price);
         productService.add(product);
 
         photoService.saveFile(smallPhotoFile);
@@ -116,9 +116,9 @@ public class AdminProductsController {
         Photo photo = photoService.get(photoId);
         String photoLinkShort = !smallPhotoFile.getOriginalFilename().isEmpty() ? "img/" + smallPhotoFile.getOriginalFilename() : photo.getPhotoLinkShort();
         String photoLinkLong = !bigPhotoFile.getOriginalFilename().isEmpty() ? "img/" + bigPhotoFile.getOriginalFilename() : photo.getPhotoLinkLong();
-        photo.setAllInfo(photoTitle, photoLinkShort, photoLinkLong);
+        photo.initializer(photoTitle, photoLinkShort, photoLinkLong);
 
-        product.setAllInfo(title, url, parameters, description, category, photo, price);
+        product.initializer(title, url, parameters, description, category, photo, price);
 
         productService.update(product);
 

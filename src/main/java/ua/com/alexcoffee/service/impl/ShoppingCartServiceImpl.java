@@ -1,13 +1,13 @@
 package ua.com.alexcoffee.service.impl;
 
-import ua.com.alexcoffee.dao.ShoppingCartDao;
-import ua.com.alexcoffee.entity.Product;
-import ua.com.alexcoffee.entity.ShoppingCart;
-import ua.com.alexcoffee.exception.BadRequestException;
-import ua.com.alexcoffee.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.com.alexcoffee.dao.ShoppingCartDao;
+import ua.com.alexcoffee.exception.BadRequestException;
+import ua.com.alexcoffee.model.Sale;
+import ua.com.alexcoffee.model.ShoppingCart;
+import ua.com.alexcoffee.service.ShoppingCartService;
 
 import java.util.List;
 
@@ -29,36 +29,36 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     @Transactional
-    public void add(Product product) {
-        shoppingCartDao.addProduct(product);
+    public void add(Sale sale) {
+        shoppingCartDao.addSale(sale);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Product> getProducts() {
-        List<Product> productList = shoppingCartDao.getProducts();
-        if (productList.isEmpty()) {
+    public List<Sale> getSales() {
+        List<Sale> sales = shoppingCartDao.getSales();
+        if (sales.isEmpty()) {
             return null;
         }
-        return productList;
+        return sales;
     }
 
     @Override
     @Transactional
-    public void remove(Product product) {
-        shoppingCartDao.removeProduct(product);
+    public void remove(Sale sale) {
+        shoppingCartDao.removeSale(sale);
     }
 
     @Override
     @Transactional
     public void clear() {
-        shoppingCartDao.clearProducts();
+        shoppingCartDao.clearSales();
     }
 
     @Override
     @Transactional(readOnly = true)
     public double getPrice() {
-        return shoppingCartDao.getPriceOfProducts();
+        return shoppingCartDao.getPrice();
     }
 
     @Override

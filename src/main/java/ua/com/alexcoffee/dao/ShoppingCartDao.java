@@ -1,21 +1,21 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Product;
-import ua.com.alexcoffee.entity.ShoppingCart;
+import ua.com.alexcoffee.model.Sale;
+import ua.com.alexcoffee.model.ShoppingCart;
 
 import java.util.List;
 
 public interface ShoppingCartDao {
 
-    List<Product> getProducts();
+    List<Sale> getSales();
 
-    double getPriceOfProducts();
+    double getPrice();
 
-    void addProduct(Product product);
+    void addSale(Sale sale);
 
-    void removeProduct(Product product);
+    void removeSale(Sale sale);
 
-    void clearProducts();
+    void clearSales();
 
     ShoppingCart get();
 

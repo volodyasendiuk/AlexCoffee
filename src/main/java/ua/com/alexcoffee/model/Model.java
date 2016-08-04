@@ -1,4 +1,4 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,10 +31,6 @@ public class Model implements Serializable {
 
     public Model() {
 
-    }
-
-    public Model(long id) {
-        this.id = id;
     }
 
     @Override

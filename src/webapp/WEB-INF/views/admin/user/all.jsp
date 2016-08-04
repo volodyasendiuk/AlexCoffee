@@ -39,9 +39,9 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                     <table class="table">
                         <tr>
-                            <td><b>Роль</b></td>
-                            <td><b>Имя</b></td>
-                            <td class="hidden-xs"><b>Телефон</b></td>
+                            <th>Роль</th>
+                            <th>Имя</th>
+                            <td class="hidden-xs"><b>Телефон</th>
                             <td>
                                 <b>Действие</b>
                                 <a href="/admin/add_user" title="Добавить нового работника">

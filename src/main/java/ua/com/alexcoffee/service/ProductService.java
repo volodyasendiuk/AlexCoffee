@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.service;
 
-import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.model.Product;
 
 import java.util.List;
 

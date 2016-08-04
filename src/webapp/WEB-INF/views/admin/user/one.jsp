@@ -30,15 +30,15 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                 <table class="table">
                     <tr>
-                        <td><b>Имя:</b></td>
+                        <th>Имя:</th>
                         <td>${user.name}</td>
                     </tr>
                     <tr>
-                        <td><b>Роль:</b></td>
+                        <th>Роль:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${user.role eq admin_role}">
-                                    <b><span class="color-red">${user.role.description}</span></b>
+                                    <span class="color-red">${user.role.description}</span>
                                 </c:when>
                                 <c:when test="${user.role eq manager_role}">
                                     <span class="color-green">${user.role.description}</span>
@@ -50,26 +50,26 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Логин:</b></td>
+                        <th>Логин:</th>
                         <td>${user.username}</td>
                     </tr>
                     <tr>
-                        <td><b>Пароль:</b></td>
+                        <th>Пароль:</th>
                         <td>${user.password}</td>
                     </tr>
                     <tr>
-                        <td><b>Email:</b></td>
+                        <th>Email:</th>
                         <td>
                             <a href="mailto:${user.email}" title="Email">${user.email}</a>
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Телефон:</b></td>
+                        <th>Телефон:</th>
                         <td>${user.phone}</td>
                     </tr>
                     <c:if test="${(user.vkontakte ne null) and (user.vkontakte ne '')}">
                         <tr>
-                            <td><b>ВКонтакте:</b></td>
+                            <th>ВКонтакте:</th>
                             <td>
                                 <a href="https://${user.vkontakte}" title="ВКонтакте">${user.vkontakte}</a>
                             </td>
@@ -77,7 +77,7 @@
                     </c:if>
                     <c:if test="${(user.facebook ne null) and (user.facebook ne '')}">
                         <tr>
-                            <td><b>Facebook:</b></td>
+                            <th>Facebook:</th>
                             <td>
                                 <a href="https://${user.facebook}" title="Facebook">${user.facebook}</a>
                             </td>
@@ -85,7 +85,7 @@
                     </c:if>
                     <c:if test="${(user.skype ne null) and (user.skype ne '')}">
                         <tr>
-                            <td><b>Skype:</b></td>
+                            <th>Skype:</th>
                             <td>
                                 <a href="skype:${user.skype}?call" title="Skype">${user.skype}</a>
                             </td>
@@ -93,7 +93,7 @@
                     </c:if>
                     <c:if test="${(user.description ne null) and (user.description ne '')}">
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>${user.description}</td>
                         </tr>
                     </c:if>

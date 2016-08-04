@@ -99,12 +99,20 @@
                         <tr>
                             <td><b>Товары:</b></td>
                             <td>
-                                <c:forEach items="${order.products}" var="product">
-                                    <a href="/product_${product.url}"
-                                       title="${product.title}">${product.title}</a>
-                                    <br>${product.id}, ${product.price} грн
-                                    <br>
-                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${fn:length(sales) eq 0}">
+                                        Cписок товаров пуст!
+                                    </c:when>
+                                    <c:when test="${fn:length(sales) gt 0}">
+                                        <c:forEach items="${sales}" var="sale">
+                                            <a href="/product_${sale.product.url}"
+                                               title="Перейти к товару ${sale.product.title}">
+                                                    ${sale.product.title}</a>, № ${sale.product.id},
+                                            <br>${sale.number} x ${sale.product.price} грн
+                                            <br>--------------<br>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
                             </td>
                         </tr>
                         <tr>
@@ -115,7 +123,8 @@
                             <td></td>
                             <td>
                                 <button class="btn btn-success" type="submit"
-                                        title="Обновить информацию о заказе">Сохранить</button>
+                                        title="Обновить информацию о заказе">Сохранить
+                                </button>
                                 <button class="btn btn-info" type="reset" title="Сбросить введенные даные">Сброс
                                 </button>
                             </td>

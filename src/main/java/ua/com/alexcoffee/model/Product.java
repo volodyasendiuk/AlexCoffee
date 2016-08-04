@@ -1,9 +1,6 @@
-package ua.com.alexcoffee.entity;
+package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -34,20 +31,11 @@ public class Product extends Model {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products", cascade = CascadeType.REMOVE)
-    private List<Order> orders = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE)
+    private Sale sale;
 
     public Product() {
         super();
-    }
-
-    public Product(long id, String title, String url, Category category, Photo photo, double price) {
-        super(id);
-        this.title = title;
-        this.url = url;
-        this.category = category;
-        this.photo = photo;
-        this.price = price;
     }
 
     public Product(String title, String url, Category category, Photo photo, double price) {
@@ -74,6 +62,17 @@ public class Product extends Model {
     @Override
     public String toEquals() {
         return getTitle() + getUrl() + getPrice();
+    }
+
+    public void initializer(String title, String url, String parameters,
+                            String description, Category category, Photo photo, double price) {
+        setTitle(title);
+        setUrl(url);
+        setParameters(parameters);
+        setDescription(description);
+        setCategory(category);
+        setPhoto(photo);
+        setPrice(price);
     }
 
     public String getTitle() {
@@ -129,25 +128,14 @@ public class Product extends Model {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = price > 0 ? price : 0;
     }
 
-    public List<Order> getOrders() {
-        return Collections.unmodifiableList(orders);
+    public Sale getSale() {
+        return sale;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    public void setAllInfo(String title, String url, String parameters,
-                                  String description, Category category, Photo photo, double price) {
-        setTitle(title);
-        setUrl(url);
-        setParameters(parameters);
-        setDescription(description);
-        setCategory(category);
-        setPhoto(photo);
-        setPrice(price);
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }

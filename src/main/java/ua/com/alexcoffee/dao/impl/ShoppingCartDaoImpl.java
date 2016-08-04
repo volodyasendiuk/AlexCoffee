@@ -1,10 +1,10 @@
 package ua.com.alexcoffee.dao.impl;
 
-import ua.com.alexcoffee.dao.ShoppingCartDao;
-import ua.com.alexcoffee.entity.Product;
-import ua.com.alexcoffee.entity.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ua.com.alexcoffee.dao.ShoppingCartDao;
+import ua.com.alexcoffee.model.Sale;
+import ua.com.alexcoffee.model.ShoppingCart;
 
 import java.util.List;
 
@@ -15,28 +15,28 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     private ShoppingCart shoppingCart;
 
     @Override
-    public List<Product> getProducts() {
-        return shoppingCart.getProducts();
+    public List<Sale> getSales() {
+        return shoppingCart.getSales();
     }
 
     @Override
-    public double getPriceOfProducts() {
-        return shoppingCart.getPriceOfProducts();
+    public double getPrice() {
+        return shoppingCart.getPrice();
     }
 
     @Override
-    public void addProduct(Product product) {
-        shoppingCart.addProduct(product);
+    public void addSale(Sale sale) {
+        shoppingCart.addSale(sale);
     }
 
     @Override
-    public void removeProduct(Product product) {
-        shoppingCart.removeProduct(product);
+    public void removeSale(Sale sale) {
+        shoppingCart.removeSale(sale);
     }
 
     @Override
-    public void clearProducts() {
-        shoppingCart.clearProducts();
+    public void clearSales() {
+        shoppingCart.clearSales();
     }
 
     @Override

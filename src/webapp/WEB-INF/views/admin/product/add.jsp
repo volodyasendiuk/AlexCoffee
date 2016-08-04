@@ -32,7 +32,7 @@
                 <form enctype="multipart/form-data" action="/admin/save_product" method="post">
                     <table class="table">
                         <tr>
-                            <td><b>Название:</b></td>
+                            <th>Название:</th>
                             <td>
                                 <input class="input-order" type="text" name="title"
                                        placeholder="Введите название товара"
@@ -40,7 +40,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>URL:</b></td>
+                            <th>URL:</th>
                             <td>
                                 <input class="input-order" type="text" name="url" pattern="[a-z0-9_]{5,50}"
                                        placeholder=" Введите URL, формат (a-z, 0-9, _)"
@@ -48,7 +48,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Категория:</b></td>
+                            <th>Категория:</th>
                             <td>
                                 <select class="input-order" name="category">
                                     <c:forEach items="${categories}" var="category">
@@ -58,21 +58,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Параметры:</b></td>
+                            <th>Параметры:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="parameters"
                                           placeholder="Введите параметры товара" maxlength="500"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Описание:</b></td>
+                            <th>Описание:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="description"
                                           placeholder="Введите описание товара" maxlength="500"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Изображение:</b></td>
+                            <th>Изображение:</th>
                             <td>
                                 <input class="input-order" type="text" name="photo_title"
                                        placeholder="Введите название фото"
@@ -82,7 +82,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><b>Цена:</b></td>
+                            <th>Цена:</th>
                             <td>
                                 <input class="input-order" type="number" name="price"
                                        placeholder="Введите цену товара"

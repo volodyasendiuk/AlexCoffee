@@ -1,13 +1,13 @@
 package ua.com.alexcoffee.dao.impl;
 
-import ua.com.alexcoffee.dao.Dao;
+import ua.com.alexcoffee.dao.DAO;
 import ua.com.alexcoffee.dao.repository.ItemRepository;
-import ua.com.alexcoffee.entity.Model;
+import ua.com.alexcoffee.model.Model;
 
 import java.util.Collection;
 import java.util.List;
 
-public abstract class DaoAbstractImpl<T extends Model> implements Dao<T> {
+public abstract class DAOAbstractImpl<T extends Model> implements DAO<T> {
 
     @Override
     public void add(T model) {

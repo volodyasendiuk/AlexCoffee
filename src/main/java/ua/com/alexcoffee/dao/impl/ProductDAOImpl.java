@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ua.com.alexcoffee.dao.ProductDAO;
 import ua.com.alexcoffee.dao.repository.ProductRepository;
-import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.model.Product;
 
 import java.util.List;
 
 @Repository
-public class ProductDAOImpl extends DaoAbstractImpl<Product> implements ProductDAO {
+public class ProductDAOImpl extends DAOAbstractImpl<Product> implements ProductDAO {
 
     @Autowired
     private ProductRepository repository;

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ua.com.alexcoffee.entity.Category;
-import ua.com.alexcoffee.entity.Product;
+import ua.com.alexcoffee.model.Category;
+import ua.com.alexcoffee.model.Product;
 import ua.com.alexcoffee.service.CategoryService;
 import ua.com.alexcoffee.service.ProductService;
 

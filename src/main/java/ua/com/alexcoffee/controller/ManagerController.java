@@ -1,8 +1,8 @@
 package ua.com.alexcoffee.controller;
 
-import ua.com.alexcoffee.entity.Order;
-import ua.com.alexcoffee.entity.Status;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Order;
+import ua.com.alexcoffee.model.Status;
+import ua.com.alexcoffee.model.User;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.service.OrderService;
 import ua.com.alexcoffee.service.RoleService;
@@ -53,7 +53,7 @@ public class ManagerController {
     public ModelAndView viewOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("products", order.getProducts());
+        modelAndView.addObject("sales", order.getSales());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("status_new", statusService.getDefault());
         modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
@@ -68,7 +68,7 @@ public class ManagerController {
         Order order = orderService.get(id);
         if (order.getManager() == null || order.getManager().equals(userService.getAuthenticatedUser())) {
             modelAndView.addObject("order", order);
-            modelAndView.addObject("products", order.getProducts());
+            modelAndView.addObject("sales", order.getSales());
             modelAndView.addObject("order_price", order.getPrice());
             modelAndView.addObject("statuses", statusService.getAll());
             modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
@@ -106,7 +106,7 @@ public class ManagerController {
                 manager = userService.get(managerId);
             }
 
-            order.setAllInfo(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
+            order.initializer(number, new Date(), shippingAddress, shippingDetails, description, status, client, manager);
             orderService.update(order);
         }
 

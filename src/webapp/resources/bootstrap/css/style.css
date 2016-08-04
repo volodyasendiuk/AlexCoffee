@@ -254,7 +254,7 @@ section .checkout {
     display: block;
     width: 100%;
     height: 34px;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
@@ -346,25 +346,13 @@ section .admin-page {
     color: white;
     text-align: center;
     text-indent: .1em;
-}
-
-.price-top-featured {
-    position: absolute;
-    top: 7%;
-    left: 51%;
-    width: 83px;
-    height: 27px;
-    background: #00ce1b;
-    border-radius: 10% / 50%;
-    color: white;
-    text-align: center;
-    text-indent: .1em;
+    font-size: 90%;
 }
 
 .price-product {
     display: inline;
     padding: .2em .6em .3em;
-    font-size: 75%;
+    font-size: 90%;
     font-weight: 700;
     line-height: 1;
     color: white;

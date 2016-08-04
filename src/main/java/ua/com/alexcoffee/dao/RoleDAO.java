@@ -1,9 +1,9 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.entity.Role;
+import ua.com.alexcoffee.model.Role;
 import ua.com.alexcoffee.enums.RoleEnum;
 
-public interface RoleDAO extends Dao<Role> {
+public interface RoleDAO extends DAO<Role> {
 
     void add(RoleEnum title);
 

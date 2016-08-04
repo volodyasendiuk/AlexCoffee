@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alexcoffee.dao.UserDAO;
-import ua.com.alexcoffee.entity.Role;
-import ua.com.alexcoffee.entity.User;
+import ua.com.alexcoffee.model.Role;
+import ua.com.alexcoffee.model.User;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.UserService;
@@ -87,7 +87,7 @@ public class UserServiceImpl extends ItemServiceImpl<User> implements UserServic
 
     @Override
     @Transactional(readOnly = true)
-    public User getAuthenticatedUser() {
+    public User getAuthenticatedUser() throws BadRequestException {
         User user = userDAO.getAuthenticatedUser();
         if (user == null) {
             throw new BadRequestException("Can't find authenticated user!");
