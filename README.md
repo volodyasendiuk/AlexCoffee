@@ -1,6 +1,6 @@
 [![Alex Coffee](screenshot/logo.png)](http://alexcoffee.com.ua)
 
-Coffee shop "[Alex Coffee](http://alexcoffee.com.ua)" – best coffee shop. 
+"[Alex Coffee](http://alexcoffee.com.ua)" – best coffee shop. 
 Diploma project after completion of the Java Courses "[prog.kiev.ua](http://prog.kiev.ua)".
 
 [_**Yurii Salimov**_](https://www.linkedin.com/in/yurii-salimov)

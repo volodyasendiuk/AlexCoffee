@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta lang="ru">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/resources/img/main_icon.png">
+<link rel="shortcut icon" href="/resources/img/favicon.ico" type="image/x-icon">
 <script src="/resources/bootstrap/js/jquery-1.11.1.min.js"></script>
 <script src="/resources/bootstrap/js/jquery.appear.js"></script>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
