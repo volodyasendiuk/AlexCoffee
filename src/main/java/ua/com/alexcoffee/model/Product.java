@@ -8,6 +8,9 @@ public class Product extends Model {
 
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "article")
+    private int article;
+
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -36,6 +39,7 @@ public class Product extends Model {
 
     public Product() {
         super();
+        newArticle();
     }
 
     public Product(String title, String url, Category category, Photo photo, double price) {
@@ -45,6 +49,8 @@ public class Product extends Model {
         this.category = category;
         this.photo = photo;
         this.price = price;
+
+        newArticle();
     }
 
     @Override
@@ -73,6 +79,18 @@ public class Product extends Model {
         setCategory(category);
         setPhoto(photo);
         setPrice(price);
+    }
+
+    public void newArticle() {
+        article = Integer.parseInt(createRandomString("0123456789", 5));
+    }
+
+    public int getArticle() {
+        return article;
+    }
+
+    public void setArticle(int article) {
+        this.article = article;
     }
 
     public String getTitle() {

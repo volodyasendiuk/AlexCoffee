@@ -52,7 +52,7 @@
                             <td>
                                 <select class="input-order" name="category">
                                     <c:forEach items="${categories}" var="category">
-                                    <option value="${category.id}">${category.title}</option>
+                                        <option value="${category.id}">${category.title}</option>
                                     </c:forEach>
                                 </select>
                             </td>
@@ -61,7 +61,7 @@
                             <th>Параметры:</th>
                             <td>
                                 <textarea class="input-order textarea" type="text" name="parameters"
-                                          placeholder="Введите параметры товара" maxlength="500"></textarea>
+                                          placeholder="Введите параметры товара" maxlength="500" required></textarea>
                             </td>
                         </tr>
                         <tr>

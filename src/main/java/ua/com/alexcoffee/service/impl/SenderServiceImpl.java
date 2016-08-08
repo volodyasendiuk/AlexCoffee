@@ -45,8 +45,8 @@ public class SenderServiceImpl implements SenderService, Runnable {
             if (admin != null && !managers.isEmpty()) {
                 try {
                     Properties properties;
-                    String subject = "AlexCoffee || New Order " + order.getNumber();;
-                    String text = order.toString();;
+                    String subject = "AlexCoffee || New Order " + order.getNumber();
+                    String text = order.toString();
                     for (User manager : managers) {
                         Thread.sleep(10000);
                         try {
@@ -118,6 +118,14 @@ public class SenderServiceImpl implements SenderService, Runnable {
 
     public static void setCharset(String charset) {
         SenderServiceImpl.charset = charset;
+    }
+
+    public static String getEncoding() {
+        return encoding;
+    }
+
+    public static void setEncoding(String encoding) {
+        SenderServiceImpl.encoding = encoding;
     }
 
     public Order getOrder() {

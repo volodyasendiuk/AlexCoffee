@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface ProductDAO extends DAO<Product> {
 
-    Product get(String url);
+    Product getByUrl(String url);
+
+    Product getByArticle(int article);
 
     void remove(String url);
 

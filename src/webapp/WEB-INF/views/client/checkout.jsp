@@ -10,7 +10,7 @@
     <meta name="title" content="Оформление заказа || Alex Coffee">
     <title>Оформление заказа || Alex Coffee</title>
 </head>
-<body class="background">
+<body>
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
@@ -19,7 +19,7 @@
 <div class="container-fluid width">
     <section id="checkout">
         <div class="row checkout">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                 <div class="alert alert-info" role="alert">
                     <strong>${order.client.name}</strong>, cпасибо за заказ!<br><br>
                     Менеджер по продажам свяжется с Вами в течение часа!<br><br>

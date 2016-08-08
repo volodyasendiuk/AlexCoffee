@@ -25,13 +25,23 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
 
     @Override
     @Transactional(readOnly = true)
-    public Product get(String url) throws WrongInformationException, BadRequestException {
+    public Product getByUrl(String url) throws WrongInformationException, BadRequestException {
         if (url.isEmpty()) {
             throw new WrongInformationException("No product URL!");
         }
-        Product product = productDAO.get(url);
+        Product product = productDAO.getByUrl(url);
         if (product == null) {
             throw new BadRequestException("Can't find product by URL " + url + "!");
+        }
+        return product;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Product getByArticle(int article) throws BadRequestException {
+        Product product = productDAO.getByArticle(article);
+        if (product == null) {
+            throw new BadRequestException("Can't find product by article " + article + "!");
         }
         return product;
     }
@@ -46,19 +56,13 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
         if (category == null) {
             throw new BadRequestException("Can't find category by URL " + categoryUrl + "!");
         }
-
-        List<Product> productList = productDAO.getListByCategoryId(category.getId());
-        if (productList.isEmpty()) {
-            throw new BadRequestException("Can't find products by category url " + categoryUrl + "!");
-        }
-        return productList;
+        return productDAO.getListByCategoryId(category.getId());
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Product> getByCategoryId(Long categoryId) {
-        List<Product> productList = productDAO.getListByCategoryId(categoryId);
-        return productList;
+        return productDAO.getListByCategoryId(categoryId);
     }
 
     @Override
@@ -74,7 +78,6 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
         if (products.isEmpty()) {
             return null;
         }
-
         products.remove(productDAO.get(differentProductId));
         return getShuffleSubList(products, 0, size);
     }
@@ -125,14 +128,12 @@ public class ProductServiceImpl extends ItemServiceImpl<Product> implements Prod
     }
 
     private static List<Product> getShuffleSubList(List<Product> products, int start, int end) {
-        if (start > products.size() || start > end) {
+        if (start > products.size() || start > end || start < 0 || end < 0) {
             return null;
         }
-
         if (end > products.size()) {
             end = products.size();
         }
-
         Collections.shuffle(products);
         return products.subList(start, end);
     }

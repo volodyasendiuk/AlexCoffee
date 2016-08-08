@@ -3373,7 +3373,7 @@ select[multiple].input-lg, textarea.input-lg {
     padding: 6px 12px;
     margin-top: 5px;
     margin-bottom: 0px;
-    font-size: 14px;
+    font-size: 90%;
     font-weight: 400;
     line-height: 1.42857143;
     text-align: center;

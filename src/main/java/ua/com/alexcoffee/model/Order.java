@@ -59,7 +59,8 @@ public class Order extends Model {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(number).append(", ").append(status.getDescription()).append(", ").append(date)
+        sb.append(number).append(", ")
+                .append(status.getDescription()).append(", ").append(date)
                 .append("\n\nClient: ").append(client.getName())
                 .append("\nemail: ").append(client.getEmail())
                 .append("\nnphone: ").append(client.getPhone()).append("\n");

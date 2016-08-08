@@ -117,11 +117,9 @@ public class UserServiceImpl extends ItemServiceImpl<User> implements UserServic
     @Transactional
     public void removePersonnel() {
         List<User> personnel = getPersonnel();
-
         if (personnel.isEmpty()) {
             return;
         }
-
         personnel.remove(getAdministrator());
         userDAO.remove(personnel);
     }

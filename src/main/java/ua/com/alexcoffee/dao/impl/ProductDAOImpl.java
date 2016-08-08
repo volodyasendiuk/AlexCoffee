@@ -15,8 +15,12 @@ public class ProductDAOImpl extends DAOAbstractImpl<Product> implements ProductD
     private ProductRepository repository;
 
     @Override
-    public Product get(String url) {
+    public Product getByUrl(String url) {
         return repository.findByUrl(url);
+    }
+    @Override
+    public Product getByArticle(int article) {
+        return repository.findByArticle(article);
     }
 
     @Override

@@ -74,6 +74,11 @@ section .main-mob {
     height: 120px;
 }
 
+.main-label-test {
+    width: 234px;
+    height: 180px;
+}
+
 .main-label-mob {
     width: 90px;
     height: 90px;
@@ -338,15 +343,17 @@ section .admin-page {
 .price-top {
     position: absolute;
     top: 7%;
-    left: 51%;
-    width: 83px;
-    height: 27px;
-    background: #00ce1b;
+    left: 47%;
+    padding: .2em .6em .3em;
+    background-color: #00ce1b;
     border-radius: 10% / 50%;
     color: white;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
     text-align: center;
-    text-indent: .1em;
-    font-size: 90%;
+    white-space: nowrap;
+    vertical-align: baseline;
 }
 
 .price-product {

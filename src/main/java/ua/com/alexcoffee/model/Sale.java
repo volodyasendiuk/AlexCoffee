@@ -13,7 +13,7 @@ public class Sale extends Model {
     @Column(name = "number", nullable = false)
     private int number;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
 

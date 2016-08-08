@@ -70,7 +70,7 @@ public class AdminProductsController {
                                     @RequestParam double price,
                                     ModelAndView modelAndView) {
         Category category = categoryService.get(categoryId);
-        Photo photo = new Photo(photoTitle, "img/" + smallPhotoFile.getOriginalFilename(), "img/" + bigPhotoFile.getOriginalFilename());
+        Photo photo = new Photo(photoTitle, smallPhotoFile.getOriginalFilename(), bigPhotoFile.getOriginalFilename());
         Product product = new Product();
         product.initializer(title, url, parameters, description, category, photo, price);
         productService.add(product);
@@ -114,8 +114,8 @@ public class AdminProductsController {
         Category category = categoryService.get(categoryId);
 
         Photo photo = photoService.get(photoId);
-        String photoLinkShort = !smallPhotoFile.getOriginalFilename().isEmpty() ? "img/" + smallPhotoFile.getOriginalFilename() : photo.getPhotoLinkShort();
-        String photoLinkLong = !bigPhotoFile.getOriginalFilename().isEmpty() ? "img/" + bigPhotoFile.getOriginalFilename() : photo.getPhotoLinkLong();
+        String photoLinkShort = !smallPhotoFile.getOriginalFilename().isEmpty() ? smallPhotoFile.getOriginalFilename() : photo.getPhotoLinkShort();
+        String photoLinkLong = !bigPhotoFile.getOriginalFilename().isEmpty() ? bigPhotoFile.getOriginalFilename() : photo.getPhotoLinkLong();
         photo.initializer(photoTitle, photoLinkShort, photoLinkLong);
 
         product.initializer(title, url, parameters, description, category, photo, price);

@@ -8,7 +8,7 @@
     <meta name="title" content="Ошибка || Alex Coffee">
     <title>Ошибка || Alex Coffee</title>
 </head>
-<body class="background">
+<body>
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>

@@ -8,6 +8,8 @@ public interface ProductRepository extends ItemRepository<Product, Long> {
 
     Product findByUrl(String url);
 
+    Product findByArticle(int article);
+
     void deleteByUrl(String url);
 
     List<Product> findByCategoryId(long id);

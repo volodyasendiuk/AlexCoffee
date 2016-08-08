@@ -63,7 +63,7 @@
                                       src="/resources/${product.photo.photoLinkShort}">
                             <c:if test="${product.photo.photoLinkLong ne null}">
                                 <img width="100px" height="100px"
-                                     src="/resources/${product.photo.photoLinkLong}">
+                                     src="/resources/img/${product.photo.photoLinkLong}">
                             </c:if>
                         </td>
                     </tr>

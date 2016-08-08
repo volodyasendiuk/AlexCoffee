@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface ProductService extends ItemService<Product> {
 
-    Product get(String url);
+    Product getByUrl(String url);
+
+    Product getByArticle(int article);
 
     List<Product> getByCategoryUrl(String categoryUrl);
 

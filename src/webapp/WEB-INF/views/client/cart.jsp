@@ -11,7 +11,7 @@
     <meta name="robots" content="index,follow">
     <title>Корзина || Alex Coffee</title>
 </head>
-<body class="background">
+<body>
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>

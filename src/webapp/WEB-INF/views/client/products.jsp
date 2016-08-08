@@ -12,7 +12,7 @@
     <meta name="title" content="Весь ассортимент кофе || Alex Coffee">
     <title>Весь ассортимент кофе || Alex Coffee</title>
 </head>
-<body class="background">
+<body>
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
@@ -37,10 +37,10 @@
 
             <c:if test="${fn:length(products) gt 0}">
                 <c:forEach items="${products}" var="product">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="product">
                             <a href="/product_${product.url}" title="Перейти к ${product.title}">
-                                <img src="/resources/${product.photo.photoLinkShort}"
+                                <img src="/resources/img/${product.photo.photoLinkShort}"
                                      class="img-thumbnail blink" width="185px" height="185px"
                                      alt="${product.title}">
                                 <div class="text-shadow">${product.title}</div>

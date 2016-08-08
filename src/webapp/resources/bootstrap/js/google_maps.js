@@ -19,7 +19,7 @@ $(document).ready(function () {
         icon: companyLogo,
         position: companyPos,
         map: map,
-        title: "Alex Coffee || Лучший магазин кофе и чая",
+        title: "Alex Coffee || Лучший магазин кофе",
     });
     var width = $('#google-map-block').css('width');
     $('#google-map').css('width', width);

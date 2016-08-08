@@ -17,7 +17,7 @@
     <title>Alex Coffee || Лучший магазин кофе</title>
     <script src="/resources/bootstrap/js/google_maps.js"></script>
 </head>
-<body class="background">
+<body>
 
 <!-- NAVBAR -->
 <jsp:include page="/WEB-INF/views/template/home_navbar.jsp"/>
@@ -29,28 +29,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <span class="main-text-label color-green">Alex</span>
                 <span class="main-text-label color-brown">Coffee</span>
-                <h2>
-                    <img class="main-label label-main" src="/resources/img/main_big_icon.png"
+                <h1>
+                    <img class="main-label-test label-main" src="/resources/img/main_big_icon_test.png"
                          alt="Alex Coffee || Лучший магазин кофе">
-                </h2>
+                </h1>
                 <span class="main-text-label color-green">Лучший магазин</span>
                 <span class="main-text-label color-brown"> кофе</span>
             </div>
         </div>
-<!--
-        <div class="hidden-sm hidden-md hidden-lg hidden-xl">
-            <div class="row main-mob text-shadow">
-                <span class="main-text-label-mob color-green">Alex</span>
-                <span class="main-text-label-mob color-brown">Coffee</span>
-                <h3>
-                    <img class="main-label-mob label-main" src="/resources/img/main_icon.png"
-                         alt="Alex Coffee || Лучший магазин кофе">
-                </h3>
-                <span class="main-text-label-mob color-green">Лучший магазин</span>
-                <br><span class="main-text-label-mob color-brown"> кофе</span>
-            </div>
-        </div>
--->
     </section>
 </div>
 
@@ -77,7 +63,7 @@
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="category">
                             <a href="/category_${category.url}" title="Перейти к категории ${category.title}">
-                                <img src="/resources/${category.photo.photoLinkShort}"
+                                <img src="/resources/img/${category.photo.photoLinkShort}"
                                      class="img-thumbnail blink" width="150px" height="150px"
                                      alt="${category.title}">
                                 <div class="text-shadow">${category.title}</div>
@@ -86,7 +72,7 @@
                     </div>
                 </c:forEach>
 
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                     <h4 class="text-all-products text-shadow">
                         <a href="/all_products" title="Перейти ко всем товарам">Весь ассортимент кофе</a>
                     </h4>
@@ -116,10 +102,10 @@
 
             <c:if test="${fn:length(products) gt 0}">
                 <c:forEach items="${products}" var="product">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="product">
                             <a href="/product_${product.url}" title="Перейти к ${product.title}">
-                                <img src="/resources/${product.photo.photoLinkShort}"
+                                <img src="/resources/img/${product.photo.photoLinkShort}"
                                      class="img-thumbnail blink" width="185px" height="185px"
                                      alt="${product.title}">
                                 <div class="text-shadow">${product.title}</div>
@@ -139,8 +125,7 @@
                     </div>
                 </c:forEach>
 
-
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                     <h4 class="text-all-products text-shadow">
                         <a href="/all_products" title="Перейти ко всем товарам">Весь ассортимент кофе</a>
                     </h4>
@@ -202,19 +187,19 @@
                 </h3>
             </div>
 
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-money fa-5x color-green" id="icon4"></i>
                 <p class="icon-text">Оплата курьеру</p>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-truck fa-5x color-green" id="icon5"></i>
                 <p class="icon-text">При получении на <br>Новой Почте</p>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 icon-block-payment-delivery">
                 <i class="fa fa-cc-visa fa-5x color-green" id="icon6"></i>
                 <p class="icon-text">Карта ПриватБанка</p>
             </div>
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-8 col-xl-offset-2">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-8 col-xl-offset-2">
                 <h4 class="text-payments">
                     Возврат приобретенных товаров осуществляется в случаях и согласно условиям, регламентированным
                     «Законом Украины о защите прав потребителей»

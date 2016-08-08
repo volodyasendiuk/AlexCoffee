@@ -103,6 +103,7 @@ CREATE TABLE `categories` (
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id`          INT UNSIGNED           NOT NULL AUTO_INCREMENT,
+  `article`     INT UNSIGNED           NOT NULL,
   `title`       VARCHAR(100)           NOT NULL,
   `url`         VARCHAR(100)           NOT NULL,
   `parameters`  TEXT                            DEFAULT NULL,
@@ -113,7 +114,8 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`),
-  UNIQUE (`url`)
+  UNIQUE (`url`),
+  UNIQUE (`article`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

@@ -73,8 +73,17 @@ public class HomeController {
 
     @RequestMapping(value = "/product_{url}", method = RequestMethod.GET)
     public ModelAndView viewProduct(@PathVariable("url") String url, ModelAndView modelAndView) {
-        Product product = productService.get(url);
+        Product product;
+
+        try {
+            int article = Integer.parseInt(url);
+            product = productService.getByArticle(article);
+        } catch (NumberFormatException ex) {
+            product = productService.getByUrl(url);
+        }
+
         long categoryId = product.getCategory().getId();
+
         modelAndView.addObject("product", product);
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.addObject("featured_products", productService.getRandomByCategoryId(4, categoryId, product.getId()));
@@ -123,7 +132,6 @@ public class HomeController {
     @RequestMapping(value = "/cart_clear", method = RequestMethod.GET)
     public ModelAndView clearCart(ModelAndView modelAndView) {
         shoppingCartService.clear();
-        //modelAndView.addObject("products", shoppingCartService.getProducts());
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }

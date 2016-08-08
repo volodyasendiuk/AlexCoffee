@@ -49,7 +49,7 @@
                         <th>Изображение:</th>
                         <td>${category.photo.title}
                             <br><img width="75px" height="75px"
-                                     src="/resources/${category.photo.photoLinkShort}">
+                                     src="/resources/img/${category.photo.photoLinkShort}">
                         </td>
                     </tr>
                     <tr>
