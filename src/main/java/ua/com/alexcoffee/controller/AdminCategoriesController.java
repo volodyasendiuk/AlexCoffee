@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.model.Category;
 import ua.com.alexcoffee.model.Photo;
-import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.service.CategoryService;
 import ua.com.alexcoffee.service.PhotoService;
-import ua.com.alexcoffee.service.ProductService;
 import ua.com.alexcoffee.service.UserService;
 
 @Controller
@@ -22,9 +21,6 @@ public class AdminCategoriesController {
 
     @Autowired
     private CategoryService categoryService;
-
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private PhotoService photoService;

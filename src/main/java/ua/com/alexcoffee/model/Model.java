@@ -4,35 +4,74 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
-import java.util.TimeZone;
+import java.util.*;
 
+/**
+ * Класс представляет абстрактную модель сущностей, не описывает сущности как таковой.
+ * Класс не отображается на отдельную таблицу в базе данных,
+ * реализует интерфейс Serializable, может быть сериализован.
+ * Аннотация @MappedSuperclass аннотация определяет класс, описанные
+ * свойства и методы которого будут применены в классах-наследниках.
+ *
+ * @author Yurii Salimov
+ * @see Category
+ * @see Order
+ * @see Photo
+ * @see Product
+ * @see Role
+ * @see SalePosition
+ * @see Status
+ * @see User
+ */
 @MappedSuperclass
-public class Model implements Serializable {
-
+public abstract class Model implements Serializable {
+    /**
+     * Номер версии класса необходимый для десериализации и сериализации.
+     */
     private static final long serialVersionUID = 1L;
 
-    @Transient
-    private static String codePattern = "ALEXCOFFEE1234567890";
+    /**
+     * Набор вожможных для использованния символов по-умолчанию.
+     */
+    public static final char[] CODE_PATTERN = {'A', 'L', 'E', 'X', 'C', 'O', 'F', 'F', 'E', 'E', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
-    @Transient
-    private static int codeLength = 6;
+    /**
+     * Длина возвращаемой строки по-умолчанию {@value CODE_LENGTH}.
+     */
+    public static final int CODE_LENGTH = 6;
 
-    @Transient
-    private static String timezoneID = "GMT+3";
+    /**
+     * Строка-формат для даты по-умолчанию {@value DATE_PATTERN}.
+     */
+    public static final String DATE_PATTERN = "EEE, d MMM yyyy, HH:mm:ss";
 
-    @Transient
-    private static String datePattern = "EEE, d MMM yyyy, HH:mm:ss";
+    /**
+     * Название (код) часового пояса по-умолчанию {@value TIME_ZONE}.
+     */
+    public static final String TIME_ZONE = "GMT+3";
 
+    /**
+     * Уникальный код обьекта.
+     * Аннотация @Id говорит о том что поле является ключем для текущего объекта,
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Конструктр без параметров.
+     */
     public Model() {
-
+        super();
     }
 
+    /**
+     * Сравнивает текущий объект с объектом переданым как параметр.
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @param obj объект для сравнения с текущим объектом.
+     * @return Значение типа boolean - результат сравнения текущего объекта с переданным объектом.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -48,77 +87,109 @@ public class Model implements Serializable {
         return (this.toEquals().equals(other.toEquals()));
     }
 
+    /**
+     * Возвращает хеш код объекта. Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа int - уникальный номер объекта.
+     */
     @Override
     public int hashCode() {
         return getId().hashCode();
     }
 
+    /**
+     * Генерирует строку для конечного сравнения объектов в методе equals().
+     * Что бы в дочернем классе не переопределять весь метод equals(), мож
+     *
+     * @return Значение типа {@link String} - результат работы метода toString().
+     */
     public String toEquals() {
         return toString();
     }
 
+    /**
+     * Возвращает рандомную строку из набор символов и длинны по-умолчанию.
+     *
+     * @return Значение типа {@link String} - рандомная строка из набора символов CODE_PATTERN длиной {@value CODE_LENGTH}.
+     */
     public static String createRandomString() {
-        return createRandomString(codePattern, codeLength);
+        return createRandomString(CODE_PATTERN, CODE_LENGTH);
     }
 
-    public static String createRandomString(String pattern, int length) {
+    /**
+     * Возвращает рандомную строку используя набор символов pattern длиной length.
+     *
+     * @param pattern Набор вожможных для использованния символов.
+     * @param length  Длина возвращаемой строки.
+     * @return Значение типа {@link String} - рандомная строка из набора символов pattern длиной length.
+     */
+    public static String createRandomString(char[] pattern, int length) {
         StringBuilder builder = new StringBuilder();
+
         for (int i = 0; i < length; i++) {
-            int number = new Random().nextInt(pattern.length());
-            char ch = pattern.charAt(number);
+            int number = new Random().nextInt(pattern.length);
+            char ch = pattern[number];
             builder.append(ch);
         }
+
         return builder.toString();
     }
 
-    public static String dateToStringWithFormat(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat(datePattern);
-        TimeZone timeZone = TimeZone.getTimeZone(timezoneID);
+    /**
+     * Конвертирует дату типа Date в строку используя для работы входящими параметрами
+     * формат даты {@value DATE_PATTERN} и часовой пояс (@value TIME_ZONE} по-умолчанию.
+     *
+     * @param date Значение даты типа Date для обработки.
+     * @return Значение типа {@link String} - дата в виде строки.
+     */
+    public static String dateToString(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
+        TimeZone timeZone = TimeZone.getTimeZone(TIME_ZONE);
         return dateToStringWithFormat(date, dateFormat, timeZone);
     }
 
+    /**
+     * Конвертирует дату типа Date в строку используя для работы входящими параметрами
+     * формат даты и часовой пояс.
+     *
+     * @param date       Значение даты типа Date для обработки.
+     * @param dateFormat Формат даты для обработки входного параметра date.
+     * @param timeZone   Часовой пояс для обработки входного параметра date.
+     * @return Значение типа {@link String} - дата в виде строки.
+     */
     public static String dateToStringWithFormat(Date date, DateFormat dateFormat, TimeZone timeZone) {
         dateFormat.setTimeZone(timeZone);
         return dateFormat.format(date);
     }
 
+    /**
+     * Возвращает номер версии класса необходимый для десериализации и сериализации.
+     *
+     * @return Значение типа {@link Long} - значение поля serialVersionUID.
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Устанавливает номер версии класса необходимый для десериализации и сериализации.
+     *
+     * @param id Значение параметра будет записано в поле id объекта.
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    public static String getCodePattern() {
-        return codePattern;
-    }
-
-    public static void setCodePattern(String codePattern) {
-        Model.codePattern = codePattern;
-    }
-
-    public static int getCodeLength() {
-        return codeLength;
-    }
-
-    public static void setCodeLength(int codeLength) {
-        Model.codeLength = codeLength;
-    }
-
-    public static String getTimezoneID() {
-        return timezoneID;
-    }
-
-    public static void setTimezoneID(String timezoneID) {
-        Model.timezoneID = timezoneID;
-    }
-
-    public static String getDatePattern() {
-        return datePattern;
-    }
-
-    public static void setDatePattern(String datePattern) {
-        Model.datePattern = datePattern;
+    /**
+     * Конвертирует входящий лист возращает лист только для чтений.
+     * Если входной параметер - лист равен null или пустой,
+     * тогда метод возвращает пустой лист.
+     *
+     * @param list Входной объект коллекции для обработки.
+     * @param <T>  Возможный тип объектов в листе.
+     * @return Значение типа {@link List} - лист только для чтения или пустой лист.
+     */
+    public static <T extends Object> List<T> getUnmodifiableList(List<T> list) {
+        return list != null || !list.isEmpty() ? Collections.unmodifiableList(list) : Collections.EMPTY_LIST;
     }
 }

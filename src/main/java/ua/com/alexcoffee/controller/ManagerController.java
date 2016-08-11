@@ -53,7 +53,7 @@ public class ManagerController {
     public ModelAndView viewOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("sales", order.getSales());
+        modelAndView.addObject("sales", order.getSalePositions());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("status_new", statusService.getDefault());
         modelAndView.addObject("auth_user", userService.getAuthenticatedUser());
@@ -68,7 +68,7 @@ public class ManagerController {
         Order order = orderService.get(id);
         if (order.getManager() == null || order.getManager().equals(userService.getAuthenticatedUser())) {
             modelAndView.addObject("order", order);
-            modelAndView.addObject("sales", order.getSales());
+            modelAndView.addObject("sales", order.getSalePositions());
             modelAndView.addObject("order_price", order.getPrice());
             modelAndView.addObject("statuses", statusService.getAll());
             modelAndView.addObject("auth_user", userService.getAuthenticatedUser());

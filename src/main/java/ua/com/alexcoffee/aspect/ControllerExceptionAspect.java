@@ -16,7 +16,7 @@ public class ControllerExceptionAspect {
     }
 
     public ControllerExceptionAspect(Logger logger) {
-        this.logger = logger;
+        logger = logger;
     }
 
     // Catching all exceptions

@@ -4,75 +4,155 @@ import ua.com.alexcoffee.enums.StatusEnum;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+/**
+ * Класс описывает сущность "Статус заказов", наследует класс {@link Model}.
+ * Аннотация @Entity говорит о том что объекты этого класса будет обрабатываться hibernate.
+ * Аннотация @Table(name = "statuses") указывает на таблицу "statuses", в которой будут храниться объекты.
+ *
+ * @author Yurii Salimov
+ * @see StatusEnum
+ * @see Order
+ */
 @Entity
 @Table(name = "statuses")
 public class Status extends Model {
-
+    /**
+     * Номер версии класса необходимый для десериализации и сериализации.
+     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Название статуса, может принимать одно из значений перечисления {@link StatusEnum}.
+     * Значение поля сохраняется в колонке "title". Не может быть null.
+     */
     @Column(name = "title", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusEnum title;
 
+    /**
+     * Описание товара. Значение поля сохраняется в колонке "description".
+     */
     @Column(name = "description")
     private String description;
 
+    /**
+     * Список заказов, которые имеют текущий статус.
+     * К текущстатусу можно добраться через поле "status"
+     * в объекте класса {@link Order}.
+     * Выборка объектов orders при первом доступе к ним.
+     * Сущности orders автоматически удаляется при удалении текущей.
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "status", cascade = CascadeType.REMOVE)
     private List<Order> orders = new ArrayList<>();
 
+    /**
+     * Конструктр без параметров.
+     */
     public Status() {
         super();
     }
 
+    /**
+     * Конструктор для инициализации основных переменных заказа.
+     *
+     * @param title Название заказа, может принимать одно из значений перечисления {@link StatusEnum}.
+     */
     public Status(StatusEnum title) {
         super();
         this.title = title;
     }
 
+    /**
+     * Возвращает описание статуса.
+     * Переопределенный метод родительского класса {@link Object}.
+     *
+     * @return Значение типа {@link String}  - строка описание статуса (имя, описание).
+     */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Title: ").append(title.name())
-                .append("\nDescription: ").append(description);
-        return sb.toString();
+        return "Title: " + title.name() + "\nDescription: " + description;
     }
 
-    public void add(Order order) {
+    /**
+     * Добавляет заказы в список текущего статуса.
+     *
+     * @param order Заказ, который имеет текущий статус.
+     */
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
-    public void remove(Order order) {
+    /**
+     * Удаляет заказ из списка текущего статуса.
+     *
+     * @param order Заказ, у которого будет удаленен текущий статус.
+     */
+    public void removeOrder(Order order) {
         orders.remove(order);
     }
 
-    public void clear() {
+    /**
+     * Очищает список заказов текущего статуса.
+     */
+    public void clearOrders() {
         orders.clear();
     }
 
+    /**
+     * Конвертирует список заказов текущего статуса
+     * в список только для чтений и возвращает его.
+     *
+     * @return Объект типа {@link List} - список заказов только для чтения или пустой список.
+     */
+    public List<Order> getOrders() {
+        return getUnmodifiableList(orders);
+    }
+
+    /**
+     * Устанавливает список заказов текущего статуса.
+     *
+     * @param orders Список заказов.
+     */
+    public void setOrders(List<Order> orders) {
+        orders = orders;
+    }
+
+    /**
+     * Возвращает название статуса.
+     *
+     * @return Объект перечисление {@link StatusEnum} - название статуса.
+     */
     public StatusEnum getTitle() {
         return title;
     }
 
+    /**
+     * Устанавливает название сттуса, которое может принимать одно из
+     * значений перечисления {@link StatusEnum}.
+     *
+     * @param title Название статуса.
+     */
     public void setTitle(StatusEnum title) {
         this.title = title;
     }
 
+    /**
+     * Возвращает описание статуса.
+     *
+     * @return Значение типа {@link String} - описание статуса.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Устанавливает описание статуса.
+     *
+     * @param description Описание статуса.
+     */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Order> getOrders() {
-        return Collections.unmodifiableList(orders);
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
     }
 }

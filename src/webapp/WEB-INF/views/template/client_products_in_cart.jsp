@@ -12,26 +12,26 @@
                 <th>Категория</th>
                 <th>Стоимость</th>
             </tr>
-            <c:forEach items="${sales}" var="sale">
+            <c:forEach items="${salePositions}" var="salePosition">
                 <tr>
                     <td>
-                        <a href="/product_${sale.product.url}"
-                           title="Перейти к ${sale.product.title}">
-                                ${sale.product.title}</a>
+                        <a href="/product_${salePosition.product.url}"
+                           title="Перейти к ${salePosition.product.title}">
+                                ${salePosition.product.title}</a>
                     </td>
-                    <td>${sale.number}</td>
+                    <td>${salePosition.number}</td>
                     <td>
                         <img width="50px" height="50px"
-                             src="/resources/img/${sale.product.photo.photoLinkShort}"
-                             alt="${sale.product.title}">
+                             src="/resources/img/${salePosition.product.photo.photoLinkShort}"
+                             alt="${salePosition.product.title}">
                     </td>
                     <td>
-                        <a href="/category_${sale.product.category.url}"
-                           title="Перейти к категории ${sale.product.category.title}">
-                                ${sale.product.category.title}</a>
+                        <a href="/category_${salePosition.product.category.url}"
+                           title="Перейти к категории ${salePosition.product.category.title}">
+                                ${salePosition.product.category.title}</a>
                     </td>
                     <td>
-                        <fmt:formatNumber type="number" value="${sale.product.price}"/> грн
+                        <fmt:formatNumber type="number" value="${salePosition.product.price}"/> грн
                     </td>
                 </tr>
             </c:forEach>

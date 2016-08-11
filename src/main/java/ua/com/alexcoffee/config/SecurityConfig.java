@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 // Pages with URL ".../admin" to users-admin.
-                .antMatchers("/admin/**").hasRole(roleService.getAdministrator().getTitle().name())
+                .antMatchers("/admin/**").hasRole(this.roleService.getAdministrator().getTitle().name())
                 // Pages with URL ".../manager" to users-manager.
                 .antMatchers("/manager/**").hasAnyRole(roleService.getAdministrator().getTitle().name(), roleService.getManager().getTitle().name())
                 .anyRequest().permitAll()
@@ -44,12 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Users configurations
     @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder
                 // Users loaded from database
                 .userDetailsService(userDetailsService).and()
                 // Reserve user-admin in memory
                 .inMemoryAuthentication()
-                .withUser("someadmin").password("somepassword").roles(roleService.getAdministrator().getTitle().name());
+                .withUser("kexibqflvby").password("fktrrjaat").roles(roleService.getAdministrator().getTitle().name());
     }
 }

@@ -53,7 +53,7 @@ public class AdminOrdersController {
     public ModelAndView viewOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("sales", order.getSales());
+        modelAndView.addObject("sales", order.getSalePositions());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("status_new", statusService.getDefault());
         modelAndView.addObject("admin_role", roleService.getAdministrator());
@@ -67,7 +67,7 @@ public class AdminOrdersController {
     public ModelAndView getEditOrderPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
         modelAndView.addObject("order", order);
-        modelAndView.addObject("sales", order.getSales());
+        modelAndView.addObject("sales", order.getSalePositions());
         modelAndView.addObject("order_price", order.getPrice());
         modelAndView.addObject("statuses", statusService.getAll());
         modelAndView.addObject("auth_user", userService.getAuthenticatedUser());

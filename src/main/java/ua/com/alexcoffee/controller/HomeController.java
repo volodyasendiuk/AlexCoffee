@@ -15,27 +15,68 @@ import ua.com.alexcoffee.service.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Класс-контроллер домашних страниц.
+ * К даному контроллеру и соответствующим страницам могут
+ * обращатсья все пользователи, независимо от ихних ролей.
+ *
+ * @author Yurii Salimov
+ */
 @Controller
 public class HomeController {
-
+    /**
+     * Объект сервиса для работы с товарами.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private ProductService productService;
 
+    /**
+     * Объект сервиса для работы с категориями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * Объект сервиса для работы с торговой корзиной.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private ShoppingCartService shoppingCartService;
 
+    /**
+     * Объект сервиса для работы с заказами.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private OrderService orderService;
 
+    /**
+     * Объект сервиса для работы с статусами заказов.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private StatusService statusService;
 
+    /**
+     * Объект сервиса для работы с ролями пользователей.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private RoleService roleService;
 
+    /**
+     * Объект сервиса для работы с товарами.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private SenderService senderService;
 
@@ -93,7 +134,7 @@ public class HomeController {
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
-        modelAndView.addObject("sales", shoppingCartService.getSales());
+        modelAndView.addObject("sales", shoppingCartService.getSalePositions());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/cart");
@@ -103,8 +144,8 @@ public class HomeController {
     @RequestMapping(value = "/cart_add", method = RequestMethod.POST)
     public ModelAndView addProductToCart(@RequestParam long id,
                                          ModelAndView modelAndView) {
-        Sale sale = new Sale(productService.get(id), 1);
-        shoppingCartService.add(sale);
+        SalePosition salePosition = new SalePosition(productService.get(id), 1);
+        shoppingCartService.add(salePosition);
         modelAndView.setViewName("redirect:/cart");
         return modelAndView;
     }
@@ -118,8 +159,8 @@ public class HomeController {
     public ModelAndView addProductToCartQuickly(@RequestParam long id,
                                                 @RequestParam String url,
                                                 ModelAndView modelAndView) {
-        Sale sale = new Sale(productService.get(id), 1);
-        shoppingCartService.add(sale);
+        SalePosition salePosition = new SalePosition(productService.get(id), 1);
+        shoppingCartService.add(salePosition);
         modelAndView.setViewName("redirect:" + url);
         return modelAndView;
     }
@@ -146,13 +187,13 @@ public class HomeController {
 
         Status status = statusService.getDefault();
         Order order = new Order(new Date(), status, client);
-        order.setSales(new ArrayList<>(shoppingCartService.getSales()));
+        order.setSalePositions(new ArrayList<>(shoppingCartService.getSalePositions()));
         orderService.add(order);
 
         senderService.send(order);
 
         modelAndView.addObject("order", order);
-        modelAndView.addObject("sales", order.getSales());
+        modelAndView.addObject("sales", order.getSalePositions());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", 0);
         modelAndView.setViewName("client/checkout");

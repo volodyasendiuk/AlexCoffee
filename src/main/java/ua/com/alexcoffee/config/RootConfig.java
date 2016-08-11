@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"ua.com.alexcoffee.dao.repository"})
+@EnableJpaRepositories(basePackages = {"ua.com.alexcoffee.repository"})
 @ComponentScan(basePackages = {"ua.com.alexcoffee.model"})
 public class RootConfig {
 
@@ -39,21 +39,21 @@ public class RootConfig {
     // JPA provider
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
-        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setShowSql(false);
-        hibernateJpaVendorAdapter.setGenerateDdl(true);
-        hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
-        return hibernateJpaVendorAdapter;
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setShowSql(false);
+        adapter.setGenerateDdl(true);
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+        return adapter;
     }
 
     // EntityManager factory
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
-        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        localContainerEntityManagerFactoryBean.setDataSource(dataSource);
-        localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        localContainerEntityManagerFactoryBean.setPackagesToScan("ua.com.alexcoffee.model");
-        return localContainerEntityManagerFactoryBean;
+        LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
+        lcemfb.setDataSource(dataSource);
+        lcemfb.setJpaVendorAdapter(jpaVendorAdapter);
+        lcemfb.setPackagesToScan("ua.com.alexcoffee.model");
+        return lcemfb;
     }
 
     // Enabling transactions

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="AlexCoffee:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="alexcoffee-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="AlexCoffee:war exploded" />
+    </root>
+  </artifact>
+</component>

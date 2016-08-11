@@ -122,8 +122,8 @@ CREATE TABLE `products` (
 
 
 /*----------------------------------------------------------------------------------*/
-DROP TABLE IF EXISTS `sales`;
-CREATE TABLE `sales` (
+DROP TABLE IF EXISTS `salePositions`;
+CREATE TABLE `salePositions` (
   `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `number`     INT UNSIGNED NOT NULL,

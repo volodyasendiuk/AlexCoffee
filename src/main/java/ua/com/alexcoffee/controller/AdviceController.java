@@ -28,7 +28,7 @@ public class AdviceController {
     }
 
     public AdviceController(Logger logger) {
-        this.logger = logger;
+        logger = logger;
     }
 
     // Catching NoHandlerFoundException (http status 404)

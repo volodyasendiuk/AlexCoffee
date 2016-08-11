@@ -5,19 +5,66 @@ import ua.com.alexcoffee.enums.RoleEnum;
 
 import java.util.List;
 
-public interface RoleService extends ItemService<Role> {
-
+/**
+ * Интерфейс сервисного слоя, описывает набор методов для работы
+ * с объектами класса{@link Role}. Расширяет интерфейс {@link AbstractService}.
+ *
+ * @author Yurii Salimov
+ * @see Role
+ * @see AbstractService
+ * @see ua.com.alexcoffee.service.impl.AbstractServiceImpl
+ */
+public interface RoleService extends AbstractService<Role> {
+    /**
+     * Добавляет роль по названию, которое может принимать
+     * одно из значений перечисления {@link RoleEnum}.
+     *
+     * @param title Название роли для добавления.
+     */
     void add(RoleEnum title);
 
+    /**
+     * Возвращает роль по названию, которое может принимать
+     * одно из значений перечисления {@link RoleEnum}.
+     *
+     * @param title Название роли для возврата.
+     * @return Объект класса {@link Role} - роль с уникальным названием.
+     */
     Role get(RoleEnum title);
 
+    /**
+     * Возвращает роль администратора.
+     *
+     * @return Объект класса {@link Role} - роль администратора.
+     */
     Role getAdministrator();
 
+    /**
+     * Возвращает роль менеджера.
+     *
+     * @return Объект класса {@link Role} - роль менеджера.
+     */
     Role getManager();
 
+    /**
+     * Возвращает роль по-умолчанию.
+     *
+     * @return Объект класса {@link Role} - роль по-умолчание.
+     */
     Role getDefault();
 
+    /**
+     * Возвращает список ролей персонала сайта.
+     *
+     * @return Объект типа {@link List} - список ролей.
+     */
     List<Role> getPersonnel();
 
+    /**
+     * Удаляет роль по названию, которое может принимать одно
+     * из значений перечисления {@link RoleEnum}.
+     *
+     * @param title Название роли для удаления.
+     */
     void remove(RoleEnum title);
 }

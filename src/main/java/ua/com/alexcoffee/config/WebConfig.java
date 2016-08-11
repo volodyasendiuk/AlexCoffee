@@ -22,25 +22,25 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     // Views configurations
     @Bean
     public ViewResolver viewResolver() {
-        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-        internalResourceViewResolver.setContentType("text/html;charset=UTF-8");
-        internalResourceViewResolver.setPrefix("/WEB-INF/views/");
-        internalResourceViewResolver.setSuffix(".jsp");
-        internalResourceViewResolver.setViewClass(JstlView.class);
-        internalResourceViewResolver.setExposeContextBeansAsAttributes(true);
-        return internalResourceViewResolver;
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setContentType("text/html;charset=UTF-8");
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setExposeContextBeansAsAttributes(true);
+        return viewResolver;
     }
 
     // Path to resources
     @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry resourceHandlerRegistry) {
-        resourceHandlerRegistry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    public void addResourceHandlers(final ResourceHandlerRegistry resource) {
+        resource.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
     // Login controller
     @Override
-    public void addViewControllers(ViewControllerRegistry viewControllerRegistry) {
-        viewControllerRegistry.addViewController("/login").setViewName("login");
-        viewControllerRegistry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    public void addViewControllers(ViewControllerRegistry viewController) {
+        viewController.addViewController("/login").setViewName("login");
+        viewController.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

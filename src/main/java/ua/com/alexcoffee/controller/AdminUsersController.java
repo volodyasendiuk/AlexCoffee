@@ -115,7 +115,7 @@ public class AdminUsersController {
 
     @RequestMapping(value = "/delete_user_{id}", method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
-        if (userService.getAdministrator().getId() != id) {
+        if (userService.getMainAdministrator().getId() != id) {
             userService.remove(id);
         }
         modelAndView.setViewName("redirect:/admin/users");
