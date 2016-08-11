@@ -9,15 +9,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ControllerExceptionAspect {
 
-    private Logger logger;
-
-    public ControllerExceptionAspect() {
-        logger = Logger.getLogger(ControllerExceptionAspect.class);
-    }
-
-    public ControllerExceptionAspect(Logger logger) {
-        logger = logger;
-    }
+    private static Logger logger = Logger.getLogger(ControllerExceptionAspect.class);
 
     // Catching all exceptions
     @AfterThrowing(pointcut = "execution(* ua.com.alexcoffee..controller..*(..))", throwing = "exception")

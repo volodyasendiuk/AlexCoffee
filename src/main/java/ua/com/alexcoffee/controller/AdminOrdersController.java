@@ -18,28 +18,74 @@ import ua.com.alexcoffee.service.UserService;
 
 import java.util.Date;
 
+/**
+ * Класс-контроллер страниц управления заказами клиентов. К даному контроллеру и соответствующим
+ * страницам могут обращатсья пользователи, имеющие роль-админстратор.
+ * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
+ * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Аннотацией @RequestMapping(value = "/admin") сообщаем, что данный контроллер
+ * будет обрабатывать запрос, URI которого "/admin".
+ * Методы класса работают с объектом, возвращенным handleRequest методом, является
+ * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
+ * Этот тип представляет Model и View в MVC шаблоне.
+ *
+ * @author Yurii Salimov
+ * @see Order
+ * @see OrderService
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminOrdersController {
-
+    /**
+     * Объект сервиса для работы с заказами клиентов.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private OrderService orderService;
 
+    /**
+     * Объект сервиса для работы с статусами выполнения заказов.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private StatusService statusService;
 
+    /**
+     * Объект сервиса для работы с категориями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private UserService userService;
 
+    /**
+     * Объект сервиса для работы с категориями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     */
     @Autowired
     private RoleService roleService;
 
+    /**
+     * Перенаправляет запрос "/admin" на запрос "/admin/orders".
+     * То есть страница с всема заказами устанвлена по-умолчания среди страниц, предназначеных
+     * для администратора.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView admin(ModelAndView modelAndView) {
         modelAndView.setViewName("redirect:/admin/orders");
         return modelAndView;
     }
 
+    /**
+     * Возвращает все заказы, сделаные клиентами, на страницу "admin/order/all".
+     * URL запроса "/admin/orders", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public ModelAndView viewAllOrders(ModelAndView modelAndView) {
         modelAndView.addObject("orders", orderService.getAll());
@@ -49,6 +95,14 @@ public class AdminOrdersController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает заказ с уникальным кодом id на страницу "admin/order/one".
+     * URL запроса "/admin/view_order_{id}", метод GET.
+     *
+     * @param id           Уникальный код заказа, который нужно вернуть.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/view_order_{id}", method = RequestMethod.GET)
     public ModelAndView viewOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
@@ -63,6 +117,14 @@ public class AdminOrdersController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает страницу "admin/order/edit" для редактирование заказа с уникальным кодом,
+     * который совпадает с параметром id. URL запроса "/admin/edit_order_{id}", метод GET.
+     *
+     * @param id           Уникальный код заказа, которую нужно отредактировать.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/edit_order_{id}", method = RequestMethod.GET)
     public ModelAndView getEditOrderPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         Order order = orderService.get(id);
@@ -75,6 +137,23 @@ public class AdminOrdersController {
         return modelAndView;
     }
 
+    /**
+     * Обновляет заказ по входящим параметрам и перенаправляет по запросу "/admin/view_order_{id}".
+     * URL запроса "/admin/update_category", метод POST.
+     *
+     * @param id              Код заказа для обновления.
+     * @param managerId       Код менеджера или администратора, который обработал заказ в последний раз.
+     * @param number          Номер заказа.
+     * @param statusId        Код статуса выполнения заказа.
+     * @param name            Имя клиента, оформивший заказ.
+     * @param email           Электронная почта клиента.
+     * @param phone           Номер телефона клиента.
+     * @param shippingAddress Адрес доставки товаров заказа.
+     * @param shippingDetails Детали доставки заказа.
+     * @param description     Описание заказа.
+     * @param modelAndView    Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/update_order", method = RequestMethod.POST)
     public ModelAndView updateOrder(@RequestParam long id,
                                     @RequestParam(value = "auth_user") long managerId,
@@ -104,11 +183,25 @@ public class AdminOrdersController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает исключение WrongInformationException, если обратится по запросу "/update_order" методом GET.
+     *
+     * @throws WrongInformationException Бросает исключение, если обратится к этому методу GET.
+     */
     @RequestMapping(value = "/update_order", method = RequestMethod.GET)
-    public ModelAndView updateOrder() throws WrongInformationException {
+    public void updateOrder() throws WrongInformationException {
         throw new WrongInformationException("GET method in \"/update_order\" is not supported!");
     }
 
+    /**
+     * Удаляет заказ с уникальным кодом, который совпадает с входящим параметром id,
+     * и перенаправляет по запросу "/admin/orders".
+     * URL запроса "/delete_orders_{id}", метод GET.
+     *
+     * @param id           Код заказа, которою нужно удалить.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/delete_order_{id}", method = RequestMethod.GET)
     public ModelAndView deleteOrder(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         orderService.remove(id);
@@ -116,6 +209,13 @@ public class AdminOrdersController {
         return modelAndView;
     }
 
+    /**
+     * Удаляет все заказы и перенаправляет по запросу "/admin/orders".
+     * URL запроса "/delete_all_orders", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/delete_all_orders", method = RequestMethod.GET)
     public ModelAndView deleteAllOrders(ModelAndView modelAndView) {
         orderService.removeAll();

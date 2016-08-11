@@ -11,9 +11,20 @@ import ua.com.alexcoffee.service.ProductService;
 
 import java.util.List;
 
+/**
+ * Класс-контроллер страниц управления категориями. К даному контроллеру и соответствующим
+ * страницам могут обращатсья пользователи, имеющие роль-админстратор.
+ * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
+ * является bean'ом и его необходимо подгрузить при старте приложения.
+ *
+ * @author Yurii Salimov
+ */
 @Controller
 public class SEOController {
 
+    /**
+     * Информация о сайте для поисковых систем.
+     */
     private final static String ROBOTS = "User-agent: Yandex\n" +
             "Disallow: /admin\n" +
             "Disallow: /manager\n" +
@@ -36,19 +47,40 @@ public class SEOController {
             "\n" +
             "Sitemap: http://alexcoffee.com.ua/sitemap.xml";
 
+    /**
+     * Объект сервиса для работы с товарами.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private ProductService productService;
+
+    /**
+     * Объект сервиса для работы с категориями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private CategoryService categoryService;
 
-    // Producing robots.txt file for search engines
+    /**
+     * Возвращает файл robots.txt для поисковых систем.
+     * Аннотация @ResponseBody указывает на то, что результат работы метода в контроллере был выведен
+     * непосредственно в тело ответа на запрос, а не послужил адресом перехода и не был помещён как параметр в модель.
+     *
+     * @return Значение типа String - информация о сайте для поисковых систем.
+     */
     @RequestMapping(value = "/robots.txt", produces = {"text/plain"})
     @ResponseBody
     public String getRobotsTxt() {
         return ROBOTS;
     }
 
-    // Producing sitemap.xml file for search engines
+    /**
+     * Возвращает файл sitemap.xml для поисковых систем.
+     * Аннотация @ResponseBody указывает на то, что результат работы метода в контроллере был выведен
+     * непосредственно в тело ответа на запрос, а не послужил адресом перехода и не был помещён как параметр в модель.
+     *
+     * @return Значение типа String - информация о ссылках на сайте для поисковых систем.
+     */
     @RequestMapping(value = "/sitemap.xml", produces = {"application/xml"})
     @ResponseBody
     public String getSiteMapXml() {
@@ -62,6 +94,7 @@ public class SEOController {
                 .append("  <loc>http://alexcoffee.com.ua/</loc>\n")
                 .append("</url>\n");
 
+        // Ссылки на категории товаров.
         List<Category> categories = categoryService.getAll();
         if (!categories.isEmpty()) {
             for (Category category : categories) {
@@ -71,6 +104,7 @@ public class SEOController {
             }
         }
 
+        // Ссылки на товары.
         List<Product> products = productService.getAll();
         if (!products.isEmpty()) {
             sitemap.append("<url>\n")

@@ -50,6 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService).and()
                 // Reserve user-admin in memory
                 .inMemoryAuthentication()
-                .withUser("kexibqflvby").password("fktrrjaat").roles(roleService.getAdministrator().getTitle().name());
+                .withUser("someadmin").password("somepassword").roles(roleService.getAdministrator().getTitle().name());
     }
 }

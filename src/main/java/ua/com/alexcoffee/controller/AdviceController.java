@@ -16,63 +16,119 @@ import ua.com.alexcoffee.exception.WrongInformationException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Класс глобальный перехватчик исключений.
+ * Он будет перехватывать исключения, которые не указаны в контроллере.
+ * Методы класса работают с объектом, возвращенным handleRequest методом, является
+ * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
+ * Этот тип представляет Model и View в MVC шаблоне.
+ *
+ * @author Yurii Salimov
+ * @see BadRequestException
+ * @see DuplicateException
+ * @see ForbiddenException
+ * @see WrongInformationException
+ */
 @ControllerAdvice
 public class AdviceController {
-
+    /**
+     * Объект сервиса для работы с корзиной.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private ShoppingCartService shoppingCartService;
-    private Logger logger;
 
-    public AdviceController() {
-        logger = Logger.getLogger(AdviceController.class);
-    }
+    /**
+     * Объект для логирования информации.
+     */
+    private static Logger logger = Logger.getLogger(AdviceController.class);
 
-    public AdviceController(Logger logger) {
-        logger = logger;
-    }
-
-    // Catching NoHandlerFoundException (http status 404)
+    /**
+     * Перехват NoHandlerFoundException исключения (http статус 404).
+     *
+     * @param ex      Объект исключения NoHandlerFoundException.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ModelAndView noHandlerFoundException(NoHandlerFoundException ex, HttpServletRequest request) {
         return handleException(ex, request, "Ошибка 404. Не найдено!");
     }
 
-    // Catching BadRequestException (http status 400)
+    /**
+     * Перехват BadRequestException исключения (http статус 400).
+     *
+     * @param ex      Объект исключения BadRequestException.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ModelAndView badRequestException(BadRequestException ex, HttpServletRequest request) {
         return handleException(ex, request, "Ошибка в запросе!");
     }
 
-    // Catching WrongInformationException (http status 400)
+    /**
+     * Перехват WrongInformationException исключения (http статус 400).
+     *
+     * @param ex      Объект исключения WrongInformationException.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(WrongInformationException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ModelAndView checkoutException(WrongInformationException ex, HttpServletRequest request) {
         return handleException(ex, request, "Ошибка в запросе!");
     }
 
-    // Catching ForbiddenException (http status 403)
+    /**
+     * Перехват ForbiddenException исключения (http статус 403).
+     *
+     * @param ex      Объект исключения ForbiddenException.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(ForbiddenException.class)
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     public ModelAndView forbiddenException(ForbiddenException ex, HttpServletRequest request) {
         return handleException(ex, request, "У Вас нет достаточных прав для доступа к этой странице.");
     }
 
-    // Catching DuplicateException (http status 409)
+    /**
+     * Перехват DuplicateException исключения (http статус 409).
+     *
+     * @param ex      Объект исключения DuplicateException.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(DuplicateException.class)
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public ModelAndView duplicateException(DuplicateException ex, HttpServletRequest request) {
         return handleException(ex, request, "Такой объект уже существует!");
     }
 
-    // Catching other Exception (http status 500)
+    /**
+     * Перехват всех остальных исключения (http статус 500).
+     *
+     * @param ex      Объект исключения Exception.
+     * @param request Объект интерфейса HttpServletRequest.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView otherException(Exception ex, HttpServletRequest request) {
         return handleException(ex, request, "Временные неполадки с сервером... Приносим свои извинения!");
     }
 
+    /**
+     * Обработака всех входящих исключений: логирование, печать стека, возврат модели с информациею.
+     *
+     * @param ex        Объект исключения наследника Exception.
+     * @param request   Объект интерфейса HttpServletRequest.
+     * @param textError Текст исключения, который нужно вывести на страницу.
+     * @return Объект класса {@link ModelAndView}.
+     */
     private ModelAndView handleException(Exception ex, HttpServletRequest request, String textError) {
         logger.error(request.getRemoteAddr() + " : " + request.getRequestURL());
         logger.error(ex.getMessage(), ex);

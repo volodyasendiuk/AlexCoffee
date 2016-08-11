@@ -17,22 +17,59 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.alexcoffee.service.UserService;
 
+/**
+ * Класс-контроллер страниц управления товарами. К даному контроллеру и соответствующим
+ * страницам могут обращатсья пользователи, имеющие роль-админстратор.
+ * Аннотация @Controller служит для сообщения Spring'у о том, что данный класс
+ * является bean'ом и его необходимо подгрузить при старте приложения.
+ * Аннотацией @RequestMapping(value = "/admin") сообщаем, что данный контроллер
+ * будет обрабатывать запрос, URI которого "/admin".
+ * Методы класса работают с объектом, возвращенным handleRequest методом, является
+ * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.
+ * Этот тип представляет Model и View в MVC шаблоне.
+ *
+ * @author Yurii Salimov
+ * @see Product
+ * @see ProductService
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminProductsController {
-
+    /**
+     * Объект сервиса для работы с товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private ProductService productService;
 
+    /**
+     * Объект сервиса для работы с категориями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * Объект сервиса для работы с изображенями товаров.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private PhotoService photoService;
 
+    /**
+     * Объект сервиса для работы с пользователями.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private UserService userService;
 
+    /**
+     * Возвращает все товары на страницу "admin/product/all".
+     * URL запроса "/admin/products", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public ModelAndView viewAllProducts(ModelAndView modelAndView) {
         modelAndView.addObject("products", productService.getAll());
@@ -41,6 +78,14 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает товар с уникальным кодом id на страницу "admin/product/one".
+     * URL запроса "/admin/view_product_{id}", метод GET.
+     *
+     * @param id           Код товара, которою нужно вернуть.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/view_product_{id}", method = RequestMethod.GET)
     public ModelAndView viewProduct(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("product", productService.get(id));
@@ -49,6 +94,13 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает страницу "admin/product/add" для добавления нового товара.
+     * URL запроса "/admin/add_product", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/add_product", method = RequestMethod.GET)
     public ModelAndView getAddProductPage(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAll());
@@ -58,6 +110,22 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Сохраняет новый товар по входящим параметрам и перенаправляет по запросу "/admin/products".
+     * URL запроса "/admin/save_product", метод POST.
+     *
+     * @param title          Название товара
+     * @param url            URL товара.
+     * @param parameters     Параметры товара.
+     * @param description    Описание товара.
+     * @param categoryId     Код категории, к которой пренадлежит товар.
+     * @param photoTitle     Название изображения товара.
+     * @param smallPhotoFile Файл меленького изображения для сохранения в файловой системе.
+     * @param bigPhotoFile   Файл большго изображения для сохранения в файловой системе.
+     * @param price          Цена товара.
+     * @param modelAndView   Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/save_product", method = RequestMethod.POST)
     public ModelAndView saveProduct(@RequestParam String title,
                                     @RequestParam String url,
@@ -82,11 +150,24 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает исключение WrongInformationException, если обратится по запросу "/save_product" методом GET.
+     *
+     * @throws WrongInformationException Бросает исключение, если обратится к этому методу GET.
+     */
     @RequestMapping(value = "/save_product", method = RequestMethod.GET)
     public void saveProduct() throws WrongInformationException {
         throw new WrongInformationException("GET method in \"/save_product\" is not supported!");
     }
 
+    /**
+     * Возвращает страницу "admin/product/edit" для редактирование товара с уникальным кодом,
+     * который совпадает с параметром id. URL запроса "/admin/edit_product_{id}", метод GET.
+     *
+     * @param id           Код товара, который нужно отредактировать.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/edit_product_{id}", method = RequestMethod.GET)
     public ModelAndView getEditProductPage(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         modelAndView.addObject("product", productService.get(id));
@@ -97,6 +178,24 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Обновляет товар по входящим параметрам и перенаправляет по запросу "/admin/view_product_{id}".
+     * URL запроса "/admin/update_product", метод POST.
+     *
+     * @param id             Код товара для обновления.
+     * @param title          Название товара.
+     * @param url            URL товара.
+     * @param parameters     Параметры товара.
+     * @param description    Описание товара.
+     * @param categoryId     Код категории, к которой пренадлежит товар.
+     * @param photoId        Код изображения товара.
+     * @param photoTitle     Название изображения товара.
+     * @param smallPhotoFile Файл меленького изображения для сохранения в файловой системе.
+     * @param bigPhotoFile   Файл большго изображения для сохранения в файловой системе.
+     * @param price          Цена товара.
+     * @param modelAndView   Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/update_product", method = RequestMethod.POST)
     public ModelAndView updateProduct(@RequestParam long id,
                                       @RequestParam String title,
@@ -129,11 +228,25 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Возвращает исключение WrongInformationException, если обратится по запросу "/update_product" методом GET.
+     *
+     * @throws WrongInformationException Бросает исключение, если обратится к этому методу GET.
+     */
     @RequestMapping(value = "/update_product", method = RequestMethod.GET)
     public void updateProduct() throws WrongInformationException {
         throw new WrongInformationException("GET method in \"/update_product\" is not supported!");
     }
 
+    /**
+     * Удаляет товар с уникальным кодом, который совпадает с входящим параметром id,
+     * и перенаправляет по запросу "/admin/products".
+     * URL запроса "/admin/delete_product_{id}", метод GET.
+     *
+     * @param id           Код товара, который нужно удалить.
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/delete_product_{id}", method = RequestMethod.GET)
     public ModelAndView deleteProduct(@PathVariable(value = "id") long id, ModelAndView modelAndView) {
         productService.remove(id);
@@ -141,6 +254,13 @@ public class AdminProductsController {
         return modelAndView;
     }
 
+    /**
+     * Удаляет все товары и перенаправляет по запросу "/admin/products".
+     * URL запроса "/admin/delete_all_products", метод GET.
+     *
+     * @param modelAndView Объект класса {@link ModelAndView}.
+     * @return Объект класса {@link ModelAndView}.
+     */
     @RequestMapping(value = "/delete_all_products", method = RequestMethod.GET)
     public ModelAndView deleteAllProducts(ModelAndView modelAndView) {
         productService.removeAll();
