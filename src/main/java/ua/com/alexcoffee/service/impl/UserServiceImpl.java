@@ -19,8 +19,8 @@ import java.util.List;
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link User}
  * в базе данных интерфейса {@link UserService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы, а также методы интерфейса {@link UserDetailsService}.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы,
+ * а также методы интерфейса {@link UserDetailsService}.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -29,20 +29,30 @@ import java.util.List;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see UserService
  * @see User
  * @see UserDAO
  */
 @Service
-public class UserServiceImpl extends AbstractServiceImpl<User> implements UserService, UserDetailsService {
+public class UserServiceImpl extends MainServiceImpl<User> implements UserService, UserDetailsService {
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект интерфейса {@link UserDAO} для работы пользователей с базой данных.
+     */
+    private UserDAO dao;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param dao Объект интерфейса {@link UserDAO} для работы пользователей с базой данных.
      */
     @Autowired
-    private UserDAO dao;
+    public UserServiceImpl(UserDAO dao) {
+        super(dao);
+        this.dao = dao;
+    }
 
     /**
      * Возвращает пользователя, у которого совпадает имя с
@@ -59,10 +69,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
         if (name.isEmpty()) {
             throw new WrongInformationException("No user name!");
         }
-        User user = dao.getByName(name);
-        if (user == null) {
+
+        User user;
+        try {
+            user = dao.getByName(name);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find user by name " + name + "!");
         }
+
         return user;
     }
 
@@ -81,10 +95,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
         if (username.isEmpty()) {
             throw new WrongInformationException("No username!");
         }
-        User user = dao.getByUsername(username);
-        if (user == null) {
+
+        User user;
+        try {
+            user =  dao.getByUsername(username);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find user by username " + username + "!");
         }
+
         return user;
     }
 
@@ -97,11 +115,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
     @Override
     @Transactional(readOnly = true)
     public User getMainAdministrator() throws BadRequestException {
-        User administrator = dao.getMainAdministrator();
-        if (administrator == null) {
+        User user;
+        try {
+            user =  dao.getMainAdministrator();
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find administrator!");
         }
-        return administrator;
+
+        return user;
     }
 
     /**
@@ -160,10 +181,13 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
     @Override
     @Transactional(readOnly = true)
     public User getAuthenticatedUser() throws BadRequestException {
-        User user = dao.getAuthenticatedUser();
-        if (user == null) {
+        User user;
+        try {
+            user =  dao.getAuthenticatedUser();
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find authenticated user!");
         }
+
         return user;
     }
 
@@ -211,21 +235,6 @@ public class UserServiceImpl extends AbstractServiceImpl<User> implements UserSe
         }
         personnel.remove(getMainAdministrator());
         dao.remove(personnel);
-    }
-
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link UserDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, если объект DAO равный null.
-     */
-    @Override
-    public UserDAO getDao() throws BadRequestException {
-        if (dao == null) {
-            throw new BadRequestException("Can't find user DAO!");
-        }
-        return dao;
     }
 
     /**

@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ua.com.alexcoffee.dao.PhotoDAO;
-import ua.com.alexcoffee.model.Photo;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.WrongInformationException;
+import ua.com.alexcoffee.model.Photo;
 import ua.com.alexcoffee.service.PhotoService;
 
 import java.io.File;
@@ -18,8 +18,7 @@ import java.io.OutputStream;
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link Photo}
  * в базе данных интерфейса {@link PhotoService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -28,25 +27,35 @@ import java.io.OutputStream;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see PhotoService
  * @see Photo
  * @see PhotoDAO
  */
 @Service
-public class PhotoServiceImpl extends AbstractServiceImpl<Photo> implements PhotoService {
+public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoService {
     /**
      * Путь для сохранения файлов в файловой системе.
      */
     private static final String PATH = "c:/Server/apache-tomcat-8.0.33/webapps/ROOT/resources/img/";
 
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект интерфейса {@link PhotoDAO} для работы изображений с базой данных.
+     */
+    private PhotoDAO dao;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param dao Объект интерфейса {@link PhotoDAO} для работы изображений с базой данных.
      */
     @Autowired
-    private PhotoDAO dao;
+    public PhotoServiceImpl(PhotoDAO dao) {
+        super(dao);
+        this.dao = dao;
+    }
 
     /**
      * Возвращает объект-изображение из базы даных, у которого совпадает уникальное
@@ -63,10 +72,14 @@ public class PhotoServiceImpl extends AbstractServiceImpl<Photo> implements Phot
         if (title.isEmpty()) {
             throw new WrongInformationException("No photo title!");
         }
-        Photo photo = dao.get(title);
-        if (photo == null) {
+
+        Photo photo;
+        try {
+            photo = dao.get(title);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find photo by title " + title + "!");
         }
+
         return photo;
     }
 
@@ -115,20 +128,5 @@ public class PhotoServiceImpl extends AbstractServiceImpl<Photo> implements Phot
         if (file.exists() && file.isFile()) {
             file.delete();
         }
-    }
-
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link PhotoDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, если объект DAO равный null.
-     */
-    @Override
-    public PhotoDAO getDao() throws BadRequestException {
-        if (dao == null) {
-            throw new BadRequestException("Can't find photo DAO!");
-        }
-        return dao;
     }
 }

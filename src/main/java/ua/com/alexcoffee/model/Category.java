@@ -109,7 +109,11 @@ public class Category extends Model {
      */
     @Override
     public String toEquals() {
-        return getTitle() + getUrl();
+        if (title.isEmpty() || url.isEmpty()) {
+            return super.toString();
+        } else {
+            return getTitle() + getUrl();
+        }
     }
 
     /**

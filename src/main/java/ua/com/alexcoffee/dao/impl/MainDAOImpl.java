@@ -1,33 +1,40 @@
 package ua.com.alexcoffee.dao.impl;
 
-import ua.com.alexcoffee.dao.DAO;
-import ua.com.alexcoffee.repository.ItemRepository;
+import ua.com.alexcoffee.dao.MainDAO;
 import ua.com.alexcoffee.model.Model;
+import ua.com.alexcoffee.repository.MainRepository;
 
 import java.util.Collection;
 import java.util.List;
 
 /**
  * Абстрактный класс, который реализует основные методы доступа к базе данных
- * интерфейса {@link DAO}. Класс должен наследоваться
+ * интерфейса {@link MainDAO}. Класс должен наследоваться
  * дочерними классами, которые будут описывать поведение объектов-наследников
  * родительского класса {@link Model}. Для работы методы
- * используют объект-репозиторий интерфейса {@link ItemRepository},
- * возвращаемый абстрактным методом getRepository(), реализацию которого каждый наследник берет
+ * используют объект-репозиторий интерфейса {@link MainRepository},
+ * возвращаемый абстрактным методом repository, реализацию которого каждый наследник берет
  * на себя.
  *
  * @param <T> Класс-наследник класса {@link ua.com.alexcoffee.model.Model}.
  * @author Yurii Salimov
  * @see CategoryDAOImpl
- * @see AbstractDAOImpl
  * @see PhotoDAOImpl
  * @see ProductDAOImpl
  * @see RoleDAOImpl
  * @see SalePositionDAOImpl
  * @see StatusDAOImpl
  * @see UserDAOImpl
+ * @see MainDAO
  */
-public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
+public class MainDAOImpl<T extends Model> implements MainDAO<T> {
+
+    private MainRepository<T, Long> repository;
+
+    public MainDAOImpl(MainRepository<T, Long> repository) {
+        super();
+        this.repository = repository;
+    }
 
     /**
      * Добавление модели в базу данных.
@@ -36,7 +43,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void add(T model) {
-        getRepository().save(model);
+        repository.save(model);
     }
 
     /**
@@ -46,7 +53,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void add(Collection<T> models) {
-        getRepository().save(models);
+        repository.save(models);
     }
 
     /**
@@ -56,7 +63,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void update(T model) {
-        getRepository().save(model);
+        repository.save(model);
     }
 
     /**
@@ -67,7 +74,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public T get(Long id) {
-        return getRepository().findOne(id);
+        return repository.findOne(id);
     }
 
     /**
@@ -77,7 +84,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public List<T> getAll() {
-        return getRepository().findAll();
+        return repository.findAll();
     }
 
     /**
@@ -87,7 +94,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void remove(T model) {
-        getRepository().delete(model);
+        repository.delete(model);
     }
 
     /**
@@ -97,7 +104,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void remove(Long id) {
-        getRepository().delete(id);
+        repository.delete(id);
     }
 
     /**
@@ -107,7 +114,7 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void remove(Collection<T> models) {
-        getRepository().delete(models);
+        repository.delete(models);
     }
 
     /**
@@ -115,14 +122,6 @@ public abstract class AbstractDAOImpl<T extends Model> implements DAO<T> {
      */
     @Override
     public void removeAll() {
-        getRepository().deleteAll();
+        repository.deleteAll();
     }
-
-    /**
-     * Абстрактный метод, возвращает объект интерфейса {@link ItemRepository}
-     * для работы других методов данного класса.
-     *
-     * @return Объект-репозиторий интерфейса {@link ItemRepository}.
-     */
-    public abstract ItemRepository<T, Long> getRepository();
 }

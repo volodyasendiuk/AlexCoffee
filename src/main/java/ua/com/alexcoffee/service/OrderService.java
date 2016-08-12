@@ -4,14 +4,14 @@ import ua.com.alexcoffee.model.Order;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Order}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса{@link Order}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Order
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.OrderServiceImpl
  */
-public interface OrderService extends AbstractService<Order> {
+public interface OrderService extends MainService<Order> {
     /**
      * Возвращает заказ, у которого совпадает уникальный номером
      * с значением входящего параметра.

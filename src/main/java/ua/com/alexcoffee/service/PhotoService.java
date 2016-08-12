@@ -5,14 +5,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса {@link Photo}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса {@link Photo}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Photo
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.PhotoServiceImpl
  */
-public interface PhotoService extends AbstractService<Photo> {
+public interface PhotoService extends MainService<Photo> {
     /**
      * Возвращает объект-изображение, у которого совпадает уникальное
      * название с значением входящего параметра.

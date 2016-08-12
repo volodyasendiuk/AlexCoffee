@@ -5,14 +5,14 @@ import ua.com.alexcoffee.model.Category;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Category} с базой данных.
- * Расширяет интерфейс {@link DAO}.
+ * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov
- * @see DAO
+ * @see MainDAO
  * @see ua.com.alexcoffee.dao.impl.CategoryDAOImpl
  * @see Category
  */
-public interface CategoryDAO extends DAO<Category> {
+public interface CategoryDAO extends MainDAO<Category> {
     /**
      * Возвращает категорию из базы данных, у которой совпадает параметр url.
      *

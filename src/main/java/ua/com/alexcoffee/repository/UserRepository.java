@@ -7,13 +7,13 @@ import java.util.List;
 
 /**
  * Репозиторий для объектов класса {@link User}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see User
  */
-public interface UserRepository extends ItemRepository<User, Long> {
+public interface UserRepository extends MainRepository<User, Long> {
     /**
      * Возвращает пользователя из базы даных, у которого совпадает
      * имя с значением входящего параметра.

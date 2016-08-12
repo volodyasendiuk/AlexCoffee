@@ -5,14 +5,14 @@ import ua.com.alexcoffee.enums.StatusEnum;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса {@link Status}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса {@link Status}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Status
- * @see AbstractService
- * @see ua.com.alexcoffee.service.impl.StatusServiceImpl
+ * @see MainService
+ * @see ua.com.alexcoffee.service.impl.MainServiceImpl
  */
-public interface StatusService extends AbstractService<Status> {
+public interface StatusService extends MainService<Status> {
     /**
      * Добавляет статус по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.

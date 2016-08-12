@@ -1,18 +1,18 @@
 package ua.com.alexcoffee.service;
 
 import ua.com.alexcoffee.model.Model;
-import ua.com.alexcoffee.service.impl.AbstractServiceImpl;
+import ua.com.alexcoffee.service.impl.MainServiceImpl;
 
 import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор основных методов для работы
  * с объектами  дочерних классов родительского класса {@link Model}.
- * Расширяет интерфейс {@link AbstractService}.
+ * Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Model
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see CategoryService
  * @see OrderService
  * @see PhotoService
@@ -22,7 +22,7 @@ import java.util.List;
  * @see StatusService
  * @see UserService
  */
-public interface AbstractService<T extends Model> {
+public interface MainService<T extends Model> {
     /**
      * Добавление модели.
      *

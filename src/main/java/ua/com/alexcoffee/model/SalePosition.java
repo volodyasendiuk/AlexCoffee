@@ -95,7 +95,7 @@ public class SalePosition extends Model {
     @Override
     public String toEquals() {
         if (product != null) {
-            return product.toEquals();
+            return product.toEquals() + number;
         } else {
             return super.toEquals();
         }
@@ -137,6 +137,7 @@ public class SalePosition extends Model {
      */
     public void setProduct(Product product) {
         this.product = product;
+        number = 1;
     }
 
     /**

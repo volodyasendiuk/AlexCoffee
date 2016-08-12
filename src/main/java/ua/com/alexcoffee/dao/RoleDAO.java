@@ -6,16 +6,16 @@ import ua.com.alexcoffee.model.Role;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Role} с базой данных.
- * Расширяет интерфейс {@link DAO}.
+ * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov
- * @see DAO
+ * @see MainDAO
  * @see ua.com.alexcoffee.dao.impl.RoleDAOImpl
  * @see Role
  * @see RoleEnum
  * @see ua.com.alexcoffee.model.User
  */
-public interface RoleDAO extends DAO<Role> {
+public interface RoleDAO extends MainDAO<Role> {
 
     /**
      * Добавляет роль в базу даных по названию, которое может принимать

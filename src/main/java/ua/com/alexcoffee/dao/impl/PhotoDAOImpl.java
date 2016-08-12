@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Photo}
  * в базе данных интерфейса {@link PhotoDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link PhotoRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,20 +17,30 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see PhotoDAO
  * @see Photo
  * @see PhotoRepository
  */
 @Repository
-public class PhotoDAOImpl extends AbstractDAOImpl<Photo> implements PhotoDAO {
+public class PhotoDAOImpl extends MainDAOImpl<Photo> implements PhotoDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link PhotoRepository} для работы изображений с базой данных.
+     */
+    private PhotoRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект репозитория {@link PhotoRepository} для работы изображений с базой данных.
      */
     @Autowired
-    private PhotoRepository repository;
+    public PhotoDAOImpl(PhotoRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Возвращает объект-изображение из базы даных, у которого совпадает уникальное
@@ -54,15 +64,5 @@ public class PhotoDAOImpl extends AbstractDAOImpl<Photo> implements PhotoDAO {
     public void delete(String title) {
         Photo photo = repository.findByTitle(title);
         repository.delete(photo);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link PhotoRepository} - репозиторий.
-     */
-    @Override
-    public PhotoRepository getRepository() {
-        return repository;
     }
 }

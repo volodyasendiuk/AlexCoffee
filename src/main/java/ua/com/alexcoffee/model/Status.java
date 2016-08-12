@@ -72,7 +72,14 @@ public class Status extends Model {
      */
     @Override
     public String toString() {
-        return "Title: " + title.name() + "\nDescription: " + description;
+        StringBuilder sb = new StringBuilder();
+
+        if (title != null) {
+            sb.append("Title: ").append(title.name());
+        }
+        sb.append("\nDescription: ").append(description);
+
+        return sb.toString();
     }
 
     /**
@@ -85,12 +92,30 @@ public class Status extends Model {
     }
 
     /**
+     * Добавляет список заказов в список заказов orders.
+     *
+     * @param orders Список заказов, которые будут иметь текущий статус.
+     */
+    public void addOrders(List<Order> orders) {
+        this.orders.addAll(orders);
+    }
+
+    /**
      * Удаляет заказ из списка текущего статуса.
      *
      * @param order Заказ, у которого будет удаленен текущий статус.
      */
     public void removeOrder(Order order) {
         orders.remove(order);
+    }
+
+    /**
+     * Метод удаляет список заказов из списка orders.
+     *
+     * @param orders Список заказов, у которых будет удаленен текущий статус.
+     */
+    public void removeOrders(List<Order> orders) {
+        this.orders.removeAll(orders);
     }
 
     /**

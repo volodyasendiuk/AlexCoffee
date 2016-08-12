@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link Status}
  * в базе данных интерфейса {@link StatusService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -24,20 +23,30 @@ import org.springframework.transaction.annotation.Transactional;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see StatusService
  * @see Status
  * @see StatusDAO
  */
 @Service
-public class StatusServiceImpl extends AbstractServiceImpl<Status> implements StatusService {
+public class StatusServiceImpl extends MainServiceImpl<Status> implements StatusService {
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
+     */
+    private StatusDAO dao;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param dao Объект интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
      */
     @Autowired
-    private StatusDAO dao;
+    public StatusServiceImpl(StatusDAO dao) {
+        super(dao);
+        this.dao = dao;
+    }
 
     /**
      * Добавляет статус по названию, которое может принимать
@@ -74,10 +83,14 @@ public class StatusServiceImpl extends AbstractServiceImpl<Status> implements St
         if (title == null) {
             throw new WrongInformationException("No status title!");
         }
-        Status status = dao.get(title);
-        if (status == null) {
+
+        Status status;
+        try {
+            status = dao.get(title);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find status by title " + title + "!");
         }
+
         return status;
     }
 
@@ -90,10 +103,13 @@ public class StatusServiceImpl extends AbstractServiceImpl<Status> implements St
     @Override
     @Transactional(readOnly = true)
     public Status getDefault() throws BadRequestException {
-        Status status = dao.getDefault();
-        if (status == null) {
+        Status status;
+        try {
+            status = dao.getDefault();
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find default status!");
         }
+
         return status;
     }
 
@@ -111,20 +127,5 @@ public class StatusServiceImpl extends AbstractServiceImpl<Status> implements St
             throw new WrongInformationException("No status title!");
         }
         dao.remove(title);
-    }
-
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link StatusDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, если объект DAO равный null.
-     */
-    @Override
-    public StatusDAO getDao() throws BadRequestException {
-        if (dao == null) {
-            throw new BadRequestException("Can't find status DAO!");
-        }
-        return dao;
     }
 }

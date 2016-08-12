@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Role}
  * в базе данных интерфейса {@link RoleDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link RoleRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -18,20 +18,30 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see RoleDAO
  * @see Role
  * @see RoleRepository
  */
 @Repository
-public class RoleDAOImpl extends AbstractDAOImpl<Role> implements RoleDAO {
+public class RoleDAOImpl extends MainDAOImpl<Role> implements RoleDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link RoleRepository} для работы ролей пользователей с базой данных.
+     */
+    private RoleRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект репозитория {@link RoleRepository} для работы ролей пользователей с базой данных.
      */
     @Autowired
-    private RoleRepository repository;
+    public RoleDAOImpl(RoleRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Добавляет роль в базу даных по названию, которое может принимать
@@ -75,15 +85,5 @@ public class RoleDAOImpl extends AbstractDAOImpl<Role> implements RoleDAO {
     @Override
     public void remove(RoleEnum title) {
         repository.deleteByTitle(title);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link RoleRepository} - репозиторий.
-     */
-    @Override
-    public RoleRepository getRepository() {
-        return repository;
     }
 }

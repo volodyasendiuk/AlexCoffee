@@ -4,14 +4,14 @@ import ua.com.alexcoffee.model.Category;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса {@link Category}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса {@link Category}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Category
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.CategoryServiceImpl
  */
-public interface CategoryService extends AbstractService<Category> {
+public interface CategoryService extends MainService<Category> {
     /**
      * Возвращает категорию, у которой совпадает параметр url.
      *

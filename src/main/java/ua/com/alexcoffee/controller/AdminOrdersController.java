@@ -66,27 +66,13 @@ public class AdminOrdersController {
     private RoleService roleService;
 
     /**
-     * Перенаправляет запрос "/admin" на запрос "/admin/orders".
-     * То есть страница с всема заказами устанвлена по-умолчания среди страниц, предназначеных
-     * для администратора.
-     *
-     * @param modelAndView Объект класса {@link ModelAndView}.
-     * @return Объект класса {@link ModelAndView}.
-     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView admin(ModelAndView modelAndView) {
-        modelAndView.setViewName("redirect:/admin/orders");
-        return modelAndView;
-    }
-
-    /**
      * Возвращает все заказы, сделаные клиентами, на страницу "admin/order/all".
-     * URL запроса "/admin/orders", метод GET.
+     * URL запроса {"/admin", "/admin/orders"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/orders"}, method = RequestMethod.GET)
     public ModelAndView viewAllOrders(ModelAndView modelAndView) {
         modelAndView.addObject("orders", orderService.getAll());
         modelAndView.addObject("status_new", statusService.getDefault());

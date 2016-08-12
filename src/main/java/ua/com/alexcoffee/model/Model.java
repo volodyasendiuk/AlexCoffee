@@ -80,7 +80,7 @@ public abstract class Model implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (this.getClass() != obj.getClass()) {
+        if (!(obj instanceof Model)) {
             return false;
         }
         Model other = (Model) obj;
@@ -94,7 +94,7 @@ public abstract class Model implements Serializable {
      */
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return id != null ? id.hashCode() : toString().hashCode();
     }
 
     /**

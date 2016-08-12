@@ -77,12 +77,13 @@ public class ShoppingCart implements Serializable {
      *
      * @param salePosition Торговая позиция, которая будет добавлена в корзину.
      */
-    public void addSalePosition(SalePosition salePosition) {
+    public void  addSalePosition(SalePosition salePosition) {
         if (salePosition != null) {
             if (!salePositions.contains(salePosition)) {
                 salePositions.add(salePosition);
             } else {
-                salePositions.get(salePositions.indexOf(salePosition)).numberIncr();
+                int index = salePositions.indexOf(salePosition);
+                salePositions.get(index).numberIncr();
             }
         }
     }
@@ -93,7 +94,9 @@ public class ShoppingCart implements Serializable {
      * @param salePositions Список торговых позиций, которые будут добавлены в корзину.
      */
     public void addSalePositions(List<SalePosition> salePositions) {
-        this.salePositions.addAll(salePositions);
+        for (SalePosition salePosition : salePositions) {
+            addSalePosition(salePosition);
+        }
     }
 
     /**
@@ -128,7 +131,7 @@ public class ShoppingCart implements Serializable {
      * @return Объект типа {@link List} - список торговых позиций только для чтения или пустой список.
      */
     public List<SalePosition> getSalePositions() {
-        return salePositions.isEmpty() || salePositions.isEmpty() ? Collections.unmodifiableList(salePositions) : Collections.EMPTY_LIST;
+        return salePositions != null && !salePositions.isEmpty() ? Collections.unmodifiableList(salePositions) : Collections.EMPTY_LIST;
     }
 
     /**

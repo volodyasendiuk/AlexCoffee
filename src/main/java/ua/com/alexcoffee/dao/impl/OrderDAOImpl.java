@@ -9,7 +9,7 @@ import ua.com.alexcoffee.model.Order;
 /**
  * Класс реализует методы доступа объектов класса {@link Order}
  * в базе данных интерфейса {@link OrderDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link OrderRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,20 +17,30 @@ import ua.com.alexcoffee.model.Order;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see OrderDAO
  * @see Order
  * @see OrderRepository
  */
 @Repository
-public class OrderDAOImpl extends AbstractDAOImpl<Order> implements OrderDAO {
+public class OrderDAOImpl extends MainDAOImpl<Order> implements OrderDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link OrderRepository} для работы категорий с базой данных.
+     */
+    private OrderRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект интерфейса {@link OrderRepository} для работы категорий с базой данных.
      */
     @Autowired
-    private OrderRepository repository;
+    public OrderDAOImpl(OrderRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Возвращает заказ из базы даных, у которого совпадает уникальный номером
@@ -54,15 +64,5 @@ public class OrderDAOImpl extends AbstractDAOImpl<Order> implements OrderDAO {
     @Override
     public void remove(String number) {
         repository.deleteByNumber(number);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link OrderRepository} - репозиторий.
-     */
-    @Override
-    public OrderRepository getRepository() {
-        return repository;
     }
 }

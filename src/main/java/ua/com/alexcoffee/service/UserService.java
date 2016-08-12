@@ -7,14 +7,14 @@ import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link User}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса{@link User}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see User
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.UserServiceImpl
  */
-public interface UserService extends AbstractService<User> {
+public interface UserService extends MainService<User> {
     /**
      * Возвращает пользователя, у которого совпадает
      * имя с значением входящего параметра.

@@ -4,13 +4,13 @@ import ua.com.alexcoffee.model.Order;
 
 /**
  * Репозиторий для объектов класса {@link Order}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Order
  */
-public interface OrderRepository extends ItemRepository<Order, Long> {
+public interface OrderRepository extends MainRepository<Order, Long> {
     /**
      * Возвращает заказ из базы даных, у которого совпадает уникальный номером
      * с значением входящего параметра.

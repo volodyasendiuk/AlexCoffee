@@ -87,27 +87,14 @@ public class HomeController {
     private SenderService senderService;
 
     /**
-     * Перенаправляет запрос "/index" на запрос "/".
-     * URL запроса "/index", метод GET.
-     *
-     * @param modelAndView Объект класса {@link ModelAndView}.
-     * @return Объект класса {@link ModelAndView}.
-     */
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index(ModelAndView modelAndView) {
-        modelAndView.setViewName("redirect:/");
-        return modelAndView;
-    }
-
-    /**
      * Возвращает главную cтраницу сайта "client/home". Для формирования страницы с базы подгружаются
      * категории товаров, 12 рандомных товаров и количество товаров в корзине.
-     * URL запроса "/", метод GET.
+     * URL запроса {"/", "/index"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView home(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAll());
         modelAndView.addObject("products", productService.getRandom(12));

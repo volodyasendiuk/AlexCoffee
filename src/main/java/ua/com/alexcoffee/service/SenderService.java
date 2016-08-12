@@ -11,7 +11,7 @@ import java.util.Properties;
  * Представляет методы для отправки сообщений на электронную почту.
  *
  * @author Yurii Salimov
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.SenderServiceImpl
  */
 public interface SenderService {

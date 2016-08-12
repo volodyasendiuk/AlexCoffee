@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Category}
  * в базе данных интерфейса {@link CategoryDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link CategoryRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,20 +17,30 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see CategoryDAO
  * @see Category
  * @see CategoryRepository
  */
 @Repository
-public class CategoryDAOImpl extends AbstractDAOImpl<Category> implements CategoryDAO {
+public class CategoryDAOImpl extends MainDAOImpl<Category> implements CategoryDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link CategoryRepository} для работы категорий с базой данных.
+     */
+    private CategoryRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект интерфейса {@link CategoryRepository} для работы категорий с базой данных.
      */
     @Autowired
-    private CategoryRepository repository;
+    public CategoryDAOImpl(CategoryRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Возвращает категорию из базы данных, у которой совпадает параметр url.
@@ -51,15 +61,5 @@ public class CategoryDAOImpl extends AbstractDAOImpl<Category> implements Catego
     @Override
     public void remove(String url) {
         repository.deleteByUrl(url);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link CategoryRepository} - репозиторий.
-     */
-    @Override
-    public CategoryRepository getRepository() {
-        return repository;
     }
 }

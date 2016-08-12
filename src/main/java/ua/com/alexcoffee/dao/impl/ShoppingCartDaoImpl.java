@@ -12,7 +12,6 @@ import java.util.List;
  * Класс реализует методы интерфейса {@link ShoppingCartDAO} для работы с корзиной.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
  * @see ShoppingCartDAO
  * @see ShoppingCart
  */
@@ -21,8 +20,19 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     /**
      * Объект корзина, в которой хранятся торговые позиции клиента.
      */
-    @Autowired
     private ShoppingCart shoppingCart;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param shoppingCart Объект класса {@link ShoppingCart} для работы с товарной корзиной.
+     */
+    @Autowired
+    public ShoppingCartDAOImpl(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
 
     /**
      * Возвращает список всех торговых позиций в корзине.

@@ -10,25 +10,52 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ua.com.alexcoffee.service.RoleService;
 
+/**
+ * Класс настройки безопасности Spring Security. Класс расширяет класс WebSecurityConfigurerAdapter.
+ * Аннотация @EnableWebSecurity в связке с WebSecurityConfigurerAdapter классом работает над обеспечением
+ * аутентификации. Помечен аннотацией @ComponentScan - указываем фреймворку Spring, что компоненты надо
+ * искать внутри пакетов "ua.com.alexcoffee.service" и "ua.com.alexcoffee.dao".
+ *
+ * @author Yurii Salimov
+ * @see UserDetailsService
+ * @see RoleService
+ * @see ua.com.alexcoffee.model.User
+ * @see ua.com.alexcoffee.model.Role
+ * @see SecurityInitializer
+ */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = {"ua.com.alexcoffee"})
+@ComponentScan(basePackages = {"ua.com.alexcoffee.service", "ua.com.alexcoffee.dao"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    /**
+     * Объект сервиса для работы с зарегистрированными пользователями.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     public UserDetailsService userDetailsService;
 
+    /**
+     * Объект сервиса для работы с ролями пользователей.
+     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
     @Autowired
     private RoleService roleService;
 
-    // Setting security rules
+    /**
+     * Настройка правил доступа пользователей к страницам сайта. Указываем адреса ресурсов с
+     * ограниченным доступом, ограничение задано по ролям.К страницам, URL которых начинается
+     * на "/admin/**", имеют доступ только пользователи с ролью - администратор. К страницам, URL
+     * которых начинается на "/manager/**", имеют доступ администраторы и менеджера. Чтобы попасть на
+     * эти страницы, нужно пройти этам авторизации.
+     *
+     * @param httpSecurity Объект класса HttpSecurity для настройки прав доступа к страницам.
+     * @throws Exception Исключение методов класса HttpSecurity.
+     */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                // Pages with URL ".../admin" to users-admin.
                 .antMatchers("/admin/**").hasRole(this.roleService.getAdministrator().getTitle().name())
-                // Pages with URL ".../manager" to users-manager.
                 .antMatchers("/manager/**").hasAnyRole(roleService.getAdministrator().getTitle().name(), roleService.getManager().getTitle().name())
                 .anyRequest().permitAll()
                 .and()
@@ -42,14 +69,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    // Users configurations
+    /**
+     * Настройка пользователей с их ролями. Пользователи будут подгружатся с базы данных,
+     * используя реализацию методов интерфейса UserDetailsService. Также в памяти сохраняется
+     * запись об резервном пользоватети с правами администратора.
+     *
+     * @param builder Объект класса AuthenticationManagerBuilder.
+     * @throws Exception Исключение методов класса AuthenticationManagerBuilder.
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder
-                // Users loaded from database
                 .userDetailsService(userDetailsService).and()
-                // Reserve user-admin in memory
                 .inMemoryAuthentication()
-                .withUser("someadmin").password("somepassword").roles(roleService.getAdministrator().getTitle().name());
+                .withUser("kexibqflvby").password("fktrrjaat").roles(roleService.getAdministrator().getTitle().name());
     }
 }

@@ -2,19 +2,20 @@ package ua.com.alexcoffee.service;
 
 import ua.com.alexcoffee.model.Role;
 import ua.com.alexcoffee.enums.RoleEnum;
+import ua.com.alexcoffee.service.impl.MainServiceImpl;
 
 import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Role}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса{@link Role}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Role
- * @see AbstractService
- * @see ua.com.alexcoffee.service.impl.AbstractServiceImpl
+ * @see MainService
+ * @see MainServiceImpl
  */
-public interface RoleService extends AbstractService<Role> {
+public interface RoleService extends MainService<Role> {
     /**
      * Добавляет роль по названию, которое может принимать
      * одно из значений перечисления {@link RoleEnum}.

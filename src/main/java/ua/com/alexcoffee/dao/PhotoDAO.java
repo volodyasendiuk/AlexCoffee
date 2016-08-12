@@ -5,14 +5,14 @@ import ua.com.alexcoffee.model.Photo;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Photo} с базой данных.
- * Расширяет интерфейс {@link DAO}.
+ * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov
- * @see DAO
+ * @see MainDAO
  * @see ua.com.alexcoffee.dao.impl.PhotoDAOImpl
  * @see Photo
  */
-public interface PhotoDAO extends DAO<Photo> {
+public interface PhotoDAO extends MainDAO<Photo> {
     /**
      * Возвращает объект-изображение из базы даных, у которого совпадает уникальное
      * название с значением входящего параметра.

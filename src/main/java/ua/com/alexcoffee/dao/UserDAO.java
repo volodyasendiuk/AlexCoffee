@@ -9,15 +9,15 @@ import java.util.List;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Product} с базой данных.
- * Расширяет интерфейс {@link DAO}.
+ * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov
- * @see DAO
+ * @see MainDAO
  * @see ua.com.alexcoffee.dao.impl.UserDAOImpl
  * @see User
  * @see Role
  */
-public interface UserDAO extends DAO<User> {
+public interface UserDAO extends MainDAO<User> {
     /**
      * Возвращает пользователя из базы даных, у которого совпадает
      * имя с значением входящего параметра.

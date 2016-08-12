@@ -6,14 +6,14 @@ import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Product}. Расширяет интерфейс {@link AbstractService}.
+ * с объектами класса{@link Product}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Product
- * @see AbstractService
+ * @see MainService
  * @see ua.com.alexcoffee.service.impl.ProductServiceImpl
  */
-public interface ProductService extends AbstractService<Product> {
+public interface ProductService extends MainService<Product> {
     /**
      * Возвращает товар, у которого совпадает параметр url.
      *

@@ -6,13 +6,13 @@ import java.util.List;
 
 /**
  * Репозиторий для объектов класса {@link Product}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Product
  */
-public interface ProductRepository extends ItemRepository<Product, Long> {
+public interface ProductRepository extends MainRepository<Product, Long> {
     /**
      * Возвращает товар из базы данных, у которого совпадает параметр url.
      *

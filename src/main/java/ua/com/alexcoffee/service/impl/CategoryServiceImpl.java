@@ -12,8 +12,7 @@ import ua.com.alexcoffee.service.CategoryService;
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link Category}
  * в базе данных интерфейса {@link CategoryService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -22,20 +21,30 @@ import ua.com.alexcoffee.service.CategoryService;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see CategoryService
  * @see Category
  * @see CategoryDAO
  */
 @Service
-public class CategoryServiceImpl extends AbstractServiceImpl<Category> implements CategoryService {
+public class CategoryServiceImpl extends MainServiceImpl<Category> implements CategoryService {
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект репозитория {@link CategoryDAO} для работы категорий с базой данных.
+     */
+    private CategoryDAO dao;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param dao Объект репозитория {@link CategoryDAO} для работы категорий с базой данных.
      */
     @Autowired
-    private CategoryDAO dao;
+    public CategoryServiceImpl(CategoryDAO dao) {
+        super(dao);
+        this.dao = dao;
+    }
 
     /**
      * Возвращает категорию из базы данных, у которой совпадает параметр url.
@@ -52,8 +61,11 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category> implement
         if (url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
-        Category category = dao.get(url);
-        if (category == null) {
+
+        Category category;
+        try {
+            category = dao.get(url);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find category by url " + url + "!");
         }
         return category;
@@ -72,20 +84,5 @@ public class CategoryServiceImpl extends AbstractServiceImpl<Category> implement
             throw new WrongInformationException("No category URL!");
         }
         dao.remove(url);
-    }
-
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link CategoryDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, если объект DAO равный null.
-     */
-    @Override
-    public CategoryDAO getDao() throws BadRequestException {
-        if (dao == null) {
-            throw new BadRequestException("Can't find category DAO!");
-        }
-        return dao;
     }
 }

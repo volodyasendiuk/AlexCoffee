@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Status}
  * в базе данных интерфейса {@link StatusDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link StatusRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -18,20 +18,30 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see StatusDAO
  * @see Status
  * @see StatusRepository
  */
 @Repository
-public class StatusDAOImpl extends AbstractDAOImpl<Status> implements StatusDAO {
+public class StatusDAOImpl extends MainDAOImpl<Status> implements StatusDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
+     */
+    private StatusRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
      */
     @Autowired
-    private StatusRepository repository;
+    public StatusDAOImpl(StatusRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Добавляет статус в базу даных по названию, которое может принимать
@@ -75,15 +85,5 @@ public class StatusDAOImpl extends AbstractDAOImpl<Status> implements StatusDAO 
     @Override
     public void remove(StatusEnum title) {
         repository.deleteByTitle(title);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link StatusRepository} - репозиторий.
-     */
-    @Override
-    public StatusRepository getRepository() {
-        return repository;
     }
 }

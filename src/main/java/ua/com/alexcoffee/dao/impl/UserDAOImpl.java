@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Класс реализует методы доступа объектов класса {@link User}
  * в базе данных интерфейса {@link UserDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link UserRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -23,26 +23,37 @@ import java.util.List;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see UserDAO
  * @see User
  * @see UserRepository
  */
 @Repository
-public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
+public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link UserRepository} для работы пользователей с базой данных.
      */
-    @Autowired
     private UserRepository userRepository;
 
     /**
-     * Объект репозитория для работы с БД.
+     * Объект репозитория {@link RoleRepository} для работы  ролями пользователей с базой данных.
+     */
+    private RoleRepository roleRepository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param userRepository Объект репозитория {@link UserRepository} для работы пользователей с базой данных.
+     * @param roleRepository Объект репозитория {@link RoleRepository} для работы  ролями пользователей с базой данных.
      */
     @Autowired
-    private RoleRepository roleRepository;
+    public UserDAOImpl(UserRepository userRepository, RoleRepository roleRepository) {
+        super(userRepository);
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     /**
      * Возвращает пользователя из базы даных, у которого совпадает
@@ -150,15 +161,5 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
     @Override
     public void remove(Role role) {
         userRepository.deleteAllByRole(role);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link UserRepository} - репозиторий.
-     */
-    @Override
-    public UserRepository getRepository() {
-        return userRepository;
     }
 }

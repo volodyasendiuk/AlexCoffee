@@ -4,13 +4,13 @@ import ua.com.alexcoffee.model.Category;
 
 /**
  * Репозиторий для объектов класса {@link Category}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Category
  */
-public interface CategoryRepository extends ItemRepository<Category, Long> {
+public interface CategoryRepository extends MainRepository<Category, Long> {
     /**
      * Возвращает категорию из базы данных, у которой совпадает параметр url.
      *

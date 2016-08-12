@@ -82,12 +82,12 @@ public class ManagerController {
 
     /**
      * Возвращает все заказы, сделаные клиентами, на страницу "manager/order/all".
-     * URL запроса "/manager/orders", метод GET.
+     * URL запроса {"/manager" , "/manager/orders"}, метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/orders"}, method = RequestMethod.GET)
     public ModelAndView viewAllOrders(ModelAndView modelAndView) {
         modelAndView.addObject("orders", orderService.getAll());
         modelAndView.addObject("status_new", statusService.getDefault());

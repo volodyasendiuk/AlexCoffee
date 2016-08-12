@@ -4,13 +4,13 @@ import ua.com.alexcoffee.model.Photo;
 
 /**
  * Репозиторий для объектов класса {@link Photo}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Photo
  */
-public interface PhotoRepository extends ItemRepository<Photo, Long> {
+public interface PhotoRepository extends MainRepository<Photo, Long> {
     /**
      * Возвращает объект-изображение из базы даных, у которого совпадает уникальное
      * название с значением входящего параметра.

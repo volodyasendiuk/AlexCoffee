@@ -7,14 +7,14 @@ import java.util.List;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Product} с базой данных.
- * Расширяет интерфейс {@link DAO}.
+ * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov
- * @see DAO
+ * @see MainDAO
  * @see ua.com.alexcoffee.dao.impl.ProductDAOImpl
  * @see Product
  */
-public interface ProductDAO extends DAO<Product> {
+public interface ProductDAO extends MainDAO<Product> {
     /**
      * Возвращает товар из базы данных, у которого совпадает параметр url.
      *

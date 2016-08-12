@@ -4,12 +4,12 @@ import ua.com.alexcoffee.model.SalePosition;
 
 /**
  * Репозиторий для объектов класса {@link SalePosition}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see SalePosition
  */
-public interface SalePositionRepository extends ItemRepository<SalePosition, Long> {
+public interface SalePositionRepository extends MainRepository<SalePosition, Long> {
 
 }

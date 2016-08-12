@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Класс реализует методы доступа объектов класса {@link Product}
  * в базе данных интерфейса {@link ProductDAO}, наследует родительский
- * абстрактній класс {@link AbstractDAOImpl}, в котором реализованы
+ * абстрактній класс {@link MainDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link ProductRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -19,20 +19,30 @@ import java.util.List;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see AbstractDAOImpl
+ * @see MainDAOImpl
  * @see ProductDAO
  * @see Product
  * @see ProductRepository
  */
 @Repository
-public class ProductDAOImpl extends AbstractDAOImpl<Product> implements ProductDAO {
+public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
     /**
-     * Объект репозитория для работы с БД.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать репозиторий.
+     * Объект репозитория {@link ProductRepository} для работы с товаров базой данных.
+     */
+    private ProductRepository repository;
+
+    /**
+     * Конструктор для инициализации основных переменных.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
+     * автоматически инициализировать объект.
+     *
+     * @param repository Объект репозитория {@link ProductRepository} для работы с товаров базой данных.
      */
     @Autowired
-    private ProductRepository repository;
+    public ProductDAOImpl(ProductRepository repository) {
+        super(repository);
+        this.repository = repository;
+    }
 
     /**
      * Возвращает товар из базы данных, у которого совпадает параметр url.
@@ -89,15 +99,5 @@ public class ProductDAOImpl extends AbstractDAOImpl<Product> implements ProductD
     @Override
     public List<Product> getListByCategoryId(long categoryId) {
         return repository.findByCategoryId(categoryId);
-    }
-
-    /**
-     * Возвращает объект репозитория для работы основных методов доступа к базе данных.
-     *
-     * @return Объект класса {@link ProductRepository} - репозиторий.
-     */
-    @Override
-    public ProductRepository getRepository() {
-        return repository;
     }
 }

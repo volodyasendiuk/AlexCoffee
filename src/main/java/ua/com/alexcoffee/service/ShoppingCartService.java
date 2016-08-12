@@ -11,7 +11,7 @@ import java.util.List;
  * которые оформляет клиент.
  *
  * @author Yurii Salimov
- * @see AbstractService
+ * @see MainService
  * @see ShoppingCart
  * @see ua.com.alexcoffee.service.impl.SenderServiceImpl
  */

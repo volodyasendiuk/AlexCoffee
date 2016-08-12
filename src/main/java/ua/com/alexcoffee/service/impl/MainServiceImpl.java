@@ -1,20 +1,21 @@
 package ua.com.alexcoffee.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.alexcoffee.dao.DAO;
+import ua.com.alexcoffee.dao.MainDAO;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.model.Model;
-import ua.com.alexcoffee.service.AbstractService;
+import ua.com.alexcoffee.service.MainService;
 
 import java.util.List;
 
 /**
- * Абстрактный класс сервисного слоя, который реализует основные методы доступа к
+ * Класс сервисного слоя, который реализует основные методы доступа к
  * объектам наследникам родительского класса {@link Model}, описаные в
- * интерфейсе {@link AbstractService}. Класс должен наследоваться дочерними классами,
+ * интерфейсе {@link MainService}. Класс должен наследоваться дочерними классами,
  * которые будут описывать поведение объектов-наследников родительского класса {@link Model}.
- * Для работы методы используют объект DAO интерфейса {@link DAO}, возвращаемый абстрактным
- * методом getDao(), реализацию которого каждый наследник берет на себя.
+ * Для работы методы используют объект DAO интерфейса {@link MainDAO}, возвращаемый абстрактным
+ * методом dao, реализацию которого каждый наследник берет на себя.
  * Методы класса помечены аннотацией @Transactional - перед исполнением метода помеченного
  * данной аннотацией начинается транзакция, после выполнения метода транзакция коммитится,
  * при выбрасывании RuntimeException откатывается.
@@ -22,18 +23,29 @@ import java.util.List;
  * @param <T> Класс-наследник класса {@link ua.com.alexcoffee.model.Model}.
  * @author Yurii Salimov
  * @see Model
- * @see AbstractService
+ * @see MainService
  * @see CategoryServiceImpl
  * @see OrderServiceImpl
  * @see PhotoServiceImpl
  * @see ProductServiceImpl
  * @see RoleServiceImpl
  * @see SalePositionServiceImpl
- * @see StatusServiceImpl
+ * @see MainServiceImpl
  * @see UserServiceImpl
- * @see DAO
+ * @see MainDAO
  */
-public abstract class AbstractServiceImpl<T extends Model> implements AbstractService<T> {
+public class MainServiceImpl<T extends Model> implements MainService<T> {
+    /**
+     * Объект интерфейса {@link MainDAO} для работы моделей с базой данных.
+     */
+    private MainDAO<T> dao;
+
+    @Autowired
+    public MainServiceImpl(MainDAO<T> dao) {
+        super();
+        this.dao = dao;
+    }
+    
     /**
      * Добавление модели в базу данных.
      *
@@ -42,7 +54,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void add(T model) {
-        getDao().add(model);
+        dao.add(model);
     }
 
     /**
@@ -53,7 +65,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void add(List<T> models) {
-        getDao().add(models);
+        dao.add(models);
     }
 
     /**
@@ -64,7 +76,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void update(T model) {
-        getDao().update(model);
+        dao.update(model);
     }
 
     /**
@@ -76,11 +88,11 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional(readOnly = true)
     public T get(Long id) throws BadRequestException {
-        T model = getDao().get(id);
+        T model = dao.get(id);
         if (model == null) {
             throw new BadRequestException("Can't find model by id " + id + "!");
         }
-        return getDao().get(id);
+        return dao.get(id);
     }
 
     /**
@@ -91,7 +103,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional(readOnly = true)
     public List<T> getAll() {
-        return getDao().getAll();
+        return dao.getAll();
     }
 
     /**
@@ -102,7 +114,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void remove(T model) {
-        getDao().remove(model);
+        dao.remove(model);
     }
 
     /**
@@ -113,7 +125,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void remove(Long id) {
-        getDao().remove(id);
+        dao.remove(id);
     }
 
     /**
@@ -124,7 +136,7 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void remove(List<T> models) {
-        getDao().remove(models);
+        dao.remove(models);
     }
 
     /**
@@ -133,14 +145,6 @@ public abstract class AbstractServiceImpl<T extends Model> implements AbstractSe
     @Override
     @Transactional
     public void removeAll() {
-        getDao().removeAll();
+        dao.removeAll();
     }
-
-    /**
-     * Абстрактный метод, возвращает объект интерфейса {@link DAO}
-     * для работы других методов данного класса.
-     *
-     * @return Объект интерфейса {@link DAO}.
-     */
-    public abstract DAO<T> getDao();
 }

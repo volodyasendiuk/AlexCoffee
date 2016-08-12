@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link Role}
  * в базе данных интерфейса {@link RoleService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -26,20 +26,30 @@ import java.util.List;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see RoleService
  * @see Role
  * @see RoleDAO
  */
 @Service
-public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleService {
+public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleService {
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
+     */
+    private RoleDAO dao;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param dao Объект интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
      */
     @Autowired
-    private RoleDAO dao;
+    public RoleServiceImpl(RoleDAO dao) {
+        super(dao);
+        this.dao = dao;
+    }
 
     /**
      * Добавляет роль по названию, которое может принимать
@@ -57,7 +67,7 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
         }
 
         if (dao.get(title) != null) {
-            throw new DuplicateException("Duplicate role with title  " + title/*.name()*/ + "!");
+            throw new DuplicateException("Duplicate role with title  " + title + "!");
         }
         dao.add(new Role(title));
     }
@@ -78,10 +88,14 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
         if (title == null) {
             throw new WrongInformationException("No role enum (title)!");
         }
-        Role role = dao.get(title);
-        if (role == null) {
+
+        Role role;
+        try {
+            role = dao.get(title);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find role by title " + title + "!");
         }
+
         return role;
     }
 
@@ -94,10 +108,13 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
     @Override
     @Transactional(readOnly = true)
     public Role getAdministrator() throws BadRequestException {
-        Role role = dao.get((long) 2);
-        if (role == null) {
+        Role role;
+        try {
+            role = dao.get(RoleEnum.ADMIN);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find role \"administrator\"!");
         }
+
         return role;
     }
 
@@ -110,10 +127,13 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
     @Override
     @Transactional(readOnly = true)
     public Role getManager() throws BadRequestException {
-        Role role = dao.get((long) 3);
-        if (role == null) {
+        Role role;
+        try {
+            role = dao.get(RoleEnum.MANAGER);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find role \"manager\"!");
         }
+
         return role;
     }
 
@@ -126,8 +146,10 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
     @Override
     @Transactional(readOnly = true)
     public Role getDefault() throws BadRequestException {
-        Role role = dao.getDefault();
-        if (role == null) {
+        Role role;
+        try {
+            role = dao.getDefault();
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find default role!");
         }
         return role;
@@ -143,7 +165,7 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
     public List<Role> getPersonnel() {
         List<Role> roles = dao.getAll();
         if (roles.isEmpty()) {
-            return null;
+            return Collections.emptyList();
         }
 
         roles.remove(getDefault());
@@ -164,20 +186,5 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role> implements RoleSe
             throw new WrongInformationException("No role enum (title)!");
         }
         dao.remove(title);
-    }
-
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link RoleDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, когда объект DAO равный null.
-     */
-    @Override
-    public RoleDAO getDao() throws BadRequestException {
-        if (dao == null) {
-            throw new BadRequestException("Can't find role DAO!");
-        }
-        return dao;
     }
 }

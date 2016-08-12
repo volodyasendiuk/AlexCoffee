@@ -227,7 +227,7 @@ public class Order extends Model {
      * @param salePositions Список торговых позиций, которые будут дабавлены в заказ.
      */
     public void addSalePositions(List<SalePosition> salePositions) {
-        salePositions.addAll(salePositions);
+        this.salePositions.addAll(salePositions);
         for (SalePosition salePosition : salePositions) {
             if (salePosition.getOrder() != this) {
                 salePosition.setOrder(this);

@@ -5,13 +5,13 @@ import ua.com.alexcoffee.enums.StatusEnum;
 
 /**
  * Репозиторий для объектов класса {@link Status}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Status
  */
-public interface StatusRepository extends ItemRepository<Status, Long> {
+public interface StatusRepository extends MainRepository<Status, Long> {
     /**
      * Возвращает статус из базы даных по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.

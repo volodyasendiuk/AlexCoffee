@@ -161,7 +161,7 @@ public class Product extends Model {
      */
     @Override
     public String toEquals() {
-        return getTitle() + getUrl() + getPrice();
+        return getArticle() + getTitle() + getUrl() + getPrice();
     }
 
     /**

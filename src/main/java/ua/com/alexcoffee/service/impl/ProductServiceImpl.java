@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alexcoffee.dao.CategoryDAO;
 import ua.com.alexcoffee.dao.ProductDAO;
-import ua.com.alexcoffee.model.Category;
-import ua.com.alexcoffee.model.Product;
 import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.WrongInformationException;
+import ua.com.alexcoffee.model.Category;
+import ua.com.alexcoffee.model.Product;
 import ua.com.alexcoffee.service.ProductService;
 
 import java.util.Collections;
@@ -17,8 +17,7 @@ import java.util.List;
 /**
  * Класс сервисного слоя реализует методы доступа объектов класса {@link Product}
  * в базе данных интерфейса {@link ProductService}, наследует родительский
- * абстрактній класс {@link AbstractServiceImpl}, в котором реализованы
- * основные методы.
+ * класс {@link MainServiceImpl}, в котором реализованы основные методы.
  * Класс помечан аннотацией @Service - аннотация обьявляющая, что этот класс представляет
  * собой сервис – компонент сервис-слоя. Сервис является подтипом класса @Component.
  * Использование данной аннотации позволит искать бины-сервисы автоматически.
@@ -27,7 +26,7 @@ import java.util.List;
  * при выбрасывании RuntimeException откатывается.
  *
  * @author Yurii Salimov
- * @see AbstractServiceImpl
+ * @see MainServiceImpl
  * @see ProductService
  * @see ProductDAO
  * @see Product
@@ -35,22 +34,31 @@ import java.util.List;
  * @see CategoryDAO
  */
 @Service
-public class ProductServiceImpl extends AbstractServiceImpl<Product> implements ProductService {
+public class ProductServiceImpl extends MainServiceImpl<Product> implements ProductService {
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать объект.
+     * Объект интерфейса {@link ProductDAO} для работы с товаров базой данных.
      */
-    @Autowired
     private ProductDAO productDAO;
 
     /**
-     * Объект интерфейса для работы с базой данных.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
+     * Объект интерфейса {@link CategoryDAO} для работы с категорий базой данных.
+     */
+    private CategoryDAO categoryDAO;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
+     *
+     * @param productDAO  Объект интерфейса {@link ProductDAO} для работы с товаров базой данных.
+     * @param categoryDAO Объект интерфейса {@link CategoryDAO} для работы с категорий базой данных.
      */
     @Autowired
-    private CategoryDAO categoryDAO;
+    public ProductServiceImpl(ProductDAO productDAO, CategoryDAO categoryDAO) {
+        super(productDAO);
+        this.productDAO = productDAO;
+        this.categoryDAO = categoryDAO;
+    }
 
     /**
      * Возвращает товар, у которого совпадает параметр url. Режим только для чтения.
@@ -67,10 +75,13 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
             throw new WrongInformationException("No product URL!");
         }
 
-        Product product = productDAO.getByUrl(url);
-        if (product == null) {
-            throw new BadRequestException("Can't find product by URL " + url + "!");
+        Product product;
+        try {
+            product = productDAO.getByUrl(url);
+        } catch (NullPointerException ex) {
+            throw new BadRequestException("Can't find product by url " + url + "!");
         }
+
         return product;
     }
 
@@ -86,8 +97,10 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
     @Override
     @Transactional(readOnly = true)
     public Product getByArticle(int article) throws BadRequestException {
-        Product product = productDAO.getByArticle(article);
-        if (product == null) {
+        Product product;
+        try {
+            product = productDAO.getByArticle(article);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find product by article " + article + "!");
         }
         return product;
@@ -108,10 +121,14 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
         if (url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
-        Category category = categoryDAO.get(url);
-        if (category == null) {
-            throw new BadRequestException("Can't find category by URL " + url + "!");
+
+        Category category;
+        try {
+            category = categoryDAO.get(url);
+        } catch (NullPointerException ex) {
+            throw new BadRequestException("Can't find category by url " + url + "!");
         }
+
         return productDAO.getListByCategoryId(category.getId());
     }
 
@@ -205,11 +222,13 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
             throw new WrongInformationException("No category URL!");
         }
 
-        Category category = categoryDAO.get(url);
-
-        if (category == null) {
-            throw new BadRequestException("Can't find category by URL " + url + "!");
+        Category category;
+        try {
+            category = categoryDAO.get(url);
+        } catch (NullPointerException ex) {
+            throw new BadRequestException("Can't find category by url " + url + "!");
         }
+
         productDAO.removeByCategoryId(category.getId());
     }
 
@@ -223,25 +242,13 @@ public class ProductServiceImpl extends AbstractServiceImpl<Product> implements 
     @Override
     @Transactional
     public void removeByCategoryId(Long id) throws BadRequestException {
-        if (categoryDAO.get(id) == null) {
+        try {
+            categoryDAO.get(id);
+        } catch (NullPointerException ex) {
             throw new BadRequestException("Can't find category by id " + id + "!");
         }
-        productDAO.removeByCategoryId(id);
-    }
 
-    /**
-     * Возвращает объект DAO для работы основных методов доступа к базе данных,
-     * реализованых в родительском классе {@link AbstractServiceImpl}.
-     *
-     * @return Объект класса {@link ProductDAO} - объект DAO.
-     * @throws BadRequestException Бросает исключение, если объект DAO равный null.
-     */
-    @Override
-    public ProductDAO getDao() throws BadRequestException {
-        if (productDAO == null) {
-            throw new BadRequestException("Can't find product DAO!");
-        }
-        return productDAO;
+        productDAO.removeByCategoryId(id);
     }
 
     /**

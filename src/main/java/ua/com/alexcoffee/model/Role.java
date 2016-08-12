@@ -72,7 +72,14 @@ public class Role extends Model {
      */
     @Override
     public String toString() {
-        return "Title: " + title.name() + "\nDescription: " + description;
+        StringBuilder sb = new StringBuilder();
+
+        if (title != null) {
+            sb.append("Title: ").append(title.name());
+        }
+        sb.append("\nDescription: ").append(description);
+
+        return sb.toString();
     }
 
     /**
@@ -85,12 +92,30 @@ public class Role extends Model {
     }
 
     /**
+     * Добавляет список пользователей в список пользователей users.
+     *
+     * @param users Список пользователей, которые будут иметь текущую роль.
+     */
+    public void addUsers(List<User> users) {
+        this.users.addAll(users);
+    }
+
+    /**
      * Удаляет пользователя из списка текущей роли.
      *
      * @param user Пользователь, у которого будет удалена текущая роль.
      */
     public void removeUser(User user) {
         users.remove(user);
+    }
+
+    /**
+     * Метод удаляет список пользователей из списка users.
+     *
+     * @param users Список пользователей,  у которых будет удалена текущая роль.
+     */
+    public void removeUsers(List<User> users) {
+        this.users.removeAll(users);
     }
 
     /**

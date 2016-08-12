@@ -5,13 +5,13 @@ import ua.com.alexcoffee.model.Role;
 
 /**
  * Репозиторий для объектов класса {@link Role}, предоставляющий
- * набор методов JPA для работы с БД. Наследует интерфейс {@link ItemRepository}.
+ * набор методов JPA для работы с БД. Наследует интерфейс {@link MainRepository}.
  *
  * @author Yurii Salimov
- * @see ItemRepository
+ * @see MainRepository
  * @see Role
  */
-public interface RoleRepository extends ItemRepository<Role, Long> {
+public interface RoleRepository extends MainRepository<Role, Long> {
     /**
      * Возвращает роль из базы даных по названию, которое может принимать
      * одно из значений перечисления {@link RoleEnum}.
