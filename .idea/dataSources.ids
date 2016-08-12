@@ -247,7 +247,7 @@
       </column>
       <column id="64" parent="6" name="title">
         <mandatory>1</mandatory>
-        <data-type>enum(&apos;USER&apos;, &apos;ADMIN&apos;, &apos;MANAGER&apos;)</data-type>
+        <data-type>enum(&apos;CLIENT&apos;, &apos;ADMIN&apos;, &apos;MANAGER&apos;)</data-type>
       </column>
       <column id="65" parent="6" name="description">
         <mandatory>1</mandatory>

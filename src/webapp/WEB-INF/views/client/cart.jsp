@@ -25,7 +25,7 @@
                     <b>
                         <span class="color-brown">Корзина</span>
                         <!-- EMPTY CART -->
-                        <c:if test="${fn:length(salePositions) eq 0}">
+                        <c:if test="${fn:length(sale_positions) eq 0}">
                             <span class="color-green"> - список пуст!</span>
                         </c:if>
                     </b>
@@ -33,7 +33,7 @@
             </div>
 
             <!-- FULL CART -->
-            <c:if test="${fn:length(salePositions) gt 0}">
+            <c:if test="${fn:length(sale_positions) gt 0}">
                 <jsp:include page="/WEB-INF/views/template/client_products_in_cart.jsp"/>
 
                 <!-- ORDER REGISTRATION -->

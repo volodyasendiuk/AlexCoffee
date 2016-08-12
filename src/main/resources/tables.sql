@@ -18,7 +18,7 @@ CREATE TABLE `statuses` (
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id`          INT UNSIGNED                      NOT NULL AUTO_INCREMENT,
-  `title`       ENUM ('USER', 'ADMIN', 'MANAGER') NOT NULL,
+  `title`       ENUM ('CLIENT', 'ADMIN', 'MANAGER') NOT NULL,
   `description` TEXT                              NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`title`)
@@ -122,8 +122,8 @@ CREATE TABLE `products` (
 
 
 /*----------------------------------------------------------------------------------*/
-DROP TABLE IF EXISTS `salePositions`;
-CREATE TABLE `salePositions` (
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE `sales` (
   `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_id` INT UNSIGNED NOT NULL,
   `number`     INT UNSIGNED NOT NULL,

@@ -126,15 +126,15 @@
                         <th>Товары:</th>
                         <td>
                             <c:choose>
-                                <c:when test="${fn:length(salePositions) eq 0}">
+                                <c:when test="${fn:length(sale_positions) eq 0}">
                                     Cписок товаров пуст!
                                 </c:when>
-                                <c:when test="${fn:length(salePositions) gt 0}">
-                                    <c:forEach items="${salePositions}" var="salePosition">
-                                        <a href="/product_${salePosition.product.url}"
-                                           title="Перейти к товару ${salePosition.product.title}">
-                                                ${salePosition.product.title}</a>, № ${salePosition.product.id},
-                                        <br>${salePosition.number} x ${salePosition.product.price} грн
+                                <c:when test="${fn:length(sale_positions) gt 0}">
+                                    <c:forEach items="${sale_positions}" var="position">
+                                        <a href="/product_${position.product.url}"
+                                           title="Перейти к товару ${position.product.title}">
+                                                ${position.product.title}</a>, № ${position.product.id},
+                                        <br>${position.number} x ${position.product.price} грн
                                         <br>--------------<br>
                                     </c:forEach>
                                 </c:when>

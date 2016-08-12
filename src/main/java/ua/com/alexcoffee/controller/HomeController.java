@@ -173,7 +173,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public ModelAndView viewCart(ModelAndView modelAndView) {
-        modelAndView.addObject("sales", shoppingCartService.getSalePositions());
+        modelAndView.addObject("sale_positions", shoppingCartService.getSalePositions());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.setViewName("client/cart");
@@ -275,7 +275,7 @@ public class HomeController {
         senderService.send(order);
 
         modelAndView.addObject("order", order);
-        modelAndView.addObject("sales", order.getSalePositions());
+        modelAndView.addObject("sale_positions", order.getSalePositions());
         modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
         modelAndView.addObject("cart_size", 0);
         modelAndView.setViewName("client/checkout");

@@ -12,26 +12,26 @@
                 <th>Категория</th>
                 <th>Стоимость</th>
             </tr>
-            <c:forEach items="${salePositions}" var="salePosition">
+            <c:forEach items="${sale_positions}" var="position">
                 <tr>
                     <td>
-                        <a href="/product_${salePosition.product.url}"
-                           title="Перейти к ${salePosition.product.title}">
-                                ${salePosition.product.title}</a>
+                        <a href="/product_${position.product.url}"
+                           title="Перейти к ${position.product.title}">
+                                ${position.product.title}</a>
                     </td>
-                    <td>${salePosition.number}</td>
+                    <td>${position.number}</td>
                     <td>
                         <img width="50px" height="50px"
-                             src="/resources/img/${salePosition.product.photo.photoLinkShort}"
-                             alt="${salePosition.product.title}">
+                             src="/resources/img/${position.product.photo.photoLinkShort}"
+                             alt="${position.product.title}">
                     </td>
                     <td>
-                        <a href="/category_${salePosition.product.category.url}"
-                           title="Перейти к категории ${salePosition.product.category.title}">
-                                ${salePosition.product.category.title}</a>
+                        <a href="/category_${position.product.category.url}"
+                           title="Перейти к категории ${position.product.category.title}">
+                                ${position.product.category.title}</a>
                     </td>
                     <td>
-                        <fmt:formatNumber type="number" value="${salePosition.product.price}"/> грн
+                        <fmt:formatNumber type="number" value="${position.product.price}"/> грн
                     </td>
                 </tr>
             </c:forEach>
