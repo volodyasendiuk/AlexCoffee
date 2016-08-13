@@ -1,10 +1,11 @@
 package ua.com.alexcoffee.dao.impl;
 
-import ua.com.alexcoffee.dao.PhotoDAO;
-import ua.com.alexcoffee.repository.PhotoRepository;
-import ua.com.alexcoffee.model.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import ua.com.alexcoffee.dao.PhotoDAO;
+import ua.com.alexcoffee.model.Photo;
+import ua.com.alexcoffee.repository.PhotoRepository;
 
 /**
  * Класс реализует методы доступа объектов класса {@link Photo}
@@ -25,7 +26,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PhotoDAOImpl extends MainDAOImpl<Photo> implements PhotoDAO {
     /**
-     * Объект репозитория {@link PhotoRepository} для работы изображений с базой данных.
+     * Реализация репозитория {@link PhotoRepository} для работы изображений с базой данных.
      */
     private PhotoRepository repository;
 
@@ -34,7 +35,7 @@ public class PhotoDAOImpl extends MainDAOImpl<Photo> implements PhotoDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект репозитория {@link PhotoRepository} для работы изображений с базой данных.
+     * @param repository Реализация репозитория {@link PhotoRepository} для работы изображений с базой данных.
      */
     @Autowired
     public PhotoDAOImpl(PhotoRepository repository) {

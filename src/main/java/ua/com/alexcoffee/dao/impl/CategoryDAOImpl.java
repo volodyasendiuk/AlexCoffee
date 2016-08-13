@@ -25,7 +25,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CategoryDAOImpl extends MainDAOImpl<Category> implements CategoryDAO {
     /**
-     * Объект репозитория {@link CategoryRepository} для работы категорий с базой данных.
+     * Реализация репозитория {@link CategoryRepository} для работы категорий с базой данных.
      */
     private CategoryRepository repository;
 
@@ -34,7 +34,8 @@ public class CategoryDAOImpl extends MainDAOImpl<Category> implements CategoryDA
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект интерфейса {@link CategoryRepository} для работы категорий с базой данных.
+     * @param repository Реализация интерфейса {@link CategoryRepository}
+     *                   для работы категорий с базой данных.
      */
     @Autowired
     public CategoryDAOImpl(CategoryRepository repository) {

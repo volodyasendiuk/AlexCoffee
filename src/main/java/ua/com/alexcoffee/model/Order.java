@@ -130,19 +130,19 @@ public class Order extends Model {
      * Возвращает описание заказа.
      * Переопределенный метод родительского класса {@link Object}.
      *
-     * @return Значение типа String - строка описание заказа (номер, статус, дата, информация о клиенте,
+     * @return Значение типа {@link String} - строка описание заказа (номер, статус, дата, информация о клиенте,
      * информация о менеджере, адрес и детали доставкиб описание, торговые позиции).
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(number).append(", ")
-                .append(status.getDescription()).append(", ").append(date);
+                .append(status.getDescription()).append(",\n").append(date);
 
         if (client != null) {
             sb.append("\n\nClient: ").append(client.getName())
-                    .append("\nemail: ").append(client.getEmail())
-                    .append("\nnphone: ").append(client.getPhone()).append("\n");
+                    .append("\ne-mail: ").append(client.getEmail())
+                    .append("\nphone: ").append(client.getPhone()).append("\n");
         }
 
         if (manager != null) {
@@ -160,14 +160,14 @@ public class Order extends Model {
         }
 
         if (salePositions != null && !salePositions.isEmpty()) {
-            sb.append("\nSalePosition: ");
+            sb.append("\nSale Positions: ");
             int count = 0;
             for (SalePosition salePosition : salePositions) {
                 sb.append("\n").append(count++).append(") ").append(salePosition.getProduct().getTitle())
-                        .append("\n№ ").append(salePosition.getProduct().getId())
-                        .append(", ").append(salePosition.getProduct().getPrice()).append(" UAH")
-                        .append("\nnumber = ").append(salePosition.getNumber()).append(", price = ")
-                        .append(salePosition.getPrice()).append(" UAH");
+                        .append(", № ").append(salePosition.getProduct().getId()).append(",\n")
+                        .append(salePosition.getNumber()).append(" x ")
+                        .append(salePosition.getProduct().getPrice()).append(" = ")
+                        .append(salePosition.getPrice()).append(" UAH;");
             }
             sb.append("\n\nPRICE = ").append(getPrice()).append(" UAH");
         }
@@ -178,7 +178,7 @@ public class Order extends Model {
      * Генерирует строку для конечного сравнения заказа в методе equals() родительского класса.
      * Переопределенный метод родительского класса {@link Model}.
      *
-     * @return Значение типа String - номер заказа.
+     * @return Значение типа {@link String} - номер заказа.
      */
     @Override
     public String toEquals() {
@@ -287,7 +287,7 @@ public class Order extends Model {
     /**
      * Возвращает номер заказа.
      *
-     * @return Значение типа String - номер заказа.
+     * @return Значение типа {@link String} - номер заказа.
      */
     public String getNumber() {
         return number;
@@ -312,7 +312,7 @@ public class Order extends Model {
     /**
      * Возвращает дату последней модификации заказа.
      *
-     * @return Значение типа String - дата модификации заказа.
+     * @return Значение типа {@link String} - дата модификации заказа.
      */
     public String getDate() {
         return date;
@@ -357,7 +357,7 @@ public class Order extends Model {
     /**
      * Устанавливает клиента, оформившего заказ.
      *
-     * @param client Клиента, оформивший заказ.
+     * @param client Клиент, оформивший заказ.
      */
     public void setClient(User client) {
         this.client = client;
@@ -384,7 +384,7 @@ public class Order extends Model {
     /**
      * Возвращает адрес доставки заказа.
      *
-     * @return Значение типа String - адресс доставки заказа.
+     * @return Значение типа {@link String} - адресс доставки заказа.
      */
     public String getShippingAddress() {
         return shippingAddress;
@@ -402,7 +402,7 @@ public class Order extends Model {
     /**
      * Возвращает детали доставки заказа.
      *
-     * @return Значение типа String - детали доставки заказа.
+     * @return Значение типа {@link String} - детали доставки заказа.
      */
     public String getShippingDetails() {
         return shippingDetails;
@@ -420,7 +420,7 @@ public class Order extends Model {
     /**
      * Возвращает описание заказа.
      *
-     * @return Значение типа String - описание заказа.
+     * @return Значение типа {@link String} - описание заказа.
      */
     public String getDescription() {
         return description;
@@ -438,7 +438,7 @@ public class Order extends Model {
     /**
      * Возвращает цену заказа - общую стоимость всех торговых позиция.
      *
-     * @return Значение типа String - цена заказа.
+     * @return Значение типа double - цена заказа.
      */
     public double getPrice() {
         double price = 0;

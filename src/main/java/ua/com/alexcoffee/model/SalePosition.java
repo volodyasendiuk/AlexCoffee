@@ -95,7 +95,7 @@ public class SalePosition extends Model {
     @Override
     public String toEquals() {
         if (product != null) {
-            return product.toEquals() + number;
+            return product.toEquals();
         } else {
             return super.toEquals();
         }
@@ -124,7 +124,7 @@ public class SalePosition extends Model {
     /**
      * Возвращает товар текущей торговой позиции.
      *
-     * @return Объект класса Product - товар позиции.
+     * @return Объект класса {@link Product} - товар позиции.
      */
     public Product getProduct() {
         return product;
@@ -162,7 +162,7 @@ public class SalePosition extends Model {
     /**
      * Возвращает заказ, которому пренадлежит текущая торговая позиция.
      *
-     * @return Заказ торговой позиции.
+     * @return Объект класса {@link Order} - заказ торговой позиции.
      */
     public Order getOrder() {
         return order;

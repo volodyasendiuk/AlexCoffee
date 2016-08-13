@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class StatusServiceImpl extends MainServiceImpl<Status> implements StatusService {
     /**
-     * Объект интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
+     * Реализация интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
      */
     private StatusDAO dao;
 
@@ -40,7 +40,7 @@ public class StatusServiceImpl extends MainServiceImpl<Status> implements Status
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
+     * @param dao Реализация интерфейса {@link StatusDAO} для работы статусов заказов с базой данных.
      */
     @Autowired
     public StatusServiceImpl(StatusDAO dao) {

@@ -29,7 +29,8 @@ public class SalePositionDAOImpl extends MainDAOImpl<SalePosition> implements Sa
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект репозитория {@link SalePositionRepository} для работы торговых позиций с базой данных.
+     * @param repository Реализация репозитория {@link SalePositionRepository}
+     *                   для работы торговых позиций с базой данных.
      */
     @Autowired
     public SalePositionDAOImpl(SalePositionRepository repository) {

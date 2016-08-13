@@ -26,7 +26,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RoleDAOImpl extends MainDAOImpl<Role> implements RoleDAO {
     /**
-     * Объект репозитория {@link RoleRepository} для работы ролей пользователей с базой данных.
+     * Реализация репозитория {@link RoleRepository} для работы ролей пользователей с базой данных.
      */
     private RoleRepository repository;
 
@@ -35,7 +35,8 @@ public class RoleDAOImpl extends MainDAOImpl<Role> implements RoleDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект репозитория {@link RoleRepository} для работы ролей пользователей с базой данных.
+     * @param repository Реализация репозитория {@link RoleRepository}
+     *                   для работы ролей пользователей с базой данных.
      */
     @Autowired
     public RoleDAOImpl(RoleRepository repository) {

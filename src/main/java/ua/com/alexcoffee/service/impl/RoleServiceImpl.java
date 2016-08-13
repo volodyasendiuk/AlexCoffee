@@ -34,7 +34,7 @@ import java.util.List;
 @Service
 public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleService {
     /**
-     * Объект интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
+     * Реализация интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
      */
     private RoleDAO dao;
 
@@ -43,7 +43,7 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
+     * @param dao Реализация интерфейса {@link RoleDAO} для работы ролей пользователей с базой данных.
      */
     @Autowired
     public RoleServiceImpl(RoleDAO dao) {
@@ -158,7 +158,7 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
     /**
      * Возвращает список ролей персонала сайта. Режим только для чтения.
      *
-     * @return Объект типа {@link List} - список ролей.
+     * @return Объект типа {@link List} - список ролей персонала.
      */
     @Override
     @Transactional(readOnly = true)

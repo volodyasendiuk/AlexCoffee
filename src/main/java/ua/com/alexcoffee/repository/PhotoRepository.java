@@ -16,7 +16,7 @@ public interface PhotoRepository extends MainRepository<Photo, Long> {
      * название с значением входящего параметра.
      *
      * @param title Название объекта-изображения для возврата.
-     * @return Объект класса {@link Photo} - объекта-изображение.
+     * @return Объект класса {@link Photo} - объект-изображение.
      */
     Photo findByTitle(String title);
 }

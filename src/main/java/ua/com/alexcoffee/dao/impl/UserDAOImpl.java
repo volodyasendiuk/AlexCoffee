@@ -31,12 +31,12 @@ import java.util.List;
 @Repository
 public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
     /**
-     * Объект репозитория {@link UserRepository} для работы пользователей с базой данных.
+     * Реализация репозитория {@link UserRepository} для работы пользователей с базой данных.
      */
     private UserRepository userRepository;
 
     /**
-     * Объект репозитория {@link RoleRepository} для работы  ролями пользователей с базой данных.
+     * Реализация репозитория {@link RoleRepository} для работы  ролями пользователей с базой данных.
      */
     private RoleRepository roleRepository;
 
@@ -45,8 +45,10 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param userRepository Объект репозитория {@link UserRepository} для работы пользователей с базой данных.
-     * @param roleRepository Объект репозитория {@link RoleRepository} для работы  ролями пользователей с базой данных.
+     * @param userRepository Реализация репозитория {@link UserRepository}
+     *                       для работы пользователей с базой данных.
+     * @param roleRepository Реализация репозитория {@link RoleRepository}
+     *                       для работы  ролями пользователей с базой данных.
      */
     @Autowired
     public UserDAOImpl(UserRepository userRepository, RoleRepository roleRepository) {

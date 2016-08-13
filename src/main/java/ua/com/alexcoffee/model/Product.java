@@ -61,7 +61,7 @@ public class Product extends Model {
     private String description;
 
     /**
-     * Ктегория товара.
+     * Категория товара.
      * Значение поля (id объекта category) сохраняется в колонке "category_id". Не может быть null.
      * Между объектами классов {@link Product} и
      * {@link Category} связь многие-к-одному, а именно каждая

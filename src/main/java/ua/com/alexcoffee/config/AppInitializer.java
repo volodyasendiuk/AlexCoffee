@@ -52,8 +52,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         return new String[]{"/"};
     }
 
-    // Session listener
-
     /**
      * Настройка ссесии.
      *

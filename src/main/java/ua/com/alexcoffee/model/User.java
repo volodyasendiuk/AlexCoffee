@@ -170,7 +170,7 @@ public class User extends Model implements UserDetails {
      * Генерирует строку для конечного сравнения пользователей в методе equals() родительского класса.
      * Переопределенный метод родительского класса {@link Model}.
      *
-     * @return Значение типа {@link String} - номер заказа.
+     * @return Значение типа {@link String} - имя пользователя + электронная почта + номер телефона.
      */
     @Override
     public String toEquals() {
@@ -226,7 +226,7 @@ public class User extends Model implements UserDetails {
      * Возвращает список всех ролей пользователя через объект-обертку
      * класса SimpleGrantedAuthority. Реализованый метод интерфейса {@link UserDetails}.
      *
-     * @return Объект типа List - список ролеу пользователя.
+     * @return Объект типа List - список ролей пользователя.
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

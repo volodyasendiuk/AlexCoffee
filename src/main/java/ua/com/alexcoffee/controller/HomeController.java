@@ -184,7 +184,7 @@ public class HomeController {
      * Добавляет товар с уникальным кодом id в корзину и перенаправляет по запросу "/cart".
      * URL запроса "/cart_add", метод POST.
      *
-     * @param id           Уникальный код товара, который будет дбавлен в корзину.
+     * @param id           Код товара, который нужно добавить в корзину.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -211,7 +211,7 @@ public class HomeController {
      * по запросу входящего параметра url. URL запроса "/cart_add_quickly", метод POST.
      *
      * @param id           Код товара, который нужно добавить в корзину.
-     * @param url          Название (адрес) метода для перенаправления.
+     * @param url          URL запроса для перенаправления.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */

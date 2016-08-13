@@ -47,7 +47,7 @@ public interface MainDAO<T extends Model> {
     /**
      * Получение модели по уникальному коду id в базе данных.
      *
-     * @param id Уникальный код модели.
+     * @param id Код модели, которую нужно вернуть.
      * @return Объект класса {@link ua.com.alexcoffee.model.Model} -  модель с кодом id.
      */
     T get(Long id);
@@ -69,7 +69,7 @@ public interface MainDAO<T extends Model> {
     /**
      * Удаление модели из базы данных по уникальному коду.
      *
-     * @param id Уникальный код модели.
+     * @param id Код модели, которую нужно удалить.
      */
     void remove(Long id);
 

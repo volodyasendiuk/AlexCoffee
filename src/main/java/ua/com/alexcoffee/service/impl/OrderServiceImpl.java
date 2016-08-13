@@ -29,7 +29,7 @@ import ua.com.alexcoffee.service.OrderService;
 @Service
 public class OrderServiceImpl extends MainServiceImpl<Order> implements OrderService {
     /**
-     * Объект интерфейса {@link OrderDAO} для работы заказов с базой данных.
+     * Реализация интерфейса {@link OrderDAO} для работы заказов с базой данных.
      */
     private OrderDAO dao;
 
@@ -38,7 +38,7 @@ public class OrderServiceImpl extends MainServiceImpl<Order> implements OrderSer
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link OrderDAO} для работы категорий с базой данных.
+     * @param dao Реализация интерфейса {@link OrderDAO} для работы категорий с базой данных.
      */
     @Autowired
     public OrderServiceImpl(OrderDAO dao) {
@@ -51,8 +51,7 @@ public class OrderServiceImpl extends MainServiceImpl<Order> implements OrderSer
      * с значением входящего параметра. Режим только для чтения.
      *
      * @param number Номер заказа для возврата.
-     * @return Объект класса {@link Order} - заказ с уникальным номером
-     * для возвращения.
+     * @return Объект класса {@link Order} - заказ с уникальным номером.
      * @throws WrongInformationException Бросает исключение, если пустой входной параметр number.
      * @throws BadRequestException       Бросает исключение, если не найден заказ с входящим параметром number.
      */

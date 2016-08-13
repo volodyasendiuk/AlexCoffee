@@ -40,7 +40,7 @@ public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoSer
     private static final String PATH = "c:/Server/apache-tomcat-8.0.33/webapps/ROOT/resources/img/";
 
     /**
-     * Объект интерфейса {@link PhotoDAO} для работы изображений с базой данных.
+     * Реализация интерфейса {@link PhotoDAO} для работы изображений с базой данных.
      */
     private PhotoDAO dao;
 
@@ -49,7 +49,7 @@ public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoSer
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link PhotoDAO} для работы изображений с базой данных.
+     * @param dao Реализация интерфейса {@link PhotoDAO} для работы изображений с базой данных.
      */
     @Autowired
     public PhotoServiceImpl(PhotoDAO dao) {

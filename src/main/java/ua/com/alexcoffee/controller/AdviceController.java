@@ -17,7 +17,7 @@ import ua.com.alexcoffee.exception.WrongInformationException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Класс глобальный перехватчик исключений.
+ * Класс - глобальный перехватчик исключений.
  * Он будет перехватывать исключения, которые не указаны в контроллере.
  * Методы класса работают с объектом, возвращенным handleRequest методом, является
  * типом {@link ModelAndView}, который агрегирует все параметры модели и имя отображения.

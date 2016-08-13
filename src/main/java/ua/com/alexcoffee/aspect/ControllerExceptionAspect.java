@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class ControllerExceptionAspect {
-
+    /**
+     * Объект для логирования информации.
+     */
     private static Logger logger = Logger.getLogger(ControllerExceptionAspect.class);
 
     /**

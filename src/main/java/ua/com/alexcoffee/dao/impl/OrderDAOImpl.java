@@ -25,7 +25,7 @@ import ua.com.alexcoffee.model.Order;
 @Repository
 public class OrderDAOImpl extends MainDAOImpl<Order> implements OrderDAO {
     /**
-     * Объект репозитория {@link OrderRepository} для работы категорий с базой данных.
+     * Реализация репозитория {@link OrderRepository} для работы категорий с базой данных.
      */
     private OrderRepository repository;
 
@@ -34,7 +34,8 @@ public class OrderDAOImpl extends MainDAOImpl<Order> implements OrderDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект интерфейса {@link OrderRepository} для работы категорий с базой данных.
+     * @param repository Реализация репозитория {@link OrderRepository}
+     *                   для работы категорий с базой данных.
      */
     @Autowired
     public OrderDAOImpl(OrderRepository repository) {
@@ -47,8 +48,7 @@ public class OrderDAOImpl extends MainDAOImpl<Order> implements OrderDAO {
      * с значением входящего параметра.
      *
      * @param number Номер заказа для возврата.
-     * @return Объект класса {@link Order} - заказ с уникальным номером
-     * для возвращения.
+     * @return Объект класса {@link Order} - заказ с уникальным номером.
      */
     @Override
     public Order get(String number) {

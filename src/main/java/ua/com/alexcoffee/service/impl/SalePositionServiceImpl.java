@@ -31,7 +31,7 @@ public class SalePositionServiceImpl extends MainServiceImpl<SalePosition> imple
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link SalePositionDAO} для работы торговых позиций с базой данных.
+     * @param dao Реализация интерфейса {@link SalePositionDAO} для работы торговых позиций с базой данных.
      */
     @Autowired
     public SalePositionServiceImpl(SalePositionDAO dao) {

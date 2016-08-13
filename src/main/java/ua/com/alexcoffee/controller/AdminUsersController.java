@@ -46,7 +46,7 @@ public class AdminUsersController {
     private RoleService roleService;
 
     /**
-     * Возвращает все категории товаров на страницу "admin/user/all".
+     * Возвращает всех пользователей на страницу "admin/user/all".
      * URL запроса "/admin/users", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.
@@ -161,7 +161,7 @@ public class AdminUsersController {
     }
 
     /**
-     * Обновляет категорию по входящим параметрам и перенаправляет по запросу "/admin/view_user_{id}".
+     * Обновляет пользователя по входящим параметрам и перенаправляет по запросу "/admin/view_user_{id}".
      * URL запроса "/admin/update_user", метод POST.
      *
      * @param id           Код пользователя для обновления.

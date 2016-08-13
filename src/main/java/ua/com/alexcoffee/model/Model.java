@@ -33,7 +33,7 @@ public abstract class Model implements Serializable {
     /**
      * Набор вожможных для использованния символов по-умолчанию.
      */
-    public static final char[] CODE_PATTERN = {'A', 'L', 'E', 'X', 'C', 'O', 'F', 'F', 'E', 'E', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+    public static final char[] CODE_PATTERN = {'A', 'L', 'E', 'X', 'C', 'F', 'E', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
     /**
      * Длина возвращаемой строки по-умолчанию {@value CODE_LENGTH}.
@@ -99,7 +99,8 @@ public abstract class Model implements Serializable {
 
     /**
      * Генерирует строку для конечного сравнения объектов в методе equals().
-     * Что бы в дочернем классе не переопределять весь метод equals(), мож
+     * Что бы в дочернем классе не переопределять весь метод equals(), можно
+     * переопределить тьлько этот метод.
      *
      * @return Значение типа {@link String} - результат работы метода toString().
      */
@@ -110,7 +111,8 @@ public abstract class Model implements Serializable {
     /**
      * Возвращает рандомную строку из набор символов и длинны по-умолчанию.
      *
-     * @return Значение типа {@link String} - рандомная строка из набора символов CODE_PATTERN длиной {@value CODE_LENGTH}.
+     * @return Значение типа {@link String} - рандомная строка из набора
+     * символов CODE_PATTERN длиной {@value CODE_LENGTH}.
      */
     public static String createRandomString() {
         return createRandomString(CODE_PATTERN, CODE_LENGTH);
@@ -181,13 +183,13 @@ public abstract class Model implements Serializable {
     }
 
     /**
-     * Конвертирует входящий лист возращает лист только для чтений.
+     * Конвертирует входящий список возращает лист только для чтений.
      * Если входной параметер - лист равен null или пустой,
-     * тогда метод возвращает пустой лист.
+     * тогда метод возвращает пустой список.
      *
      * @param list Входной объект коллекции для обработки.
-     * @param <T>  Возможный тип объектов в листе.
-     * @return Значение типа {@link List} - лист только для чтения или пустой лист.
+     * @param <T>  Возможный тип объектов в списке.
+     * @return Значение типа {@link List} - список только для чтения или пустой список.
      */
     public static <T extends Object> List<T> getUnmodifiableList(List<T> list) {
         return list != null || !list.isEmpty() ? Collections.unmodifiableList(list) : Collections.EMPTY_LIST;

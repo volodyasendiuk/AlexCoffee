@@ -26,7 +26,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StatusDAOImpl extends MainDAOImpl<Status> implements StatusDAO {
     /**
-     * Объект репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
+     * Реализация репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
      */
     private StatusRepository repository;
 
@@ -35,7 +35,8 @@ public class StatusDAOImpl extends MainDAOImpl<Status> implements StatusDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
+     * @param repository Реализация репозитория {@link StatusRepository}
+     *                   для работы статусов заказов с базой данных.
      */
     @Autowired
     public StatusDAOImpl(StatusRepository repository) {

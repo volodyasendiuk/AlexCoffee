@@ -1,6 +1,5 @@
 package ua.com.alexcoffee.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.alexcoffee.dao.MainDAO;
 import ua.com.alexcoffee.exception.BadRequestException;
@@ -20,7 +19,7 @@ import java.util.List;
  * данной аннотацией начинается транзакция, после выполнения метода транзакция коммитится,
  * при выбрасывании RuntimeException откатывается.
  *
- * @param <T> Класс-наследник класса {@link ua.com.alexcoffee.model.Model}.
+ * @param <T> Класс-наследник класса {@link Model}.
  * @author Yurii Salimov
  * @see Model
  * @see MainService
@@ -36,11 +35,14 @@ import java.util.List;
  */
 public class MainServiceImpl<T extends Model> implements MainService<T> {
     /**
-     * Объект интерфейса {@link MainDAO} для работы моделей с базой данных.
+     * Реализация интерфейса {@link MainDAO} для работы моделей с базой данных.
      */
     private MainDAO<T> dao;
 
-    @Autowired
+    /**
+     *Конструктор для инициализации основных переменных сервиса.
+     * @param dao Реализация интерфейса {@link MainDAO} для работы моделей с базой данных.
+     */
     public MainServiceImpl(MainDAO<T> dao) {
         super();
         this.dao = dao;
@@ -83,7 +85,7 @@ public class MainServiceImpl<T extends Model> implements MainService<T> {
      * Получение модели по уникальному коду id в базе данных. Режим только для чтения.
      *
      * @param id Уникальный код модели.
-     * @return Объект класса {@link ua.com.alexcoffee.model.Model} -  модель с кодом id.
+     * @return Объект класса {@link Model} -  модель с кодом id.
      */
     @Override
     @Transactional(readOnly = true)
@@ -98,7 +100,7 @@ public class MainServiceImpl<T extends Model> implements MainService<T> {
     /**
      * Получение всех моделей из базы данных. Режим только для чтения.
      *
-     * @return Объект типа List - список всех моделей.
+     * @return Объект типа {@link List} - список всех моделей.
      */
     @Override
     @Transactional(readOnly = true)

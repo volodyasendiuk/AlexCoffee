@@ -17,7 +17,7 @@ public interface ProductRepository extends MainRepository<Product, Long> {
      * Возвращает товар из базы данных, у которого совпадает параметр url.
      *
      * @param url URL товара для возврата.
-     * @return Объект класса {@link Product} - товара с уникальным url полем.
+     * @return Объект класса {@link Product} - товар с уникальным url полем.
      */
     Product findByUrl(String url);
 

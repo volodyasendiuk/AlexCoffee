@@ -48,14 +48,14 @@ public interface MainService<T extends Model> {
      * Получение модели по уникальному коду id.
      *
      * @param id Уникальный код модели.
-     * @return Объект класса {@link ua.com.alexcoffee.model.Model} -  модель с кодом id.
+     * @return Объект класса {@link Model} -  модель с кодом id.
      */
     T get(Long id);
 
     /**
      * Получение всех моделей.
      *
-     * @return Объект типа List - список всех моделей.
+     * @return Объект типа {@link List} - список всех моделей.
      */
     List<T> getAll();
 
@@ -69,7 +69,7 @@ public interface MainService<T extends Model> {
     /**
      * Удаление модели по уникальному коду.
      *
-     * @param id Уникальный код модели.
+     * @param id Код модели.
      */
     void remove(Long id);
 

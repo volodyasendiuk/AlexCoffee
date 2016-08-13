@@ -37,7 +37,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends MainServiceImpl<User> implements UserService, UserDetailsService {
     /**
-     * Объект интерфейса {@link UserDAO} для работы пользователей с базой данных.
+     * Реализация интерфейса {@link UserDAO} для работы пользователей с базой данных.
      */
     private UserDAO dao;
 
@@ -46,7 +46,7 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект интерфейса {@link UserDAO} для работы пользователей с базой данных.
+     * @param dao Реализация интерфейса {@link UserDAO} для работы пользователей с базой данных.
      */
     @Autowired
     public UserServiceImpl(UserDAO dao) {

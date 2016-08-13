@@ -60,7 +60,7 @@
                         <td>
                             ${product.photo.title}
                             </br><img width="75px" height="75px"
-                                      src="/resources/${product.photo.photoLinkShort}">
+                                      src="/resources/img/${product.photo.photoLinkShort}">
                             <c:if test="${product.photo.photoLinkLong ne null}">
                                 <img width="100px" height="100px"
                                      src="/resources/img/${product.photo.photoLinkLong}">

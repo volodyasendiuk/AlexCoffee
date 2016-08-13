@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Product}. Расширяет интерфейс {@link MainService}.
+ * с объектами класса {@link Product}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Product
@@ -35,19 +35,19 @@ public interface ProductService extends MainService<Product> {
      * Возвращает список товаров, которые относятся к категории
      * с уникальным URL - входным параметром.
      *
-     * @param categoryUrl Уникальный URL категории, товары которой будут возвращены.
+     * @param url Уникальный URL категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
      */
-    List<Product> getByCategoryUrl(String categoryUrl);
+    List<Product> getByCategoryUrl(String url);
 
     /**
      * Возвращает список товаров, которые относятся к категории
      * с уникальным кодом id - входным параметром.
      *
-     * @param categoryId Уникальный код категории, товары которой будут возвращены.
+     * @param id Уникальный код категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
      */
-    List<Product> getByCategoryId(Long categoryId);
+    List<Product> getByCategoryId(Long id);
 
     /**
      * Возвращает список рандомных товаров, которые относятся к категории
@@ -64,11 +64,11 @@ public interface ProductService extends MainService<Product> {
      * Возвращает список рандомных товаров, которые относятся к категории
      * с уникальным кодом id - входным параметром.
      *
-     * @param size       Количество товаров в списке.
-     * @param categoryId Код категории, товары которой будут возвращены.
+     * @param size Количество товаров в списке.
+     * @param id   Код категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
      */
-    List<Product> getRandomByCategoryId(int size, Long categoryId);
+    List<Product> getRandomByCategoryId(int size, Long id);
 
     /**
      * Возвращает список рандомных товаров.
@@ -86,18 +86,16 @@ public interface ProductService extends MainService<Product> {
     void remove(String url);
 
     /**
-     * Удаляет товары, которые пренадлежат категории
-     * с уникальным URL - входным параметром.
+     * Удаляет товары, которые пренадлежат категории с уникальным URL - входным параметром.
      *
-     * @param url Уникальный URL категории, товары которой будут удалены.
+     * @param url URL категории, товары которой будут удалены.
      */
     void removeByCategoryUrl(String url);
 
     /**
-     * Удаляет товары, которые пренадлежат категории
-     * с уникальным кодом - входным параметром.
+     * Удаляет товары, которые пренадлежат категории с уникальным кодом - входным параметром.
      *
-     * @param id Уникальный код категории, товары котрой будут удалены.
+     * @param id Код категории, товары котрой будут удалены.
      */
     void removeByCategoryId(Long id);
 }

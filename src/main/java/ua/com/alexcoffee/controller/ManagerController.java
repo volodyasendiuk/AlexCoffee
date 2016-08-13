@@ -67,20 +67,6 @@ public class ManagerController {
     private RoleService roleService;
 
     /**
-     * Перенаправляет запрос "/manager" на запрос "/manager/orders".
-     * То есть страница с всема заказами устанвлена по-умолчания среди страниц, предназначеных
-     * для менеджера.
-     *
-     * @param modelAndView Объект класса {@link ModelAndView}.
-     * @return Объект класса {@link ModelAndView}.
-     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView manager(ModelAndView modelAndView) {
-        modelAndView.setViewName("redirect:/manager/orders");
-        return modelAndView;
-    }
-
-    /**
      * Возвращает все заказы, сделаные клиентами, на страницу "manager/order/all".
      * URL запроса {"/manager" , "/manager/orders"}, метод GET.
      *
@@ -100,7 +86,7 @@ public class ManagerController {
      * Возвращает заказ с уникальным кодом id на страницу "manager/order/one".
      * URL запроса "/manager/view_order_{id}", метод GET.
      *
-     * @param id           Уникальный код заказа, который нужно вернуть.
+     * @param id           Код заказа, который нужно вернуть.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -123,7 +109,7 @@ public class ManagerController {
      * который совпадает с параметром id, или перенаправляет по запросу "/manager/orders", если
      * этот заказ уже обработал другой менеджер. URL запроса "/admin/edit_order_{id}", метод GET.
      *
-     * @param id           Уникальный код заказа, которую нужно отредактировать.
+     * @param id           Код заказа, которую нужно отредактировать.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -206,7 +192,7 @@ public class ManagerController {
     }
 
     /**
-     * Возвращает все категории товаров на страницу "manager/user/all".
+     * Возвращает всех пользователей на страницу "manager/user/all".
      * URL запроса "/manager/users", метод GET.
      *
      * @param modelAndView Объект класса {@link ModelAndView}.

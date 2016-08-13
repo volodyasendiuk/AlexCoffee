@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Role}. Расширяет интерфейс {@link MainService}.
+ * с объектами класса {@link Role}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Role
@@ -57,7 +57,7 @@ public interface RoleService extends MainService<Role> {
     /**
      * Возвращает список ролей персонала сайта.
      *
-     * @return Объект типа {@link List} - список ролей.
+     * @return Объект типа {@link List} - список ролей персонала.
      */
     List<Role> getPersonnel();
 

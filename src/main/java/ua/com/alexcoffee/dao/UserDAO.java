@@ -1,14 +1,12 @@
 package ua.com.alexcoffee.dao;
 
-import ua.com.alexcoffee.model.Product;
 import ua.com.alexcoffee.model.Role;
 import ua.com.alexcoffee.model.User;
 
 import java.util.List;
 
 /**
- * Интерфейс описывает набор методов для работы объектов класса
- * {@link Product} с базой данных.
+ * Интерфейс описывает набор методов для работы объектов класса {@link User} с базой данных.
  * Расширяет интерфейс {@link MainDAO}.
  *
  * @author Yurii Salimov

@@ -29,7 +29,7 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     /**
-     * Объект интерфейса для работы торговой корзиной.
+     * Реализация интерфейса для работы торговой корзиной.
      * Поле помечано аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      */

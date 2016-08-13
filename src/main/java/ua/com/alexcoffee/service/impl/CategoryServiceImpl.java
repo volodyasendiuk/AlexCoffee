@@ -29,7 +29,7 @@ import ua.com.alexcoffee.service.CategoryService;
 @Service
 public class CategoryServiceImpl extends MainServiceImpl<Category> implements CategoryService {
     /**
-     * Объект репозитория {@link CategoryDAO} для работы категорий с базой данных.
+     * Реализация интерфейса {@link CategoryDAO} для работы категорий с базой данных.
      */
     private CategoryDAO dao;
 
@@ -38,7 +38,7 @@ public class CategoryServiceImpl extends MainServiceImpl<Category> implements Ca
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param dao Объект репозитория {@link CategoryDAO} для работы категорий с базой данных.
+     * @param dao Реализация интерфейса {@link CategoryDAO} для работы категорий с базой данных.
      */
     @Autowired
     public CategoryServiceImpl(CategoryDAO dao) {

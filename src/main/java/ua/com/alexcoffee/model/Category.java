@@ -90,7 +90,7 @@ public class Category extends Model {
      * Возвращает описание категории.
      * Переопределенный метод родительского класса {@link Object}.
      *
-     * @return Значение типа String - строка описание категории (название, URL, описание).
+     * @return Значение типа {@link String} - строка описание категории (название, URL, описание).
      */
     @Override
     public String toString() {
@@ -105,7 +105,7 @@ public class Category extends Model {
      * Генерирует строку для конечного сравнения категорий в методе equals() родительского класса..
      * Переопределенный метод родительского класса {@link Model}.
      *
-     * @return Значение типа String - название + URL категории.
+     * @return Значение типа {@link String} - название + URL категории.
      */
     @Override
     public String toEquals() {

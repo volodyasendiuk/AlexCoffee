@@ -41,7 +41,7 @@ public interface StatusService extends MainService<Status> {
      * Удаляет статус по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.
      *
-     * @param title Название статуса для удаления..
+     * @param title Название статуса для удаления.
      */
     void remove(StatusEnum title);
 

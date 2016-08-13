@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link User}. Расширяет интерфейс {@link MainService}.
+ * с объектами класса {@link User}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see User

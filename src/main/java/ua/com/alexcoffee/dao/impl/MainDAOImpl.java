@@ -16,7 +16,7 @@ import java.util.List;
  * возвращаемый абстрактным методом repository, реализацию которого каждый наследник берет
  * на себя.
  *
- * @param <T> Класс-наследник класса {@link ua.com.alexcoffee.model.Model}.
+ * @param <T> Класс-наследник класса {@link Model}.
  * @author Yurii Salimov
  * @see CategoryDAOImpl
  * @see PhotoDAOImpl
@@ -28,9 +28,16 @@ import java.util.List;
  * @see MainDAO
  */
 public class MainDAOImpl<T extends Model> implements MainDAO<T> {
-
+    /**
+     * Реализация репозитория {@link MainRepository} для работы моделей с базой данных.
+     */
     private MainRepository<T, Long> repository;
 
+    /**
+     * Конструктор для инициализации основных переменных.
+     *
+     * @param repository Реализация репозитория {@link MainRepository} для работы категорий с базой данных.
+     */
     public MainDAOImpl(MainRepository<T, Long> repository) {
         super();
         this.repository = repository;

@@ -36,12 +36,12 @@ import java.util.List;
 @Service
 public class ProductServiceImpl extends MainServiceImpl<Product> implements ProductService {
     /**
-     * Объект интерфейса {@link ProductDAO} для работы с товаров базой данных.
+     * Реализация интерфейса {@link ProductDAO} для работы с товаров базой данных.
      */
     private ProductDAO productDAO;
 
     /**
-     * Объект интерфейса {@link CategoryDAO} для работы с категорий базой данных.
+     * Реализация интерфейса {@link CategoryDAO} для работы с категорий базой данных.
      */
     private CategoryDAO categoryDAO;
 
@@ -50,8 +50,8 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param productDAO  Объект интерфейса {@link ProductDAO} для работы с товаров базой данных.
-     * @param categoryDAO Объект интерфейса {@link CategoryDAO} для работы с категорий базой данных.
+     * @param productDAO  Реализация интерфейса {@link ProductDAO} для работы с товаров базой данных.
+     * @param categoryDAO Реализация интерфейса {@link CategoryDAO} для работы с категорий базой данных.
      */
     @Autowired
     public ProductServiceImpl(ProductDAO productDAO, CategoryDAO categoryDAO) {
@@ -110,7 +110,7 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * Возвращает список товаров, которые относятся к категории
      * с уникальным URL - входным параметром. Режим только для чтения.
      *
-     * @param url Уникальный URL категории, товары которой будут возвращены.
+     * @param url URL категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
      * @throws WrongInformationException Бросает исключение, если пустой входной параметр url.
      * @throws BadRequestException       Бросает исключение, если не найдена категория с входящим параметром url.
@@ -136,7 +136,7 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * Возвращает список товаров, которые относятся к категории
      * с уникальным кодом id - входным параметром. Режим только для чтения.
      *
-     * @param id Уникальный код категории, товары которой будут возвращены.
+     * @param id Код категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
      */
     @Override
@@ -211,7 +211,7 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * Удаляет товары, которые пренадлежат категории
      * с уникальным URL - входным параметром.
      *
-     * @param url Уникальный URL категории, товары которой будут удалены.
+     * @param url URL категории, товары которой будут удалены.
      * @throws WrongInformationException Бросает исключение, если пустой входной параметр url.
      * @throws BadRequestException       Бросает исключение, если не найдена категория с входящим параметром url.
      */
@@ -236,7 +236,7 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * Удаляет товары, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *
-     * @param id Уникальный код категории, товары котрой будут удалены.
+     * @param id Код категории, товары котрой будут удалены.
      * @throws BadRequestException Бросает исключение, если не найдена категория с входящим параметром id.
      */
     @Override

@@ -4,7 +4,7 @@ import ua.com.alexcoffee.model.Order;
 
 /**
  * Интерфейс сервисного слоя, описывает набор методов для работы
- * с объектами класса{@link Order}. Расширяет интерфейс {@link MainService}.
+ * с объектами класса {@link Order}. Расширяет интерфейс {@link MainService}.
  *
  * @author Yurii Salimov
  * @see Order
@@ -17,8 +17,7 @@ public interface OrderService extends MainService<Order> {
      * с значением входящего параметра.
      *
      * @param number Номер заказа для возврата.
-     * @return Объект класса {@link Order} - заказ с уникальным номером
-     * для возвращения.
+     * @return Объект класса {@link Order} - заказ с уникальным номером.
      */
     Order get(String number);
 

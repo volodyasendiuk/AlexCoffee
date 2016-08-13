@@ -27,7 +27,7 @@ import java.util.List;
 @Repository
 public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
     /**
-     * Объект репозитория {@link ProductRepository} для работы с товаров базой данных.
+     * Реализация репозитория {@link ProductRepository} для работы с товаров базой данных.
      */
     private ProductRepository repository;
 
@@ -36,7 +36,8 @@ public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
      * Помечаный аннотацией @Autowired, которая позволит Spring
      * автоматически инициализировать объект.
      *
-     * @param repository Объект репозитория {@link ProductRepository} для работы с товаров базой данных.
+     * @param repository Реализация репозитория {@link ProductRepository}
+     *                   для работы с товаров базой данных.
      */
     @Autowired
     public ProductDAOImpl(ProductRepository repository) {
@@ -81,11 +82,11 @@ public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
      * Удаляет товары из базы даных, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *
-     * @param categoryId Уникальный код категории, товары котрой будут удалены.
+     * @param id Уникальный код категории, товары котрой будут удалены.
      */
     @Override
-    public void removeByCategoryId(long categoryId) {
-        List<Product> productList = repository.findByCategoryId(categoryId);
+    public void removeByCategoryId(long id) {
+        List<Product> productList = repository.findByCategoryId(id);
         repository.delete(productList);
     }
 
@@ -93,11 +94,11 @@ public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
      * Возвращает список товаров, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *
-     * @param categoryId Уникальный код категории.
+     * @param id Уникальный код категории.
      * @return Объект типа List - список товаров.
      */
     @Override
-    public List<Product> getListByCategoryId(long categoryId) {
-        return repository.findByCategoryId(categoryId);
+    public List<Product> getListByCategoryId(long id) {
+        return repository.findByCategoryId(id);
     }
 }
