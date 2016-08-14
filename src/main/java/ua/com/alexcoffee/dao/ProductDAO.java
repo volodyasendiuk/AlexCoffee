@@ -43,7 +43,7 @@ public interface ProductDAO extends MainDAO<Product> {
      * Удаляет товары из базы даных, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *
-     * @param id Уникальный код категории, товары который будут удалены.
+     * @param id Код категории, товары который будут удалены.
      */
     void removeByCategoryId(long id);
 
@@ -51,7 +51,7 @@ public interface ProductDAO extends MainDAO<Product> {
      * Возвращает список товаров, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *
-     * @param id Уникальный код категории.
+     * @param id Код категории.
      * @return Объект типа List - список товаров.
      */
     List<Product> getListByCategoryId(long id);

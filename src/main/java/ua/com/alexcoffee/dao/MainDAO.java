@@ -48,7 +48,7 @@ public interface MainDAO<T extends Model> {
      * Получение модели по уникальному коду id в базе данных.
      *
      * @param id Код модели, которую нужно вернуть.
-     * @return Объект класса {@link ua.com.alexcoffee.model.Model} -  модель с кодом id.
+     * @return Объект класса {@link Model} -  модель с кодом id.
      */
     T get(Long id);
 

@@ -27,7 +27,7 @@ public interface StatusDAO extends MainDAO<Status> {
      * Возвращает статус из базы даных по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.
      *
-     * @param title Название роли.
+     * @param title Название статуса.
      * @return Объект класса {@link Status} - статус с уникальным названием.
      */
     Status get(StatusEnum title);

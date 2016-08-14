@@ -212,7 +212,7 @@ public class ManagerController {
      * Возвращает пользователя с уникальным кодом id на страницу "manager/user/one".
      * URL запроса "/manager/view_user_{id}", метод GET.
      *
-     * @param id           Код категории, которою нужно вернуть.
+     * @param id           Код пользвателя, которою нужно вернуть.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */

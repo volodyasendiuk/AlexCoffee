@@ -33,7 +33,7 @@ import java.util.List;
  * @see UserServiceImpl
  * @see MainDAO
  */
-public class MainServiceImpl<T extends Model> implements MainService<T> {
+public abstract class MainServiceImpl<T extends Model> implements MainService<T> {
     /**
      * Реализация интерфейса {@link MainDAO} для работы моделей с базой данных.
      */

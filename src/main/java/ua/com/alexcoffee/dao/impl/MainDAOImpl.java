@@ -27,7 +27,7 @@ import java.util.List;
  * @see UserDAOImpl
  * @see MainDAO
  */
-public class MainDAOImpl<T extends Model> implements MainDAO<T> {
+public abstract class MainDAOImpl<T extends Model> implements MainDAO<T> {
     /**
      * Реализация репозитория {@link MainRepository} для работы моделей с базой данных.
      */

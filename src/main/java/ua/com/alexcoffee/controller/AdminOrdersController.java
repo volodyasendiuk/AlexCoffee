@@ -85,7 +85,7 @@ public class AdminOrdersController {
      * Возвращает заказ с уникальным кодом id на страницу "admin/order/one".
      * URL запроса "/admin/view_order_{id}", метод GET.
      *
-     * @param id           Уникальный код заказа, который нужно вернуть.
+     * @param id           Код заказа, который нужно вернуть.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */
@@ -107,7 +107,7 @@ public class AdminOrdersController {
      * Возвращает страницу "admin/order/edit" для редактирование заказа с уникальным кодом,
      * который совпадает с параметром id. URL запроса "/admin/edit_order_{id}", метод GET.
      *
-     * @param id           Уникальный код заказа, которую нужно отредактировать.
+     * @param id           Код заказа, которую нужно отредактировать.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */

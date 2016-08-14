@@ -25,7 +25,7 @@ import ua.com.alexcoffee.service.RoleService;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = {"ua.com.alexcoffee.service", "ua.com.alexcoffee.dao"})
+@ComponentScan(basePackages = {"ua.com.alexcoffee.service", "ua.com.alexcoffee.dao", "ua.com.alexcoffee.repository"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Объект сервиса для работы с зарегистрированными пользователями.
@@ -82,6 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         builder
                 .userDetailsService(userDetailsService).and()
                 .inMemoryAuthentication()
-                .withUser("kexibqflvby").password("fktrrjaat").roles(roleService.getAdministrator().getTitle().name());
+                .withUser("kexibqflvby").password("fktrrjat").roles(roleService.getAdministrator().getTitle().name());
     }
 }

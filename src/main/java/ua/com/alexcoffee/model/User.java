@@ -226,7 +226,7 @@ public class User extends Model implements UserDetails {
      * Возвращает список всех ролей пользователя через объект-обертку
      * класса SimpleGrantedAuthority. Реализованый метод интерфейса {@link UserDetails}.
      *
-     * @return Объект типа List - список ролей пользователя.
+     * @return Объект типа {@link List} - список ролей пользователя.
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -247,7 +247,7 @@ public class User extends Model implements UserDetails {
      * @param facebook    Ссылка на страничку в соц. сети "Facebook" пользователя.
      * @param skype       Логин пользователя в месенджере "Skype".
      * @param description Описание пользователя.
-     * @param role        Роль пльзователя.
+     * @param role        Роль пользователя.
      */
     public void initializer(String name, String username, String password, String email,
                             String phone, String vkontakte, String facebook, String skype,

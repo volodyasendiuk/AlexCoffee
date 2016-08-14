@@ -338,18 +338,18 @@ public class Product extends Model {
     }
 
     /**
-     * Возвращает продажу, для которой пренадлежит текущий товара.
+     * Возвращает торговую позицию, для которой пренадлежит текущий товара.
      *
-     * @return Объект класса {@link SalePosition} - артикль товара.
+     * @return Объект класса {@link SalePosition} - торговая позиция.
      */
     public SalePosition getSalePosition() {
         return salePosition;
     }
 
     /**
-     * Устанавливает продажу, для которой пренадлежит текущий товара.
+     * Устанавливает торговую позицию, для которой пренадлежит текущий товара.
      *
-     * @param salePosition Продажа товара.
+     * @param salePosition Торговая позиция.
      */
     public void setSalePosition(SalePosition salePosition) {
         this.salePosition = salePosition;

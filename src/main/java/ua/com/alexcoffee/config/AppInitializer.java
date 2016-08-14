@@ -23,7 +23,7 @@ import javax.servlet.ServletException;
  */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
-     * Возвращает конфигурацию, в которой инициализируем ViewResolver
+     * Возвращает конфигурацию, в которой инициализируем ViewResolver.
      *
      * @return Массив объектов класса Class - класс с настройками {@link WebConfig}.
      */
@@ -33,7 +33,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     }
 
     /**
-     * Возвращает конфигурации, которые инициализируют Beans
+     * Возвращает конфигурации, которые инициализируют Beans.
      *
      * @return Массив объектов класса Class - класс с настройками {@link RootConfig} и {@link SecurityConfig}.
      */
