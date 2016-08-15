@@ -20,9 +20,10 @@ public interface RoleService extends MainService<Role> {
      * Добавляет роль по названию, которое может принимать
      * одно из значений перечисления {@link RoleEnum}.
      *
-     * @param title Название роли для добавления.
+     * @param title       Название роли для добавления.
+     * @param description Описание роли.
      */
-    void add(RoleEnum title);
+    void add(RoleEnum title, String description);
 
     /**
      * Возвращает роль по названию, которое может принимать

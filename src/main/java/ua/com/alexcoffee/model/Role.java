@@ -32,7 +32,7 @@ public class Role extends Model {
     private RoleEnum title;
 
     /**
-     * Описание товара. Значение поля сохраняется в колонке "description".
+     * Описание роли. Значение поля сохраняется в колонке "description".
      */
     @Column(name = "description", nullable = false)
     private String description;
@@ -52,16 +52,19 @@ public class Role extends Model {
      */
     public Role() {
         super();
+        description = "";
     }
 
     /**
      * Конструктор для инициализации основных переменных роли.
      *
-     * @param title Название роли, может принимать одно из значений перечисления {@link RoleEnum}.
+     * @param title       Название роли, может принимать одно из значений перечисления {@link RoleEnum}.
+     * @param description Описание роли.
      */
-    public Role(RoleEnum title) {
+    public Role(RoleEnum title, String description) {
         super();
         this.title = title;
+        this.description = description;
     }
 
     /**
@@ -72,14 +75,17 @@ public class Role extends Model {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        return "Title: " + title.name() + "\nDescription: " + description;
+    }
 
-        if (title != null) {
-            sb.append("Title: ").append(title.name());
-        }
-        sb.append("\nDescription: ").append(description);
-
-        return sb.toString();
+    /**
+     * Генерирует строку для конечного сравнения роли в методе equals() родительского класса.
+     * Переопределенный метод родительского класса {@link Model}.
+     *
+     * @return Значение типа {@link String} - название роли.
+     */
+    public String toEquals() {
+        return title.name();
     }
 
     /**
@@ -178,6 +184,6 @@ public class Role extends Model {
      * @param description Описание роли.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 }

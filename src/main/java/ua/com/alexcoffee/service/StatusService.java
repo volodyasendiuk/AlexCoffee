@@ -17,9 +17,10 @@ public interface StatusService extends MainService<Status> {
      * Добавляет статус по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.
      *
-     * @param title Название статуса для добавления.
+     * @param title       Название статуса для добавления.
+     * @param description Описание статуса.
      */
-    void add(StatusEnum title);
+    void add(StatusEnum title, String description);
 
     /**
      * Возвращает статус по названию, которое может принимать

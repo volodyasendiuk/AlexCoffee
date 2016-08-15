@@ -48,17 +48,27 @@ public class SEOController {
 
     /**
      * Объект сервиса для работы с товарами.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
      */
-    @Autowired
     private ProductService productService;
 
     /**
      * Объект сервиса для работы с категориями товаров.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     */
+    private CategoryService categoryService;
+
+    /**
+     * Конструктор для инициализации основных переменных SEO контроллера.
+     * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
+     *
+     * @param productService  Объект сервиса для работы с товарами.
+     * @param categoryService Объект сервиса для работы с категориями товаров.
      */
     @Autowired
-    private CategoryService categoryService;
+    public SEOController(ProductService productService, CategoryService categoryService) {
+        super();
+        this.productService = productService;
+        this.categoryService = categoryService;
+    }
 
     /**
      * Возвращает файл robots.txt для поисковых систем.

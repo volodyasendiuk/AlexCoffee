@@ -58,14 +58,14 @@ public class StatusServiceImpl extends MainServiceImpl<Status> implements Status
      */
     @Override
     @Transactional
-    public void add(StatusEnum title) throws WrongInformationException, DuplicateException {
+    public void add(StatusEnum title, String description) throws WrongInformationException, DuplicateException {
         if (title == null) {
             throw new WrongInformationException("No status title!");
         }
         if (dao.get(title) != null) {
             throw new DuplicateException("Duplicate status with title  " + title + "!");
         }
-        dao.add(new Status(title));
+        dao.add(new Status(title, description));
     }
 
     /**

@@ -9,13 +9,13 @@ import ua.com.alexcoffee.enums.StatusEnum;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StatusTest {
+
     @BeforeClass
     public static void beforeTests() {
-        System.out.println("Testing class \"Status\" - START.\n");
+        System.out.println("\nTesting class \"Status\" - START.");
     }
 
     @AfterClass
@@ -24,13 +24,25 @@ public class StatusTest {
     }
 
     @Test
+    public void toStringTest() {
+        System.out.print("-> toString() - ");
+
+        StatusEnum title = StatusEnum.NEW;
+        String description = "Description";
+
+        Status status = new Status(title, description);
+        String line = "Title: " + title.name() + "\nDescription: " + description;
+
+        assertTrue(status.toString().equals(line));
+
+        System.out.println("OK!");
+    }
+
+    @Test
     public void toEqualsTest() {
         System.out.print("-> toEquals() - ");
 
-        Status status = new Status();
-        assertEquals(status.toString(), status.toEquals());
-
-        status = new Status(StatusEnum.NEW);
+        Status status = new Status(StatusEnum.NEW, "NEW");
         assertEquals(status.toString(), status.toEquals());
 
         System.out.println("ok!");
@@ -43,7 +55,7 @@ public class StatusTest {
         Status status = new Status();
         assertTrue(status.equals(status));
 
-        status = new Status(StatusEnum.NEW);
+        status = new Status(StatusEnum.NEW, "NEW");
         assertTrue(status.equals(status));
 
         System.out.println("ok!");
@@ -53,8 +65,8 @@ public class StatusTest {
     public void equalsSymmetricTest() {
         System.out.print("-> Symmetric equals - ");
 
-        Status status1 = new Status(StatusEnum.NEW);
-        Status status2 = new Status(StatusEnum.NEW);
+        Status status1 = new Status(StatusEnum.NEW, "NEW");
+        Status status2 = new Status(StatusEnum.NEW, "NEW");
 
         assertTrue(status1.equals(status2));
         assertTrue(status2.equals(status1));
@@ -66,9 +78,9 @@ public class StatusTest {
     public void equalsTransitiveTest() {
         System.out.print("-> Transitive equals - ");
 
-        Status status1 = new Status(StatusEnum.NEW);
-        Status status2 = new Status(StatusEnum.NEW);
-        Status status3 = new Status(StatusEnum.NEW);
+        Status status1 = new Status(StatusEnum.NEW, "NEW");
+        Status status2 = new Status(StatusEnum.NEW, "NEW");
+        Status status3 = new Status(StatusEnum.NEW, "NEW");
 
         assertTrue(status1.equals(status2));
         assertTrue(status2.equals(status3));
@@ -81,8 +93,8 @@ public class StatusTest {
     public void equalsConsistentTest() {
         System.out.print("-> Consistent equals - ");
 
-        Status status1 = new Status(StatusEnum.NEW);
-        Status status2 = new Status(StatusEnum.NEW);
+        Status status1 = new Status(StatusEnum.NEW, "NEW");
+        Status status2 = new Status(StatusEnum.NEW, "NEW");
 
         for (int i = 0; i < 10; i++) {
             assertTrue(status1.equals(status2));
@@ -153,8 +165,8 @@ public class StatusTest {
     }
 
     @Test
-    public void clearUsersTest() {
-        System.out.print("-> clearUsers() - ");
+    public void clearOrdersTest() {
+        System.out.print("-> clearOrders() - ");
 
         Status status = new Status();
         List<Order> orders = getTenOrders();
@@ -165,6 +177,49 @@ public class StatusTest {
         assertEquals(0, status.getOrders().size());
 
         System.out.println("ok!");
+    }
+
+    @Test
+    public void setAndGetOrdersTest() {
+        System.out.print("-> setAndGetProducts() - ");
+
+        Status status = new Status(StatusEnum.NEW, "NEW");
+        status.setOrders(getTenOrders());
+
+        assertNotNull(status.getOrders());
+        assertTrue(status.getOrders().size() == 10);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetTitleTest() {
+        System.out.print("-> setAndGetProducts() - ");
+
+        Status status = new Status();
+        status.setTitle(StatusEnum.NEW);
+
+        assertNotNull(status.getTitle());
+        assertTrue(status.getTitle().equals(StatusEnum.NEW));
+        assertFalse(status.getTitle().equals(StatusEnum.CLOSED));
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetDescriptionTest() {
+        System.out.print("-> setAndGetDescription() - ");
+
+        Status status = new Status();
+        status.setDescription(null);
+        assertNotNull(status.getDescription());
+        assertTrue(status.getDescription().isEmpty());
+
+        String description = "Description";
+        status.setDescription(description);
+        assertTrue(status.getDescription().equals(description));
+
+        System.out.println("OK!");
     }
 
     @Ignore

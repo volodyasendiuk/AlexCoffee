@@ -107,6 +107,9 @@ public class Order extends Model {
      */
     public Order() {
         super();
+        shippingAddress = "";
+        shippingDetails = "";
+        description = "";
         number = createRandomString();
         date = dateToString(new Date());
     }
@@ -114,16 +117,21 @@ public class Order extends Model {
     /**
      * Конструктор для инициализации основных переменных заказа.
      *
-     * @param date   Дата модификации заказа.
-     * @param status Статус заказа.
-     * @param client Клиент, оформивший заказ.
+     * @param status        Статус заказа.
+     * @param client        Клиент, оформивший заказ.
+     * @param salePositions Список торговых позиция.
      */
-    public Order(Date date, Status status, User client) {
+    public Order(Status status, User client, List<SalePosition> salePositions) {
         super();
-        this.date = dateToString(date);
         this.status = status;
         this.client = client;
+        this.salePositions = salePositions;
+
+        shippingAddress = "";
+        shippingDetails = "";
+        description = "";
         number = createRandomString();
+        date = dateToString(new Date());
     }
 
     /**
@@ -146,22 +154,23 @@ public class Order extends Model {
         }
 
         if (manager != null) {
-            sb.append("\n").append(manager.getRole().getDescription()).append(manager.getName()).append("\n");
+            sb.append("\n").append(manager.getRole().getDescription())
+                    .append(" ").append(manager.getName()).append("\n");
         }
 
-        if (shippingAddress != null && !shippingAddress.isEmpty()) {
+        if (!shippingAddress.isEmpty()) {
             sb.append("\nShipping address: ").append(shippingAddress);
         }
-        if (shippingDetails != null && !shippingDetails.isEmpty()) {
+        if (!shippingDetails.isEmpty()) {
             sb.append("\nShipping details: ").append(shippingDetails);
         }
-        if (description != null && !description.isEmpty()) {
+        if (!description.isEmpty()) {
             sb.append("\nDescription: ").append(description);
         }
 
         if (salePositions != null && !salePositions.isEmpty()) {
             sb.append("\nSale Positions: ");
-            int count = 0;
+            int count = 1;
             for (SalePosition salePosition : salePositions) {
                 sb.append("\n").append(count++).append(") ").append(salePosition.getProduct().getTitle())
                         .append(", № ").append(salePosition.getProduct().getId()).append(",\n")
@@ -197,8 +206,8 @@ public class Order extends Model {
      * @param client          Клиент, оформивший заказ.
      * @param manager         Менеджер, обработавший заказ.
      */
-    public void initializer(String number, Date date, String shippingAddress, String shippingDetails,
-                            String description, Status status, User client, User manager) {
+    public void initialize(String number, Date date, String shippingAddress, String shippingDetails,
+                           String description, Status status, User client, User manager) {
         setNumber(number);
         setDate(date);
         setShippingAddress(shippingAddress);
@@ -299,7 +308,7 @@ public class Order extends Model {
      * @param number Номер заказа.
      */
     public void setNumber(String number) {
-        this.number = number;
+        this.number = number == null ? "" : number;
     }
 
     /**
@@ -324,7 +333,7 @@ public class Order extends Model {
      * @param date Дата модификации заказа.
      */
     public void setDate(Date date) {
-        this.date = dateToString(date);
+        this.date = date == null ? "" : dateToString(date);
     }
 
     /**
@@ -396,7 +405,7 @@ public class Order extends Model {
      * @param shippingAddress Адрес доставки заказа.
      */
     public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
+        this.shippingAddress = shippingAddress == null ? "" : shippingAddress;
     }
 
     /**
@@ -414,7 +423,7 @@ public class Order extends Model {
      * @param shippingDetails Детали доставки заказа.
      */
     public void setShippingDetails(String shippingDetails) {
-        this.shippingDetails = shippingDetails;
+        this.shippingDetails = shippingDetails == null ? "" : shippingDetails;
     }
 
     /**
@@ -432,7 +441,7 @@ public class Order extends Model {
      * @param description Описание заказа.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 
     /**

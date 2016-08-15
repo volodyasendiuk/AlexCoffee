@@ -52,16 +52,19 @@ public class Status extends Model {
      */
     public Status() {
         super();
+        description = "";
     }
 
     /**
      * Конструктор для инициализации основных переменных заказа.
      *
-     * @param title Название заказа, может принимать одно из значений перечисления {@link StatusEnum}.
+     * @param title       Название заказа, может принимать одно из значений перечисления {@link StatusEnum}.
+     * @param description Описание статуса.
      */
-    public Status(StatusEnum title) {
+    public Status(StatusEnum title, String description) {
         super();
         this.title = title;
+        this.description = description;
     }
 
     /**
@@ -72,14 +75,7 @@ public class Status extends Model {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        if (title != null) {
-            sb.append("Title: ").append(title.name());
-        }
-        sb.append("\nDescription: ").append(description);
-
-        return sb.toString();
+        return "Title: " + title.name() + "\nDescription: " + description;
     }
 
     /**
@@ -141,7 +137,7 @@ public class Status extends Model {
      * @param orders Список заказов.
      */
     public void setOrders(List<Order> orders) {
-        orders = orders;
+        this.orders = orders;
     }
 
     /**
@@ -178,6 +174,6 @@ public class Status extends Model {
      * @param description Описание статуса.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 }

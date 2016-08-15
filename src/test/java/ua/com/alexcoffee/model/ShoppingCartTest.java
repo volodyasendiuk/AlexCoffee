@@ -2,17 +2,21 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class ShoppingCartTest {
+
     @BeforeClass
     public static void beforeTests() {
-        System.out.println("Testing class \"ShoppingCart\" - START.\n");
+        System.out.println("\nTesting class \"ShoppingCart\" - START.");
     }
 
     @AfterClass
@@ -20,6 +24,25 @@ public class ShoppingCartTest {
         System.out.println("Testing class \"ShoppingCart\" - FINISH.\n");
     }
 
+    @Test
+    public void toStringTest() {
+        System.out.print("-> toString() - ");
+
+        ShoppingCart cart = new ShoppingCart();
+        String line = "Shoping Cart: is empty!";
+        assertTrue(cart.toString().equals(line));
+
+        Product product = new Product("Title", "URL", null, null, 10.0);
+        product.setId((long) 5);
+        SalePosition position = new SalePosition(product, 10);
+        cart.addSalePosition(position);
+        line = "Shoping Cart: \n1) " + product.getTitle() + "\n№ " + product.getId() + ", " + position.getPrice() + " UAH"
+                +"\nPrice: "+cart.getPrice()+" UAH";
+
+        assertTrue(cart.toString().equals(line));
+
+        System.out.println("OK!");
+    }
 
     @Test
     public void addSalePositionTest() {
@@ -59,7 +82,62 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void getPrice() {
+    public void removeSalePositionTest() {
+        System.out.print("-> removeSalePosition() - ");
+
+        Product product = new Product("Title", "URL", null, null, 10.0);
+        SalePosition position = new SalePosition(product, 10);
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.addSalePosition(position);
+        cart.removeSalePosition(position);
+
+        assertTrue(cart.getSize() == 0);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void removeSalePositionsTest() {
+        System.out.print("-> removeSalePositions() - ");
+
+        List<SalePosition> positions = getTenSalePosition();
+        ShoppingCart cart = new ShoppingCart(positions);
+        cart.removeSalePositions(positions);
+
+        assertTrue(cart.getSize() == 0);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void clearSalePositionsTest() {
+        System.out.print("-> clearSalePositions() - ");
+
+        ShoppingCart cart = new ShoppingCart(getTenSalePosition());
+        cart.clearSalePositions();
+
+        assertTrue(cart.getSize() == 0);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetSalePositionsTest() {
+        System.out.print("-> setAndGetSalePositions() - ");
+
+        List<SalePosition> positions = getTenSalePosition();
+        ShoppingCart cart = new ShoppingCart();
+        cart.setSalePositions(positions);
+
+        assertNotNull(cart.getSalePositions());
+        assertEquals(cart.getSalePositions(), positions);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void getPriceTest() {
         System.out.print("-> getPrice() - ");
 
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -74,5 +152,28 @@ public class ShoppingCartTest {
         assertTrue(shoppingCart.getPrice() == product.getPrice() * 10);
 
         System.out.println("ok!");
+    }
+
+    @Test
+    public void getSizeTest() {
+        System.out.print("-> getSize() - ");
+
+        ShoppingCart cart = new ShoppingCart(getTenSalePosition());
+
+        assertTrue(cart.getSize() == 10);
+
+        System.out.println("OK!");
+    }
+
+    @Ignore
+    private static List<SalePosition> getTenSalePosition() {
+        List<SalePosition> positions = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Product product = new Product("Title" + i, "URL" + i, null, null, 10.0);
+            SalePosition position = new SalePosition(product, 1);
+            positions.add(position);
+        }
+
+        return positions;
     }
 }

@@ -58,12 +58,13 @@ public class ShoppingCart implements Serializable {
      */
     @Override
     public String toString() {
-        int count = 1;
         StringBuilder sb = new StringBuilder("Shoping Cart: ");
         if (salePositions != null && !salePositions.isEmpty()) {
+            int count = 1;
             for (SalePosition salePosition : salePositions) {
                 sb.append("\n").append(count++).append(") ").append(salePosition.getProduct().getTitle())
-                        .append("\n№ ").append(salePosition.getProduct().getId()).append(", ").append(salePosition.getPrice()).append(" UAH");
+                        .append("\n№ ").append(salePosition.getProduct().getId())
+                        .append(", ").append(salePosition.getPrice()).append(" UAH");
             }
             sb.append("\nPrice: ").append(getPrice()).append(" UAH");
         } else {

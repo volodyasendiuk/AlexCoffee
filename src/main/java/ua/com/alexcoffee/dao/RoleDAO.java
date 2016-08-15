@@ -21,9 +21,10 @@ public interface RoleDAO extends MainDAO<Role> {
      * Добавляет роль в базу даных по названию, которое может принимать
      * одно из значений перечисления {@link RoleEnum}.
      *
-     * @param title Название роли.
+     * @param title       Название роли.
+     * @param description Описание роли.
      */
-    void add(RoleEnum title);
+    void add(RoleEnum title, String description);
 
     /**
      * Возвращает роль из базы даных по названию, которое может принимать

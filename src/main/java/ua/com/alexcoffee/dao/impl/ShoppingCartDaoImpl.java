@@ -31,6 +31,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
      */
     @Autowired
     public ShoppingCartDAOImpl(ShoppingCart shoppingCart) {
+        super();
         this.shoppingCart = shoppingCart;
     }
 

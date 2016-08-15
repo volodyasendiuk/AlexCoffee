@@ -51,8 +51,8 @@ public class RoleDAOImpl extends MainDAOImpl<Role> implements RoleDAO {
      * @param title Название роли.
      */
     @Override
-    public void add(RoleEnum title) {
-        repository.save(new Role(title));
+    public void add(RoleEnum title, String description) {
+        repository.save(new Role(title, description));
     }
 
     /**

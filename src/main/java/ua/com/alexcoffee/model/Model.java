@@ -33,22 +33,22 @@ public abstract class Model implements Serializable {
     /**
      * Набор вожможных для использованния символов по-умолчанию.
      */
-    public static final char[] CODE_PATTERN = {'A', 'L', 'E', 'X', 'C', 'F', 'E', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+    protected static final char[] CODE_PATTERN = {'A', 'L', 'E', 'X', 'C', 'F', 'E', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
     /**
      * Длина возвращаемой строки по-умолчанию {@value CODE_LENGTH}.
      */
-    public static final int CODE_LENGTH = 6;
+    protected static final int CODE_LENGTH = 6;
 
     /**
      * Строка-формат для даты по-умолчанию {@value DATE_PATTERN}.
      */
-    public static final String DATE_PATTERN = "EEE, d MMM yyyy, HH:mm:ss";
+    protected static final String DATE_PATTERN = "EEE, d MMM yyyy, HH:mm:ss";
 
     /**
      * Название (код) часового пояса по-умолчанию {@value TIME_ZONE}.
      */
-    public static final String TIME_ZONE = "GMT+3";
+    protected static final String TIME_ZONE = "GMT+3";
 
     /**
      * Уникальный код обьекта.
@@ -192,6 +192,6 @@ public abstract class Model implements Serializable {
      * @return Значение типа {@link List} - список только для чтения или пустой список.
      */
     public static <T extends Object> List<T> getUnmodifiableList(List<T> list) {
-        return list != null || !list.isEmpty() ? Collections.unmodifiableList(list) : Collections.EMPTY_LIST;
+        return list == null || list.isEmpty() ? Collections.EMPTY_LIST : Collections.unmodifiableList(list);
     }
 }

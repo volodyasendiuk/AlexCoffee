@@ -29,12 +29,20 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     /**
-     * Реализация интерфейса для работы торговой корзиной.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать объект.
+     * Реализация интерфейса для работы з торговой корзиной.
+     */
+    private ShoppingCartDAO shoppingCartDAO;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     *
+     * @param shoppingCartDAO Реализация интерфейса для работы з торговой корзиной.
      */
     @Autowired
-    private ShoppingCartDAO shoppingCartDAO;
+    public ShoppingCartServiceImpl(ShoppingCartDAO shoppingCartDAO) {
+        this.shoppingCartDAO = shoppingCartDAO;
+    }
 
     /**
      * Возвращает объект корзину. Режим только для чтения.

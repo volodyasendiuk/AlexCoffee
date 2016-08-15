@@ -54,6 +54,7 @@ public class SalePosition extends Model {
      */
     public SalePosition() {
         super();
+        number = 0;
     }
 
     /**
@@ -77,8 +78,8 @@ public class SalePosition extends Model {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("SalePosition #" + getId() + ": ")
-                .append("\n").append(product.getTitle()).append("\n№ ").append(product.getId())
+        StringBuilder sb = new StringBuilder("SalePosition #" + getId() + ": ");
+        sb.append("\n").append(product.getTitle()).append("\n№ ").append(product.getId())
                 .append(", ").append(product.getPrice()).append(" UAH")
                 .append("\nNumber = ").append(number)
                 .append("\nPrice = ").append(getPrice());
@@ -89,16 +90,11 @@ public class SalePosition extends Model {
      * Генерирует строку для конечного сравнения торговых позиций в методе equals() родительского класса.
      * Переопределенный метод родительского класса {@link Model}.
      *
-     * @return Значение типа {@link String} - результат работы метода сравнения входящего товара toEquals
-     * или метода toEquals суперкласса, если товар равен null.
+     * @return Значение типа {@link String} - результат работы метода сравнения входящего товара toEquals.
      */
     @Override
     public String toEquals() {
-        if (product != null) {
-            return product.toEquals();
-        } else {
-            return super.toEquals();
-        }
+        return product.toEquals();
     }
 
     /**
@@ -107,11 +103,7 @@ public class SalePosition extends Model {
      * @return Значение типа double - цена торговой пзиции.
      */
     public double getPrice() {
-        if (product != null) {
-            return product.getPrice() * number;
-        } else {
-            return 0;
-        }
+        return product.getPrice() * number;
     }
 
     /**
@@ -137,7 +129,7 @@ public class SalePosition extends Model {
      */
     public void setProduct(Product product) {
         this.product = product;
-        number = 1;
+        number = product == null ? 0 : 1;
     }
 
     /**

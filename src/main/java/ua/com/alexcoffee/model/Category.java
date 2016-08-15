@@ -68,6 +68,9 @@ public class Category extends Model {
      */
     public Category() {
         super();
+        this.title = "";
+        this.url = "";
+        this.description = "";
     }
 
     /**
@@ -124,7 +127,7 @@ public class Category extends Model {
      * @param description Описание категории.
      * @param photo       Изображение категории.
      */
-    public void initializer(String title, String url, String description, Photo photo) {
+    public void initialize(String title, String url, String description, Photo photo) {
         setTitle(title);
         setUrl(url);
         setDescription(description);
@@ -209,7 +212,7 @@ public class Category extends Model {
      * @param title Название категории.
      */
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? "" : title;
     }
 
     /**
@@ -227,7 +230,7 @@ public class Category extends Model {
      * @param url URL категории.
      */
     public void setUrl(String url) {
-        this.url = url;
+        this.url = url == null ? "" : url;
     }
 
     /**
@@ -245,7 +248,7 @@ public class Category extends Model {
      * @param description Описание категории.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 
     /**

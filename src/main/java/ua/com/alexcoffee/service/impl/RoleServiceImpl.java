@@ -61,7 +61,7 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
      */
     @Override
     @Transactional
-    public void add(RoleEnum title) throws WrongInformationException, DuplicateException {
+    public void add(RoleEnum title, String description) throws WrongInformationException, DuplicateException {
         if (title == null) {
             throw new WrongInformationException("No role enum (title)!");
         }
@@ -69,7 +69,7 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
         if (dao.get(title) != null) {
             throw new DuplicateException("Duplicate role with title  " + title + "!");
         }
-        dao.add(new Role(title));
+        dao.add(new Role(title, description));
     }
 
     /**

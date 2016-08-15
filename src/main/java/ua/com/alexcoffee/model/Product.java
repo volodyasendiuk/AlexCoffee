@@ -107,6 +107,11 @@ public class Product extends Model {
      */
     public Product() {
         super();
+        title = "";
+        url = "";
+        parameters = "";
+        description = "";
+        price = 0.0;
         newArticle();
     }
 
@@ -128,6 +133,8 @@ public class Product extends Model {
         this.photo = photo;
         this.price = price;
 
+        parameters = "";
+        description = "";
         newArticle();
     }
 
@@ -143,13 +150,12 @@ public class Product extends Model {
         StringBuilder sb = new StringBuilder();
         sb.append("Title: ").append(title)
                 .append("\nParameters: ").append(parameters)
-                .append("\nDescription: ").append(description);
+                .append("\nDescription: ").append(description)
+                .append("\nPrice = ").append(price).append(" UAH");
 
         if (category != null) {
             sb.append("\nCategory: ").append(category.getTitle());
         }
-
-        sb.append("\nPrice = ").append(price).append(" UAH");
         return sb.toString();
     }
 
@@ -175,8 +181,8 @@ public class Product extends Model {
      * @param photo       Изображение товара.
      * @param price       Цена товара.
      */
-    public void initializer(String title, String url, String parameters,
-                            String description, Category category, Photo photo, double price) {
+    public void initialize(String title, String url, String parameters,
+                           String description, Category category, Photo photo, double price) {
         setTitle(title);
         setUrl(url);
         setParameters(parameters);
@@ -226,7 +232,7 @@ public class Product extends Model {
      * @param title Название товара.
      */
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? "" : title;
     }
 
     /**
@@ -244,7 +250,7 @@ public class Product extends Model {
      * @param url URL товара.
      */
     public void setUrl(String url) {
-        this.url = url;
+        this.url = url == null ? "" : url;
     }
 
     /**
@@ -262,7 +268,7 @@ public class Product extends Model {
      * @param parameters Параметры товара.
      */
     public void setParameters(String parameters) {
-        this.parameters = parameters;
+        this.parameters = parameters == null ? "" : parameters;
     }
 
     /**
@@ -280,7 +286,7 @@ public class Product extends Model {
      * @param description Описание товара.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 
     /**

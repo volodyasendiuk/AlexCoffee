@@ -1,9 +1,6 @@
 package ua.com.alexcoffee.model;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +11,29 @@ public class CategoryTest {
 
     @BeforeClass
     public static void beforeTests() {
-        System.out.println("Testing class \"Category\" - START.\n");
+        System.out.println("\nTesting class \"Category\" - START.");
     }
 
     @AfterClass
     public static void afterTests() {
         System.out.println("Testing class \"Category\" - FINISH.\n");
+    }
+
+    @Test
+    public void toStringTest() {
+        System.out.print("-> toString() - ");
+
+        String title = "New Category";
+        String url = "url";
+        String description = "Some new category";
+
+        Category category = new Category(title, url, description, null);
+
+        String line = "\nTitle: " + title + "\nUrl: " + url + "\nDiscription: " + description;
+
+        assertTrue(line.equals(category.toString()));
+
+        System.out.println("OK!");
     }
 
     @Test
@@ -29,7 +43,7 @@ public class CategoryTest {
         Category category = new Category("Category", "cat_url", "", null);
         assertEquals("Categorycat_url", category.toEquals());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -39,7 +53,7 @@ public class CategoryTest {
         Category category = new Category();
         assertTrue(category.equals(category));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -52,7 +66,7 @@ public class CategoryTest {
         assertTrue(cat1.equals(cat2));
         assertTrue(cat2.equals(cat1));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -67,7 +81,7 @@ public class CategoryTest {
         assertTrue(cat2.equals(cat3));
         assertTrue(cat1.equals(cat3));
 
-        System.out.println("ok!");
+        System.out.println("OK");
     }
 
     @Test
@@ -81,7 +95,27 @@ public class CategoryTest {
             assertTrue(cat1.equals(cat2));
         }
 
-        System.out.println("ok!");
+        System.out.println("OK");
+    }
+
+    @Test
+    public void initializeTest() {
+        System.out.print("-> initialize() - ");
+
+        String title = "Title";
+        String url = "URL";
+        String description = "Description";
+        Photo photo = new Photo();
+
+        Category category = new Category();
+        category.initialize(title, url, description, photo);
+
+        assertTrue(title.equals(category.getTitle()));
+        assertTrue(url.equals(category.getUrl()));
+        assertTrue(description.equals(category.getDescription()));
+        assertTrue(photo.equals(category.getPhoto()));
+
+        System.out.println("OK!");
     }
 
     @Test
@@ -94,7 +128,7 @@ public class CategoryTest {
         }
         assertEquals(10, category.getProducts().size());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -107,7 +141,7 @@ public class CategoryTest {
         category.addProducts(products);
         assertEquals(10, category.getProducts().size());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -124,7 +158,7 @@ public class CategoryTest {
 
         assertEquals(10, category.getProducts().size());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -140,7 +174,7 @@ public class CategoryTest {
 
         assertEquals(10, category.getProducts().size());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -154,20 +188,96 @@ public class CategoryTest {
 
         assertEquals(0, category.getProducts().size());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
-    public void getPhotoTest() {
-        System.out.print("-> getPhoto() - ");
+    public void getProductsTest() {
+        System.out.print("-> getProducts() - ");
 
-        Category category = new Category("Category", "cat_url", "", null);
-        assertNull(category.getPhoto());
+        Category category = new Category();
+        Product product = new Product();
 
+        category.addProduct(product);
+        List<Product> products = category.getProducts();
+
+        assertTrue(products != null && !products.isEmpty());
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setProductsTest() {
+        System.out.print("-> setProducts() - ");
+
+        List<Product> products = getTenProducts();
+
+        Category category = new Category();
+        category.setProducts(products);
+
+        assertTrue(category.getProducts() != null && !category.getProducts().isEmpty());
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetTitleTest() {
+        System.out.print("-> setAndGetTitle() - ");
+
+        Category category = new Category();
+        category.setTitle(null);
+        assertNotNull(category.getTitle());
+        assertTrue(category.getTitle().isEmpty());
+
+        String title = "New Category";
+        category.setTitle(title);
+        assertTrue(title.equals(category.getTitle()));
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetUrlTest() {
+        System.out.print("-> setAndGetUrl() - ");
+
+        Category category = new Category();
+        category.setUrl(null);
+        assertNotNull(category.getUrl());
+        assertTrue(category.getUrl().isEmpty());
+
+        String url = "url";
+        category.setUrl(url);
+        assertTrue(url.equals(category.getUrl()));
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetDescriptionTest() throws Exception {
+        System.out.print("-> setDescription() - ");
+
+        Category category = new Category();
+        category.setDescription(null);
+        assertNotNull(category.getDescription());
+        assertTrue(category.getDescription().isEmpty());
+
+        String description = "description";
+        category.setDescription(description);
+        assertTrue(description.equals(category.getDescription()));
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    public void setAndGetPhotoTest() {
+        System.out.print("-> setAndGetPhoto() - ");
+
+        Category category = new Category();
         category.setPhoto(new Photo());
+
         assertNotNull(category.getPhoto());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Ignore

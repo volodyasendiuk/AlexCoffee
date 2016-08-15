@@ -125,6 +125,13 @@ public class User extends Model implements UserDetails {
      */
     public User() {
         super();
+        name = "";
+        email = "";
+        phone = "";
+        vkontakte = "";
+        facebook = "";
+        skype = "";
+        description = "";
     }
 
     /**
@@ -141,6 +148,11 @@ public class User extends Model implements UserDetails {
         this.email = email;
         this.phone = phone;
         this.role = role;
+
+        vkontakte = "";
+        facebook = "";
+        skype = "";
+        description = "";
     }
 
     /**
@@ -148,21 +160,15 @@ public class User extends Model implements UserDetails {
      * Переопределенный метод родительского класса {@link Object}.
      *
      * @return Значение типа {@link String} - строка описание пользователя
-     * (имя, роль, логин, электронная почта, номер телефона, описание пользователя).
+     * (имя, роль, электронная почта, номер телефона).
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Name: ").append(name);
-
-        if (role != null) {
-            sb.append("\nRole: ").append(role.getDescription());
-        }
-
-        sb.append("\nUsername: ").append(username)
+        sb.append("Name: ").append(name)
+                .append("\nRole: ").append(role.getDescription())
                 .append("\nEmail: ").append(email)
-                .append("\nPhone: ").append(phone)
-                .append("\nDescription: ").append(description);
+                .append("\nPhone: ").append(phone);
         return sb.toString();
     }
 
@@ -249,9 +255,9 @@ public class User extends Model implements UserDetails {
      * @param description Описание пользователя.
      * @param role        Роль пользователя.
      */
-    public void initializer(String name, String username, String password, String email,
-                            String phone, String vkontakte, String facebook, String skype,
-                            String description, Role role) {
+    public void initialize(String name, String username, String password, String email,
+                           String phone, String vkontakte, String facebook, String skype,
+                           String description, Role role) {
         setName(name);
         setUsername(username);
         setPassword(password);
@@ -279,7 +285,7 @@ public class User extends Model implements UserDetails {
      * @param name Имя пользователя.
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? "" : name;
     }
 
     /**
@@ -297,7 +303,7 @@ public class User extends Model implements UserDetails {
      * @param username Логин пользователя.
      */
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? "" : username;
     }
 
     /**
@@ -315,7 +321,7 @@ public class User extends Model implements UserDetails {
      * @param password Пароль пользователя.
      */
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? "" : password;
     }
 
     /**
@@ -333,7 +339,7 @@ public class User extends Model implements UserDetails {
      * @param email Электронная почта пользователя.
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? "" : email;
     }
 
     /**
@@ -351,7 +357,7 @@ public class User extends Model implements UserDetails {
      * @param phone Номер телефона пользователя.
      */
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? "" : phone;
     }
 
     /**
@@ -369,7 +375,7 @@ public class User extends Model implements UserDetails {
      * @param vkontakte Ссылка "ВКонтакте" пользователя.
      */
     public void setVkontakte(String vkontakte) {
-        this.vkontakte = vkontakte;
+        this.vkontakte = vkontakte == null ? "" : vkontakte;
     }
 
     /**
@@ -387,7 +393,7 @@ public class User extends Model implements UserDetails {
      * @param facebook Ссылка "Facebook" пользователя.
      */
     public void setFacebook(String facebook) {
-        this.facebook = facebook;
+        this.facebook = facebook == null ? "" : facebook;
     }
 
     /**
@@ -405,11 +411,11 @@ public class User extends Model implements UserDetails {
      * @param skype Логин "Skype".
      */
     public void setSkype(String skype) {
-        this.skype = skype;
+        this.skype = skype == null ? "" : skype;
     }
 
     /**
-     *  Возвращает описание пользователя.
+     * Возвращает описание пользователя.
      *
      * @return Значение типа {@link String} - описание пользователя.
      */
@@ -423,7 +429,7 @@ public class User extends Model implements UserDetails {
      * @param description Описание пользователя.
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? "" : description;
     }
 
     /**

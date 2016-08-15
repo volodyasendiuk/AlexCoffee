@@ -51,8 +51,8 @@ public class StatusDAOImpl extends MainDAOImpl<Status> implements StatusDAO {
      * @param title Название статуса.
      */
     @Override
-    public void add(StatusEnum title) {
-        repository.save(new Status(title));
+    public void add(StatusEnum title, String description) {
+        repository.save(new Status(title, description));
     }
 
     /**

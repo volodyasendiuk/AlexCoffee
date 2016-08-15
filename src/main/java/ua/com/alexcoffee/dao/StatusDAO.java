@@ -19,9 +19,10 @@ public interface StatusDAO extends MainDAO<Status> {
      * Добавляет статус в базу даных по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.
      *
-     * @param title Название статуса.
+     * @param title       Название статуса.
+     * @param description Описание роли.
      */
-    void add(StatusEnum title);
+    void add(StatusEnum title, String description);
 
     /**
      * Возвращает статус из базы даных по названию, которое может принимать

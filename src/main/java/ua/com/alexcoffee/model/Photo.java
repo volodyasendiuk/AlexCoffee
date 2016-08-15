@@ -59,6 +59,9 @@ public class Photo extends Model {
      */
     public Photo() {
         super();
+        title = "";
+        photoLinkShort = "";
+        photoLinkLong = "";
     }
 
     /**
@@ -85,6 +88,7 @@ public class Photo extends Model {
         super();
         this.title = title;
         this.photoLinkShort = photoLinkShort;
+        photoLinkLong = "";
     }
 
     /**
@@ -110,7 +114,7 @@ public class Photo extends Model {
      * @param photoLinkShort Строка-ссылка на малое изображения.
      * @param photoLinkLong  Строка-ссылка на большое изображения.
      */
-    public void initializer(String title, String photoLinkShort, String photoLinkLong) {
+    public void initialize(String title, String photoLinkShort, String photoLinkLong) {
         setTitle(title);
         setPhotoLinkShort(photoLinkShort);
         setPhotoLinkLong(photoLinkLong);
@@ -131,7 +135,7 @@ public class Photo extends Model {
      * @param title Название изображения.
      */
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? "" : title;
     }
 
     /**
@@ -149,7 +153,7 @@ public class Photo extends Model {
      * @param photoLinkShort Строка-ссылка на малое изображения.
      */
     public void setPhotoLinkShort(String photoLinkShort) {
-        this.photoLinkShort = photoLinkShort;
+        this.photoLinkShort = photoLinkShort == null ? "" : photoLinkShort;
     }
 
     /**
@@ -167,7 +171,7 @@ public class Photo extends Model {
      * @param photoLinkLong Строка-ссылка на большое изображения.
      */
     public void setPhotoLinkLong(String photoLinkLong) {
-        this.photoLinkLong = photoLinkLong;
+        this.photoLinkLong = photoLinkLong == null ? "" : photoLinkLong;
     }
 
     /**

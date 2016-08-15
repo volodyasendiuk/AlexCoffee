@@ -33,15 +33,25 @@ import javax.servlet.http.HttpServletRequest;
 public class AdviceController {
     /**
      * Объект сервиса для работы с корзиной.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
      */
-    @Autowired
     private ShoppingCartService shoppingCartService;
 
     /**
      * Объект для логирования информации.
      */
-    private static Logger logger = Logger.getLogger(AdviceController.class);
+    private static final Logger logger = Logger.getLogger(AdviceController.class);
+
+    /**
+     * Конструктор для инициализации основных переменных класса-перехватчика исключений.
+     * Помечен аннотацией @Autowired, которая позволит Spring автоматически инициализировать объекты.
+     *
+     * @param shoppingCartService Объект сервиса для работы с корзиной.
+     */
+    @Autowired
+    public AdviceController(ShoppingCartService shoppingCartService) {
+        super();
+        this.shoppingCartService = shoppingCartService;
+    }
 
     /**
      * Перехват NoHandlerFoundException исключения (http статус 404).
