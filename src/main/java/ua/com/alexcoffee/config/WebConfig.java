@@ -30,6 +30,36 @@ import org.springframework.web.servlet.view.JstlView;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
+     * Тип кодировки вьюшек.
+     */
+    private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
+
+    /**
+     * Путь к вьюшкам.
+     */
+    private static final String PREFIX = "/WEB-INF/views/";
+
+    /**
+     * Разрешение вьюшек.
+     */
+    private static final String SUFFIX = ".jsp";
+
+    /**
+     * Путь к ресурсам.
+     */
+    private static final String RESOURCES_URL = "/resources/";
+
+    /**
+     * URL запроса для авторизации.
+     */
+    private static final String LOGIN_URL = "/login";
+
+    /**
+     * Название вьюшки авторизации.
+     */
+    private static final String LOGIN_VIEW_NAME = "login";
+
+    /**
      * Указывает Spring'у где находятся компоненты представления, и как их отображать.
      * Вьюшки будут лежать в директории /WEB-INF/views/ и иметь разширение *.jsp.
      *
@@ -38,9 +68,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setContentType("text/html;charset=UTF-8");
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".jsp");
+        viewResolver.setContentType(CONTENT_TYPE);
+        viewResolver.setPrefix(PREFIX);
+        viewResolver.setSuffix(SUFFIX);
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
@@ -53,7 +83,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry resource) {
-        resource.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        resource.addResourceHandler(RESOURCES_URL + "**").addResourceLocations(RESOURCES_URL);
     }
 
     /**
@@ -65,7 +95,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry viewController) {
-        viewController.addViewController("/login").setViewName("login");
+        viewController.addViewController(LOGIN_URL).setViewName(LOGIN_VIEW_NAME);
         viewController.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

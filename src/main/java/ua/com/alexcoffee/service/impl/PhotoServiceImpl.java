@@ -34,6 +34,7 @@ import java.io.OutputStream;
  */
 @Service
 public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoService {
+
     /**
      * Путь для сохранения файлов в файловой системе.
      */

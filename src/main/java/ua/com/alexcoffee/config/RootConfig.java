@@ -32,9 +32,39 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"ua.com.alexcoffee.repository"})
-@ComponentScan(basePackages = {"ua.com.alexcoffee.model"})
+@EnableJpaRepositories(basePackages = "ua.com.alexcoffee.repository")
+@ComponentScan(basePackages = "ua.com.alexcoffee.model")
 public class RootConfig {
+
+    /**
+     * Путь к базе данных.
+     */
+    private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/alexcoffee?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT";
+
+    /**
+     * Драйвер для подключение к базе данных.
+     */
+    private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
+
+    /**
+     * Логин для подключение к базе данных.
+     */
+    private static final String DATABASE_USERNAME = "root";
+
+    /**
+     * Пароль для подключение к базе данных.
+     */
+    private static final String DATABASE_PASSWORD = "admin";
+
+    /**
+     * Диалект.
+     */
+    private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQLDialect";
+
+    /**
+     * Пакет сканирования для фабрики EntityManager.
+     */
+    private static final String PACKAGE_TO_SCAN = "ua.com.alexcoffee.model";
 
     /**
      * Возвращает объект класса DataSource с настройками подключения к базе данных.
@@ -45,10 +75,10 @@ public class RootConfig {
     @Bean
     public DataSource dataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/alexcoffee?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT");
-        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // Драйвер для подключение к базе данных.
-        basicDataSource.setUsername("root"); // Логин для подключение к базе данных.
-        basicDataSource.setPassword("admin"); // Пароль для подключение к базе данных.
+        basicDataSource.setUrl(DATABASE_URL);
+        basicDataSource.setDriverClassName(DATABASE_DRIVER);
+        basicDataSource.setUsername(DATABASE_USERNAME);
+        basicDataSource.setPassword(DATABASE_PASSWORD);
         basicDataSource.setInitialSize(5);
         basicDataSource.setMaxActive(20);
         return basicDataSource;
@@ -64,7 +94,7 @@ public class RootConfig {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(false);
         adapter.setGenerateDdl(true);
-        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+        adapter.setDatabasePlatform(DATABASE_DIALECT);
         return adapter;
     }
 
@@ -80,7 +110,7 @@ public class RootConfig {
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setDataSource(dataSource);
         lcemfb.setJpaVendorAdapter(jpaVendorAdapter);
-        lcemfb.setPackagesToScan("ua.com.alexcoffee.model");
+        lcemfb.setPackagesToScan(PACKAGE_TO_SCAN);
         return lcemfb;
     }
 
