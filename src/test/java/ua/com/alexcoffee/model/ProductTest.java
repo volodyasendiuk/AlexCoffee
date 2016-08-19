@@ -4,7 +4,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenSalePositions;
 
 public class ProductTest {
 
@@ -279,11 +282,11 @@ public class ProductTest {
         System.out.print("-> setSalePosition() - ");
 
         Product product = new Product();
-        SalePosition position = new SalePosition(product, 5);
-        product.setSalePosition(position);
+        List<SalePosition> salePositions = getTenSalePositions();
+        product.setSalePositions(salePositions);
 
-        assertNotNull(product.getSalePosition());
-        assertEquals(product.getSalePosition(), position);
+        assertNotNull(product.getSalePositions());
+        assertEquals(product.getSalePositions(), salePositions);
 
         System.out.println("OK!");
     }

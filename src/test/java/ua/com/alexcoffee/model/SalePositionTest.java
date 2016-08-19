@@ -43,11 +43,13 @@ public class SalePositionTest {
         System.out.print("-> toEquals() - ");
 
         Product product = new Product("Title", "url", null, null, 10.0);
-        product.setId((long) 1);
+        product.setId(1L);
         SalePosition salePosition = new SalePosition(product, 5);
-        salePosition.setId((long) 2);
+        salePosition.setId(2L);
 
-        assertEquals(salePosition.toEquals(), product.toEquals());
+        String line = product.toEquals() + 2L;
+
+        assertEquals(salePosition.toEquals(), line);
 
         System.out.println("OK!");
     }

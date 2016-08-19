@@ -60,12 +60,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Логин запасного аккаунта.
      */
-    private static final String DEFAULT_LOGIN = "adminka-vitaminka";
+    private static final String DEFAULT_LOGIN = "adminka";
 
     /**
      * Пароль запасного аккаунта.
      */
-    private static final String DEFAULT_PASSWORD = "vitamin-in-orange";
+    private static final String DEFAULT_PASSWORD = "vitaminka";
 
     /**
      * Объект сервиса для работы с зарегистрированными пользователями.

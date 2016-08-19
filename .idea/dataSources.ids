@@ -368,20 +368,11 @@
         <columns>role_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="96" parent="9" name="username">
-        <columns>username</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="97" parent="9" name="PRIMARY">
+      <key id="96" parent="9" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <key id="98" parent="9" name="username">
-        <columns>username</columns>
-        <underlying-index>username</underlying-index>
-      </key>
-      <foreign-key id="99" parent="9" name="users_ibfk_1">
+      <foreign-key id="97" parent="9" name="users_ibfk_1">
         <columns>role_id</columns>
         <ref-key>~.roles.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>

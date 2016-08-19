@@ -126,6 +126,8 @@ public class User extends Model implements UserDetails {
     public User() {
         super();
         name = "";
+        username = "";
+        password = "";
         email = "";
         phone = "";
         vkontakte = "";
@@ -149,6 +151,8 @@ public class User extends Model implements UserDetails {
         this.phone = phone;
         this.role = role;
 
+        username = "";
+        password = "";
         vkontakte = "";
         facebook = "";
         skype = "";

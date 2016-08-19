@@ -54,8 +54,7 @@ CREATE TABLE `Users` (
   `skype`       VARCHAR(50)           DEFAULT NULL,
   `description` TEXT                  DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`),
-  UNIQUE (`username`)
+  FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

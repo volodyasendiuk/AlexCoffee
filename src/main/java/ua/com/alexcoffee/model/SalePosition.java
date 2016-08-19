@@ -94,7 +94,11 @@ public class SalePosition extends Model {
      */
     @Override
     public String toEquals() {
-        return product.toEquals();
+        String line = product.toEquals();
+        if (getId() != null) {
+            line += getId();
+        }
+        return line;
     }
 
     /**

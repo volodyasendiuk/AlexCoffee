@@ -235,6 +235,7 @@ public abstract class MockMain {
         List<User> users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             User user = initUser();
+            user.setUsername(USERNAME + i);
             user.setId((long) i);
             users.add(user);
         }

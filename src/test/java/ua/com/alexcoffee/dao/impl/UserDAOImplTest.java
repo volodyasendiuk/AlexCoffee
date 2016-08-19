@@ -15,6 +15,7 @@ import ua.com.alexcoffee.config.WebConfig;
 import ua.com.alexcoffee.dao.UserDAO;
 import ua.com.alexcoffee.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.*;
@@ -75,6 +76,7 @@ public class UserDAOImplTest {
         System.out.print("-> Add, Get and Remove by Username - ");
 
         User user1 = new User("name", "email", "phone", null);
+        user1.setUsername("some_username");
         userDAO.add(user1);
         User user2 = userDAO.getByUsername(user1.getUsername());
 
@@ -131,7 +133,15 @@ public class UserDAOImplTest {
     public void addAndGetAndRemoveListTest() throws Exception {
         System.out.print("-> Add, Get and Remove List - ");
 
-        List<User> users1 = getTenUsers();
+        User user1 = new User("t1", "e1", "p1", null);
+        user1.setUsername("u1");
+        User user2 = new User("t2", "e2", "p2", null);
+        user2.setUsername("u2");
+
+        List<User> users1 = new ArrayList<>();
+        users1.add(user1);
+        users1.add(user2);
+
         userDAO.add(users1);
         List<User> users2 = userDAO.getAll();
 

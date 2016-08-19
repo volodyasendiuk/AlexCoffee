@@ -1,6 +1,8 @@
 package ua.com.alexcoffee.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс описывает сущность "Товар", наследует класс {@link Model}.
@@ -98,8 +100,8 @@ public class Product extends Model {
      * Выборка объекта salePosition при первом доступе к нему.
      * Сущность salePosition автоматически удаляется при удалении текущей.
      */
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE)
-    private SalePosition salePosition;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<SalePosition> salePositions = new ArrayList<>();
 
     /**
      * Конструктр без параметров.
@@ -344,20 +346,20 @@ public class Product extends Model {
     }
 
     /**
-     * Возвращает торговую позицию, для которой пренадлежит текущий товара.
+     * Возвращает список торговых позиций, для которых пренадлежит текущий товара.
      *
      * @return Объект класса {@link SalePosition} - торговая позиция.
      */
-    public SalePosition getSalePosition() {
-        return salePosition;
+    public List<SalePosition> getSalePositions() {
+        return salePositions;
     }
 
     /**
-     * Устанавливает торговую позицию, для которой пренадлежит текущий товара.
+     * Устанавливает список торговых позиций, для которых пренадлежит текущий товара.
      *
-     * @param salePosition Торговая позиция.
+     * @param salePositions Торговая позиция.
      */
-    public void setSalePosition(SalePosition salePosition) {
-        this.salePosition = salePosition;
+    public void setSalePositions(List<SalePosition> salePositions) {
+        this.salePositions = salePositions;
     }
 }
