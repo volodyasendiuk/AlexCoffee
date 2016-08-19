@@ -70,14 +70,14 @@ public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoSer
     @Override
     @Transactional(readOnly = true)
     public Photo get(String title) throws WrongInformationException, BadRequestException {
-        if (title.isEmpty()) {
+        if (title == null || title.isEmpty()) {
             throw new WrongInformationException("No photo title!");
         }
 
         Photo photo;
-        try {
-            photo = dao.get(title);
-        } catch (NullPointerException ex) {
+
+        photo = dao.get(title);
+        if (photo == null) {
             throw new BadRequestException("Can't find photo by title " + title + "!");
         }
 
@@ -94,10 +94,10 @@ public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoSer
     @Override
     @Transactional
     public void remove(String title) throws WrongInformationException {
-        if (title.isEmpty()) {
+        if (title == null || title.isEmpty()) {
             throw new WrongInformationException("No photo title!");
         }
-        dao.delete(title);
+        dao.remove(title);
     }
 
     /**
@@ -125,9 +125,11 @@ public class PhotoServiceImpl extends MainServiceImpl<Photo> implements PhotoSer
     @Override
     @Transactional
     public void deleteFile(String url) {
-        File file = new File(PATH + url);
-        if (file.exists() && file.isFile()) {
-            file.delete();
+        if (url != null && !url.isEmpty()) {
+            File file = new File(PATH + url);
+            if (file.exists() && file.isFile()) {
+                file.delete();
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package ua.com.alexcoffee.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import ua.com.alexcoffee.dao.PhotoDAO;
 import ua.com.alexcoffee.model.Photo;
@@ -10,7 +9,7 @@ import ua.com.alexcoffee.repository.PhotoRepository;
 /**
  * Класс реализует методы доступа объектов класса {@link Photo}
  * в базе данных интерфейса {@link PhotoDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link PhotoRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -18,13 +17,13 @@ import ua.com.alexcoffee.repository.PhotoRepository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see PhotoDAO
  * @see Photo
  * @see PhotoRepository
  */
 @Repository
-public class PhotoDAOImpl extends MainDAOImpl<Photo> implements PhotoDAO {
+public class PhotoDAOImpl extends DataDAOImpl<Photo> implements PhotoDAO {
     /**
      * Реализация репозитория {@link PhotoRepository} для работы изображений с базой данных.
      */
@@ -62,8 +61,7 @@ public class PhotoDAOImpl extends MainDAOImpl<Photo> implements PhotoDAO {
      * @param title Название объекта-изображения для удаления.
      */
     @Override
-    public void delete(String title) {
-        Photo photo = repository.findByTitle(title);
-        repository.delete(photo);
+    public void remove(String title) {
+        repository.deleteByTitle(title);
     }
 }

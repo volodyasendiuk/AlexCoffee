@@ -9,7 +9,7 @@ import ua.com.alexcoffee.model.SalePosition;
 /**
  * Класс реализует методы доступа объектов класса {@link SalePosition}
  * в базе данных интерфейса {@link SalePositionDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link SalePositionRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,13 +17,13 @@ import ua.com.alexcoffee.model.SalePosition;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see SalePositionDAO
  * @see SalePosition
  * @see SalePositionRepository
  */
 @Repository
-public class SalePositionDAOImpl extends MainDAOImpl<SalePosition> implements SalePositionDAO {
+public class SalePositionDAOImpl extends DataDAOImpl<SalePosition> implements SalePositionDAO {
     /**
      * Конструктор для инициализации основных переменных.
      * Помечаный аннотацией @Autowired, которая позволит Spring

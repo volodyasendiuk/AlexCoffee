@@ -4,19 +4,17 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class SalePositionTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"SalePosition\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"SalePosition\" - FINISH.\n");
     }
 
@@ -35,7 +33,7 @@ public class SalePositionTest {
                 + "\nNumber = " + salePosition.getNumber()
                 + "\nPrice = " + salePosition.getPrice();
 
-        assertTrue(salePosition.toString().equals(line));
+        assertEquals(salePosition.toString(), line);
 
         System.out.println("OK!");
     }
@@ -49,7 +47,7 @@ public class SalePositionTest {
         SalePosition salePosition = new SalePosition(product, 5);
         salePosition.setId((long) 2);
 
-        assertTrue(salePosition.toEquals().equals(product.toEquals()));
+        assertEquals(salePosition.toEquals(), product.toEquals());
 
         System.out.println("OK!");
     }
@@ -143,7 +141,7 @@ public class SalePositionTest {
         position.setProduct(product);
 
         assertNotNull(position.getProduct());
-        assertTrue(position.getProduct().equals(product));
+        assertEquals(position.getProduct(), product);
 
         System.out.println("OK!");
     }
@@ -177,7 +175,7 @@ public class SalePositionTest {
         position.setOrder(order);
 
         assertNotNull(position.getOrder());
-        assertTrue(position.getOrder().equals(order));
+        assertEquals(position.getOrder(), order);
 
         System.out.println("OK!");
     }

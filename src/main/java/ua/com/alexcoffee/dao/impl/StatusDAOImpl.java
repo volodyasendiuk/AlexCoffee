@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Status}
  * в базе данных интерфейса {@link StatusDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link StatusRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see StatusDAO
  * @see Status
  * @see StatusRepository
  */
 @Repository
-public class StatusDAOImpl extends MainDAOImpl<Status> implements StatusDAO {
+public class StatusDAOImpl extends DataDAOImpl<Status> implements StatusDAO {
     /**
      * Реализация репозитория {@link StatusRepository} для работы статусов заказов с базой данных.
      */

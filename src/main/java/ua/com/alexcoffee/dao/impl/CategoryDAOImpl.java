@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Класс реализует методы доступа объектов класса {@link Category}
  * в базе данных интерфейса {@link CategoryDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link CategoryRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,13 +17,13 @@ import org.springframework.stereotype.Repository;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see CategoryDAO
  * @see Category
  * @see CategoryRepository
  */
 @Repository
-public class CategoryDAOImpl extends MainDAOImpl<Category> implements CategoryDAO {
+public class CategoryDAOImpl extends DataDAOImpl<Category> implements CategoryDAO {
     /**
      * Реализация репозитория {@link CategoryRepository} для работы категорий с базой данных.
      */

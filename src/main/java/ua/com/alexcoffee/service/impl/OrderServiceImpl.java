@@ -58,14 +58,14 @@ public class OrderServiceImpl extends MainServiceImpl<Order> implements OrderSer
     @Override
     @Transactional(readOnly = true)
     public Order get(String number) throws WrongInformationException, BadRequestException {
-        if (number.isEmpty()) {
+        if (number == null || number.isEmpty()) {
             throw new WrongInformationException("No order number!");
         }
 
         Order order;
-        try {
+
             order = dao.get(number);
-        } catch (NullPointerException ex) {
+        if (order == null) {
             throw new BadRequestException("Can't find order by number " + number + "!");
         }
 
@@ -82,7 +82,7 @@ public class OrderServiceImpl extends MainServiceImpl<Order> implements OrderSer
     @Override
     @Transactional
     public void remove(String number) throws WrongInformationException {
-        if (number.isEmpty()) {
+        if (number == null || number.isEmpty()) {
             throw new WrongInformationException("No order number!");
         }
         dao.remove(number);

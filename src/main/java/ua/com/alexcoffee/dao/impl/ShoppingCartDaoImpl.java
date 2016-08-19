@@ -89,7 +89,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
      * @return Значение типа int - количество товаров в корзине.
      */
     @Override
-    public int size() {
+    public int getSize() {
         return shoppingCart.getSize();
     }
 

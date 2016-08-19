@@ -17,7 +17,7 @@ import java.util.List;
  * @see SalePosition
  */
 @Entity
-@Table(name = "orders")
+@Table(name = "Orders")
 public class Order extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.
@@ -56,19 +56,19 @@ public class Order extends Model {
 
     /**
      * Статус заказа.
-     * Значение поля (id объекта status) сохраняется в колонке "status_id". Не может быть null.
+     * Значение поля (id объекта status) сохраняется в колонке "status_id".
      * Между объектами классов {@link Order} и
      * {@link Status} связь многие-к-одному, а именно
      * много разных заказов могут иметь одинаковый статус выполнения.
      * Выборка объекта status до первого доступа нему, при первом доступе к текущему объекту.
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
     private Status status;
 
     /**
      * Клиент, оформивший заказ.
-     * Значение поля (id объекта client) сохраняется в колонке "client_id". Не может быть null.
+     * Значение поля (id объекта client) сохраняется в колонке "client_id".
      * Между объектами классов {@link Order} и
      * {@link User} связь один-к-одному, а именно каждая
      * запись в одной таблице напрямую связана с отдельной записью в другой таблице.
@@ -76,7 +76,7 @@ public class Order extends Model {
      * Сущности связаны полностью каскадным обновлением записей в базе данных.
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private User client;
 
     /**
@@ -125,7 +125,8 @@ public class Order extends Model {
         super();
         this.status = status;
         this.client = client;
-        this.salePositions = salePositions;
+
+        addSalePositions(salePositions);
 
         shippingAddress = "";
         shippingDetails = "";

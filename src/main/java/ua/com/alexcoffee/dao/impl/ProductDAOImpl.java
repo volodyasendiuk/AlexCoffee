@@ -3,15 +3,15 @@ package ua.com.alexcoffee.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ua.com.alexcoffee.dao.ProductDAO;
-import ua.com.alexcoffee.repository.ProductRepository;
 import ua.com.alexcoffee.model.Product;
+import ua.com.alexcoffee.repository.ProductRepository;
 
 import java.util.List;
 
 /**
  * Класс реализует методы доступа объектов класса {@link Product}
  * в базе данных интерфейса {@link ProductDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link ProductRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -19,13 +19,13 @@ import java.util.List;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see ProductDAO
  * @see Product
  * @see ProductRepository
  */
 @Repository
-public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
+public class ProductDAOImpl extends DataDAOImpl<Product> implements ProductDAO {
     /**
      * Реализация репозитория {@link ProductRepository} для работы с товаров базой данных.
      */
@@ -74,8 +74,18 @@ public class ProductDAOImpl extends MainDAOImpl<Product> implements ProductDAO {
      * @param url URL товара для удаления.
      */
     @Override
-    public void remove(String url) {
+    public void removeByUrl(String url) {
         repository.deleteByUrl(url);
+    }
+
+    /**
+     * Удаляет товар из базы данных, у которого совпадает параметр article.
+     *
+     * @param article Артикль товара для удаления.
+     */
+    @Override
+    public void removeByArticle(int article) {
+        repository.deleteByArticle(article);
     }
 
     /**

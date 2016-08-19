@@ -2,7 +2,7 @@
 
 "[Alex Coffee](http://alexcoffee.com.ua)" is the online shop of a beautiful and aromatic coffee for You and friends. Here you can buy coffee beans, ground coffee, coffee in mono doses and in capsules. Coffee is a drink of the real programmer. :-)
 
-**Used Technologies**: Java EE, Maven, Servlets, Spring Framework (MVC, Data, Security), JPA / Hibernate, MySQL, JSP / JSTL, Bootstrap, CSS, Junit, Mockito, Jacoco.
+**Used Technologies**: Java EE, Maven, Servlets, Spring Framework (IoC, MVC, Data, Security), JPA / Hibernate, MySQL, JSP / JSTL, Bootstrap, CSS, JS, Junit, Mockito, Jacoco.
 
 Shop work can be divided into 3 parts: _for clients_, _for administrator_ and _for managers_.
 

@@ -58,16 +58,15 @@ public class CategoryServiceImpl extends MainServiceImpl<Category> implements Ca
     @Override
     @Transactional(readOnly = true)
     public Category get(String url) throws WrongInformationException, BadRequestException {
-        if (url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
 
-        Category category;
-        try {
-            category = dao.get(url);
-        } catch (NullPointerException ex) {
+        Category category = dao.get(url);
+        if (category == null) {
             throw new BadRequestException("Can't find category by url " + url + "!");
         }
+
         return category;
     }
 
@@ -80,7 +79,7 @@ public class CategoryServiceImpl extends MainServiceImpl<Category> implements Ca
     @Override
     @Transactional
     public void remove(String url) throws WrongInformationException {
-        if (url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
         dao.remove(url);

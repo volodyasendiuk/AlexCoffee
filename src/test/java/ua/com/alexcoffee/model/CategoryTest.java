@@ -1,21 +1,23 @@
 package ua.com.alexcoffee.model;
 
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockDAO.getTenProducts;
 
 public class CategoryTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Category\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Category\" - FINISH.\n");
     }
 
@@ -31,7 +33,7 @@ public class CategoryTest {
 
         String line = "\nTitle: " + title + "\nUrl: " + url + "\nDiscription: " + description;
 
-        assertTrue(line.equals(category.toString()));
+        assertEquals(category.toString(), line);
 
         System.out.println("OK!");
     }
@@ -40,8 +42,10 @@ public class CategoryTest {
     public void toEqualsTest() {
         System.out.print("-> toEquals() - ");
 
-        Category category = new Category("Category", "cat_url", "", null);
-        assertEquals("Categorycat_url", category.toEquals());
+        String title = "Category";
+        String url = "cat_url";
+        Category category = new Category(title, url, "", null);
+        assertEquals(category.toEquals(), title + url);
 
         System.out.println("OK!");
     }
@@ -110,10 +114,10 @@ public class CategoryTest {
         Category category = new Category();
         category.initialize(title, url, description, photo);
 
-        assertTrue(title.equals(category.getTitle()));
-        assertTrue(url.equals(category.getUrl()));
-        assertTrue(description.equals(category.getDescription()));
-        assertTrue(photo.equals(category.getPhoto()));
+        assertEquals(category.getTitle(), title);
+        assertEquals(category.getUrl(), url);
+        assertEquals(category.getDescription(), description);
+        assertEquals(category.getPhoto(), photo);
 
         System.out.println("OK!");
     }
@@ -126,7 +130,7 @@ public class CategoryTest {
         for (int i = 0; i < 10; i++) {
             category.addProduct(new Product());
         }
-        assertEquals(10, category.getProducts().size());
+        assertEquals(category.getProducts().size(), 10);
 
         System.out.println("OK!");
     }
@@ -139,7 +143,7 @@ public class CategoryTest {
 
         Category category = new Category();
         category.addProducts(products);
-        assertEquals(10, category.getProducts().size());
+        assertEquals(category.getProducts().size(), 10);
 
         System.out.println("OK!");
     }
@@ -156,7 +160,7 @@ public class CategoryTest {
 
         category.removeProduct(product);
 
-        assertEquals(10, category.getProducts().size());
+        assertEquals(category.getProducts().size(), 10);
 
         System.out.println("OK!");
     }
@@ -169,10 +173,9 @@ public class CategoryTest {
         List<Product> products = getTenProducts();
 
         category.addProducts(products);
-        category.addProducts(getTenProducts());
         category.removeProducts(products);
 
-        assertEquals(10, category.getProducts().size());
+        assertEquals(category.getProducts().size(), 0);
 
         System.out.println("OK!");
     }
@@ -186,7 +189,7 @@ public class CategoryTest {
         category.addProducts(products);
         category.clearProducts();
 
-        assertEquals(0, category.getProducts().size());
+        assertEquals(category.getProducts().size(), 0);
 
         System.out.println("OK!");
     }
@@ -201,7 +204,8 @@ public class CategoryTest {
         category.addProduct(product);
         List<Product> products = category.getProducts();
 
-        assertTrue(products != null && !products.isEmpty());
+        assertTrue(products != null);
+        assertFalse(products.isEmpty());
 
         System.out.println("OK!");
     }
@@ -215,7 +219,8 @@ public class CategoryTest {
         Category category = new Category();
         category.setProducts(products);
 
-        assertTrue(category.getProducts() != null && !category.getProducts().isEmpty());
+        assertTrue(category.getProducts() != null);
+        assertFalse(category.getProducts().isEmpty());
 
         System.out.println("OK!");
     }
@@ -231,7 +236,7 @@ public class CategoryTest {
 
         String title = "New Category";
         category.setTitle(title);
-        assertTrue(title.equals(category.getTitle()));
+        assertEquals(category.getTitle(), title);
 
         System.out.println("OK!");
     }
@@ -247,7 +252,7 @@ public class CategoryTest {
 
         String url = "url";
         category.setUrl(url);
-        assertTrue(url.equals(category.getUrl()));
+        assertEquals(category.getUrl(), url);
 
         System.out.println("OK!");
     }
@@ -263,7 +268,7 @@ public class CategoryTest {
 
         String description = "description";
         category.setDescription(description);
-        assertTrue(description.equals(category.getDescription()));
+        assertEquals(category.getDescription(), description);
 
         System.out.println("OK!");
     }
@@ -278,15 +283,5 @@ public class CategoryTest {
         assertNotNull(category.getPhoto());
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<Product> getTenProducts() {
-        List<Product> products = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            products.add(new Product());
-        }
-
-        return products;
     }
 }

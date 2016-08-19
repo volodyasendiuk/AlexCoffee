@@ -95,6 +95,7 @@ public class HomeController {
         this.statusService = statusService;
         this.roleService = roleService;
         this.statusService = statusService;
+        this.senderService = senderService;
     }
 
     /**
@@ -279,7 +280,7 @@ public class HomeController {
         User client = new User(name, email, phone, role);
 
         Status status = statusService.getDefault();
-        Order order = new Order(status, client, new ArrayList<>(shoppingCartService.getSalePositions()));
+        Order order = new Order(status, client, new ArrayList<SalePosition>(shoppingCartService.getSalePositions()));
         orderService.add(order);
 
         senderService.send(order);

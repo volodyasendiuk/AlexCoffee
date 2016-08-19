@@ -89,10 +89,8 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
             throw new WrongInformationException("No role enum (title)!");
         }
 
-        Role role;
-        try {
-            role = dao.get(title);
-        } catch (NullPointerException ex) {
+        Role role = dao.get(title);
+        if (role == null) {
             throw new BadRequestException("Can't find role by title " + title + "!");
         }
 
@@ -108,13 +106,10 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
     @Override
     @Transactional(readOnly = true)
     public Role getAdministrator() throws BadRequestException {
-        Role role;
-        try {
-            role = dao.get(RoleEnum.ADMIN);
-        } catch (NullPointerException ex) {
+        Role role = dao.get(RoleEnum.ADMIN);
+        if (role == null) {
             throw new BadRequestException("Can't find role \"administrator\"!");
         }
-
         return role;
     }
 
@@ -127,13 +122,10 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
     @Override
     @Transactional(readOnly = true)
     public Role getManager() throws BadRequestException {
-        Role role;
-        try {
-            role = dao.get(RoleEnum.MANAGER);
-        } catch (NullPointerException ex) {
+        Role role = dao.get(RoleEnum.MANAGER);
+        if (role == null) {
             throw new BadRequestException("Can't find role \"manager\"!");
         }
-
         return role;
     }
 
@@ -146,10 +138,8 @@ public class RoleServiceImpl extends MainServiceImpl<Role> implements RoleServic
     @Override
     @Transactional(readOnly = true)
     public Role getDefault() throws BadRequestException {
-        Role role;
-        try {
-            role = dao.getDefault();
-        } catch (NullPointerException ex) {
+        Role role = dao.getDefault();
+        if (role == null) {
             throw new BadRequestException("Can't find default role!");
         }
         return role;

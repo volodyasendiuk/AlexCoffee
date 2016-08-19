@@ -2,26 +2,23 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.RoleEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenUsers;
 
 public class RoleTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Role\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Role\" - FINISH.\n");
     }
 
@@ -36,9 +33,9 @@ public class RoleTest {
 
         String line = "Title: " + title.name() + "\nDescription: " + description;
 
-        assertTrue(role.toString().equals(line));
+        assertEquals(role.toString(), line);
 
-        System.out.println("FAIL!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -46,7 +43,7 @@ public class RoleTest {
         System.out.print("-> toEquals() - ");
 
         Role role = new Role(RoleEnum.ADMIN, "ADMIN");
-        assertTrue(role.toEquals().equals(RoleEnum.ADMIN.name()));
+        assertEquals(role.toEquals(), RoleEnum.ADMIN.name());
 
         System.out.println("OK!");
     }
@@ -56,7 +53,7 @@ public class RoleTest {
         System.out.print("-> Reflexive equals - ");
 
         Role role = new Role();
-        assertTrue(role.equals(role));
+        assertEquals(role, role);
 
         role = new Role(RoleEnum.ADMIN, "ADMIN");
         assertTrue(role.equals(role));
@@ -114,7 +111,7 @@ public class RoleTest {
         for (int i = 0; i < 10; i++) {
             role.addUser(new User());
         }
-        assertEquals(10, role.getUsers().size());
+        assertTrue(role.getUsers().size() == 10);
 
         System.out.println("OK!");
     }
@@ -128,7 +125,7 @@ public class RoleTest {
         Role role = new Role();
         role.addUsers(users);
 
-        assertEquals(10, role.getUsers().size());
+        assertTrue(role.getUsers().size() == 10);
 
         System.out.println("OK!");
     }
@@ -145,23 +142,23 @@ public class RoleTest {
 
         role.removeUser(user);
 
-        assertEquals(10, role.getUsers().size());
+        assertTrue(role.getUsers().size() == 10);
 
         System.out.println("OK!");
     }
 
     @Test
-    public void removeUsersTest() {
-        System.out.print("-> removeUsers() - ");
+    public void addAndRemoveUsersTest() {
+        System.out.print("-> addAndRemoveUsers() - ");
 
         Role role = new Role();
 
         List<User> users = getTenUsers();
         role.addUsers(users);
+        assertTrue(role.getUsers().size() == 10);
 
         role.removeUsers(users);
-
-        assertEquals(0, role.getUsers().size());
+        assertTrue(role.getUsers().size() == 0);
 
         System.out.println("OK!");
     }
@@ -176,7 +173,7 @@ public class RoleTest {
 
         role.clearUsers();
 
-        assertEquals(0, role.getUsers().size());
+        assertTrue(role.getUsers().size() == 0);
 
         System.out.println("OK!");
     }
@@ -202,7 +199,7 @@ public class RoleTest {
         role.setTitle(RoleEnum.ADMIN);
 
         assertNotNull(role.getTitle());
-        assertTrue(role.getTitle().equals(RoleEnum.ADMIN));
+        assertEquals(role.getTitle(), RoleEnum.ADMIN);
 
         System.out.println("OK!");
     }
@@ -218,18 +215,8 @@ public class RoleTest {
 
         String description = "Description";
         role.setDescription(description);
-        assertTrue(role.getDescription().equals(description));
+        assertEquals(role.getDescription(), description);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<User> getTenUsers() {
-        List<User> users = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            users.add(new User());
-        }
-
-        return users;
     }
 }

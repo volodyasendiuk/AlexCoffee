@@ -35,7 +35,7 @@ public interface ShoppingCartService {
      *
      * @return Объект типа {@link List} - список торговых позиций.
      */
-    List<SalePosition> getSalePositions();
+    List getSalePositions();
 
     /**
      * Удаляет торговую позицию из корзины.

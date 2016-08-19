@@ -13,7 +13,7 @@ import javax.persistence.*;
  * @see SalePosition
  */
 @Entity
-@Table(name = "products")
+@Table(name = "Products")
 public class Product extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.
@@ -69,7 +69,7 @@ public class Product extends Model {
      * Выборка объекта category до первого доступа нему, при первом доступе к текущему объекту.
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
     /**

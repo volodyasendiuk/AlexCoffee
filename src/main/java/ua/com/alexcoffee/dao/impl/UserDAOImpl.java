@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Класс реализует методы доступа объектов класса {@link User}
  * в базе данных интерфейса {@link UserDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link UserRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -23,13 +23,28 @@ import java.util.List;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see UserDAO
  * @see User
  * @see UserRepository
  */
 @Repository
-public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
+public class UserDAOImpl extends DataDAOImpl<User> implements UserDAO {
+
+    /**
+     * ID роли клиента в базе данных.
+     */
+    private static Long CLIENT_ROLE_ID = 1L;
+
+    /**
+     * ID роли адмиистратора в базе данных.
+     */
+    private static Long ADMIN_ROLE_ID = 2L;
+
+    /**
+     * ID роли менеджера в базе данных.
+     */
+    private static Long MANAGER_ROLE_ID = 3L;
     /**
      * Реализация репозитория {@link UserRepository} для работы пользователей с базой данных.
      */
@@ -88,7 +103,7 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
      */
     @Override
     public User getMainAdministrator() {
-        Role admin = roleRepository.findOne((long) 2);
+        Role admin = roleRepository.findOne(ADMIN_ROLE_ID);
         return userRepository.findAllByRole(admin).get(0);
     }
 
@@ -99,7 +114,7 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
      */
     @Override
     public List<User> getAdministrators() {
-        Role admin = roleRepository.findOne((long) 2);
+        Role admin = roleRepository.findOne(ADMIN_ROLE_ID);
         return userRepository.findAllByRole(admin);
     }
 
@@ -110,7 +125,7 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
      */
     @Override
     public List<User> getManagers() {
-        Role manager = roleRepository.findOne((long) 3);
+        Role manager = roleRepository.findOne(MANAGER_ROLE_ID);
         return userRepository.findAllByRole(manager);
     }
 
@@ -121,7 +136,7 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
      */
     @Override
     public List<User> getClients() {
-        Role client = roleRepository.findOne((long) 1);
+        Role client = roleRepository.findOne(CLIENT_ROLE_ID);
         return userRepository.findAllByRole(client);
     }
 
@@ -136,8 +151,8 @@ public class UserDAOImpl extends MainDAOImpl<User> implements UserDAO {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             user = (User) authentication.getPrincipal();
-        } catch (ClassCastException ex) {
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            //ex.printStackTrace();
             user = new User();
         }
         return user;

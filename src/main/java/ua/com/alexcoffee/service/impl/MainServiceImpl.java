@@ -1,8 +1,9 @@
 package ua.com.alexcoffee.service.impl;
 
 import org.springframework.transaction.annotation.Transactional;
-import ua.com.alexcoffee.dao.MainDAO;
+import ua.com.alexcoffee.dao.DataDAO;
 import ua.com.alexcoffee.exception.BadRequestException;
+import ua.com.alexcoffee.exception.WrongInformationException;
 import ua.com.alexcoffee.model.Model;
 import ua.com.alexcoffee.service.MainService;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * объектам наследникам родительского класса {@link Model}, описаные в
  * интерфейсе {@link MainService}. Класс должен наследоваться дочерними классами,
  * которые будут описывать поведение объектов-наследников родительского класса {@link Model}.
- * Для работы методы используют объект DAO интерфейса {@link MainDAO}, возвращаемый абстрактным
+ * Для работы методы используют объект DAO интерфейса {@link DataDAO}, возвращаемый абстрактным
  * методом dao, реализацию которого каждый наследник берет на себя.
  * Методы класса помечены аннотацией @Transactional - перед исполнением метода помеченного
  * данной аннотацией начинается транзакция, после выполнения метода транзакция коммитится,
@@ -31,23 +32,24 @@ import java.util.List;
  * @see SalePositionServiceImpl
  * @see MainServiceImpl
  * @see UserServiceImpl
- * @see MainDAO
+ * @see DataDAO
  */
 public abstract class MainServiceImpl<T extends Model> implements MainService<T> {
     /**
-     * Реализация интерфейса {@link MainDAO} для работы моделей с базой данных.
+     * Реализация интерфейса {@link DataDAO} для работы моделей с базой данных.
      */
-    private MainDAO<T> dao;
+    private DataDAO<T> dao;
 
     /**
-     *Конструктор для инициализации основных переменных сервиса.
-     * @param dao Реализация интерфейса {@link MainDAO} для работы моделей с базой данных.
+     * Конструктор для инициализации основных переменных сервиса.
+     *
+     * @param dao Реализация интерфейса {@link DataDAO} для работы моделей с базой данных.
      */
-    public MainServiceImpl(MainDAO<T> dao) {
+    public MainServiceImpl(DataDAO<T> dao) {
         super();
         this.dao = dao;
     }
-    
+
     /**
      * Добавление модели в базу данных.
      *
@@ -56,7 +58,9 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
     @Override
     @Transactional
     public void add(T model) {
-        dao.add(model);
+        if (model != null) {
+            dao.add(model);
+        }
     }
 
     /**
@@ -67,7 +71,9 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
     @Override
     @Transactional
     public void add(List<T> models) {
-        dao.add(models);
+        if (models != null && !models.isEmpty()) {
+            dao.add(models);
+        }
     }
 
     /**
@@ -78,7 +84,9 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
     @Override
     @Transactional
     public void update(T model) {
-        dao.update(model);
+        if (model != null) {
+            dao.update(model);
+        }
     }
 
     /**
@@ -89,7 +97,11 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
      */
     @Override
     @Transactional(readOnly = true)
-    public T get(Long id) throws BadRequestException {
+    public T get(Long id) throws WrongInformationException, BadRequestException {
+        if (id == null) {
+            throw new WrongInformationException("No model id!");
+        }
+
         T model = dao.get(id);
         if (model == null) {
             throw new BadRequestException("Can't find model by id " + id + "!");
@@ -116,7 +128,9 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
     @Override
     @Transactional
     public void remove(T model) {
-        dao.remove(model);
+        if (model != null) {
+            dao.remove(model);
+        }
     }
 
     /**
@@ -126,7 +140,10 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
      */
     @Override
     @Transactional
-    public void remove(Long id) {
+    public void remove(Long id) throws WrongInformationException {
+        if (id == null) {
+            throw new WrongInformationException("No model id!");
+        }
         dao.remove(id);
     }
 
@@ -138,7 +155,9 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
     @Override
     @Transactional
     public void remove(List<T> models) {
-        dao.remove(models);
+        if (models != null && !models.isEmpty()) {
+            dao.remove(models);
+        }
     }
 
     /**

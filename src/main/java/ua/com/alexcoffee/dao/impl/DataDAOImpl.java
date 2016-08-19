@@ -1,6 +1,6 @@
 package ua.com.alexcoffee.dao.impl;
 
-import ua.com.alexcoffee.dao.MainDAO;
+import ua.com.alexcoffee.dao.DataDAO;
 import ua.com.alexcoffee.model.Model;
 import ua.com.alexcoffee.repository.MainRepository;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Абстрактный класс, который реализует основные методы доступа к базе данных
- * интерфейса {@link MainDAO}. Класс должен наследоваться
+ * интерфейса {@link DataDAO}. Класс должен наследоваться
  * дочерними классами, которые будут описывать поведение объектов-наследников
  * родительского класса {@link Model}. Для работы методы
  * используют объект-репозиторий интерфейса {@link MainRepository},
@@ -24,10 +24,10 @@ import java.util.List;
  * @see RoleDAOImpl
  * @see SalePositionDAOImpl
  * @see StatusDAOImpl
- * @see UserDAOImpl
- * @see MainDAO
+ * @see DataDAOImpl
+ * @see DataDAO
  */
-public abstract class MainDAOImpl<T extends Model> implements MainDAO<T> {
+public abstract class DataDAOImpl<T extends Model> implements DataDAO<T> {
     /**
      * Реализация репозитория {@link MainRepository} для работы моделей с базой данных.
      */
@@ -38,7 +38,7 @@ public abstract class MainDAOImpl<T extends Model> implements MainDAO<T> {
      *
      * @param repository Реализация репозитория {@link MainRepository} для работы категорий с базой данных.
      */
-    public MainDAOImpl(MainRepository<T, Long> repository) {
+    public DataDAOImpl(MainRepository<T, Long> repository) {
         super();
         this.repository = repository;
     }

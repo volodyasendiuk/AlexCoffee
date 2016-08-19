@@ -1,4 +1,4 @@
-INSERT INTO `statuses` (title, description) VALUES
+INSERT INTO `Statuses` (title, description) VALUES
   ('NEW', 'Новый'),
   ('WORK', 'В работе'),
   ('DELIVERY', 'Доставка'),
@@ -7,14 +7,14 @@ INSERT INTO `statuses` (title, description) VALUES
 
 /*----------------------------------------------------------------------------------*/
 
-INSERT INTO `roles` (title, description) VALUES
+INSERT INTO `Roles` (title, description) VALUES
   ('CLIENT', 'Клиент'),
   ('ADMIN', 'Администратор'),
   ('MANAGER', 'Менеджер');
 
 /*----------------------------------------------------------------------------------*/
 
-INSERT INTO `photos` (title, photo_link_short, photo_link_long) VALUES
+INSERT INTO `Photos` (title, photo_link_short, photo_link_long) VALUES
   ('coffee_beans',
    'coffeezerna/coffee_zerna_150x150.png', NULL),
 
@@ -157,7 +157,7 @@ INSERT INTO `photos` (title, photo_link_short, photo_link_long) VALUES
 
 /*----------------------------------------------------------------------------------*/
 
-INSERT INTO `categories` (url, title, description, photo_id) VALUES
+INSERT INTO `Categories` (url, title, description, photo_id) VALUES
   ('coffee_beans', 'Кофе в зернах',
    'Ценители подлинного вкуса всегда выбирают натуральный кофе в зернах.
    Именно он сохраняет все богатство ароматов, привкусов и послевкусия,
@@ -200,7 +200,7 @@ INSERT INTO `categories` (url, title, description, photo_id) VALUES
 
 /*----------------------------------------------------------------------------------*/
 
-INSERT INTO `products` (title, url, parameters, description, category_id, photo_id, price) VALUES
+INSERT INTO `Products` (title, url, parameters, description, category_id, photo_id, price) VALUES
   ('Кофе Lavazza Pienaroma зерно 1 кг', 'lavazza_pienaroma_beans',
    'Вес:	1 кг.
 <br>Вкусовая характеристика:	Сладость

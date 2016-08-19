@@ -2,26 +2,23 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.StatusEnum;
+import ua.com.alexcoffee.tools.MockMain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ModelTest {
+
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Model\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Model\" - FINISH.\n");
     }
 
@@ -32,7 +29,7 @@ public class ModelTest {
         Category category = new Category();
 
         assertFalse(category.equals(null));
-        assertTrue(category.equals(category));
+        assertEquals(category, category);
 
         System.out.println("OK!");
     }
@@ -56,20 +53,8 @@ public class ModelTest {
 
         assertEquals(Model.getUnmodifiableList(null), Collections.EMPTY_LIST);
 
-        assertTrue(Model.getUnmodifiableList(getTenSalePositions()).size() == 10);
+        assertTrue(Model.getUnmodifiableList(MockMain.getTenProducts()).size() == 10);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<SalePosition> getTenSalePositions() {
-        List<SalePosition> salePositions = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Product product = new Product("Name" + i, "URL", null, null, 10 + i);
-            SalePosition position = new SalePosition(product, 1);
-            salePositions.add(position);
-        }
-
-        return salePositions;
     }
 }

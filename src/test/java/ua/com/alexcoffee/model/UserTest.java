@@ -2,24 +2,21 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.RoleEnum;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenOrders;
 
 public class UserTest {
 
     @BeforeClass
-    public static void beforeTests() {
-        System.out.println("\nTesting class \"User\" - START.");
+    public static void setUp() {
+        System.out.println("\nTesting class \"User\" - START.\n");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"User\" - FINISH.\n");
     }
 
@@ -46,9 +43,10 @@ public class UserTest {
         System.out.print("-> toEquals() - ");
 
         User user = new User("User", "someemail", "+380000000000", null);
-        assertEquals(user.getName() + user.getEmail() + user.getPhone(), user.toEquals());
+        String line = user.getName() + user.getEmail() + user.getPhone();
+        assertEquals(user.toEquals(), line);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -58,7 +56,7 @@ public class UserTest {
         User user = new User("User", "someemail", "+380000000000", null);
         assertTrue(user.equals(user));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -71,7 +69,7 @@ public class UserTest {
         assertTrue(user1.equals(user2));
         assertTrue(user2.equals(user1));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -86,7 +84,7 @@ public class UserTest {
         assertTrue(user2.equals(user3));
         assertTrue(user1.equals(user3));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -100,7 +98,7 @@ public class UserTest {
             assertTrue(user1.equals(user2));
         }
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -113,7 +111,7 @@ public class UserTest {
         assertTrue(user.isAccountNonLocked());
         assertTrue(user.isCredentialsNonExpired());
 
-        System.out.println("FAIL!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -146,16 +144,16 @@ public class UserTest {
         User user = new User();
         user.initialize(name, username, password, email, phone, vkontakte, facebook, skype, description, role);
 
-        assertTrue(user.getName().equals(name));
-        assertTrue(user.getUsername().equals(username));
-        assertTrue(user.getPassword().equals(password));
-        assertTrue(user.getEmail().equals(email));
-        assertTrue(user.getPhone().equals(phone));
-        assertTrue(user.getVkontakte().equals(vkontakte));
-        assertTrue(user.getFacebook().equals(facebook));
-        assertTrue(user.getSkype().equals(skype));
-        assertTrue(user.getDescription().equals(description));
-        assertTrue(user.getRole().equals(role));
+        assertEquals(user.getName(), name);
+        assertEquals(user.getUsername(), username);
+        assertEquals(user.getPassword(), password);
+        assertEquals(user.getEmail(), email);
+        assertEquals(user.getPhone(), phone);
+        assertEquals(user.getVkontakte(), vkontakte);
+        assertEquals(user.getFacebook(), facebook);
+        assertEquals(user.getSkype(), skype);
+        assertEquals(user.getDescription(), description);
+        assertEquals(user.getRole(), role);
 
         System.out.println("OK!");
     }
@@ -171,7 +169,7 @@ public class UserTest {
 
         String name = "NAME";
         user.setName(name);
-        assertTrue(user.getName().equals(name));
+        assertEquals(user.getName(), name);
 
         System.out.println("OK!");
     }
@@ -187,7 +185,7 @@ public class UserTest {
 
         String username = "USERNAME";
         user.setUsername(username);
-        assertTrue(user.getUsername().equals(username));
+        assertEquals(user.getUsername(), username);
 
         System.out.println("OK!");
     }
@@ -203,7 +201,7 @@ public class UserTest {
 
         String password = "pass";
         user.setPassword(password);
-        assertTrue(user.getPassword().equals(password));
+        assertEquals(user.getPassword(), password);
 
         System.out.println("OK!");
     }
@@ -219,7 +217,7 @@ public class UserTest {
 
         String email = "email";
         user.setEmail(email);
-        assertTrue(user.getEmail().equals(email));
+        assertEquals(user.getEmail(), email);
 
         System.out.println("OK!");
     }
@@ -235,7 +233,7 @@ public class UserTest {
 
         String phone = "phone";
         user.setPhone(phone);
-        assertTrue(user.getPhone().equals(phone));
+        assertEquals(user.getPhone(), phone);
 
         System.out.println("OK!");
     }
@@ -251,7 +249,7 @@ public class UserTest {
 
         String vkontakte = "vk";
         user.setVkontakte(vkontakte);
-        assertTrue(user.getVkontakte().equals(vkontakte));
+        assertEquals(user.getVkontakte(), vkontakte);
 
         System.out.println("OK!");
     }
@@ -267,7 +265,7 @@ public class UserTest {
 
         String facebook = "fb";
         user.setFacebook(facebook);
-        assertTrue(user.getFacebook().equals(facebook));
+        assertEquals(user.getFacebook(), facebook);
 
         System.out.println("OK!");
     }
@@ -283,7 +281,7 @@ public class UserTest {
 
         String skype = "skype";
         user.setSkype(skype);
-        assertTrue(user.getSkype().equals(skype));
+        assertEquals(user.getSkype(), skype);
 
         System.out.println("OK!");
     }
@@ -299,7 +297,7 @@ public class UserTest {
 
         String description = "description";
         user.setDescription(description);
-        assertTrue(user.getDescription().equals(description));
+        assertEquals(user.getDescription(), description);
 
         System.out.println("OK!");
     }
@@ -313,7 +311,7 @@ public class UserTest {
         user.setRole(role);
 
         assertNotNull(user.getRole());
-        assertTrue(user.getRole().equals(role));
+        assertEquals(user.getRole(), role);
 
         System.out.println("OK!");
     }
@@ -338,15 +336,5 @@ public class UserTest {
         assertTrue(user.getManagerOrders().size() == 10);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<Order> getTenOrders() {
-        List<Order> orders = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            orders.add(new Order());
-        }
-
-        return orders;
     }
 }

@@ -38,6 +38,13 @@ public interface ProductRepository extends MainRepository<Product, Long> {
     void deleteByUrl(String url);
 
     /**
+     * Удаляет товар из базы данных, у которого совпадает параметр article.
+     *
+     * @param article Артикль товара для удаления.
+     */
+    void deleteByArticle(int article);
+
+    /**
      * Возвращает список товаров, которые пренадлежат категории
      * с уникальным кодом - входным параметром.
      *

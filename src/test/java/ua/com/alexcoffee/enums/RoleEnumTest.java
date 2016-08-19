@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class RoleEnumTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"RoleEnum\" - START.");
     }
 

@@ -66,14 +66,12 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
     @Override
     @Transactional(readOnly = true)
     public User getByName(String name) throws WrongInformationException, BadRequestException {
-        if (name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new WrongInformationException("No user name!");
         }
 
-        User user;
-        try {
-            user = dao.getByName(name);
-        } catch (NullPointerException ex) {
+        User user = dao.getByName(name);
+        if (user == null) {
             throw new BadRequestException("Can't find user by name " + name + "!");
         }
 
@@ -92,14 +90,12 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
     @Override
     @Transactional(readOnly = true)
     public User getByUsername(String username) throws WrongInformationException, BadRequestException {
-        if (username.isEmpty()) {
+        if (username == null || username.isEmpty()) {
             throw new WrongInformationException("No username!");
         }
 
-        User user;
-        try {
-            user =  dao.getByUsername(username);
-        } catch (NullPointerException ex) {
+        User user = dao.getByUsername(username);
+        if (user == null) {
             throw new BadRequestException("Can't find user by username " + username + "!");
         }
 
@@ -115,13 +111,10 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
     @Override
     @Transactional(readOnly = true)
     public User getMainAdministrator() throws BadRequestException {
-        User user;
-        try {
-            user =  dao.getMainAdministrator();
-        } catch (NullPointerException ex) {
+        User user = dao.getMainAdministrator();
+        if (user == null) {
             throw new BadRequestException("Can't find administrator!");
         }
-
         return user;
     }
 
@@ -181,13 +174,10 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
     @Override
     @Transactional(readOnly = true)
     public User getAuthenticatedUser() throws BadRequestException {
-        User user;
-        try {
-            user =  dao.getAuthenticatedUser();
-        } catch (NullPointerException ex) {
+        User user = dao.getAuthenticatedUser();
+        if (user == null) {
             throw new BadRequestException("Can't find authenticated user!");
         }
-
         return user;
     }
 
@@ -201,7 +191,7 @@ public class UserServiceImpl extends MainServiceImpl<User> implements UserServic
     @Override
     @Transactional
     public void removeByName(String name) throws WrongInformationException {
-        if (name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new WrongInformationException("No username!");
         }
         dao.remove(name);

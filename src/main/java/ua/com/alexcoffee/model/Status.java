@@ -16,7 +16,7 @@ import java.util.List;
  * @see Order
  */
 @Entity
-@Table(name = "statuses")
+@Table(name = "Statuses")
 public class Status extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

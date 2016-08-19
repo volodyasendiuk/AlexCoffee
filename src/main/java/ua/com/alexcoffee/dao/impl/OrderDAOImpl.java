@@ -9,7 +9,7 @@ import ua.com.alexcoffee.model.Order;
 /**
  * Класс реализует методы доступа объектов класса {@link Order}
  * в базе данных интерфейса {@link OrderDAO}, наследует родительский
- * абстрактній класс {@link MainDAOImpl}, в котором реализованы
+ * абстрактній класс {@link DataDAOImpl}, в котором реализованы
  * основные методы. Для работы методы используют объект-репозиторий
  * интерфейса {@link OrderRepository}.
  * Класс помечена аннотацией @Repository (наследник Spring'овой аннотации @Component).
@@ -17,13 +17,13 @@ import ua.com.alexcoffee.model.Order;
  * для последующей инъекции.
  *
  * @author Yurii Salimov
- * @see MainDAOImpl
+ * @see DataDAOImpl
  * @see OrderDAO
  * @see Order
  * @see OrderRepository
  */
 @Repository
-public class OrderDAOImpl extends MainDAOImpl<Order> implements OrderDAO {
+public class OrderDAOImpl extends DataDAOImpl<Order> implements OrderDAO {
     /**
      * Реализация репозитория {@link OrderRepository} для работы категорий с базой данных.
      */

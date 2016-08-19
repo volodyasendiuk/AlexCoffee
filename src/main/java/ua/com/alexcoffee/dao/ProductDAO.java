@@ -7,14 +7,14 @@ import java.util.List;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Product} с базой данных.
- * Расширяет интерфейс {@link MainDAO}.
+ * Расширяет интерфейс {@link DataDAO}.
  *
  * @author Yurii Salimov
- * @see MainDAO
+ * @see DataDAO
  * @see ua.com.alexcoffee.dao.impl.ProductDAOImpl
  * @see Product
  */
-public interface ProductDAO extends MainDAO<Product> {
+public interface ProductDAO extends DataDAO<Product> {
     /**
      * Возвращает товар из базы данных, у которого совпадает параметр url.
      *
@@ -37,7 +37,14 @@ public interface ProductDAO extends MainDAO<Product> {
      *
      * @param url URL товара для удаления.
      */
-    void remove(String url);
+    void removeByUrl(String url);
+
+    /**
+     * Удаляет товар из базы данных, у которого совпадает параметр article.
+     *
+     * @param article Артикль товара для удаления.
+     */
+    void removeByArticle(int article);
 
     /**
      * Удаляет товары из базы даных, которые пренадлежат категории

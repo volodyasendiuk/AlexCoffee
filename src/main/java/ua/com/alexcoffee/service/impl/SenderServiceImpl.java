@@ -31,10 +31,7 @@ import java.util.Properties;
 public class SenderServiceImpl implements SenderService, Runnable {
     /**
      * Объект сервиса для работы с пользователями.
-     * Поле помечано аннотацией @Autowired, которая позволит Spring
-     * автоматически инициализировать объект.
      */
-    @Autowired
     private UserService userService;
 
     /**
@@ -62,6 +59,17 @@ public class SenderServiceImpl implements SenderService, Runnable {
      * Заказ, информация о котором будет приходить на почту менеджерам.
      */
     private Order order;
+
+    /**
+     * Конструктор для инициализации основных переменных сервиса.
+     * Помечаный аннотацией @Autowired, которая позволит Spring автоматически инициализировать объект.
+     *
+     * @param userService Реализация интерфейса для работы з пользователями.
+     */
+    @Autowired
+    public SenderServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Отсылает информацию о заказе менеджерам на электронную почту.

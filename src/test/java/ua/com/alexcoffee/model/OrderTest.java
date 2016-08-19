@@ -2,7 +2,6 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.RoleEnum;
 import ua.com.alexcoffee.enums.StatusEnum;
@@ -12,16 +11,17 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenSalePositions;
 
 public class OrderTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Order\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Order\" - FINISH.\n");
     }
 
@@ -54,7 +54,7 @@ public class OrderTest {
         Status status = new Status(StatusEnum.NEW, "NEW");
         order.setStatus(status);
         sb.append(order.getNumber()).append(", ").append(status.getDescription()).append(",\n").append(order.getDate());
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
 
         User client = new User("Client", "email", "phone", null);
@@ -62,7 +62,7 @@ public class OrderTest {
         sb.append("\n\nClient: ").append(client.getName())
                 .append("\ne-mail: ").append(client.getEmail())
                 .append("\nphone: ").append(client.getPhone()).append("\n");
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
 
         Role role = new Role(RoleEnum.ADMIN, "ADMIN");
@@ -70,25 +70,26 @@ public class OrderTest {
         order.setManager(manager);
         sb.append("\n").append(manager.getRole().getDescription())
                 .append(" ").append(manager.getName()).append("\n");
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
 
         String address = "Some address";
         order.setShippingAddress(address);
         sb.append("\nShipping address: ").append(address);
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
 
         String details = "Details";
         order.setShippingDetails(details);
         sb.append("\nShipping details: ").append(details);
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
 
         String description = "description";
         order.setDescription(description);
         sb.append("\nDescription: ").append(description);
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
+
 
         Product product = new Product("title", "url", null, null, 10.0);
         product.setId((long) 1);
@@ -100,7 +101,7 @@ public class OrderTest {
                 .append(position.getProduct().getPrice()).append(" = ")
                 .append(position.getPrice()).append(" UAH;")
                 .append("\n\nPRICE = ").append(position.getPrice()).append(" UAH");
-        assertTrue(sb.toString().equals(order.toString()));
+        assertEquals(order.toString(), sb.toString());
 
         System.out.println("OK!");
     }
@@ -110,7 +111,7 @@ public class OrderTest {
         System.out.print("-> toEquals() - ");
 
         Order order = new Order();
-        assertEquals(order.getNumber(), order.toEquals());
+        assertEquals(order.toEquals(), order.getNumber());
 
         System.out.println("OK!");
     }
@@ -188,13 +189,13 @@ public class OrderTest {
         order.initialize(number, date, shippingAddress, shippingDetails,
                 description, status, client, manager);
 
-        assertTrue(number.equals(order.getNumber()));
-        assertTrue(shippingAddress.equals(order.getShippingAddress()));
-        assertTrue(shippingDetails.equals(order.getShippingDetails()));
-        assertTrue(description.equals(order.getDescription()));
-        assertTrue(status.equals(order.getStatus()));
-        assertTrue(client.equals(order.getClient()));
-        assertTrue(manager.equals(order.getManager()));
+        assertEquals(order.getNumber(), number);
+        assertEquals(order.getShippingAddress(), shippingAddress);
+        assertEquals(order.getShippingDetails(), shippingDetails);
+        assertEquals(order.getDescription(), description);
+        assertEquals(order.getStatus(), status);
+        assertEquals(order.getClient(), client);
+        assertEquals(order.getManager(), manager);
 
         System.out.println("OK!");
     }
@@ -206,7 +207,7 @@ public class OrderTest {
         Order order = new Order();
         order.addSalePosition(new SalePosition());
 
-        assertEquals(1, order.getSalePositions().size());
+        assertEquals(order.getSalePositions().size(), 1);
 
         System.out.println("OK!");
     }
@@ -220,7 +221,7 @@ public class OrderTest {
         Order order = new Order();
         order.addSalePositions(salePositions);
 
-        assertEquals(10, order.getSalePositions().size());
+        assertEquals(order.getSalePositions().size(), 10);
 
         System.out.println("OK!");
     }
@@ -237,7 +238,7 @@ public class OrderTest {
         order.addSalePositions(getTenSalePositions());
         order.removeSalePosition(salePosition);
 
-        assertEquals(10, order.getSalePositions().size());
+        assertEquals(order.getSalePositions().size(), 10);
 
         System.out.println("OK!");
     }
@@ -250,10 +251,10 @@ public class OrderTest {
         List<SalePosition> positions = getTenSalePositions();
 
         order.setSalePositions(positions);
-        assertTrue(order.getSalePositions().size() == 10);
+        assertEquals(order.getSalePositions().size(), 10);
 
         order.removeSalePositions(positions);
-        assertTrue(order.getSalePositions().size() == 0);
+        assertEquals(order.getSalePositions().size(), 0);
 
         System.out.println("OK!");
     }
@@ -266,7 +267,7 @@ public class OrderTest {
         order.setSalePositions(getTenSalePositions());
         order.clearSalePositions();
 
-        assertEquals(0, order.getSalePositions().size());
+        assertEquals(order.getSalePositions().size(), 0);
 
         System.out.println("OK!");
     }
@@ -279,7 +280,7 @@ public class OrderTest {
         order.setSalePositions(getTenSalePositions());
 
         assertNotNull(order.getSalePositions());
-        assertTrue(order.getSalePositions().size() == 10);
+        assertEquals(order.getSalePositions().size(), 10);
 
         System.out.println("OK!");
     }
@@ -293,7 +294,7 @@ public class OrderTest {
 
         order.addSalePosition(salePosition);
 
-        assertTrue(order.equals(salePosition.getOrder()));
+        assertEquals(order, salePosition.getOrder());
 
         System.out.println("OK!");
     }
@@ -324,7 +325,7 @@ public class OrderTest {
         order.newNumber();
         String newNumber = order.getNumber();
 
-        assertEquals(false, number.equals(newNumber));
+        assertFalse(number.equals(newNumber));
 
         System.out.println("OK!");
     }
@@ -354,7 +355,7 @@ public class OrderTest {
         order.setStatus(status);
 
         assertNotNull(order.getStatus());
-        assertTrue(status.equals(order.getStatus()));
+        assertEquals(order.getStatus(), status);
 
         System.out.println("OK!");
     }
@@ -368,7 +369,7 @@ public class OrderTest {
         order.setClient(client);
 
         assertNotNull(order.getClient());
-        assertTrue(client.equals(order.getClient()));
+        assertEquals(order.getClient(), client);
 
         System.out.println("OK!");
     }
@@ -382,7 +383,7 @@ public class OrderTest {
         order.setManager(manager);
 
         assertNotNull(order.getManager());
-        assertTrue(manager.equals(order.getManager()));
+        assertEquals(order.getManager(), manager);
 
         System.out.println("OK!");
     }
@@ -398,7 +399,7 @@ public class OrderTest {
 
         String address = "Some address.";
         order.setShippingAddress(address);
-        assertTrue(address.equals(order.getShippingAddress()));
+        assertEquals(order.getShippingAddress(), address);
 
         System.out.println("OK!");
     }
@@ -414,7 +415,7 @@ public class OrderTest {
 
         String details = "Some details.";
         order.setShippingDetails(details);
-        assertTrue(details.equals(order.getShippingDetails()));
+        assertEquals(order.getShippingDetails(), details);
 
         System.out.println("OK!");
     }
@@ -430,7 +431,7 @@ public class OrderTest {
 
         String description = "Some description.";
         order.setDescription(description);
-        assertTrue(description.equals(order.getDescription()));
+        assertEquals(order.getDescription(), description);
 
         System.out.println("OK!");
     }
@@ -456,20 +457,8 @@ public class OrderTest {
             price += product.getPrice();
         }
 
-        assertTrue(price == order.getPrice());
+        assertTrue(order.getPrice() == price);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<SalePosition> getTenSalePositions() {
-        List<SalePosition> salePositions = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Product product = new Product("Name" + i, "URL", null, null, 10 + i);
-            SalePosition position = new SalePosition(product, 1);
-            salePositions.add(position);
-        }
-
-        return salePositions;
     }
 }

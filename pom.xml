@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ua.com.alexcoffee</groupId>
-    <artifactId>alexcoffee</artifactId>
+    <artifactId>AlexCoffee</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -148,16 +148,19 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>4.2.6.RELEASE</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>2.0.2-beta</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.191</version>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.1-b04</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

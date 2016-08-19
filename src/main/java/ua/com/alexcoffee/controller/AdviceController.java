@@ -88,7 +88,7 @@ public class AdviceController {
      */
     @ExceptionHandler(WrongInformationException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ModelAndView checkoutException(WrongInformationException ex, HttpServletRequest request) {
+    public ModelAndView wrongInformationException(WrongInformationException ex, HttpServletRequest request) {
         return handleException(ex, request, "Ошибка в запросе!");
     }
 

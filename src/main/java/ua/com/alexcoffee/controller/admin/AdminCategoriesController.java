@@ -129,7 +129,7 @@ public class AdminCategoriesController {
                                      @RequestParam(value = "photo_title") String photoTitle,
                                      @RequestParam(value = "photo") MultipartFile photoFile,
                                      ModelAndView modelAndView) {
-        Photo photo = new Photo(photoTitle, photoFile.getOriginalFilename(), null);
+        Photo photo = new Photo(photoTitle, photoFile == null ? null : photoFile.getOriginalFilename(), null);
         Category category = new Category(title, url, description, photo);
         categoryService.add(category);
         photoService.saveFile(photoFile);
@@ -189,7 +189,8 @@ public class AdminCategoriesController {
                                        ModelAndView modelAndView) {
         Photo photo = photoService.get(photoId);
         photo.setTitle(photoTitle);
-        String photoLinkShort = !photoFile.getOriginalFilename().isEmpty() ? photoFile.getOriginalFilename() : photo.getPhotoLinkShort();
+        String photoLinkShort = photoFile == null || photoFile.getOriginalFilename().isEmpty() ? photo.getPhotoLinkShort()
+                : photoFile.getOriginalFilename();
         photo.setPhotoLinkShort(photoLinkShort);
 
         Category category = categoryService.get(id);

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class StatusEnumTest {
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"StatusEnum\" - START.");
     }
 
@@ -21,7 +21,7 @@ public class StatusEnumTest {
 
     @Test
     public void valueOfTest() {
-        System.out.println("-> valueOf() - ");
+        System.out.print("-> valueOf() - ");
 
         StatusEnum statusEnum = StatusEnum.valueOf("NEW");
         assertTrue(statusEnum.equals(StatusEnum.NEW));
@@ -32,7 +32,7 @@ public class StatusEnumTest {
 
     @Test
     public void valuesTest() {
-        System.out.println("-> values() - ");
+        System.out.print("-> values() - ");
 
         StatusEnum[] statusEnum = StatusEnum.values();
         assertNotNull(statusEnum);

@@ -84,10 +84,8 @@ public class StatusServiceImpl extends MainServiceImpl<Status> implements Status
             throw new WrongInformationException("No status title!");
         }
 
-        Status status;
-        try {
-            status = dao.get(title);
-        } catch (NullPointerException ex) {
+        Status status = dao.get(title);
+        if (status == null) {
             throw new BadRequestException("Can't find status by title " + title + "!");
         }
 
@@ -103,13 +101,10 @@ public class StatusServiceImpl extends MainServiceImpl<Status> implements Status
     @Override
     @Transactional(readOnly = true)
     public Status getDefault() throws BadRequestException {
-        Status status;
-        try {
-            status = dao.getDefault();
-        } catch (NullPointerException ex) {
+        Status status = dao.getDefault();
+        if (status == null) {
             throw new BadRequestException("Can't find default status!");
         }
-
         return status;
     }
 

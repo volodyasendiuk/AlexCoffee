@@ -83,7 +83,14 @@ public interface ProductService extends MainService<Product> {
      *
      * @param url URL товара для удаления.
      */
-    void remove(String url);
+    void removeByUrl(String url);
+
+    /**
+     * Удаляет товар, у которого совпадает параметр article.
+     *
+     * @param article Артикль товара для удаления.
+     */
+    void removeByArticle(int article);
 
     /**
      * Удаляет товары, которые пренадлежат категории с уникальным URL - входным параметром.

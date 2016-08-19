@@ -68,7 +68,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     @Transactional
     public void add(SalePosition salePosition) {
-        shoppingCartDAO.addSalePosition(salePosition);
+        if (salePosition != null) {
+            shoppingCartDAO.addSalePosition(salePosition);
+        }
     }
 
     /**
@@ -79,11 +81,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     @Transactional(readOnly = true)
     public List<SalePosition> getSalePositions() {
-        List<SalePosition> salePositions = shoppingCartDAO.getSalePositions();
-        if (salePositions.isEmpty()) {
-            return null;
-        }
-        return salePositions;
+        return shoppingCartDAO.getSalePositions();
     }
 
     /**
@@ -94,7 +92,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     @Transactional
     public void remove(SalePosition salePosition) {
-        shoppingCartDAO.removeSalePosition(salePosition);
+        if (salePosition != null) {
+            shoppingCartDAO.removeSalePosition(salePosition);
+        }
     }
 
     /**
@@ -126,6 +126,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     @Transactional(readOnly = true)
     public int getSize() {
-        return shoppingCartDAO.size();
+        return shoppingCartDAO.getSize();
     }
 }

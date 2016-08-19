@@ -9,12 +9,12 @@ import static org.junit.Assert.*;
 public class ProductTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Product\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Product\" - FINISH.\n");
     }
 
@@ -35,13 +35,13 @@ public class ProductTest {
         String line = "Title: " + title + "\nParameters: " + parameters + "\nDescription: "
                 + description + "\nPrice = " + price + " UAH";
 
-        assertTrue(product.toString().equals(line));
+        assertEquals(product.toString(), line);
 
         Category category = new Category(title, null, null, null);
         product.setCategory(category);
         line += "\nCategory: " + category.getTitle();
 
-        assertTrue(line.equals(product.toString()));
+        assertEquals(product.toString(), line);
 
         System.out.println("Ok!");
     }
@@ -51,7 +51,7 @@ public class ProductTest {
         System.out.print("-> toEquals() - ");
 
         Product product = new Product("Title", "url", new Category(), new Photo(), 1000);
-        assertEquals(product.getArticle() + "Titleurl" + product.getPrice(), product.toEquals());
+        assertEquals(product.toEquals(), product.getArticle() + "Titleurl" + product.getPrice());
 
         System.out.println("OK!");
     }
@@ -127,12 +127,12 @@ public class ProductTest {
         Product product = new Product();
         product.initialize(title, url, parameters, description, category, photo, price);
 
-        assertTrue(product.getTitle().equals(title));
-        assertTrue(product.getUrl().equals(url));
-        assertTrue(product.getParameters().equals(parameters));
-        assertTrue(product.getDescription().equals(description));
-        assertTrue(product.getCategory().equals(category));
-        assertTrue(product.getPhoto().equals(photo));
+        assertEquals(product.getTitle(), title);
+        assertEquals(product.getUrl(), url);
+        assertEquals(product.getParameters(), parameters);
+        assertEquals(product.getDescription(), description);
+        assertEquals(product.getCategory(), category);
+        assertEquals(product.getPhoto(), photo);
         assertTrue(product.getPrice() == price);
 
         System.out.println("OK!");
@@ -178,7 +178,7 @@ public class ProductTest {
 
         String title = "Title";
         product.setTitle(title);
-        assertTrue(product.getTitle().equals(title));
+        assertEquals(product.getTitle(), title);
 
         System.out.println("OK!");
     }
@@ -194,7 +194,7 @@ public class ProductTest {
 
         String url = "URL";
         product.setUrl(url);
-        assertTrue(product.getUrl().equals(url));
+        assertEquals(product.getUrl(), url);
 
         System.out.println("OK!");
     }
@@ -210,7 +210,7 @@ public class ProductTest {
 
         String parameters = "Parameters";
         product.setParameters(parameters);
-        assertTrue(product.getParameters().equals(parameters));
+        assertEquals(product.getParameters(), parameters);
 
         System.out.println("OK!");
     }
@@ -226,7 +226,7 @@ public class ProductTest {
 
         String description = "Description";
         product.setDescription(description);
-        assertTrue(product.getDescription().equals(description));
+        assertEquals(product.getDescription(), description);
 
         System.out.println("OK!");
     }
@@ -240,7 +240,7 @@ public class ProductTest {
         product.setPhoto(photo);
 
         assertNotNull(product.getPhoto());
-        assertTrue(product.getPhoto().equals(photo));
+        assertEquals(product.getPhoto(), photo);
 
         System.out.println("OK!");
     }
@@ -254,9 +254,9 @@ public class ProductTest {
         product.setCategory(category);
 
         assertNotNull(product.getCategory());
-        assertTrue(product.getCategory().equals(category));
+        assertEquals(product.getCategory(), category);
 
-        System.out.println("FAIL!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -283,7 +283,7 @@ public class ProductTest {
         product.setSalePosition(position);
 
         assertNotNull(product.getSalePosition());
-        assertTrue(product.getSalePosition().equals(position));
+        assertEquals(product.getSalePosition(), position);
 
         System.out.println("OK!");
     }

@@ -2,25 +2,23 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenSalePositions;
 
 public class ShoppingCartTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"ShoppingCart\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"ShoppingCart\" - FINISH.\n");
     }
 
@@ -39,7 +37,7 @@ public class ShoppingCartTest {
         line = "Shoping Cart: \n1) " + product.getTitle() + "\n№ " + product.getId() + ", " + position.getPrice() + " UAH"
                 +"\nPrice: "+cart.getPrice()+" UAH";
 
-        assertTrue(cart.toString().equals(line));
+        assertEquals(cart.toString(),line);
 
         System.out.println("OK!");
     }
@@ -58,7 +56,7 @@ public class ShoppingCartTest {
         assertTrue(shoppingCart.getSalePositions().size() == 1);
         assertTrue(shoppingCart.getSalePositions().get(0).getNumber() == 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -78,7 +76,7 @@ public class ShoppingCartTest {
         assertTrue(shoppingCart.getSalePositions().size() == 1);
         assertTrue(shoppingCart.getSalePositions().get(0).getNumber() == 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -101,7 +99,7 @@ public class ShoppingCartTest {
     public void removeSalePositionsTest() {
         System.out.print("-> removeSalePositions() - ");
 
-        List<SalePosition> positions = getTenSalePosition();
+        List<SalePosition> positions = getTenSalePositions();
         ShoppingCart cart = new ShoppingCart(positions);
         cart.removeSalePositions(positions);
 
@@ -114,7 +112,7 @@ public class ShoppingCartTest {
     public void clearSalePositionsTest() {
         System.out.print("-> clearSalePositions() - ");
 
-        ShoppingCart cart = new ShoppingCart(getTenSalePosition());
+        ShoppingCart cart = new ShoppingCart(getTenSalePositions());
         cart.clearSalePositions();
 
         assertTrue(cart.getSize() == 0);
@@ -126,7 +124,7 @@ public class ShoppingCartTest {
     public void setAndGetSalePositionsTest() {
         System.out.print("-> setAndGetSalePositions() - ");
 
-        List<SalePosition> positions = getTenSalePosition();
+        List<SalePosition> positions = getTenSalePositions();
         ShoppingCart cart = new ShoppingCart();
         cart.setSalePositions(positions);
 
@@ -151,29 +149,17 @@ public class ShoppingCartTest {
         assertTrue(shoppingCart.getPrice() == salePosition.getPrice());
         assertTrue(shoppingCart.getPrice() == product.getPrice() * 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
     public void getSizeTest() {
         System.out.print("-> getSize() - ");
 
-        ShoppingCart cart = new ShoppingCart(getTenSalePosition());
+        ShoppingCart cart = new ShoppingCart(getTenSalePositions());
 
         assertTrue(cart.getSize() == 10);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<SalePosition> getTenSalePosition() {
-        List<SalePosition> positions = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Product product = new Product("Title" + i, "URL" + i, null, null, 10.0);
-            SalePosition position = new SalePosition(product, 1);
-            positions.add(position);
-        }
-
-        return positions;
     }
 }

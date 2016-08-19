@@ -51,7 +51,7 @@ public interface ShoppingCartDAO {
      *
      * @return Значение типа int - количество товаров в корзине.
      */
-    int size();
+    int getSize();
 
     /**
      * Возвращает цену корзины - цена всех торговых позиций.

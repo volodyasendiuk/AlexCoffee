@@ -1,5 +1,6 @@
 package ua.com.alexcoffee.dao;
 
+import ua.com.alexcoffee.dao.impl.DataDAOImpl;
 import ua.com.alexcoffee.model.Model;
 
 import java.util.Collection;
@@ -19,9 +20,9 @@ import java.util.List;
  * @see SalePositionDAO
  * @see StatusDAO
  * @see UserDAO
- * @see ua.com.alexcoffee.dao.impl.MainDAOImpl
+ * @see DataDAOImpl
  */
-public interface MainDAO<T extends Model> {
+public interface DataDAO<T extends Model> {
 
     /**
      * Добавление модели в базу данных.

@@ -71,14 +71,12 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Override
     @Transactional(readOnly = true)
     public Product getByUrl(String url) throws WrongInformationException, BadRequestException {
-        if (url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No product URL!");
         }
 
-        Product product;
-        try {
-            product = productDAO.getByUrl(url);
-        } catch (NullPointerException ex) {
+        Product product = productDAO.getByUrl(url);
+        if (product == null) {
             throw new BadRequestException("Can't find product by url " + url + "!");
         }
 
@@ -97,10 +95,8 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Override
     @Transactional(readOnly = true)
     public Product getByArticle(int article) throws BadRequestException {
-        Product product;
-        try {
-            product = productDAO.getByArticle(article);
-        } catch (NullPointerException ex) {
+        Product product = productDAO.getByArticle(article);
+        if (product == null) {
             throw new BadRequestException("Can't find product by article " + article + "!");
         }
         return product;
@@ -118,14 +114,12 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Override
     @Transactional(readOnly = true)
     public List<Product> getByCategoryUrl(String url) throws WrongInformationException, BadRequestException {
-        if (url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
 
-        Category category;
-        try {
-            category = categoryDAO.get(url);
-        } catch (NullPointerException ex) {
+        Category category = categoryDAO.get(url);
+        if (category == null) {
             throw new BadRequestException("Can't find category by url " + url + "!");
         }
 
@@ -138,10 +132,14 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      *
      * @param id Код категории, товары которой будут возвращены.
      * @return Объект типа {@link List} - список товаров.
+     * @throws WrongInformationException Бросает исключение, если пустой входной параметр id.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Product> getByCategoryId(Long id) {
+    public List<Product> getByCategoryId(Long id) throws WrongInformationException {
+        if (id == null) {
+            throw new WrongInformationException("No category id!");
+        }
         return productDAO.getListByCategoryId(id);
     }
 
@@ -156,7 +154,7 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Override
     @Transactional(readOnly = true)
     public List<Product> getRandomByCategoryId(int size, Long id) {
-        return getRandomByCategoryId(size, id, (long) -1);
+        return getRandomByCategoryId(size, id, -1L);
     }
 
     /**
@@ -167,13 +165,18 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * @param categoryId         Код категории, товары которой будут возвращены.
      * @param differentProductId Код товара, который точно не будет включен в список.
      * @return Объект типа {@link List} - список товаров.
+     * @throws WrongInformationException Бросает исключение, если несли пустой хотя бы одис с параметров.
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Product> getRandomByCategoryId(int size, Long categoryId, Long differentProductId) {
+    public List<Product> getRandomByCategoryId(int size, Long categoryId, Long differentProductId) throws WrongInformationException {
+        if (categoryId == null || differentProductId == null) {
+            throw new WrongInformationException("No category or product id!");
+        }
+
         List<Product> products = productDAO.getListByCategoryId(categoryId);
         if (products.isEmpty()) {
-            return null;
+            return Collections.EMPTY_LIST;
         }
         products.remove(productDAO.get(differentProductId));
         return getShuffleSubList(products, 0, size);
@@ -189,6 +192,9 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Transactional(readOnly = true)
     public List<Product> getRandom(int size) {
         List<Product> products = productDAO.getAll();
+        if (products.isEmpty()) {
+            return Collections.EMPTY_LIST;
+        }
         return getShuffleSubList(products, 0, size);
     }
 
@@ -200,11 +206,23 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      */
     @Override
     @Transactional
-    public void remove(String url) throws WrongInformationException {
-        if (url.isEmpty()) {
+    public void removeByUrl(String url) throws WrongInformationException {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No product URL!");
         }
-        productDAO.remove(url);
+        productDAO.removeByUrl(url);
+    }
+
+    /**
+     * Удаляет товар, у которого совпадает параметр article.
+     *
+     * @param article артикль товара для удаления.
+     * @throws WrongInformationException Бросает исключение, если пустой входной параметр url.
+     */
+    @Override
+    @Transactional
+    public void removeByArticle(int article) {
+        productDAO.removeByArticle(article);
     }
 
     /**
@@ -218,14 +236,12 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
     @Override
     @Transactional
     public void removeByCategoryUrl(String url) throws WrongInformationException, BadRequestException {
-        if (url.isEmpty()) {
+        if (url == null || url.isEmpty()) {
             throw new WrongInformationException("No category URL!");
         }
 
-        Category category;
-        try {
-            category = categoryDAO.get(url);
-        } catch (NullPointerException ex) {
+        Category category = categoryDAO.get(url);
+        if (category == null) {
             throw new BadRequestException("Can't find category by url " + url + "!");
         }
 
@@ -237,14 +253,17 @@ public class ProductServiceImpl extends MainServiceImpl<Product> implements Prod
      * с уникальным кодом - входным параметром.
      *
      * @param id Код категории, товары котрой будут удалены.
-     * @throws BadRequestException Бросает исключение, если не найдена категория с входящим параметром id.
+     * @throws WrongInformationException Бросает исключение, если пустой входной параметр id.
+     * @throws BadRequestException       Бросает исключение, если не найдена категория с входящим параметром id.
      */
     @Override
     @Transactional
-    public void removeByCategoryId(Long id) throws BadRequestException {
-        try {
-            categoryDAO.get(id);
-        } catch (NullPointerException ex) {
+    public void removeByCategoryId(Long id) throws WrongInformationException, BadRequestException {
+        if (id == null) {
+            throw new WrongInformationException("No model id!");
+        }
+
+        if (categoryDAO.get(id) == null) {
             throw new BadRequestException("Can't find category by id " + id + "!");
         }
 

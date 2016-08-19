@@ -27,8 +27,14 @@ import ua.com.alexcoffee.service.RoleService;
 @EnableWebSecurity
 @ComponentScan(basePackages = {"ua.com.alexcoffee.service", "ua.com.alexcoffee.dao", "ua.com.alexcoffee.repository"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    /**
+     * Префикс URL запросов для администраторов.
+     */
     private static final String ADMIN_REQUEST_URl = "/admin/**";
+
+    /**
+     * Префикс URL запросов для менеджеров.
+     */
     private static final String MANAGER_REQUEST_URl = "/manager/**";
 
     /**
@@ -39,12 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Название импута username на странице авторизации.
      */
-    private static final String USERNAME_PARAMETER = "username";
+    private static final String USERNAME = "username";
 
     /**
      * Название импута password на странице авторизации.
      */
-    private static final String PASSWORD_PARAMETER = "password";
+    private static final String PASSWORD = "password";
 
     /**
      * URL запроса при отказе в доступе при авторизации.
@@ -54,12 +60,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Логин запасного аккаунта.
      */
-    private static final String DEFAULT_LOGIN = "qwertyy";
+    private static final String DEFAULT_LOGIN = "adminka-vitaminka";
 
     /**
      * Пароль запасного аккаунта.
      */
-    private static final String DEFAULT_PASSWORD = "qwertyy";
+    private static final String DEFAULT_PASSWORD = "vitamin-in-orange";
 
     /**
      * Объект сервиса для работы с зарегистрированными пользователями.
@@ -78,9 +84,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Настройка правил доступа пользователей к страницам сайта. Указываем адреса ресурсов с
      * ограниченным доступом, ограничение задано по ролям. К страницам, URL которых начинается
-     * на "/admin/**", имеют доступ только пользователи с ролью - администратор. К страницам, URL
-     * которых начинается на "/manager/**", имеют доступ администраторы и менеджера. Чтобы попасть на
-     * эти страницы, нужно пройти этам авторизации.
+     * на "{@value ADMIN_REQUEST_URl}", имеют доступ только пользователи с ролью - администратор.
+     * К страницам, URL которых начинается на "{@value MANAGER_REQUEST_URl}", имеют доступ
+     * администраторы и менеджера. Чтобы попасть на эти страницы, нужно пройти этам авторизации.
      *
      * @param httpSecurity Объект класса HttpSecurity для настройки прав доступа к страницам.
      * @throws Exception Исключение методов класса HttpSecurity.
@@ -97,8 +103,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage(LOGIN_URL)
-                .usernameParameter(USERNAME_PARAMETER)
-                .passwordParameter(PASSWORD_PARAMETER)
+                .usernameParameter(USERNAME)
+                .passwordParameter(PASSWORD)
                 .defaultSuccessUrl("/", false)
                 .and()
                 .exceptionHandling().accessDeniedPage(ACCESS_DENIED_PAGE).and()

@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="alexcoffee-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="AlexCoffee:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mockito:mockito-all:2.0.2-beta" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-test:4.2.6.RELEASE" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

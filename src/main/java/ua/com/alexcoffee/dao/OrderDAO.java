@@ -5,14 +5,14 @@ import ua.com.alexcoffee.model.Order;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Order} с базой данных.
- * Расширяет интерфейс {@link MainDAO}.
+ * Расширяет интерфейс {@link DataDAO}.
  *
  * @author Yurii Salimov
- * @see MainDAO
+ * @see DataDAO
  * @see ua.com.alexcoffee.dao.impl.OrderDAOImpl
  * @see Order
  */
-public interface OrderDAO extends MainDAO<Order> {
+public interface OrderDAO extends DataDAO<Order> {
     /**
      * Возвращает заказ из базы даных, у которого совпадает уникальный номером
      * с значением входящего параметра.

@@ -20,7 +20,7 @@ import java.util.*;
  * @see Order
  */
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User extends Model implements UserDetails {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.
@@ -97,7 +97,7 @@ public class User extends Model implements UserDetails {
      * Выборка объекта status до первого доступа нему, при первом доступе к текущему объекту.
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
     /**

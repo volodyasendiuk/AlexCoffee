@@ -2,24 +2,23 @@ package ua.com.alexcoffee.model;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.StatusEnum;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static ua.com.alexcoffee.tools.MockMain.getTenOrders;
 
 public class StatusTest {
 
     @BeforeClass
-    public static void beforeTests() {
+    public static void setUp() {
         System.out.println("\nTesting class \"Status\" - START.");
     }
 
     @AfterClass
-    public static void afterTests() {
+    public static void tearDown() {
         System.out.println("Testing class \"Status\" - FINISH.\n");
     }
 
@@ -33,7 +32,7 @@ public class StatusTest {
         Status status = new Status(title, description);
         String line = "Title: " + title.name() + "\nDescription: " + description;
 
-        assertTrue(status.toString().equals(line));
+        assertEquals(status.toString(), line);
 
         System.out.println("OK!");
     }
@@ -45,7 +44,7 @@ public class StatusTest {
         Status status = new Status(StatusEnum.NEW, "NEW");
         assertEquals(status.toString(), status.toEquals());
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -53,12 +52,12 @@ public class StatusTest {
         System.out.print("-> Reflexive equals - ");
 
         Status status = new Status();
-        assertTrue(status.equals(status));
+        assertEquals(status, status);
 
         status = new Status(StatusEnum.NEW, "NEW");
         assertTrue(status.equals(status));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -71,7 +70,7 @@ public class StatusTest {
         assertTrue(status1.equals(status2));
         assertTrue(status2.equals(status1));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -86,7 +85,7 @@ public class StatusTest {
         assertTrue(status2.equals(status3));
         assertTrue(status1.equals(status3));
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -100,7 +99,7 @@ public class StatusTest {
             assertTrue(status1.equals(status2));
         }
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -111,9 +110,9 @@ public class StatusTest {
         for (int i = 0; i < 10; i++) {
             status.addOrder(new Order());
         }
-        assertEquals(10, status.getOrders().size());
+        assertTrue(status.getOrders().size() == 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -125,9 +124,9 @@ public class StatusTest {
         Status status = new Status();
         status.addOrders(orders);
 
-        assertEquals(10, status.getOrders().size());
+        assertTrue(status.getOrders().size() == 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -142,26 +141,25 @@ public class StatusTest {
 
         status.removeOrder(order);
 
-        assertEquals(10, status.getOrders().size());
+        assertTrue(status.getOrders().size() == 10);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
-    public void removeOrdersTest() {
-        System.out.print("-> removeOrders() - ");
+    public void addAndRemoveOrdersTest() {
+        System.out.print("-> addAndRemoveOrders() - ");
 
         Status status = new Status();
 
         List<Order> orders = getTenOrders();
         status.addOrders(orders);
-        status.addOrders(getTenOrders());
+        assertTrue(status.getOrders().size() == 10);
 
         status.removeOrders(orders);
+        assertTrue(status.getOrders().size() == 0);
 
-        assertEquals(10, status.getOrders().size());
-
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -174,9 +172,9 @@ public class StatusTest {
 
         status.clearOrders();
 
-        assertEquals(0, status.getOrders().size());
+        assertTrue(status.getOrders().size() == 0);
 
-        System.out.println("ok!");
+        System.out.println("OK!");
     }
 
     @Test
@@ -200,7 +198,7 @@ public class StatusTest {
         status.setTitle(StatusEnum.NEW);
 
         assertNotNull(status.getTitle());
-        assertTrue(status.getTitle().equals(StatusEnum.NEW));
+        assertEquals(status.getTitle(), StatusEnum.NEW);
         assertFalse(status.getTitle().equals(StatusEnum.CLOSED));
 
         System.out.println("OK!");
@@ -217,18 +215,8 @@ public class StatusTest {
 
         String description = "Description";
         status.setDescription(description);
-        assertTrue(status.getDescription().equals(description));
+        assertEquals(status.getDescription(), description);
 
         System.out.println("OK!");
-    }
-
-    @Ignore
-    private static List<Order> getTenOrders() {
-        List<Order> orders = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            orders.add(new Order());
-        }
-
-        return orders;
     }
 }

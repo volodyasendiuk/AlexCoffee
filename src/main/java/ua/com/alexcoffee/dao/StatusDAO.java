@@ -6,15 +6,15 @@ import ua.com.alexcoffee.model.Status;
 /**
  * Интерфейс описывает набор методов для работы объектов класса
  * {@link Status} с базой данных.
- * Расширяет интерфейс {@link MainDAO}.
+ * Расширяет интерфейс {@link DataDAO}.
  *
  * @author Yurii Salimov
- * @see MainDAO
+ * @see DataDAO
  * @see ua.com.alexcoffee.dao.impl.StatusDAOImpl
  * @see Status
  * @see ua.com.alexcoffee.model.Order
  */
-public interface StatusDAO extends MainDAO<Status> {
+public interface StatusDAO extends DataDAO<Status> {
     /**
      * Добавляет статус в базу даных по названию, которое может принимать
      * одно из значений перечисления {@link StatusEnum}.
