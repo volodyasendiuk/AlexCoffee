@@ -23,7 +23,7 @@ public class PhotoServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"OrderServiceImpl\" - START.");
+        System.out.println("\nTesting class \"OrderServiceImpl\" - START.\n");
 
         photoService = MockService.getPhotoService();
     }

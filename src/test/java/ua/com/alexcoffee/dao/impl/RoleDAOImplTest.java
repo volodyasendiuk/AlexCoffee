@@ -32,7 +32,7 @@ public class RoleDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"RoleDAOImpl\" - START.");
+        System.out.println("\nTesting class \"RoleDAOImpl\" - START.\n");
     }
 
     @AfterClass

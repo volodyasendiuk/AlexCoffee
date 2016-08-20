@@ -14,7 +14,7 @@ public class RoleTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Role\" - START.");
+        System.out.println("\nTesting class \"Role\" - START.\n");
     }
 
     @AfterClass

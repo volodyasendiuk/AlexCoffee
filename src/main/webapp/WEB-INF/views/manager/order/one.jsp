@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/manager/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Заказ ${order.number} || Alex Coffee">
     <title>Заказ ${order.number} || Alex Coffee</title>
@@ -13,7 +13,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/manager_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/manager/template/manager_navbar.jsp"/>
 
 <!-- ORDER -->
 <div class="container-fluid width">

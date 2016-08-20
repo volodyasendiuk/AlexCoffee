@@ -13,7 +13,7 @@ public class ProductTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Product\" - START.");
+        System.out.println("\nTesting class \"Product\" - START.\n");
     }
 
     @AfterClass

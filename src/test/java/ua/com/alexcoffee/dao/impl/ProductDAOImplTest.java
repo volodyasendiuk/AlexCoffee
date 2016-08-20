@@ -34,7 +34,7 @@ public class ProductDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ProductDAOImpl\" - START.");
+        System.out.println("\nTesting class \"ProductDAOImpl\" - START.\n");
     }
 
     @AfterClass

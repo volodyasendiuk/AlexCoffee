@@ -146,7 +146,7 @@ public class AdviceController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("cart_size", shoppingCartService.getSize());
         modelAndView.addObject("text_error", textError);
-        modelAndView.setViewName("error");
+        modelAndView.setViewName("client/error");
         return modelAndView;
     }
 }

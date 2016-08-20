@@ -23,7 +23,7 @@ public class StatusServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"StatusServiceImpl\" - START.");
+        System.out.println("\nTesting class \"StatusServiceImpl\" - START.\n");
 
         statusService = MockService.getStatusService();
     }

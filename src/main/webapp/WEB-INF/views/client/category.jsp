@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/client/template/head.jsp"/>
     <meta name="description" content="${category.description}"/>
     <meta name="keywords" content="${category.title}"/>
     <meta name="title" content="${category.title} || Alex Coffee">
@@ -15,7 +15,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/navbar.jsp"/>
 
 <!-- COFFEE -->
 <div class="container-fluid width">
@@ -34,31 +34,8 @@
                 </h3>
             </div>
 
-            <c:if test="${fn:length(products) gt 0}">
-                <c:forEach items="${products}" var="product">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                        <div class="product">
-                            <a href="/product_${product.url}" title="Перейти к ${product.title}">
-                                <img src="/resources/img/${product.photo.photoLinkShort}"
-                                     class="img-thumbnail blink" width="185px" height="185px"
-                                     alt="${product.title}">
-                                <div class="text-shadow">${product.title}</div>
-
-                                <p class="price-top">
-                                    <fmt:formatNumber type="number" value="${product.price}"/> грн
-                                </p>
-                            </a>
-                            <form action="/cart_add_quickly" method="post">
-                                <input type="hidden" name="id" value="${product.id}">
-                                <input type="hidden" name="url" value="/category_${category.url}">
-                                <p class="text" title="Добавить ${product.title} в корзину">
-                                    <button class="btn btn-success" type="submit">Добавить в корзину</button>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                </c:forEach>
-            </c:if>
+            <!-- PRODUCTS IN CATEGORY -->
+            <jsp:include page="/WEB-INF/views/client/template/products_list.jsp"/>
 
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                 <h4 class="text-all-products text-shadow">
@@ -74,7 +51,7 @@
     <div class="container-fluid width">
         <section id="category-description">
             <div class="row category-description color-black">
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1">
                     <p><b>${category.title}</b></p>
                     <p>${category.description}</p>
                 </div>
@@ -84,6 +61,6 @@
 </c:if>
 
 <!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/template/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/footer.jsp"/>
 </body>
 </html>

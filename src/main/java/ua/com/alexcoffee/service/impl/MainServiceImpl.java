@@ -94,6 +94,8 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
      *
      * @param id Уникальный код модели.
      * @return Объект класса {@link Model} -  модель с кодом id.
+     * @throws WrongInformationException Бросает исключение, если пустой входной параметр id.
+     * @throws BadRequestException       Бросает исключение, если не найдена модель с входящим параметром id.
      */
     @Override
     @Transactional(readOnly = true)
@@ -137,6 +139,7 @@ public abstract class MainServiceImpl<T extends Model> implements MainService<T>
      * Удаление модели из базы данных по уникальному коду.
      *
      * @param id Уникальный код модели.
+     * @throws WrongInformationException Бросает исключение, если пустой входной параметр id.
      */
     @Override
     @Transactional

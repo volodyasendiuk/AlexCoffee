@@ -19,7 +19,7 @@ public class AdminProductsControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"AdminProductsController\" - START.");
+        System.out.println("\nTesting class \"AdminProductsController\" - START.\n");
 
         ProductService productService = getProductService();
         CategoryService categoryService = getCategoryService();

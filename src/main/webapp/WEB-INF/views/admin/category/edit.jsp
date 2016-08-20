@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Редактирование категории ${category.title} || Alex Coffee">
     <title>Редактирование категории ${category.title} || Alex Coffee</title>
@@ -13,7 +13,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/admin/template/admin_navbar.jsp"/>
 
 <!-- EDIT CATEGORY -->
 <div class="container-fluid width">

@@ -8,7 +8,7 @@ public class ControllerExceptionAspectTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ControllerExceptionAspect\" - START.");
+        System.out.println("\nTesting class \"ControllerExceptionAspect\" - START.\n");
     }
 
     @AfterClass

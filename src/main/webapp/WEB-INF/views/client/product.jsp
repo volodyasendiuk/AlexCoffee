@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/client/template/head.jsp"/>
     <meta name="robots" content="index,follow">
     <meta name="description" content="${product.description}"/>
     <meta name="keywords" content="${product.title}"/>
@@ -16,14 +16,14 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/navbar.jsp"/>
 
 <!-- PRODUCT -->
 <div class="container-fluid width">
     <section id="one-product">
         <div class="row one-product">
-            <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 col-xs-offset-1">
+            <div class="col-xs-7 col-xs-offset-1 col-sm-7 col-sm-offset-1 col-md-7 col-md-offset-1 col-lg-7 col-lg-offset-1">
+                <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
                     <img src="/resources/img/${product.photo.photoLinkShort}" width="185px" height="185px"
                          alt="${product.title}">
                 </div>
@@ -62,6 +62,7 @@
                 </div>
             </div>
 
+            <!-- -->
             <c:if test="${fn:length(featured_products) gt 0}">
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 featured-products text-center">
                     <c:forEach items="${featured_products}" var="featured_product">
@@ -97,6 +98,6 @@
 </div>
 
 <!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/template/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/footer.jsp"/>
 </body>
 </html>

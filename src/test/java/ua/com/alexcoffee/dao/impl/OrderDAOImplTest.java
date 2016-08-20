@@ -33,7 +33,7 @@ public class OrderDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"OrderDAOImpl\" - START.");
+        System.out.println("\nTesting class \"OrderDAOImpl\" - START.\n");
     }
 
     @AfterClass

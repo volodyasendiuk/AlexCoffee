@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class StatusEnumTest {
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"StatusEnum\" - START.");
+        System.out.println("\nTesting class \"StatusEnum\" - START.\n");
     }
 
     @AfterClass

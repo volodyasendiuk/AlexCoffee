@@ -17,7 +17,7 @@ public class OrderTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Order\" - START.");
+        System.out.println("\nTesting class \"Order\" - START.\n");
     }
 
     @AfterClass

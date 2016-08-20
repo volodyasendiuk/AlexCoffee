@@ -13,7 +13,7 @@ public class CategoryTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Category\" - START.");
+        System.out.println("\nTesting class \"Category\" - START.\n");
     }
 
     @AfterClass

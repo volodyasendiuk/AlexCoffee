@@ -1,5 +1,6 @@
 package ua.com.alexcoffee.tools;
 
+import org.junit.Ignore;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -26,5 +27,12 @@ public abstract class ModelAndViews {
                 assertNotNull(map.get(key));
             }
         }
+    }
+
+    @Ignore
+    public static void checkModelAndViewWithException(ModelAndView modelAndView) {
+        String[] keys = {"cart_size", "text_error"};
+        String viewName = "client/error";
+        ModelAndViews.checkModelAndView(modelAndView, viewName, keys);
     }
 }

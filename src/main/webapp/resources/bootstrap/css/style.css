@@ -192,12 +192,17 @@ section .google-map {
 #google-map {
     width: 100%;
 }
-
+/*
+.footer {
+    background-size: cover;
+    background: url("/resources/img/footer_promo.jpg") no-repeat fixed;
+    padding-bottom: 0;
+}
+*/
 .footer {
     background: url("/resources/img/footer_promo.jpg") fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 25px;
     padding-bottom: 0;
 }
 

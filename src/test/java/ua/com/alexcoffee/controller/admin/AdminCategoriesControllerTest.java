@@ -18,7 +18,7 @@ public class AdminCategoriesControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"AdminCategoriesController\" - START.");
+        System.out.println("\nTesting class \"AdminCategoriesController\" - START.\n");
 
         CategoryService categoryService = getCategoryService();
         PhotoService photoService = getPhotoService();

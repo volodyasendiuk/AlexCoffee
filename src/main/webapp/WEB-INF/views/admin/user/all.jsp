@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Персонал || Alex Coffee">
     <title>Персонал || Alex Coffee</title>
@@ -14,7 +14,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/admin/template/admin_navbar.jsp"/>
 
 <!-- PERSONS -->
 <div class="container-fluid width">
@@ -41,7 +41,7 @@
                         <tr>
                             <th>Роль</th>
                             <th>Имя</th>
-                            <td class="hidden-xs"><b>Телефон</th>
+                            <td class="hidden-xs"><b>Телефон</b></th>
                             <td>
                                 <b>Действие</b>
                                 <a href="/admin/add_user" title="Добавить нового работника">

@@ -23,5 +23,6 @@
                     </h5>
                 </div>
             </div>
+        </div>
     </footer>
 </div>

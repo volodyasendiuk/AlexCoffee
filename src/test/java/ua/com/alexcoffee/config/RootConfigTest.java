@@ -53,7 +53,7 @@ public class RootConfigTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"RootConfig\" - START.");
+        System.out.println("\nTesting class \"RootConfig\" - START.\n");
     }
 
     @AfterClass

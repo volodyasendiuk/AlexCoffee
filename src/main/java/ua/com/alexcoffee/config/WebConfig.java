@@ -57,7 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     /**
      * Название вьюшки авторизации.
      */
-    private static final String LOGIN_VIEW_NAME = "login";
+    private static final String LOGIN_VIEW_NAME = "client/login";
 
     /**
      * Указывает Spring'у где находятся компоненты представления, и как их отображать.

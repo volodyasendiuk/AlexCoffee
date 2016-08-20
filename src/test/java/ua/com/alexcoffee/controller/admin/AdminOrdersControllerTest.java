@@ -19,7 +19,7 @@ public class AdminOrdersControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"AdminOrdersController\" - START.");
+        System.out.println("\nTesting class \"AdminOrdersController\" - START.\n");
 
         OrderService orderService = getOrderService();
         StatusService statusService = getStatusService();

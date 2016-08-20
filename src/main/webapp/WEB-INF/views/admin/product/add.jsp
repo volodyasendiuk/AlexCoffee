@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Новый продукт || Alex Coffee">
     <title>Новый продукт || Alex Coffee</title>
@@ -13,7 +13,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/admin/template/admin_navbar.jsp"/>
 
 <!-- ADD PRODUCT -->
 <div class="container-fluid width">

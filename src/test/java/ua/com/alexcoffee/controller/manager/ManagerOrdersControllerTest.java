@@ -19,7 +19,7 @@ public class ManagerOrdersControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ManagerOrdersController\" - START.");
+        System.out.println("\nTesting class \"ManagerOrdersController\" - START.\n");
 
         UserService userService = getUserService();
         OrderService orderService = getOrderService();

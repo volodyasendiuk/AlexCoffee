@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/client/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Авторизация || Alex Coffee">
     <title>Авторизация || Alex Coffee</title>
@@ -32,8 +32,10 @@
 <div class="container-fluid width">
     <section id="login">
         <div class="row login">
-            <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xl-4 col-xl-offset-4 text-center">
-                <div class="text-shadow"><span class="authorization">Авторизация</span></div>
+            <div class="col-xs-6 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xl-4 col-xl-offset-4 text-center">
+                <div class="text-shadow">
+                    <span class="authorization">Авторизация</span>
+                </div>
 
                 <c:if test="${param.error ne null}">
                     <div class="alert alert-info" role="alert">

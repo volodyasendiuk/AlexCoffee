@@ -22,7 +22,7 @@ public class ProductServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ProductServiceImpl\" - START.");
+        System.out.println("\nTesting class \"ProductServiceImpl\" - START.\n");
 
         productService = MockService.getProductService();
     }

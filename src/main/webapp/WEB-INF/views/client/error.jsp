@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/client/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Ошибка || Alex Coffee">
     <title>Ошибка || Alex Coffee</title>
@@ -11,7 +11,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/navbar.jsp"/>
 
 <!-- ERROR -->
 <div class="container-fluid width">
@@ -24,6 +24,6 @@
     </section>
 </div>
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/footer.jsp"/>
 </body>
 </html>

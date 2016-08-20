@@ -14,7 +14,7 @@ public class ShoppingCartTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ShoppingCart\" - START.");
+        System.out.println("\nTesting class \"ShoppingCart\" - START.\n");
     }
 
     @AfterClass

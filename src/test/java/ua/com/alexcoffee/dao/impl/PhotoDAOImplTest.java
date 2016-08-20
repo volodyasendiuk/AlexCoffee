@@ -33,7 +33,7 @@ public class PhotoDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"PhotoDAOImpl\" - START.");
+        System.out.println("\nTesting class \"PhotoDAOImpl\" - START.\n");
     }
 
     @AfterClass

@@ -24,7 +24,7 @@ public class UserServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"UserServiceImpl\" - START.");
+        System.out.println("\nTesting class \"UserServiceImpl\" - START.\n");
 
         userService = MockService.getUserService();
     }

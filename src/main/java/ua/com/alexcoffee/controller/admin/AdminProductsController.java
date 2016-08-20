@@ -93,7 +93,7 @@ public class AdminProductsController {
      * Возвращает товар с уникальным кодом id на страницу "admin/product/one".
      * URL запроса "/admin/view_product_{id}", метод GET.
      *
-     * @param id           Код товара, которою нужно вернуть.
+     * @param id           Код товара, который нужно вернуть.
      * @param modelAndView Объект класса {@link ModelAndView}.
      * @return Объект класса {@link ModelAndView}.
      */

@@ -18,7 +18,7 @@ public class SenderServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"RoleServiceImpl\" - START.");
+        System.out.println("\nTesting class \"RoleServiceImpl\" - START.\n");
 
         senderService = MockService.getSenderService();
     }

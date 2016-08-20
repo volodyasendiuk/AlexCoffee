@@ -34,7 +34,7 @@ public class UserDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"UserDAOImpl\" - START.");
+        System.out.println("\nTesting class \"UserDAOImpl\" - START.\n");
     }
 
     @AfterClass

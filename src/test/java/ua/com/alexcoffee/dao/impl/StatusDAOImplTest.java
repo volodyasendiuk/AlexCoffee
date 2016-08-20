@@ -32,7 +32,7 @@ public class StatusDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"StatusDAOImpl\" - START.");
+        System.out.println("\nTesting class \"StatusDAOImpl\" - START.\n");
     }
 
     @AfterClass

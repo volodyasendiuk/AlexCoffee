@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/template/head.jsp"/>
     <meta name="robots" content="noindex,nofollow">
     <meta name="title" content="Категории кофе || Alex Coffee">
     <title>Категории кофе || Alex Coffee</title>
@@ -14,7 +14,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/admin_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/admin/template/admin_navbar.jsp"/>
 
 <!-- CATEGORIES -->
 <div class="container-fluid width">
@@ -40,7 +40,7 @@
                     <table class="table">
                         <tr>
                             <th>Название</th>
-                            <td class="hidden-xs"><b>URL</th>
+                            <td class="hidden-xs"><b>URL</b></td>
                             <td>
                                 <b>Действие</b>
                                 <a href="/admin/add_category" title="Добавить новую категорию">

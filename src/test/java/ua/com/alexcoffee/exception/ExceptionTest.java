@@ -12,7 +12,7 @@ public class ExceptionTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting package \"Exception\" - START.");
+        System.out.println("\nTesting package \"Exception\" - START.\n");
     }
 
     @AfterClass

@@ -14,7 +14,7 @@ public class StatusTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Status\" - START.");
+        System.out.println("\nTesting class \"Status\" - START.\n");
     }
 
     @AfterClass

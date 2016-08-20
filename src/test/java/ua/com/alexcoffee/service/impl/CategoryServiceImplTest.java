@@ -22,7 +22,7 @@ public class CategoryServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"CategoryServiceImpl\" - START.");
+        System.out.println("\nTesting class \"CategoryServiceImpl\" - START.\n");
 
         categoryService = MockService.getCategoryService();
     }

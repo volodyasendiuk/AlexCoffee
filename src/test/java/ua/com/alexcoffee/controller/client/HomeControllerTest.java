@@ -18,7 +18,7 @@ public class HomeControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"HomeController\" - START.");
+        System.out.println("\nTesting class \"HomeController\" - START.\n");
 
         ProductService productService = getProductService();
         CategoryService categoryService = getCategoryService();

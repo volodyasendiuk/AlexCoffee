@@ -24,7 +24,7 @@ public class RoleServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"RoleServiceImpl\" - START.");
+        System.out.println("\nTesting class \"RoleServiceImpl\" - START.\n");
 
         roleService = MockService.getRoleService();
     }

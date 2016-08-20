@@ -12,7 +12,7 @@ public class AppInitializerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"AppInitializer\" - START.");
+        System.out.println("\nTesting class \"AppInitializer\" - START.\n");
     }
 
     @AfterClass

@@ -33,7 +33,7 @@ public class CategoryDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"CategoryDAOImpl\" - START.");
+        System.out.println("\nTesting class \"CategoryDAOImpl\" - START.\n");
     }
 
     @AfterClass

@@ -10,7 +10,7 @@ public class SecurityInitializerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"SecurityInitializer\" - START.");
+        System.out.println("\nTesting class \"SecurityInitializer\" - START.\n");
     }
 
     @AfterClass

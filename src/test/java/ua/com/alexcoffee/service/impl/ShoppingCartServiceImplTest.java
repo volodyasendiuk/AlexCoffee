@@ -19,7 +19,7 @@ public class ShoppingCartServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"OrderServiceImpl\" - START.");
+        System.out.println("\nTesting class \"OrderServiceImpl\" - START.\n");
 
         shoppingCartService = MockService.getShoppingCartService();
     }

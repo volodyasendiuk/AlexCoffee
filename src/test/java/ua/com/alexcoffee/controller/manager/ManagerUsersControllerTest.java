@@ -16,7 +16,7 @@ public class ManagerUsersControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"CategoryServiceImpl\" - START.");
+        System.out.println("\nTesting class \"CategoryServiceImpl\" - START.\n");
 
         UserService userService = getUserService();
         RoleService roleService = getRoleService();

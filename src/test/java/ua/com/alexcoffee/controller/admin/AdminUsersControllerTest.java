@@ -18,7 +18,7 @@ public class AdminUsersControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"AdminUsersController\" - START.");
+        System.out.println("\nTesting class \"AdminUsersController\" - START.\n");
 
         UserService userService = getUserService();
         RoleService roleService = getRoleService();

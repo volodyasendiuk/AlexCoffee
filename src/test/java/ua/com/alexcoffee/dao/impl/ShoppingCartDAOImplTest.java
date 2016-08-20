@@ -40,7 +40,7 @@ public class ShoppingCartDAOImplTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"ShoppingCartDAOImpl\" - START.");
+        System.out.println("\nTesting class \"ShoppingCartDAOImpl\" - START.\n");
     }
 
     @AfterClass

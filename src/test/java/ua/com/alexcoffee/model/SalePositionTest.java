@@ -10,7 +10,7 @@ public class SalePositionTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"SalePosition\" - START.");
+        System.out.println("\nTesting class \"SalePosition\" - START.\n");
     }
 
     @AfterClass

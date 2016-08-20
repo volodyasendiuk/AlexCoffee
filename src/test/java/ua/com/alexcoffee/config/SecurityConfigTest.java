@@ -30,7 +30,7 @@ public class SecurityConfigTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"curityConfig\" - START.");
+        System.out.println("\nTesting class \"curityConfig\" - START.\n");
     }
 
     @AfterClass

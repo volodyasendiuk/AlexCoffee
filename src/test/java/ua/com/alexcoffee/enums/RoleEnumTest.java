@@ -10,7 +10,7 @@ public class RoleEnumTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"RoleEnum\" - START.");
+        System.out.println("\nTesting class \"RoleEnum\" - START.\n");
     }
 
     @AfterClass

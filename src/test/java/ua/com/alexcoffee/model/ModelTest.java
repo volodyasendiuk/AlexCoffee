@@ -14,7 +14,7 @@ public class ModelTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"Model\" - START.");
+        System.out.println("\nTesting class \"Model\" - START.\n");
     }
 
     @AfterClass

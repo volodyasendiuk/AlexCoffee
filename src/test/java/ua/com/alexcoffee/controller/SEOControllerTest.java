@@ -17,7 +17,7 @@ public class SEOControllerTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"SEOController\" - START.");
+        System.out.println("\nTesting class \"SEOController\" - START.\n");
 
         ProductService productService = getProductService();
         CategoryService categoryService = getCategoryService();

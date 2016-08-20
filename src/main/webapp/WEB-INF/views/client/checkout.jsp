@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="/WEB-INF/views/template/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/client/template/head.jsp"/>
     <meta name="robots" content="index,follow">
     <meta name="title" content="Оформление заказа || Alex Coffee">
     <title>Оформление заказа || Alex Coffee</title>
@@ -13,7 +13,7 @@
 <body>
 
 <!-- NAVBAR -->
-<jsp:include page="/WEB-INF/views/template/client_navbar.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/navbar.jsp"/>
 
 <!-- CHECKOUT -->
 <div class="container-fluid width">
@@ -31,13 +31,13 @@
                 </div>
             </div>
 
-            <!-- Products in shopping cart -->
-            <jsp:include page="/WEB-INF/views/template/client_products_in_cart.jsp"/>
+            <!-- PRODUCTS IN ORDER -->
+            <jsp:include page="/WEB-INF/views/client/template/products_in_cart.jsp"/>
         </div>
     </section>
 </div>
 
 <!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/template/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/footer.jsp"/>
 </body>
 </html>

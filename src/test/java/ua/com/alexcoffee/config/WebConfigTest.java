@@ -57,7 +57,7 @@ public class WebConfigTest {
 
     @BeforeClass
     public static void setUp() {
-        System.out.println("\nTesting class \"WebConfig\" - START.");
+        System.out.println("\nTesting class \"WebConfig\" - START.\n");
     }
 
     @AfterClass
