@@ -10,8 +10,9 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static ua.com.alexcoffee.tools.MockModel.*;
 
-public abstract class MockDAO extends MockMain {
+public final class MockDAO {
 
     private static CategoryDAO categoryDAO;
     private static OrderDAO orderDAO;
@@ -23,12 +24,14 @@ public abstract class MockDAO extends MockMain {
     private static StatusDAO statusDAO;
     private static UserDAO userDAO;
 
+
     public static CategoryDAO getCategoryDAO() {
         if (categoryDAO == null) {
             categoryDAO = initCategoryDAO();
         }
         return categoryDAO;
     }
+
 
     public static OrderDAO getOrderDAO() {
         if (orderDAO == null) {
@@ -37,12 +40,14 @@ public abstract class MockDAO extends MockMain {
         return orderDAO;
     }
 
+
     public static PhotoDAO getPhotoDAO() {
         if (photoDAO == null) {
             photoDAO = initPhotoDAO();
         }
         return photoDAO;
     }
+
 
     public static ProductDAO getProductDAO() {
         if (productDAO == null) {
@@ -51,6 +56,7 @@ public abstract class MockDAO extends MockMain {
         return productDAO;
     }
 
+
     public static RoleDAO getRoleDAO() {
         if (roleDAO == null) {
             roleDAO = initRoleDAO();
@@ -58,12 +64,14 @@ public abstract class MockDAO extends MockMain {
         return roleDAO;
     }
 
+
     public static SalePositionDAO getSalePositionDAO() {
         if (salePositionDAO == null) {
             salePositionDAO = initSalePositionDAO();
         }
         return salePositionDAO;
     }
+
 
     public static ShoppingCartDAO getShoppingCartDAO() {
         if (shoppingCartDAO == null) {
@@ -80,12 +88,14 @@ public abstract class MockDAO extends MockMain {
         return statusDAO;
     }
 
+
     public static UserDAO getUserDAO() {
         if (userDAO == null) {
             userDAO = initUserDAO();
         }
         return userDAO;
     }
+
 
     private static CategoryDAO initCategoryDAO() {
         Category category = getCategory();

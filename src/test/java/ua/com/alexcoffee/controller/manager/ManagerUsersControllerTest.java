@@ -4,10 +4,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
-import ua.com.alexcoffee.service.RoleService;
-import ua.com.alexcoffee.service.UserService;
+import ua.com.alexcoffee.tools.MockController;
 
-import static ua.com.alexcoffee.tools.MockService.*;
+import static ua.com.alexcoffee.tools.MockModel.ID;
 import static ua.com.alexcoffee.tools.ModelAndViews.checkModelAndView;
 
 public class ManagerUsersControllerTest {
@@ -18,9 +17,7 @@ public class ManagerUsersControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"CategoryServiceImpl\" - START.\n");
 
-        UserService userService = getUserService();
-        RoleService roleService = getRoleService();
-        managerUsersController = new ManagerUsersController(userService, roleService);
+        managerUsersController = MockController.getManagerUsersController();
     }
 
     @AfterClass

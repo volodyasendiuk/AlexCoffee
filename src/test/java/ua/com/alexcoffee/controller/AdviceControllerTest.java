@@ -10,13 +10,12 @@ import ua.com.alexcoffee.exception.BadRequestException;
 import ua.com.alexcoffee.exception.DuplicateException;
 import ua.com.alexcoffee.exception.ForbiddenException;
 import ua.com.alexcoffee.exception.WrongInformationException;
-import ua.com.alexcoffee.service.ShoppingCartService;
+import ua.com.alexcoffee.tools.MockController;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static ua.com.alexcoffee.tools.MockService.getShoppingCartService;
 import static ua.com.alexcoffee.tools.ModelAndViews.checkModelAndViewWithException;
 
 public class AdviceControllerTest {
@@ -27,8 +26,7 @@ public class AdviceControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"SEOController\" - START.\n");
 
-        ShoppingCartService shoppingCartService = getShoppingCartService();
-        adviceController = new AdviceController(shoppingCartService);
+        adviceController = MockController.getAdviceController();
     }
 
     @AfterClass

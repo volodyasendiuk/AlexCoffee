@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ua.com.alexcoffee.tools.MockDAO.getTenProducts;
+import static ua.com.alexcoffee.tools.MockModel.getTenProducts;
 
 public class CategoryTest {
 

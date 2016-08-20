@@ -6,7 +6,7 @@ import org.junit.Test;
 import ua.com.alexcoffee.enums.RoleEnum;
 
 import static org.junit.Assert.*;
-import static ua.com.alexcoffee.tools.MockMain.getTenOrders;
+import static ua.com.alexcoffee.tools.MockModel.getTenOrders;
 
 public class UserTest {
 

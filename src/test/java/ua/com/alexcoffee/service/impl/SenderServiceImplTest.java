@@ -5,12 +5,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ua.com.alexcoffee.model.Order;
 import ua.com.alexcoffee.service.SenderService;
-import ua.com.alexcoffee.tools.MockMain;
 import ua.com.alexcoffee.tools.MockService;
 
 import java.util.Properties;
 
 import static org.junit.Assert.assertNotNull;
+import static ua.com.alexcoffee.tools.MockModel.getOrder;
 
 public class SenderServiceImplTest {
 
@@ -45,7 +45,7 @@ public class SenderServiceImplTest {
     public void noExceptionOfVoidMethodTest() throws Exception {
         System.out.print("-> noExceptionOfVoidMethod() - ");
 
-        Order order = MockMain.getOrder();
+        Order order = getOrder();
         senderService.send(order);
 
         System.out.println("OK!");

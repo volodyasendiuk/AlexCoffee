@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static ua.com.alexcoffee.tools.MockMain.*;
+import static ua.com.alexcoffee.tools.MockModel.*;
 
 public class OrderServiceImplTest {
 

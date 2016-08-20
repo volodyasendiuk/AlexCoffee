@@ -11,7 +11,7 @@ import ua.com.alexcoffee.tools.MockService;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static ua.com.alexcoffee.tools.MockMain.getSalePosition;
+import static ua.com.alexcoffee.tools.MockModel.getSalePosition;
 
 public class ShoppingCartServiceImplTest {
 

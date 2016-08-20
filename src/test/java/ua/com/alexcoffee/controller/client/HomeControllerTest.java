@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.alexcoffee.exception.ForbiddenException;
 import ua.com.alexcoffee.exception.WrongInformationException;
-import ua.com.alexcoffee.service.*;
+import ua.com.alexcoffee.tools.MockController;
 
-import static ua.com.alexcoffee.tools.MockService.*;
+import static ua.com.alexcoffee.tools.MockModel.*;
 import static ua.com.alexcoffee.tools.ModelAndViews.checkModelAndView;
 
 public class HomeControllerTest {
@@ -20,16 +20,7 @@ public class HomeControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"HomeController\" - START.\n");
 
-        ProductService productService = getProductService();
-        CategoryService categoryService = getCategoryService();
-        ShoppingCartService shoppingCartService = getShoppingCartService();
-        OrderService orderService = getOrderService();
-        StatusService statusService = getStatusService();
-        RoleService roleService = getRoleService();
-        SenderService senderService = getSenderService();
-
-        homeController = new HomeController(productService, categoryService, shoppingCartService,
-                orderService, statusService, roleService, senderService);
+        homeController = MockController.getHomeController();
     }
 
     @AfterClass
@@ -133,7 +124,7 @@ public class HomeControllerTest {
         System.out.print("-> addProductToCartQuickly() - ");
 
         ModelAndView modelAndView = homeController.addProductToCartQuickly(ID, URL, new ModelAndView());
-        String viewName = "redirect:"+ URL;
+        String viewName = "redirect:" + URL;
         checkModelAndView(modelAndView, viewName);
 
         System.out.println("OK!");
@@ -157,6 +148,18 @@ public class HomeControllerTest {
         ModelAndView modelAndView = homeController.clearCart(new ModelAndView());
         String viewName = "redirect:/cart";
         checkModelAndView(modelAndView, viewName);
+
+        System.out.println("OK!");
+    }
+
+    @Test
+    @Transactional
+    public void viewCheckoutTest() throws Exception {
+        System.out.print("-> viewCheckout() RequestMethod.GET - ");
+
+        ModelAndView modelAndView = homeController.viewCheckout("Name", "email", "phone", new ModelAndView());
+        String[] keys = {};
+        String viewName = "client/checkout";
 
         System.out.println("OK!");
     }

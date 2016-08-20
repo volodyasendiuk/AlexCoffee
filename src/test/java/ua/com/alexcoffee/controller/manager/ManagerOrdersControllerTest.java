@@ -5,12 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.alexcoffee.exception.WrongInformationException;
-import ua.com.alexcoffee.service.OrderService;
-import ua.com.alexcoffee.service.RoleService;
-import ua.com.alexcoffee.service.StatusService;
-import ua.com.alexcoffee.service.UserService;
+import ua.com.alexcoffee.tools.MockController;
 
-import static ua.com.alexcoffee.tools.MockService.*;
+import static ua.com.alexcoffee.tools.MockModel.ID;
 import static ua.com.alexcoffee.tools.ModelAndViews.checkModelAndView;
 
 public class ManagerOrdersControllerTest {
@@ -21,11 +18,7 @@ public class ManagerOrdersControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"ManagerOrdersController\" - START.\n");
 
-        UserService userService = getUserService();
-        OrderService orderService = getOrderService();
-        StatusService statusService = getStatusService();
-        RoleService roleService = getRoleService();
-        managerOrdersController = new ManagerOrdersController(userService, orderService, statusService, roleService);
+        managerOrdersController = MockController.getManagerOrdersController();
     }
 
     @AfterClass

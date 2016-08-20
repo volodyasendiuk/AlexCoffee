@@ -6,7 +6,7 @@ import ua.com.alexcoffee.service.impl.*;
 
 import static ua.com.alexcoffee.tools.MockDAO.*;
 
-public abstract class MockService extends MockMain {
+public final class MockService {
 
     private static CategoryService categoryService;
     private static OrderService orderService;

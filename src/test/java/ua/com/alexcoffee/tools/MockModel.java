@@ -7,7 +7,7 @@ import ua.com.alexcoffee.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MockMain {
+public final class MockModel {
 
     public static final Long ID = 1L;
     public static final int ARTICLE = 1;

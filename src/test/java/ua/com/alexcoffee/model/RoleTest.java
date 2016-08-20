@@ -8,7 +8,7 @@ import ua.com.alexcoffee.enums.RoleEnum;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ua.com.alexcoffee.tools.MockMain.getTenUsers;
+import static ua.com.alexcoffee.tools.MockModel.getTenUsers;
 
 public class RoleTest {
 

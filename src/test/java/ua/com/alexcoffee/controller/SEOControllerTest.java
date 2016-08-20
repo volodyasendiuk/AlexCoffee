@@ -3,13 +3,10 @@ package ua.com.alexcoffee.controller;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ua.com.alexcoffee.service.CategoryService;
-import ua.com.alexcoffee.service.ProductService;
+import ua.com.alexcoffee.tools.MockController;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
-import static ua.com.alexcoffee.tools.MockService.getCategoryService;
-import static ua.com.alexcoffee.tools.MockService.getProductService;
 
 public class SEOControllerTest {
 
@@ -19,9 +16,7 @@ public class SEOControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"SEOController\" - START.\n");
 
-        ProductService productService = getProductService();
-        CategoryService categoryService = getCategoryService();
-        seoController = new SEOController(productService, categoryService);
+        seoController = MockController.getSeoController();
     }
 
     @AfterClass

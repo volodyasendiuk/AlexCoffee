@@ -263,6 +263,7 @@ public class HomeController {
 
     /**
      * Оформляет и сохраняет заказ клиента, возвращает страницу "client/checkout".
+     * Если корзина пуста, по перенаправляет на главную страницу.
      * URL запроса "/checkout", метод POST.
      *
      * @param name         Имя клиента, сжелавшего заказ.
@@ -276,22 +277,26 @@ public class HomeController {
                                      @RequestParam(value = "user_email") String email,
                                      @RequestParam(value = "user_phone") String phone,
                                      ModelAndView modelAndView) {
-        Role role = roleService.getDefault();
-        User client = new User(name, email, phone, role);
+        if (shoppingCartService.getSize() > 0) {
+            Role role = roleService.getDefault();
+            User client = new User(name, email, phone, role);
 
-        Status status = statusService.getDefault();
-        Order order = new Order(status, client, new ArrayList<SalePosition>(shoppingCartService.getSalePositions()));
-        orderService.add(order);
+            Status status = statusService.getDefault();
+            Order order = new Order(status, client, new ArrayList<SalePosition>(shoppingCartService.getSalePositions()));
+            orderService.add(order);
 
-        senderService.send(order);
+            senderService.send(order);
 
-        modelAndView.addObject("order", order);
-        modelAndView.addObject("sale_positions", order.getSalePositions());
-        modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
-        modelAndView.addObject("cart_size", 0);
-        modelAndView.setViewName("client/checkout");
+            modelAndView.addObject("order", order);
+            modelAndView.addObject("sale_positions", order.getSalePositions());
+            modelAndView.addObject("price_of_cart", shoppingCartService.getPrice());
+            modelAndView.addObject("cart_size", 0);
+            modelAndView.setViewName("client/checkout");
 
-        shoppingCartService.clear();
+            shoppingCartService.clear();
+        } else {
+            modelAndView.setViewName("redirect:/");
+        }
 
         return modelAndView;
     }

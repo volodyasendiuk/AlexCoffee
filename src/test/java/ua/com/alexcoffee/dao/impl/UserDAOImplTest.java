@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.*;
-import static ua.com.alexcoffee.tools.MockMain.getTenUsers;
+import static ua.com.alexcoffee.tools.MockModel.getTenUsers;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ua.com.alexcoffee.tools.MockMain.getTenSalePositions;
+import static ua.com.alexcoffee.tools.MockModel.getTenSalePositions;
 
 public class OrderTest {
 

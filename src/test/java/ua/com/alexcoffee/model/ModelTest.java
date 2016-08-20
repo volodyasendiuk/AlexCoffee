@@ -4,7 +4,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ua.com.alexcoffee.enums.StatusEnum;
-import ua.com.alexcoffee.tools.MockMain;
+import ua.com.alexcoffee.tools.MockModel;
 
 import java.util.Collections;
 
@@ -53,7 +53,7 @@ public class ModelTest {
 
         assertEquals(Model.getUnmodifiableList(null), Collections.EMPTY_LIST);
 
-        assertTrue(Model.getUnmodifiableList(MockMain.getTenProducts()).size() == 10);
+        assertTrue(Model.getUnmodifiableList(MockModel.getTenProducts()).size() == 10);
 
         System.out.println("OK!");
     }

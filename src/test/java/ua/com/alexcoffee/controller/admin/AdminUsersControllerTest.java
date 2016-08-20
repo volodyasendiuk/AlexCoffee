@@ -5,10 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.alexcoffee.exception.WrongInformationException;
-import ua.com.alexcoffee.service.RoleService;
-import ua.com.alexcoffee.service.UserService;
+import ua.com.alexcoffee.tools.MockController;
 
-import static ua.com.alexcoffee.tools.MockService.*;
+import static ua.com.alexcoffee.tools.MockModel.ID;
 import static ua.com.alexcoffee.tools.ModelAndViews.checkModelAndView;
 
 
@@ -20,9 +19,7 @@ public class AdminUsersControllerTest {
     public static void setUp() {
         System.out.println("\nTesting class \"AdminUsersController\" - START.\n");
 
-        UserService userService = getUserService();
-        RoleService roleService = getRoleService();
-        adminUsersController = new AdminUsersController(userService, roleService);
+        adminUsersController = MockController.getAdminUsersController();
     }
 
     @AfterClass

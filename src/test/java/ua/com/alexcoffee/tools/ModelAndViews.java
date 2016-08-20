@@ -9,7 +9,7 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
-public abstract class ModelAndViews {
+public final class ModelAndViews {
 
     public static void checkModelAndView(ModelAndView modelAndView, String view) {
         checkModelAndView(modelAndView, view, null);

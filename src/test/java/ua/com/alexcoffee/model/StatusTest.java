@@ -8,7 +8,7 @@ import ua.com.alexcoffee.enums.StatusEnum;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ua.com.alexcoffee.tools.MockMain.getTenOrders;
+import static ua.com.alexcoffee.tools.MockModel.getTenOrders;
 
 public class StatusTest {
 
