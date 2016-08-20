@@ -25,7 +25,7 @@
                     <ul class="nav navbar-nav">
                         <li id="nav-main"><a href="#main">Главная</a></li>
                         <li id="nav-categories"><a href="#categories">Категории</a></li>
-                        <li id="nav-all-products"><a href="#all-products">Товары</a></li>
+                        <li id="nav-products"><a href="#products">Товары</a></li>
                         <li id="nav-delivery" class="hidden-sm"><a href="#delivery">Доставка</a></li>
                         <li id="nav-payments" class="hidden-sm"><a href="#payments">Оплата</a></li>
                         <li id="nav-contacts" class="hidden-sm"><a href="#contacts">Контакты</a></li>

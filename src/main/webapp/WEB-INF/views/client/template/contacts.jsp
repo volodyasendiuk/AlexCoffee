@@ -2,7 +2,7 @@
 
 <div class="container-fluid width">
     <section id="contacts">
-        <div class="row google-map intro-text label-cantacts">
+        <div class="row contacts intro-text label-cantacts">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3>
                     <img src="/resources/img/section_icon_5.png" width="90px" height="90px"

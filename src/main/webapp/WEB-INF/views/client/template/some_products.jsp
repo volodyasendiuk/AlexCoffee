@@ -6,7 +6,7 @@
     <section id="products">
         <div class="row products">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-all-products">
+                <h3 class="intro-text label-products">
                     <img id="icon7" src="/resources/img/all_products_icon.png" width="150px" height="150px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">

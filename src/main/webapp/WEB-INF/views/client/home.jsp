@@ -35,7 +35,7 @@
 <jsp:include page="/WEB-INF/views/client/template/delivery.jsp"/>
 
 <!-- PAYMENTS -->
-<jsp:include page="/WEB-INF/views/client/template/delivery.jsp"/>
+<jsp:include page="/WEB-INF/views/client/template/payments.jsp"/>
 
 <!-- CONTACTS -->
 <jsp:include page="/WEB-INF/views/client/template/contacts.jsp"/>
