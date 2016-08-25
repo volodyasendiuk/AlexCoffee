@@ -15,7 +15,7 @@ import java.util.List;
  * @see SalePosition
  */
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 public class Product extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

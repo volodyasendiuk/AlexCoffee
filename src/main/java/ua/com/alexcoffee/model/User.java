@@ -20,7 +20,7 @@ import java.util.*;
  * @see Order
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User extends Model implements UserDetails {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

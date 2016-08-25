@@ -17,7 +17,7 @@ import java.util.List;
  * @see SalePosition
  */
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

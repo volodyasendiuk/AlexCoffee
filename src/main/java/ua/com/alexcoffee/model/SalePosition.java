@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @see ShoppingCart
  */
 @Entity
-@Table(name = "Sales")
+@Table(name = "sales")
 public class SalePosition extends Model {
 
     /**

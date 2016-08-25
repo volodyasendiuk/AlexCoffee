@@ -4,8 +4,8 @@
     <section id="delivery">
         <div class="row delivery">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-delivery">
-                    <img src="/resources/img/section_icon_3.png" width="90px" height="90px"
+                <h3 class="intro-text">
+                    <img id = "label-delivery" src="/resources/img/section_icon_3.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Доставка</span>

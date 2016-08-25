@@ -23,7 +23,7 @@
         <div class="row products">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3 class="intro-text label-categories">
-                    <img id="icon7" src="/resources/img/${category.photo.photoLinkShort}" width="150px" height="150px"
+                    <img id="label-category" src="/resources/img/${category.photo.photoLinkShort}" width="150px" height="150px"
                          alt="${category.title}">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">${category.title}</span>

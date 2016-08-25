@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * Класс конфигурации Spring компонентов представления, настройка Mvc.
+ * Класс конфигурации Spring компонентов представления , настройка MVC.
  * Указывает Spring где находятся компоненты представления, и как их отображать.
  * Помечен аннотацией @Configuration - класс является источником определения бинов;
  * аннотацией @EnableWebMvc - разрешает проекту использовать MVC;

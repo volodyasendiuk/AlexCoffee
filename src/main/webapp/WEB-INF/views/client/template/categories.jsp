@@ -6,8 +6,8 @@
     <section id="categories">
         <div class="row categories">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-categories">
-                    <img src="/resources/img/section_icon_1.png" width="90px" height="90px"
+                <h3 class="intro-text">
+                    <img id="label-category" src="/resources/img/section_icon_1.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Категории</span>

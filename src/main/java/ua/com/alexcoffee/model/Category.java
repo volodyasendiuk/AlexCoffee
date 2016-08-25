@@ -15,7 +15,7 @@ import java.util.List;
  * @see Photo
  */
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 public class Category extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

@@ -2,10 +2,10 @@
 
 <div class="container-fluid width">
     <section id="contacts">
-        <div class="row contacts intro-text label-cantacts">
+        <div class="row contacts intro-text">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3>
-                    <img src="/resources/img/section_icon_5.png" width="90px" height="90px"
+                    <img id="label-cantacts" src="/resources/img/section_icon_5.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Контакты</span>

@@ -4,8 +4,8 @@
     <section id="payments">
         <div class="row payments">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="intro-text label-payments">
-                    <img src="/resources/img/section_icon_4.png" width="90px" height="90px"
+                <h3 class="intro-text">
+                    <img id = "label-payments" src="/resources/img/section_icon_4.png" width="90px" height="90px"
                          alt="Alex Coffee || Лучший магазин кофе">
                     <div class="text-shadow">
                         <span class="home-block-name color-green">Оплата</span>

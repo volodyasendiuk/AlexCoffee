@@ -16,7 +16,7 @@ import java.util.List;
  * @see User
  */
 @Entity
-@Table(name = "Roles")
+@Table(name = "roles")
 public class Role extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.

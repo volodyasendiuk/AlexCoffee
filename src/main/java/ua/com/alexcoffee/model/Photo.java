@@ -13,7 +13,7 @@ import javax.persistence.*;
  * @see Product
  */
 @Entity
-@Table(name = "Photos")
+@Table(name = "photos")
 public class Photo extends Model {
     /**
      * Номер версии класса необходимый для десериализации и сериализации.
