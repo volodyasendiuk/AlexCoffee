@@ -31,11 +31,11 @@
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xl-10 col-xl-offset-1 full-cart">
                 <table class="table">
                     <tr>
-                        <td><b>Номер:</b></td>
+                        <th>Номер:</th>
                         <td>${order.number}</td>
                     </tr>
                     <tr>
-                        <td><b>Статус:</b></td>
+                        <th>Статус:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${order.status eq status_new}">
@@ -48,11 +48,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Дата:</b></td>
+                        <th>Дата:</th>
                         <td>${order.date}</td>
                     </tr>
                     <tr>
-                        <td><b>Заказ обработал:</b></td>
+                        <th>Заказ обработал:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${order.manager eq null}">
@@ -76,7 +76,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Клиент:</b></td>
+                        <th>Клиент:</th>
                         <td>
                             Имя: <b>${order.client.name}</b>
                             <br>Email: <b>${order.client.email}</b>
@@ -84,7 +84,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Адрес доставки:</b></td>
+                        <th>Адрес доставки:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.shippingAddress eq null) or (order.shippingAddress eq '')}">
@@ -97,7 +97,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Детали доставки:</b></td>
+                        <th>Детали доставки:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.shippingDetails eq null) or (order.shippingDetails eq '')}">
@@ -110,7 +110,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Коментарии:</b></td>
+                        <th>Коментарии:</th>
                         <td>
                             <c:choose>
                                 <c:when test="${(order.description eq null) or (order.description eq '')}">
@@ -123,18 +123,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Товары:</b></td>
+                        <th>Товары:</th>
                         <td>
                             <c:choose>
-                                <c:when test="${fn:length(salePositions) eq 0}">
+                                <c:when test="${fn:length(sale_positions) eq 0}">
                                     Cписок товаров пуст!
                                 </c:when>
-                                <c:when test="${fn:length(salePositions) gt 0}">
-                                    <c:forEach items="${salePositions}" var="salePosition">
-                                        <a href="/product_${salePosition.product.url}"
-                                           title="Перейти к товару ${salePosition.product.title}">
-                                                ${salePosition.product.title}</a>, № ${salePosition.product.id},
-                                        <br>${salePosition.number} x ${salePosition.product.price} грн
+                                <c:when test="${fn:length(sale_positions) gt 0}">
+                                    <c:forEach items="${sale_positions}" var="position">
+                                        <a href="/product_${position.product.url}"
+                                           title="Перейти к товару ${position.product.title}">
+                                                ${position.product.title}</a>, № ${position.product.id},
+                                        <br>${position.number} x ${position.product.price} грн
                                         <br>--------------<br>
                                     </c:forEach>
                                 </c:when>
@@ -142,11 +142,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><b>Общая сумма:</b></td>
+                        <th>Общая сумма:</th>
                         <td><b>${order_price}</b> грн</td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <th></th>
                         <td>
                             <c:if test="${(order.status eq status_new) or (order.manager eq auth_user)}">
                                 <a href="/manager/edit_order_${order.id}"

@@ -219,7 +219,7 @@ public class CategoryTest {
         Category category = new Category();
         category.setProducts(products);
 
-        assertTrue(category.getProducts() != null);
+        assertNotNull(category.getProducts());
         assertFalse(category.getProducts().isEmpty());
 
         System.out.println("OK!");

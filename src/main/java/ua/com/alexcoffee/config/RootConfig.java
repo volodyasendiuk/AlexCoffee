@@ -81,6 +81,7 @@ public class RootConfig {
         basicDataSource.setPassword(DATABASE_PASSWORD);
         basicDataSource.setInitialSize(5);
         basicDataSource.setMaxActive(20);
+        basicDataSource.setAccessToUnderlyingConnectionAllowed(true);
         return basicDataSource;
     }
 

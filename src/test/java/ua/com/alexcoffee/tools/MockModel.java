@@ -24,15 +24,15 @@ public final class MockModel {
     public static final StatusEnum STATUS_ENUM = StatusEnum.NEW;
     public static final RoleEnum ROLE_ENUM = RoleEnum.ADMIN;
 
-        private static Category category;
-        private static Order order;
-        private static Photo photo;
-        private static Product product;
-        private static Role role;
-        private static SalePosition salePosition;
-        private static ShoppingCart shoppingCart;
-        private static Status status;
-        private static User user;
+    private static Category category;
+    private static Order order;
+    private static Photo photo;
+    private static Product product;
+    private static Role role;
+    private static SalePosition salePosition;
+    private static ShoppingCart shoppingCart;
+    private static Status status;
+    private static User user;
 
     private static long count = 1;
 

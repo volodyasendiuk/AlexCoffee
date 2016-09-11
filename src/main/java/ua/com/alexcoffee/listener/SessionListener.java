@@ -14,7 +14,7 @@ public class SessionListener implements HttpSessionListener {
     /**
      * Интервал времени.
      */
-    private static final int INTERVAL = 24 * 60 * 60;
+    private static final int INTERVAL = 30 * 24 * 60 * 60;
 
     /**
      * Получает уведомление о том, что был создан сеанс.
